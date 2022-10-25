@@ -67,6 +67,9 @@ $(NAME)		:	$(OBJS)
 			gcc $(FLAGS) -c $(SRCS) -I./
 			ar rc $(NAME) $(OBJS)
 
+libft.a		:	SRCS:%.c=%.o
+			gcc $(FLAGS) -c $(SRCS) -I./
+
 all	:	$(NAME)
 
 bonus	:	$(NAME)

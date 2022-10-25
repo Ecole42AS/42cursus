@@ -1,5 +1,5 @@
 #include "libft.h"
-#include "stdio.h"
+// #include "stdio.h"
 
 int		ft_isalpha(int c)
 {
@@ -9,8 +9,8 @@ int		ft_isalpha(int c)
 	return (0);
 }
 
-int main()
-{
-  int res = ft_isalpha(65);
-  printf("%d", res);
-}
+// int main()
+// {
+//   int res = ft_isalpha(65);
+//   printf("%d", res);
+// }
