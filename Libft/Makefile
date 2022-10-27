@@ -6,14 +6,14 @@
 #    By: astutz <alex.rastafari@hotmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/22 14:44:25 by jseo              #+#    #+#              #
-#    Updated: 2022/10/26 15:53:25 by astutz           ###   ########.fr        #
+#    Updated: 2022/10/27 13:12:40 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
-FLAGS = -Wall -Wextra -Werror -std=c99
+FLAGS = -Wall -Wextra -Werror
 
 
 
