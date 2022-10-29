@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:09:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/10/29 21:27:47 by astutz           ###   ########.fr       */
+/*   Updated: 2022/10/29 21:32:32 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t len)
 	i = 0;
 	while (i < len)
 	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		((unsigned char *)dest)[i] = ((const unsigned char *)src)[i];
 		i++;
 	}
 	return (dest);
@@ -31,7 +31,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t len)
 
 // int main()
 // {
-// 	char src[] = "hello";
+// 	const char src[] = "hello";
 // 	char dest[] = "hi";
 
 // 	ft_memcpy(dest, src, sizeof(src));
@@ -41,7 +41,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t len)
 
 // int main()
 // {
-// 	int src[] = {1, 3, 4, 5};
+// 	const int src[] = {1, 3, 4, 5};
 // 	int dest[] = {7, 6, 8, 9};
 
 // 	ft_memcpy(dest, src, 4 * sizeof(int));
