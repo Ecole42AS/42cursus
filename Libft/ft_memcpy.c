@@ -6,10 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:09:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/10/28 14:11:44 by astutz           ###   ########.fr       */
+/*   Updated: 2022/10/29 11:17:38 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 void	*memcpy(void *restrict dst, const void *restrict src, size_t n)
+{
+	
+}
