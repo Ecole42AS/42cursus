@@ -1,38 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 21:30:18 by astutz            #+#    #+#             */
-/*   Updated: 2022/10/30 12:48:33 by astutz           ###   ########.fr       */
+/*   Created: 2022/10/30 12:52:22 by astutz            #+#    #+#             */
+/*   Updated: 2022/10/30 13:26:47 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "stdio.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t len)
+void	*ft_memchr(const void *s, int c, size_t len)
 {
 	size_t	i;
-
+	
 	i = 0;
 	while (i < len)
 	{
-		if (((const unsigned char *)s1)[i] != ((const unsigned char *)s2)[i])
-			return (((const unsigned char *)s1)[i]
-				- ((const unsigned char *)s2)[i]);
+		if (((unsigned char *)s)[i] == ((const unsigned char)c))
+			return (((void *)s)[i]);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
-// int main()
+// void	*ft_memchr(const void *s, int c, size_t n)
 // {
-// 	const unsigned char s1[] = "a";
-// 	const unsigned char s2[] = "";
+// 	size_t		idx;
 
-// 	int res = ft_memcmp(s1, s2, sizeof(s1));
-// 	printf("%d", res);
+// 	idx = 0;
+// 	while (idx < n)
+// 	{
+// 		if (*((unsigned char *)s + idx) == (unsigned char)c)
+// 			return ((void *)s + idx);
+// 		idx++;
+// 	}
+// 	return (NULL);
 // }
+
+int main()
+{
+	char s[] = "hello world";
+
+	ft_memchr(s, 'a', sizeof(s));
+	printf("%s", s);
+}
