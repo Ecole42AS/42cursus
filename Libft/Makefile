@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alex1008 <alex1008@student.42.fr>          +#+  +:+       +#+         #
+#    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 14:22:23 by astutz            #+#    #+#              #
-#    Updated: 2022/10/29 08:51:02 by alex1008         ###   ########.fr        #
+#    Updated: 2022/10/30 15:42:32 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,11 @@ SRCS = 		ft_isdigit.c \
 			ft_isprint.c \
 			ft_toupper.c \
 			ft_tolower.c \
+			ft_memcpy.c \
+			ft_memmove.c \
+			ft_memchr.c \
+			ft_memcmp.c \
+			ft_memset.c \
 #			ft_calloc.c \
 			ft_strlcpy.c \
 			ft_strlcat.c \
@@ -36,15 +41,9 @@ SRCS = 		ft_isdigit.c \
 			ft_strrchr.c \
 			ft_strnstr.c \
 			ft_strncmp.c \
-			ft_memcpy.c \
-			ft_memccpy.c \
-			ft_memmove.c \
-			ft_memchr.c \
-			ft_memcmp.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \
-			ft_memset.c \
 			ft_putnbr_fd.c
 
 OBJS = $(SRCS:.c=.o)
