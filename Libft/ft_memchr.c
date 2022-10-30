@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 12:52:22 by astutz            #+#    #+#             */
-/*   Updated: 2022/10/30 13:26:47 by astutz           ###   ########.fr       */
+/*   Updated: 2022/10/30 14:40:47 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 void	*ft_memchr(const void *s, int c, size_t len)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (i < len)
 	{
-		if (((unsigned char *)s)[i] == ((const unsigned char)c))
-			return (((void *)s)[i]);
+		if (((unsigned char *)s)[i] == ((unsigned char)c))
+			return ((void *)(s + i));
 		i++;
 	}
 	return (NULL);
@@ -29,7 +29,7 @@ void	*ft_memchr(const void *s, int c, size_t len)
 
 // void	*ft_memchr(const void *s, int c, size_t n)
 // {
-// 	size_t		idx;
+// 	size_t		i;
 
 // 	idx = 0;
 // 	while (idx < n)
@@ -41,10 +41,9 @@ void	*ft_memchr(const void *s, int c, size_t len)
 // 	return (NULL);
 // }
 
-int main()
-{
-	char s[] = "hello world";
+// int main()
+// {
+// 	char s[] = "hello world";
 
-	ft_memchr(s, 'a', sizeof(s));
-	printf("%s", s);
-}
+// 	printf("%s", ft_memchr(s, 'l', sizeof(s)));
+// }

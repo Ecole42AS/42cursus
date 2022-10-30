@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 13:55:32 by astutz            #+#    #+#             */
-/*   Updated: 2022/10/30 15:32:54 by astutz           ###   ########.fr       */
+/*   Created: 2022/10/30 14:42:35 by astutz            #+#    #+#             */
+/*   Updated: 2022/10/30 15:20:34 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// #include "stdio.h"
+#include "stdio.h"
 
-int	ft_isalnum(int c)
+void	ft_bzero(void *s, size_t n)
 {
-	if ((c >= 'a' && c <= 'z')
-		|| (c >= 'A' && c <= 'Z')
-		|| (c >= '0' && c <= '9'))
-		return (1);
-	return (0);
+	ft_memset(s, 0, n);
 }
 
 // int main()
 // {
-//     int res = ft_isalnum(9);
-//     printf("%d", res);
+// 	// char s[] = "hello";
+// 	printf("hi");
 // }
+
+	// size_t i;
+
+	// i = 0;
+	// while (i < len)
+	// {
+	// 	((unsigned char *)s)[i] = '\0';
+	// 	i++;
+	// }
