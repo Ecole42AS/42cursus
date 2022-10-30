@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:16:12 by astutz            #+#    #+#             */
-/*   Updated: 2022/10/28 14:21:42 by astutz           ###   ########.fr       */
+/*   Updated: 2022/10/30 08:52:05 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 void				*ft_memset(void *str, int c, size_t n);
 void				ft_bzero(void *str, size_t n);
