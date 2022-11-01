@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 14:22:23 by astutz            #+#    #+#              #
-#    Updated: 2022/11/01 14:10:55 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/01 19:00:28 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRCS = 		ft_isdigit.c \
 			ft_memset.c \
 			ft_strlcat.c \
 			ft_strlcpy.c \
+			ft_bzero.c \
+			ft_strncmp.c \
 #			ft_calloc.c \
 			ft_strdup.c \
 			ft_strjoin.c \
@@ -35,12 +37,10 @@ SRCS = 		ft_isdigit.c \
 			ft_split.c \
 			ft_substr.c \
 			ft_itoa.c \
-			ft_bzero.c \
 			ft_strmapi.c \
 			ft_strchr.c \
 			ft_strrchr.c \
 			ft_strnstr.c \
-			ft_strncmp.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \
