@@ -6,26 +6,47 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 12:52:22 by astutz            #+#    #+#             */
-/*   Updated: 2022/10/30 14:40:47 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/02 17:22:21 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* Scans the initial n bytes of the memory area pointed to by s for the first 
+ * instance of c.  Both c and the bytes of the memory area pointed to by s are 
+ * interpreted as unsigned char. */
+
 #include "libft.h"
-#include "stdio.h"
 
-void	*ft_memchr(const void *s, int c, size_t len)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
+	unsigned char	*ptrs;
+	size_t			i;
 
+	ptrs = (unsigned char *)s;
 	i = 0;
-	while (i < len)
+	while (n--)
 	{
-		if (((unsigned char *)s)[i] == ((unsigned char)c))
-			return ((void *)(s + i));
+		if (ptrs[i] == (unsigned char)c)
+			return (ptrs + i);
 		i++;
 	}
 	return (NULL);
 }
+// #include "libft.h"
+// #include "stdio.h"
+
+// void	*ft_memchr(const void *s, int c, size_t len)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (i < len)
+// 	{
+// 		if (((unsigned char *)s)[i] == ((unsigned char)c))
+// 			return ((void *)(s + i));
+// 		i++;
+// 	}
+// 	return (NULL);
+// }
 
 // void	*ft_memchr(const void *s, int c, size_t n)
 // {

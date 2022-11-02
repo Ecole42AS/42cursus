@@ -6,30 +6,30 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 13:48:09 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/02 14:32:11 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/02 16:37:49 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "stdio.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 	size_t	j;
 
+	i = 0;
 	j = 0;
-	i = ft_strlen(dest);
-	// if (dstsize == 0)
-	// 	return (0);
-	while (src[j] && i < dstsize - 1)
-	{
-		dest[i] = src[j];
+	while (dst[i] && i < size)
 		i++;
+	while (src[j] && (i + j + 1) < size)
+	{
+		dst[i + j] = src[j];
 		j++;
 	}
-	dest[i] = '\0';
-	return (dstsize);
+	if (i < size)
+		dst[i + j] = '\0';
+	return (i + ft_strlen(src));
 }
 
 // return (&dstsize[i])
@@ -62,7 +62,8 @@ size_t	ft_strlcat(char *dest, const char *src, size_t dstsize)
 // {
 // 	char src[] = "hello";
 // 	char dest[] = "you";
+// 	size_t num;
 
-// 	ft_strlcat(dest, src, ft_strlen(dest));
-// 	printf("%s", dest);
+// 	num  = ft_strlcat(dest, src, ft_strlen(dest));
+// 	printf("%ld", num);
 // }
