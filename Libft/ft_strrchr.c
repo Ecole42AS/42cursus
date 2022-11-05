@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:55:31 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/02 20:40:04 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/05 17:50:12 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	int	len;
 
-	i = ft_strlen(s);
-	if ((char)c == '\0')
-		return ((char *)s + i);
-	while (i > 0)
+	len = ft_strlen((char *)s) + 1;
+	while (len--)
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i--;
+		if (s[len] == (char)c)
+			return ((char *)&s[len]);
 	}
-	return ((char *) NULL);
+	return (NULL);
 }
 
+char str = "he"
 // char	*ft_strrchr(const char *s, int c)
 // {
 // 	int	len;
