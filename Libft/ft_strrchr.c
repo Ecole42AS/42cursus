@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:55:31 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/05 17:50:12 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/06 10:06:31 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strrchr(const char *s, int c)
 	return (NULL);
 }
 
-char str = "he"
+// char str = "he"
 // char	*ft_strrchr(const char *s, int c)
 // {
 // 	int	len;
