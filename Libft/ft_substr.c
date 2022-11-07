@@ -6,9 +6,14 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 09:30:21 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/06 10:18:21 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:08:06 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* Returns the substring of the given string at the given start position with 
+ * the given length (or smaller if the length of the original string is less 
+ * than start + length, or length is bigger than MAXSTRINGLEN).*/
+#include "libft.h"
 
 #include "libft.h"
 
@@ -37,30 +42,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	newchain[i] = '\0';
 	return (newchain);
 }
-
-// #include "libft.h"
-
-// char	*ft_substr(char const *s, unsigned int start, size_t len)
-// {
-// 	char	*src;
-// 	int		i;
-
-// 	i = 0;
-// 	if ((!s))
-// 		return (NULL);
-// 	if (start > ft_strlen((char *)s))
-// 	{
-// 		src = (char *)malloc(sizeof(char));
-// 		src[0] = '\0';
-// 		return (src);
-// 	}
-// 	src = (char *)malloc((len + 1) * sizeof(char));
-// 	while (s[start] && len--)
-// 	{
-// 		src[i] = (char)s[start];
-// 		start++;
-// 		i++;
-// 	}
-// 	src[i] = '\0';
-// 	return (src);
-// }
