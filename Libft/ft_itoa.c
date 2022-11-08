@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:27:11 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/07 21:08:13 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:58:24 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	len(long nb)
 	return (l);
 }
 
-char	*ft_itoa (int n)
+char	*ft_itoa(int n)
 {
 	long	nb;
 	char	*string;

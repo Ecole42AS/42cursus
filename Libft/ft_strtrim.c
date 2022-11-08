@@ -6,12 +6,14 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:17:42 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/07 19:02:04 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:04:05 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Réserve de la mémoire (avec malloc(3)) et renvoie la chaîne de caractères qui est 
- * une copie de 's1', sans les caractères indiqués par 'set' au début et 'set' à la fin.
+/* Réserve de la mémoire (avec malloc(3)) et 
+renvoie la chaîne de caractères qui est 
+ * une copie de 's1', sans les caractères 
+indiqués par 'set' au début et 'set' à la fin.
  * à la fin de la chaîne. */
 #include "libft.h"
 
@@ -27,6 +29,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1);
 	while (end && ft_strchr(set, s1[end]))
 		end--;
-	newchain = ft_substr ((char *)s1, 0, end + 1 );
+	newchain = ft_substr((char *)s1, 0, end + 1);
 	return (newchain);
 }

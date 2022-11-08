@@ -49,22 +49,6 @@ static char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n)
 // 	printf("%s", ft_strncat(dest, src, 7));
 // }
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (s[i] == (char)c)
-		return ((char *)&s[i]);
-	return (NULL);
-}
-
 
 // ***********SUBSTR***********
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -117,14 +101,51 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (newchain);
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return (NULL);
+}
+
+
+#include "libft.h"
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char	*newchain;
+	int		i;
+
+	i = 0;
+	if (!s || !f)
+		return (NULL);
+	newchain = (char *)malloc(sizeof(*s) * strlen(s) + 1);
+	if (!newchain)
+		return (NULL);
+	while (s[i])
+	{
+		newchain[i] = f(i, s[i]);
+		i++;
+	}
+	newchain[i] = '\0';
+	return (newchain);
+}
+
 int main()
 {
 	char str1[] = "hello world hello";
 	char str2[] = "hello ";
 
-	//printf("%s", ft_strtrim(str1, str2));
-	printf("%d", 9 / 10);
-	
+	printf("%s", ft_strmapi(str1, ft_strchr(str2, 2)));	
 	// char *str;
 	// str = ft_strrchr("helloktlgrew", 79);
 	// printf("%s", str);
