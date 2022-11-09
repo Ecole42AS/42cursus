@@ -6,15 +6,27 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:01:57 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/09 16:44:03 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:15:21 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Réserve la mémoire (avec malloc(3))
-et renvoie un tableau de chaînes de caractères 
- * obtenu en séparant "s" par le caractère "c",
-qui est utilisé comme délimiteur. 
- * La table doit se terminer par NULL. */
+
+/*
+** Description
+** Alloue (avec malloc(3)) et
+** retourne un tableau de chaines de caractères “fraiches”
+** (toutes terminées par un ’\0’, le tableau également donc)
+** résultant de la découpe de s selon le caractère c.
+** Si l’allocation echoue, la fonction retourne NULL.
+** Exemple : ft_strsplit("*salut*les***etudiants*", ’*’)
+** renvoie le tableau ["salut", "les", "etudiants"].
+** Param. #1
+** La chaine de caractères à découper.
+** Param. #2
+** Le caractère selon lequel découper la chaine.
+** Retour
+** Le tableau de chaines de caractères “fraiches” résultant de la découpe.
+*/
 
 #include "libft.h"
 
