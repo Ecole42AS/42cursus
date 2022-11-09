@@ -4,7 +4,13 @@
 
 #include "libft.h"
 
-static char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n)
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n)
 {
 	size_t	i;
 	size_t	j;
@@ -140,12 +146,111 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (newchain);
 }
 
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == -2147483648)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		ft_putnbr_fd(147483648, fd);
+	}
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(n * -1, fd);
+	}
+	else if (n < 10)
+		ft_putchar_fd((char)(n + '0'), fd);
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + '0', fd);
+	}
+
+int	count_words (char const *s, char c)
+{
+	int	words;
+	int	i;
+
+	words = 0;
+	i = 0;
+	if (!s)
+		return (0);
+	if (s[i] != c)
+	{
+		i++;
+		words++;
+	}
+	while (s[i] != '\0')
+	{
+		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+			words++;
+		i++;
+	}
+	return (words);
+}
+
+char	*make_string(char const *s, char c)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	word = (char *)malloc (sizeof(char) * (i + 1));
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (s[i] && s[i] != c)
+	{
+		word[i] = s[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**result;
+	int		num_words;
+	int		i;
+
+	if (!s)
+		return (NULL);
+	i = 0;
+	num_words = count_words(s, c);
+	result = (char **)malloc (sizeof(char *) * (num_words + 1));
+	if (!result)
+		return (NULL);
+	while (*s)
+	{
+		while (*s && *s == c)
+			s++;
+		if (*s && *s != c)
+		{
+			result[i] = make_string (s, c);
+			i++;
+			while (*s && *s != c)
+				s++;
+		}
+	}
+	result[i] = NULL;
+	return (result);
+}
+}
+
 int main()
 {
-	char str1[] = "hello world hello";
-	char str2[] = "hello ";
+	char **str;
+	char str1[] = "hello,world,hello";
+	str = ft_split(str1, ',');
+	printf("%s", str[1]);
+	// char str2[] = "hello ";
 
-	printf("%s", ft_strmapi(str1, ft_strchr(str2, 2)));	
+	// printf("%s", ft_strmapi(str1, ft_strchr(str2, 2)));	
+	// ft_putnbr_fd(n, 1)
 	// char *str;
 	// str = ft_strrchr("helloktlgrew", 79);
 	// printf("%s", str);
