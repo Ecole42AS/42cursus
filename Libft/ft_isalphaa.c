@@ -6,22 +6,24 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:56:14 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/12 09:36:54 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/12 13:30:52 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strnstr(const char *big, const char *little, size_t len)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	j;
-	
-	if (!little)
-		return (big);
-	while(little[i] && big[j] && j < len)
+
+	i = 0;
+	if (!size)
+		return (ft_strlen(src));
+	while (src[i] && i < size - 1)
 	{
-		while (little[i] == big[j] && litte[i])
-			
+		dst[i] = src[i];
+		i++;
 	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }

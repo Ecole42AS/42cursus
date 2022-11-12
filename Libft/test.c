@@ -253,18 +253,36 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	if (!size)
+		return (strlen(src));
+	while (src[i] && i < size - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	printf("%s", dst);
+	return (strlen(src));
+}
+
 int main()
 {
 	// char **str;
 	// char str1[] = "hello,world,hello";
 	char str1[] = "hel";
-	char str2[] = "hal";
+	char str2[] = "halr";
 
-	int c;
-	c = ft_strncmp(str1, str2, 1);
+	size_t size;
+	size = ft_strlcpy(str1, str2, 1);
 	// str = ft_split(str1, ',');
 	// printf("%s", str[1]);
-	printf("%d", c);
+	printf("%ld\n", size);
+	printf("%s", str1);
 	// char str2[] = "hello ";
 
 	// printf("%s", ft_strmapi(str1, ft_strchr(str2, 2)));	
