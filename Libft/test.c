@@ -260,13 +260,14 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	i = 0;
 	if (!size)
 		return (strlen(src));
-	while (src[i] && i < size - 1)
+	i = 0;
+	while (src[i] && i < (size - 1))
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	printf("%s", dst);
+	printf("%s\n", dst);
 	return (strlen(src));
 }
 
@@ -274,15 +275,15 @@ int main()
 {
 	// char **str;
 	// char str1[] = "hello,world,hello";
-	char str1[] = "hel";
-	char str2[] = "halr";
+	char dst[] = "hel";
+	char src[] = "halr";
 
 	size_t size;
-	size = ft_strlcpy(str1, str2, 1);
+	size = ft_strlcpy(dst, src, );
 	// str = ft_split(str1, ',');
 	// printf("%s", str[1]);
 	printf("%ld\n", size);
-	printf("%s", str1);
+	// printf("%s", str1);
 	// char str2[] = "hello ";
 
 	// printf("%s", ft_strmapi(str1, ft_strchr(str2, 2)));	
