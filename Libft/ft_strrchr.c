@@ -6,9 +6,11 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:55:31 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/06 10:06:31 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/12 08:51:25 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// WARNING le len + 1 est du a que le while (len--) le 0 n'est pas inclus.
 
 #include "libft.h"
 

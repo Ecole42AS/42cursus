@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:43:26 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/02 17:10:34 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/12 09:15:54 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // 			return (-1);
 // 		}
 // 		i++;
+// 	}
+// 	return (0);
+// }
+
+// int	ft_strncmp(const char *s1, const char *s2, size_t n)
+// {
+// 	while (n--)
+// 	{
+// 		if (*s1 != *s2)
+// 			return ((unsigned char)*s1 - (unsigned char)*s2);
+// 		if (*s1 == '\0' || *s2 == '\0')
+// 			return (0);
+// 		s1++;
+// 		s2++;
 // 	}
 // 	return (0);
 // }

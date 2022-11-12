@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_isalphaa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 09:11:19 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/12 08:21:11 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/09 19:56:14 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/12 09:36:54 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+char	*strnstr(const char *big, const char *little, size_t len)
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
-	return (c);
+	size_t	i;
+	size_t	j;
+	
+	if (!little)
+		return (big);
+	while(little[i] && big[j] && j < len)
+	{
+		while (little[i] == big[j] && litte[i])
+			
+	}
 }

@@ -6,27 +6,50 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 13:03:47 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/05 09:29:22 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/12 09:56:20 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t		position;
+	size_t		i;
 
-	if (*to_find == '\0')
-		return ((char *)str);
-	position = ft_strlen((char *)to_find);
-	while (*str != '\0' && len-- >= position)
+	if (*little == '\0')
+		return ((char *)big);
+	i = ft_strlen((char *)little);
+	while (*big != '\0' && len-- >= i)
 	{
-		if (*str == *to_find && ft_memcmp(str, to_find, position) == 0)
-			return ((char *)str);
-		str++;
+		if (*big == *little && ft_memcmp(big, little, i) == 0)
+			return ((char *)big);
+		big++;
 	}
 	return (NULL);
 }
+
+// char	*ft_strnstr(const char	*big, const char *little, size_t len)
+// {
+// 	size_t		i;
+// 	size_t		i2;
+// 	size_t		l_len;
+
+// 	i = 0;
+// 	l_len = ft_strlen(little);
+// 	if (little[0] == '\0' || big == little)
+// 		return ((char *) big);
+// 	while (big[i] != '\0' && i < len)
+// 	{
+// 		i2 = 0;
+// 		while (big[i + i2] != '\0' && little[i2] != '\0'
+// 			&& big[i + i2] == little[i2] && i + i2 < len)
+// 			i2++;
+// 		if (i2 == l_len)
+// 			return ((char *) big + i);
+// 		i++;
+// 	}
+// 	return (NULL);
+// }
 
 // int main()
 // {

@@ -241,12 +241,30 @@ char	**ft_split(char const *s, char c)
 }
 }
 
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t		i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n)
+		i++;
+	if (i == n)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
 int main()
 {
-	char **str;
-	char str1[] = "hello,world,hello";
-	str = ft_split(str1, ',');
-	printf("%s", str[1]);
+	// char **str;
+	// char str1[] = "hello,world,hello";
+	char str1[] = "hel";
+	char str2[] = "hal";
+
+	int c;
+	c = ft_strncmp(str1, str2, 1);
+	// str = ft_split(str1, ',');
+	// printf("%s", str[1]);
+	printf("%d", c);
 	// char str2[] = "hello ";
 
 	// printf("%s", ft_strmapi(str1, ft_strchr(str2, 2)));	

@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:11:54 by astutz            #+#    #+#             */
-/*   Updated: 2022/10/30 12:48:17 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/09 20:19:11 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@
 // 	return (str);
 // }
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *s, int c, size_t len)
 {
 	size_t		i;
 
 	i = 0;
 	while (i < len)
 	{
-		((unsigned char *)b)[i] = c;
+		((unsigned char *)s)[i] = c;
 		i++;
 	}
-	return (b);
+	return (s);
 }
 
 // int main()
