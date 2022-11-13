@@ -6,19 +6,28 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:56:14 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/13 09:48:01 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/13 10:57:20 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ptr;
+	char	*newchain;
+	size_t	i;
 
-	ptr = malloc(sizeof(s) * sizeof(char));
-	if (!ptr)
+	i = 0;
+	if (!len || !start)
 		return (NULL);
-	ft_memmove(ptr, s, sizeof(s) * sizeof(char));
-	return (ptr);
+	newchain = malloc(sizeof(char) * len);
+	if (!newchain)
+		return (NULL);
+	while (s[start] && start < len)
+	{
+		newchain[i] = s[start];
+		i++;
+		start++;
+	}
+	return (newchain);
 }
