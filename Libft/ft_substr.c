@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 09:30:21 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/13 11:12:46 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/14 17:36:35 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,71 +32,51 @@
 
 // char	*ft_substr(char const *s, unsigned int start, size_t len)
 // {
-// 	char	*newchain;
-// 	size_t	i;
+// 	char			*u1;
+// 	unsigned int	i;
 
+// 	i = 0;
+// 	u1 = (char *)malloc((len + 1) * sizeof(char));
+// 	if (u1 == 0)
+// 		return (NULL);
 // 	if (!s)
 // 		return (NULL);
-// 	if (len <= 0 || (start + 1 > ft_strlen(s)))
+// 	u1[len] = '\0';
+// 	while (len > 0)
 // 	{
-// 		newchain = (char *)malloc(1);
-// 		*newchain = 0;
-// 		return (newchain);
+// 		u1[i] = s[start];
+// 		i++;
+// 		start++;
+// 		len--;
 // 	}
-// 	newchain = (char *)malloc (sizeof(char) * (len + 1));
-// 	if (!newchain)
-// 		return (NULL);
-// 	i = 0;
-// 	if (start < ft_strlen(s))
-// 	{
-// 		while (s[start] != '\0' && i < len)
-// 			newchain[i++] = s[start++];
-// 	}
-// 	newchain[i] = '\0';
-// 	return (newchain);
+// 	return (u1);
 // }
-
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			*u1;
-	unsigned int	i;
+	char	*ptr;
+	int		i;
 
 	i = 0;
-	u1 = (char *)malloc((len + 1) * sizeof(char));
-	if (u1 == 0)
+	if (ft_strlen(s) <= start)
+	{
+		len = 0;
+	}
+	if (ft_strlen(s) - start < len)
+	{
+		len = ft_strlen(s) - start;
+	}
+	ptr = malloc(sizeof(char const) * (len + 1));
+	if (ptr == 0)
+	{
 		return (NULL);
-	if (!s)
-		return (NULL);
-	u1[len] = '\0';
+	}
 	while (len > 0)
 	{
-		u1[i] = s[start];
+		ptr[i] = s[start + i];
 		i++;
-		start++;
-		len--;
+		len --;
 	}
-	return (u1);
+	ptr[i] = '\0';
+	return (ptr);
 }
-
-// char	*ft_substr(char const *s, unsigned int start, size_t len)
-// {
-// 	char	*newchain;
-// 	size_t	i;
-
-// 	i = 0;
-// 	if (!s)
-// 		return (NULL);
-// 	newchain = malloc(sizeof(char) * len + 1);
-// 	if (!newchain)
-// 		return (NULL);
-// 	// if (start > len)
-// 	while (s[start] && start < len)
-// 	{
-// 		newchain[i] = s[start];
-// 		i++;
-// 		start++;
-// 	}
-// 	newchain[i] = '\0';
-// 	return (newchain);
-// }

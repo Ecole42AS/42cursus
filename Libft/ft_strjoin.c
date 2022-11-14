@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 10:26:19 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/07 16:59:24 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/14 18:37:46 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
+// char	*ft_strjoin(char const *s1, char const *s2)
+// {
+// 	char	*ptr;
+// 	size_t	size;
+
+// 	size = ft_strlen(s1) + ft_strlen(s2) + 1;
+// 	ptr = malloc(size * sizeof(char));
+// 	if (!ptr)
+// 		return (NULL);
+// 	ft_strlcat((char *)s1, s2, size);
+// 	ft_strlcpy(ptr, s1, size);
+// 	ptr[size] = '\0';
+// 	return (ptr);
+// }

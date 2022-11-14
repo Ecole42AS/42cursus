@@ -275,14 +275,16 @@ int main()
 {
 	// char **str;
 	// char str1[] = "hello,world,hello";
-	char dst[] = "hel";
-	char src[] = "halr";
+	char dst[] = "duohello you";
+	char src[] = "uo";
+	char *s;
 
-	size_t size;
-	size = ft_strlcpy(dst, src, );
+	// size_t size;
+	// size = ft_strlcpy(dst, src, );
 	// str = ft_split(str1, ',');
 	// printf("%s", str[1]);
-	printf("%ld\n", size);
+	s = ft_strtrim(dst, src);
+	printf("%s\n", s);
 	// printf("%s", str1);
 	// char str2[] = "hello ";
 
