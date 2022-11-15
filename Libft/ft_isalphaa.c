@@ -6,21 +6,40 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:56:14 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/14 17:49:32 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/15 13:59:10 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static	int intlen(int nb)
 {
-	char	*ptr;
-
-	size = ft_strlen(s1 + s2 + 1);
-	ptr = malloc(size * sizeof(char));
-	if (!ptr)
+	int	count;
+	
+	if (nb <= 0)
 		return (NULL);
-	ft_strlcat(s1, s2, size);
-	ft_strlcpy(ptr, s1, size);
-	return (ptr);
+	while (nb > 0 && nb < 10)
+	{
+		nb /= 10;
+		count++;
+	}
+	return	(count);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	size_t	i;
+
+	str = malloc((intlen(nb) + 1) * sizeof(char));
+	if (n <= 0)
+		return (NULL);
+	i = 0;
+	while (n > 0 && n <= 9)
+	{
+		n = n / 10;
+		str[i] = n % 10	+ 48;
+		i++;
+	}
+	return (str);
 }
