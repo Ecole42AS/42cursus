@@ -6,40 +6,29 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:56:14 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/15 13:59:10 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/16 20:45:51 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int intlen(int nb)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	count;
-	
-	if (nb <= 0)
-		return (NULL);
-	while (nb > 0 && nb < 10)
+	if (n == 0)
+		write (fd, "0", 1);
+	if (n < 0)
+		n = -n;
+	if (n > 0)
 	{
-		nb /= 10;
-		count++;
+		n = (n % 10) + 48;
+		write (fd, &n, 1);
+		n /= 10;
 	}
-	return	(count);
 }
 
-char	*ft_itoa(int n)
-{
-	char	*str;
-	size_t	i;
 
-	str = malloc((intlen(nb) + 1) * sizeof(char));
-	if (n <= 0)
-		return (NULL);
-	i = 0;
-	while (n > 0 && n <= 9)
-	{
-		n = n / 10;
-		str[i] = n % 10	+ 48;
-		i++;
-	}
-	return (str);
-}
+typedef struct s_list
+{
+void *content;
+struct s_list *next;
+} t_list;

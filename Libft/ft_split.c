@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:01:57 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/09 17:30:27 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/16 17:07:40 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,19 +130,14 @@ static size_t			ft_count(char const *s, char const c)
 		return (0);
 }
 
-static size_t			ft_word(const char *str, const char c)
+static size_t			ft_wordlen(const char *str, const char c)
 {
-	size_t	wordlen;
 	size_t	i;
 
-	wordlen = 0;
 	i = 0;
 	while (str[i] && !ft_is_c(str[i], c))
-	{
-		wordlen++;
 		i++;
-	}
-	return (wordlen);
+	return (i);
 }
 
 char	**ft_split(char const *s, char c)
@@ -163,13 +158,13 @@ char	**ft_split(char const *s, char c)
 		if (s[i])
 		{
 			if (!(sp[j] = (char *)malloc(sizeof(char) *
-							(ft_word(s + i, c) + 1))))
+							(ft_wordlen(s + i, c) + 1))))
 				return (NULL);
 			while (s[i] && !ft_is_c(s[i], c))
 				sp[j][k++] = s[i++];
-			sp[j++][k] = 0;
+			sp[j++][k] = '\0';
 		}
 	}
-	sp[j] = 0;
+	sp[j] = '\0';
 	return (sp);
 }

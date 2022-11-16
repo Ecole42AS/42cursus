@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:16:12 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/09 16:06:58 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/16 21:36:37 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,12 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				**ft_split(char const *s, char c);
+
+typedef struct		s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+t_list				*ft_lstnew(void *content);
 
 #endif
