@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 14:22:23 by astutz            #+#    #+#              #
-#    Updated: 2022/11/16 21:34:02 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/17 18:40:12 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,14 +48,14 @@ SRCS =		ft_isdigit.c \
 			ft_split.c
 
 BNS_SRCS =	ft_lstnew.c \
-			#ft_lstadd_front.c \
+			ft_lstadd_front.c \
+			#ft_lstmap.c \
 			ft_lstsize.c \
 			ft_lstlast.c \
 			ft_lstadd_back.c \
 			ft_lstdelone.c \
 			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c \
+			ft_lstiter.c
 
 OBJS = $(SRCS:.c=.o)
 

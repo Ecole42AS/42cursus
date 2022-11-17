@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:16:12 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/16 21:36:37 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/17 18:40:44 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 t_list				*ft_lstnew(void *content);
+void				ft_lstadd_front(t_list **lst, t_list *new);
+
 
 #endif

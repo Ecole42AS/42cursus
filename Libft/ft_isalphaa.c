@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 19:56:14 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/16 20:45:51 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/17 17:30:10 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,13 @@ typedef struct s_list
 void *content;
 struct s_list *next;
 } t_list;
+// ITERATION LINKED LIST
+// t_list	*curr = new;
+t_list new;
+
+t_list *curr = &new;
+while (curr != NULL)
+{
+	// ...
+	curr = curr->next;
+}
