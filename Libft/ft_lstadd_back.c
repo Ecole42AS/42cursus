@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 07:59:26 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/19 08:16:30 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/19 12:20:26 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	t_list	*last;
 
 	if (!lst && !new)
-		return;
+		return ;
 	if (!*lst)
 		*lst = new;
 	else

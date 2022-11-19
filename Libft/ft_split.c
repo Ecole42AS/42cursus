@@ -6,10 +6,9 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:01:57 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/16 17:07:40 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/19 12:50:38 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 /*
 ** Description
@@ -30,85 +29,12 @@
 
 #include "libft.h"
 
-// static int	count_words (char const *s, char c)
-// {
-// 	int	words;
-// 	int	i;
-
-// 	words = 0;
-// 	i = 0;
-// 	if (!s)
-// 		return (0);
-// 	if (s[i] != c)
-// 	{
-// 		i++;
-// 		words++;
-// 	}
-// 	while (s[i] != '\0')
-// 	{
-// 		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
-// 			words++;
-// 		i++;
-// 	}
-// 	return (words);
-// }
-
-// static char	*make_string(char const *s, char c)
-// {
-// 	char	*word;
-// 	int		i;
-
-// 	i = 0;
-// 	while (s[i] && s[i] != c)
-// 		i++;
-// 	word = (char *)malloc (sizeof(char) * (i + 1));
-// 	if (!word)
-// 		return (NULL);
-// 	i = 0;
-// 	while (s[i] && s[i] != c)
-// 	{
-// 		word[i] = s[i];
-// 		i++;
-// 	}
-// 	word[i] = '\0';
-// 	return (word);
-// }
-
-// char	**ft_split(char const *s, char c)
-// {
-// 	char	**result;
-// 	int		num_words;
-// 	int		i;
-
-// 	if (!s)
-// 		return (NULL);
-// 	i = 0;
-// 	num_words = count_words(s, c);
-// 	result = (char **)malloc (sizeof(char *) * (num_words + 1));
-// 	if (!result)
-// 		return (NULL);
-// 	while (*s)
-// 	{
-// 		while (*s && *s == c)
-// 			s++;
-// 		if (*s && *s != c)
-// 		{
-// 			result[i] = make_string (s, c);
-// 			i++;
-// 			while (*s && *s != c)
-// 				s++;
-// 		}
-// 	}
-// 	result[i] = NULL;
-// 	return (result);
-// }
-
-static unsigned int		ft_is_c(const char c, const char t)
+static unsigned int	ft_is_c(const char c, const char t)
 {
 	return (c == t);
 }
 
-static size_t			ft_count(char const *s, char const c)
+static size_t	ft_count(char const *s, char const c)
 {
 	size_t	count;
 	size_t	i;
@@ -116,11 +42,14 @@ static size_t			ft_count(char const *s, char const c)
 	if (s[0] != 0)
 	{
 		i = 1;
-		count = (ft_is_c(s[0], c) == 0) ? 1 : 0;
+		if (ft_is_c(s[0], c) == 0)
+			count = 1;
+		else
+			count = 0;
 		while (s[i])
 		{
 			if (ft_is_c(s[i - 1], c) == 1
-					&& ft_is_c(s[i], c) == 0)
+				&& ft_is_c(s[i], c) == 0)
 				count++;
 			i++;
 		}
@@ -130,7 +59,7 @@ static size_t			ft_count(char const *s, char const c)
 		return (0);
 }
 
-static size_t			ft_wordlen(const char *str, const char c)
+static size_t	ft_wordlen(const char *str, const char c)
 {
 	size_t	i;
 
@@ -147,18 +76,20 @@ char	**ft_split(char const *s, char c)
 	size_t	j;
 	size_t	k;
 
-	if (!s || !(sp = (char **)malloc(sizeof(char *) * (ft_count(s, c) + 1))))
+	sp = (char **)malloc(sizeof(char *) * (ft_count(s, c) + 1));
+	if (!s || !sp)
 		return (NULL);
 	i = 0;
 	j = 0;
+	k = 0;
 	while ((k = 0) || s[i])
 	{
 		while (s[i] && ft_is_c(s[i], c))
 			i++;
 		if (s[i])
-		{
-			if (!(sp[j] = (char *)malloc(sizeof(char) *
-							(ft_wordlen(s + i, c) + 1))))
+		{	
+			sp[j] = (char *)malloc(sizeof(char) * (ft_wordlen(s + i, c) + 1));
+			if (!sp[j])
 				return (NULL);
 			while (s[i] && !ft_is_c(s[i], c))
 				sp[j][k++] = s[i++];
@@ -168,3 +99,55 @@ char	**ft_split(char const *s, char c)
 	sp[j] = '\0';
 	return (sp);
 }
+
+// char	**ft_split(char const *s, char c)
+// {
+// 	char	**sp;
+// 	int		nbwords;
+// 	int		i;
+// 	int		cursor;
+
+// 	nbwords = 0;
+// 	i = 0;
+// 	cursor = 0;
+// 	nbwords = count_words(s, c);
+// 	sp = ft_calloc(nbwords + 1, sizeof(char *));
+// 	if (sp == NULL)
+// 		return (NULL);
+// 	while (i < nbwords)
+// 	{
+// 		sp[i] = wordcpy(s, &cursor, c);
+// 		i++;
+// 	}
+// 	sp[i] = NULL;
+// 	return (sp);
+// }
+
+// char	*wordcpy(const char *src, int *cursor, char c)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*dest;
+
+// 	i = 0;
+// 	j = 0;
+// 	src += *cursor;
+// 	dest = ft_calloc(wordlen(src, c) + 1, sizeof(char));
+// 	if (dest == NULL)
+// 		return (NULL);
+// 	while (*src == c)
+// 	{
+// 		src++;
+// 		i++;
+// 	}
+// 	while (*src != c && *src)
+// 	{
+// 		dest[j] = *src++;
+// 		i++;
+// 		j++;
+// 	}
+// 	dest[j] = 0;
+// 	*cursor += i;
+// 	return (dest);
+// }
+
