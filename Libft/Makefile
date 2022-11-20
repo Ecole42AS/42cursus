@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 14:22:23 by astutz            #+#    #+#              #
-#    Updated: 2022/11/19 08:48:55 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/20 11:10:03 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ OBJS = $(SRCS:.c=.o)
 
 BNS_OBJS	= $(BNS_SRCS:%.c=%.o)
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 $(NAME) : $(OBJS)
 	gcc $(FLAGS) -c $(SRCS) -I./
