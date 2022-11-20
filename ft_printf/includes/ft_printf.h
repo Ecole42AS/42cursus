@@ -6,24 +6,24 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 18:34:04 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/20 18:46:15 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/20 19:14:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include "../libft/libft.h"
-#include "stdarg.h"
+# include "../libft/libft.h"
+# include "stdarg.h"
 
-typedef struct	s_flags
+typedef struct s_flags
 {
 	int	num;
 	int	left_just;
 	int	zero;
 	int	dot;
 	int	star;
-	int nulldot;
+	int	nulldot;
 	int	zero_cond;
 }						t_flags;
 
