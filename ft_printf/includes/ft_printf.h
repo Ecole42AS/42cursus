@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 18:34:04 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/20 19:14:22 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/21 16:15:49 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,45 @@
 # include "../libft/libft.h"
 # include "stdarg.h"
 
-typedef struct s_flags
+# define SPECIFIERS "cspdiuxX%"
+
+typedef struct s_printf
 {
-	int	num;
-	int	left_just;
-	int	zero;
-	int	dot;
-	int	star;
-	int	nulldot;
-	int	zero_cond;
-}						t_flags;
+	va_list	args;
+	size_t	width;
+	size_t	precission;
+	size_t	lenght;
+	size_t	hash;
+	size_t	zero;
+	size_t	dash;
+	size_t	space;
+	size_t	plus;
+	size_t	point;
+	size_t	sign;
+	size_t	ox;
+}						t_printf;
 
-int						ft_printf(const char *, ...);
+int						ft_printf(const char *format, ...);
+t_printf				*ft_init_tab(t_printf *tab);
+t_printf				*ft_reset_tab(t_printf *tab);
 
-int						print_char(int c, t_flags flgs);
-
-int						print_int(int n, t_flags flgs);
-
-int						print_unsiged_int(unsigned int n, t_flags flgs);
-
-int						print_string(char *s, t_flags flgs);
-
-int						print_ptr(void *ptr, t_flags flgs);
-
-int						print_hex(unsigned int n, int mayus, t_flags flgs);
-
-char					*ft_print_base_itoa(long int n, int base, int mayus);
-
-void					ft_str_toupper(char *s);
-
-int						num_len(long int n);
-
-int						ft_put_spaces(int len, int is_zero);
-
-int						load_width(char *input, t_flags *flgs);
-
-void					ft_putnbr_unsigned_fd(unsigned int n, int fd);
-
-void					load_ast(t_flags *flgs, int arg);
-
-int						input_loop_aux(char a);
+void					s_conversor(t_printf *tab);
+void					c_conversor(t_printf *tab, int choice);
+void					id_conversor(t_printf *tab);
+void					u_conversor(t_printf *tab);
+void					p_conversor(t_printf *tab);
+void					x_conversor(t_printf *tab, int choice);
+void					width_highest_value_dash(t_printf *tab, char *number);
+void					width_highest_value_notdash(t_printf *tab, \
+						char *number, size_t len);
+void					precission_highest_value(t_printf *tab, char *number);
+void					len_highest_value(t_printf *tab, char *number);
+void					filling_width(int amount, t_printf *tab);
+void					printing_sign(t_printf *tab);
+void					exception_negatives(t_printf *tab, int number);
+void					print_space(t_printf *tab, long number);
+int						ft_numlen_base(unsigned long n, int base);
+void					px_width_highest_dash(t_printf *tab, char *number);
+void					px_width_highest_notdash(t_printf *tab, char *number);
 
 #endif

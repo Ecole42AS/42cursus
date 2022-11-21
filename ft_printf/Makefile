@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/20 19:05:13 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/21 16:13:46 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,14 @@ NAME = libftprintf.a
 
 LIBFT = libft/libft.a
 
-SRCS =	#ft_printf.c 				\
-		srcs/ft_print_base_itoa.c	\
-		srcs/ft_print_ptr.c			\
-		srcs/ft_printf_char.c 		\
-		srcs/ft_printf_hex.c		\
-		srcs/ft_printf_int.c		\
-		srcs/ft_printf_string.c		\
-		srcs/ft_printf_unsigned.c	\
-		srcs/ft_printf_utils.c		\
-		srcs/ft_loadflags.c
+SRCS = auxiliar_functions.c \
+			c_conversor.c \
+			ft_printf.c \
+			id_conversor.c \
+			p_conversor.c \
+			s_conversor.c \
+			u_conversor.c \
+			x_conversor.c 
 
 OBJS = $(SRCS:.c=.o)
 
@@ -49,3 +47,5 @@ fclean: clean
 		/bin/rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: fclean re all clean
