@@ -2,6 +2,7 @@
 	"C_Cpp.errorSquiggles": "Disabled",
 	"files.associations": {
 		"libft.h": "c",
-		"ctype.h": "c"
+		"ctype.h": "c",
+		"ft_printf.h": "c"
 	}
 }

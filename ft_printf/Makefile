@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/21 16:13:46 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/22 19:31:07 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = libftprintf.a
 
 LIBFT = libft/libft.a
 
-SRCS = auxiliar_functions.c \
+SRCS =	ft_printf.c
+#auxiliar_functions.c \
 			c_conversor.c \
 			ft_printf.c \
 			id_conversor.c \
