@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/23 20:27:35 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/23 20:30:18 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,34 +56,59 @@
 
 # .PHONY: fclean re all clean
 
-NAME 	= libftprintf.a
+# NAME 	= libftprintf.a
 
-SRCS 	= 	*/*.c# src/ft_printf.c Libft/*.c
+# SRCS 	= 	*/*.c# src/ft_printf.c Libft/*.c
 			
-OBJS	= ${SRCS:.c=.o}
+# OBJS	= ${SRCS:.c=.o}
 
 
-CC		= gcc
-FLAGS 	= -Wall -Wextra -Werror -g
+# CC		= gcc
+# FLAGS 	= -Wall -Wextra -Werror -g
 
-RM		= rm -f
+# RM		= rm -f
 
-${NAME}:	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+# ${NAME}:	$(OBJS)
+# 			ar rcs $(NAME) $(OBJS)
 
 
-%.o: %.c
-	$(CC) -I. $(FLAGS) -o $@ -c $?
+# %.o: %.c
+# 	$(CC) -I. $(FLAGS) -o $@ -c $?
 	
-all: 		${NAME}
+# all: 		${NAME}
 
-clean:		
-			${RM} ${OBJS}
+# clean:		
+# 			${RM} ${OBJS}
 
-fclean:		clean
-			${RM} ${NAME}
+# fclean:		clean
+# 			${RM} ${NAME}
 
-re:			fclean all
+# re:			fclean all
 
 
-.PHONY:		all clean fclean re .c.o
+# .PHONY:		all clean fclean re .c.o
+
+NAME	= libftprintf.a
+
+SRCS	= 	ft_printf.c \
+			parse.c \
+			print.c \
+			utils.c
+
+OBJS	= ${SRCS:%.c=%.o}
+
+FLAGS	= -Wall -Wextra -Werror
+
+$(NAME):
+	gcc $(FLAGS) -c $(SRCS) -I ./
+	ar rc $(NAME) $(OBJS)
+
+all: $(NAME)
+
+clean:
+	rm -rf $(OBJS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
