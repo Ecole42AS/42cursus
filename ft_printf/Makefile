@@ -6,47 +6,84 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/22 19:31:07 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/23 20:27:35 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+# NAME = libftprintf.a
 
-LIBFT = libft/libft.a
+# LIBFT = libft/libft.a
 
-SRCS =	ft_printf.c
-#auxiliar_functions.c \
-			c_conversor.c \
-			ft_printf.c \
-			id_conversor.c \
-			p_conversor.c \
-			s_conversor.c \
-			u_conversor.c \
-			x_conversor.c 
+# SRCS =	ft_printf.c
+# #auxiliar_functions.c \
+# 			c_conversor.c \
+# 			ft_printf.c \
+# 			id_conversor.c \
+# 			p_conversor.c \
+# 			s_conversor.c \
+# 			u_conversor.c \
+# 			x_conversor.c 
 
-OBJS = $(SRCS:.c=.o)
+# #OBJS = $(SRCS:.c=.o)
 
-CC = gcc
+#  %.o:%.c
+#      gcc $(CFLAGS) $< -o $@
+# %.o: %.c
+# 	$(CC) -I. $(FLAGS) -o $@ -c $?
 
-FLAGS = -Wall -Werror -Wextra -g
+# CC = gcc
 
-all: $(NAME)
+# FLAGS = -Wall -Werror -Wextra -g
 
-$(NAME): $(OBJS)
-		$(MAKE) bonus -C ./libft
-		cp libft/libft.a $(NAME)
-		$(CC) $(FLAGS) -c $(SRCS) -I ./ 
-		ar rc $(NAME) $(OBJS)
+# all: $(NAME)
 
-clean:
-		rm -f *.o
-		/bin/rm -f $(OBJS)
-		$(MAKE) clean -C ./libft
+# $(NAME): $(OBJS)
+# 		$(MAKE) bonus -C ./libft
+# 		cp libft/libft.a $(NAME)
+# 		$(CC) $(FLAGS) -c $(SRCS) -I ./ 
+# 		ar rc $(NAME) $(OBJS)
 
-fclean: clean
-		$(MAKE) fclean -C ./libft
-		/bin/rm -f $(NAME)
+# clean:
+# 		rm -f *.o
+# 		/bin/rm -f $(OBJS)
+# 		$(MAKE) clean -C ./libft
 
-re: fclean all
+# fclean: clean
+# 		$(MAKE) fclean -C ./libft
+# 		/bin/rm -f $(NAME)
 
-.PHONY: fclean re all clean
+# re: fclean all
+
+# .PHONY: fclean re all clean
+
+NAME 	= libftprintf.a
+
+SRCS 	= 	*/*.c# src/ft_printf.c Libft/*.c
+			
+OBJS	= ${SRCS:.c=.o}
+
+
+CC		= gcc
+FLAGS 	= -Wall -Wextra -Werror -g
+
+RM		= rm -f
+
+${NAME}:	$(OBJS)
+			ar rcs $(NAME) $(OBJS)
+
+
+%.o: %.c
+	$(CC) -I. $(FLAGS) -o $@ -c $?
+	
+all: 		${NAME}
+
+clean:		
+			${RM} ${OBJS}
+
+fclean:		clean
+			${RM} ${NAME}
+
+re:			fclean all
+
+
+.PHONY:		all clean fclean re .c.o
