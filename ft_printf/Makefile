@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/24 14:34:36 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/24 14:36:56 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ SRCS	= 	srcs/ft_printf.c  \
 			print.c \
 			utils.c
 
-OBJS	= ${SRCS:%.c=%.o}
+OBJS	= ${SRCS:.c=.o} #le pb est la il comprend pas le all .c representer par (%).
 
 FLAGS	= -Wall -Wextra -Werror -g
 
