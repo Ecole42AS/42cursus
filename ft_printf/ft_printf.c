@@ -6,32 +6,38 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:25:59 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/24 14:24:59 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/24 15:23:08 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "includes/ft_printf.h"
 
-static void	formating(char c, va_list ap)
+static int	formating(char c, va_list ap)
 {
+	int n;
+	
 	if (c == 'c')
-		ft_putchar_fd(va_arg(ap, int), 1);
+		n = 1;
 	else if (c == 's')
+		return (ft_strlen(ap))
 		ft_putstr_fd(va_arg(ap, char *), 1);
-	else if (c == 'p')
-		ft_putptr_fd(va_arg(ap, void *), 1);
-	else if (c == 'd')
-		ft_putnbr_fd(va_arg(ap, int), 1);
-	else if (c == 'i')
-		ft_putnbr_fd(va_arg(ap, int), 1);
-	else if (c == 'u')
-		ft_putunbr_fd(va_arg(ap, unsigned int), 1);
-	else if (c == 'x')
-		ft_putxnbr_fd(va_arg(ap, int), 1, 0);
-	else if (c == 'X')
-		ft_putxnbr_fd(va_arg(ap, int), 1, 1);
+	// else if (c == 'p')
+	// 	ft_putptr_fd(va_arg(ap, void *), 1);
+	// else if (c == 'd' || c == 'i')
+	// 	ft_putnbr_fd(va_arg(ap, int), 1);
+	// else if (c == 'i')
+	// 	ft_putnbr_fd(va_arg(ap, int), 1);
+	// else if (c == 'u')
+	// 	ft_putunbr_fd(va_arg(ap, unsigned int), 1);
+	// else if (c == 'x')
+	// 	ft_putxnbr_fd(va_arg(ap, int), 1, 0);
+	// else if (c == 'X')
+	// 	ft_putxnbr_fd(va_arg(ap, int), 1, 1);
 	else if (c == '%')
 		ft_putchar_fd('%', 1);
+	else
+		return (0);
+	return (n);
 }
 
 int	ft_printf(const char *format, ...)

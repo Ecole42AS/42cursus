@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/24 14:36:56 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/24 15:01:43 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,13 +90,13 @@
 
 NAME	= libftprintf.a
 
-SRCS	= 	srcs/ft_printf.c  \
-			#parse.c \
-			print.c \
-			utils.c
+SRCS	= 	ft_printf.c
 
-OBJS	= ${SRCS:.c=.o} #le pb est la il comprend pas le all .c representer par (%).
+OBJS	= ${SRCS:%.c=%.o} #le pb est la il comprend pas le all .c representer par (%).
 
+# %.o: %.c
+# 	$(CC) -I. $(FLAGS) -o $@ -c $?
+	
 FLAGS	= -Wall -Wextra -Werror -g
 
 $(NAME):
@@ -113,4 +113,4 @@ fclean: clean
 
 re: fclean all
 
-# .PHONY: all clean fclean re
+.PHONY: all clean fclean re
