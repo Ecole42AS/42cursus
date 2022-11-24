@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/24 14:26:27 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/24 14:34:36 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,3 +112,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+# .PHONY: all clean fclean re
