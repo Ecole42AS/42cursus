@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/23 20:30:18 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/24 18:48:17 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,8 +90,8 @@
 
 NAME	= libftprintf.a
 
-SRCS	= 	ft_printf.c \
-			parse.c \
+SRCS	= 	srcs/ft_printf.c \
+			#parse.c \
 			print.c \
 			utils.c
 
@@ -112,3 +112,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

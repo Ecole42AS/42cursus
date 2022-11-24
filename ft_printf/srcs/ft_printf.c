@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:25:59 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/23 20:07:48 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/24 19:38:33 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	formating(char c, va_list ap)
 
 int	ft_printf(const char *format, ...)
 {
-	int		param_nbr;
+	//int		param_nbr;
 	int		i;
 	va_list	ap;
 
@@ -45,9 +45,7 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-		{
 			formating(format[++i], ap);
-		}
 		else
 			write(1, &format[i], 1);
 		i++;
