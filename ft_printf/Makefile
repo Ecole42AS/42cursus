@@ -6,7 +6,11 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/11/24 18:48:17 by astutz           ###   ########.fr        #
+=======
+#    Updated: 2022/11/24 15:01:43 by astutz           ###   ########.fr        #
+>>>>>>> bd7d3a046563a0a209a703d9b7f8ef7c631e28af
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +18,7 @@
 
 # LIBFT = libft/libft.a
 
-# SRCS =	ft_printf.c
+# SRCS =	srcs/ft_printf.c
 # #auxiliar_functions.c \
 # 			c_conversor.c \
 # 			ft_printf.c \
@@ -26,10 +30,10 @@
 
 # #OBJS = $(SRCS:.c=.o)
 
-#  %.o:%.c
-#      gcc $(CFLAGS) $< -o $@
-# %.o: %.c
-# 	$(CC) -I. $(FLAGS) -o $@ -c $?
+# # %.o:%.c
+# #     gcc $(CFLAGS) $< -o $@
+# # %.o: %.c
+# # 	$(CC) -I. $(FLAGS) -o $@ -c $?
 
 # CC = gcc
 
@@ -58,7 +62,7 @@
 
 # NAME 	= libftprintf.a
 
-# SRCS 	= 	*/*.c# src/ft_printf.c Libft/*.c
+# SRCS 	= 	srcs/ft_printf.c
 			
 # OBJS	= ${SRCS:.c=.o}
 
@@ -90,14 +94,21 @@
 
 NAME	= libftprintf.a
 
+<<<<<<< HEAD
 SRCS	= 	srcs/ft_printf.c \
 			#parse.c \
 			print.c \
 			utils.c
+=======
+SRCS	= 	ft_printf.c
+>>>>>>> bd7d3a046563a0a209a703d9b7f8ef7c631e28af
 
-OBJS	= ${SRCS:%.c=%.o}
+OBJS	= ${SRCS:%.c=%.o} #le pb est la il comprend pas le all .c representer par (%).
 
-FLAGS	= -Wall -Wextra -Werror
+# %.o: %.c
+# 	$(CC) -I. $(FLAGS) -o $@ -c $?
+	
+FLAGS	= -Wall -Wextra -Werror -g
 
 $(NAME):
 	gcc $(FLAGS) -c $(SRCS) -I ./
