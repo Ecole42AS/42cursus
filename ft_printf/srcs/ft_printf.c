@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:25:59 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/23 20:07:48 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/24 14:24:59 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	formating(char c, va_list ap)
 
 int	ft_printf(const char *format, ...)
 {
-	int		param_nbr;
+	// int		param_nbr;
 	int		i;
 	va_list	ap;
 
@@ -56,11 +56,9 @@ int	ft_printf(const char *format, ...)
 	return (1);
 }
 
-// int	main(int ac, char *av)
-// {
-// 	ft_printf("\n\ntest c: %c \ntest s: 1) %s\t2) %s \ntest$
-	// p : %p\ntest d: %d \ntest i: 1) %i\t 2) %i\ntest u: 1)%u\t 2)
-	// %u\ntest x: %x\ntest X: %X\ntest pourcent: %%\n.", 'Z', "test1",
-	// "test2", "TESTP", 12345, 213, -9876543, 4294967292, 3294967292,
-	// 198, 198);
-// }
+int	main(int ac, char **av)
+{
+	(void) ac;
+	(void) av;
+	ft_printf("\ntest c: %c \ntest s: 1) %s\t2) %s \ntest$ p : %p\ntest d: %d \ntest i: 1) %i\t 2) %i\ntest u: 1)%u\t 2) %u\ntest x: %x\ntest X: %X\ntest pourcent: %%\n.", 'Z', "test1", "test2", "TESTP", 12345, 213, -9876543, 4294967292, 3294967292, 198, 198);
+}
