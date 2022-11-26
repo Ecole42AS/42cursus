@@ -6,11 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/11/24 18:48:17 by astutz           ###   ########.fr        #
-=======
-#    Updated: 2022/11/24 15:01:43 by astutz           ###   ########.fr        #
->>>>>>> bd7d3a046563a0a209a703d9b7f8ef7c631e28af
+#    Updated: 2022/11/26 10:53:52 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,20 +90,14 @@
 
 NAME	= libftprintf.a
 
-<<<<<<< HEAD
-SRCS	= 	srcs/ft_printf.c \
-			#parse.c \
-			print.c \
-			utils.c
-=======
-SRCS	= 	ft_printf.c
->>>>>>> bd7d3a046563a0a209a703d9b7f8ef7c631e28af
+SRCS	= 	ft_printf.c	\
+			srcs/ft_putptr_fd.c \
+			srcs/ft_putunbr_fd.c \
+			srcs/ft_putxnbr_fd.c \
+			srcs/ft_putxxnbr_fd.c
 
-OBJS	= ${SRCS:%.c=%.o} #le pb est la il comprend pas le all .c representer par (%).
+OBJS	= ${SRCS:%.c=%.o}
 
-# %.o: %.c
-# 	$(CC) -I. $(FLAGS) -o $@ -c $?
-	
 FLAGS	= -Wall -Wextra -Werror -g
 
 $(NAME):

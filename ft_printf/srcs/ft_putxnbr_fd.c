@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:20:47 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 10:29:47 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/26 10:58:39 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_putxnbr_fd(unsigned int n, int fd)
 {
 	if (n >= 16)
 	{
-		ft_putxnbr_fd((n / 16), 1);
-		ft_putxnbr_fd((n % 16), 1);
+		ft_putxnbr_fd((n / 16), fd);
+		ft_putxnbr_fd((n % 16), fd);
 	}
 	else
 	{

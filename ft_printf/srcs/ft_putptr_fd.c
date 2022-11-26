@@ -6,12 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:37:20 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 10:37:43 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/26 12:45:16 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/ft_printf.h"
+
 void	ft_putptr_fd(void *ptr, int fd)
 {
-	write(1, &ptr, 5);//test
-	//ft_putstr_fd((void *)ptr, fd);
+	write(fd, &ptr, sizeof(p));
 }
