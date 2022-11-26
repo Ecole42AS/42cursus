@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:37:20 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 12:45:16 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/26 13:10:28 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putptr_fd(void *ptr, int fd)
 {
-	write(fd, &ptr, sizeof(p));
+	write(fd, &ptr, sizeof(ptr));
 }
