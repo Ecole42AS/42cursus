@@ -6,17 +6,34 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:13:29 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 13:10:44 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/26 20:15:41 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putunbr_fd(unsigned int n, int fd)
+static int	intlen(unsigned int nb)
 {
-	if (n > 9)
+	int	len;
+
+	len = 0;
+	if(nb != 0)
 	{
-		ft_putunbr_fd(n / 10, fd);
+		nb /= 10;
+		len++;
 	}
-	ft_putchar_fd((n % 10 + '0'), fd);
+	return (len);	
+}
+
+void	ft_putunbr_fd(unsigned int nb)
+{
+	int len;
+
+	len = intlen(nb);
+	if (nb > 9)
+	{
+		ft_putunbr_fd(nb / 10, fd);
+	}
+	ft_putchar_fd((nb % 10 + '0'), fd);
+	return (len);
 }
