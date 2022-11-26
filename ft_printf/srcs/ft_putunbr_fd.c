@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/20 18:34:04 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 10:46:41 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/26 10:13:29 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/26 10:14:23 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/ft_printf.h"
 
-# include "../libft/libft.h"
-# include "stdarg.h"
-
-int		ft_printf(const char *format, ...);
-void	ft_putunbr_fd(unsigned int n, int fd);
-void	ft_putptr_fd(void *ptr, int fd);
-void	ft_putxnbr_fd(unsigned int n, int fd);
-void	ft_putxxnbr_fd(unsigned int n, int fd);
-
-#endif
+void	ft_putunbr_fd(unsigned int n, int fd)
+{
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n *= -1;
+	}
+	if (n > 9)
+	{
+		ft_putunbr_fd(n / 10, fd);
+	}
+	ft_putchar_fd((n % 10 + '0'), fd);
+}

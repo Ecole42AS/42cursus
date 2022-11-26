@@ -1,25 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putptr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/20 18:34:04 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 10:46:41 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/26 10:37:20 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/26 10:37:43 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-# include "../libft/libft.h"
-# include "stdarg.h"
-
-int		ft_printf(const char *format, ...);
-void	ft_putunbr_fd(unsigned int n, int fd);
-void	ft_putptr_fd(void *ptr, int fd);
-void	ft_putxnbr_fd(unsigned int n, int fd);
-void	ft_putxxnbr_fd(unsigned int n, int fd);
-
-#endif
+void	ft_putptr_fd(void *ptr, int fd)
+{
+	write(1, &ptr, 5);//test
+	//ft_putstr_fd((void *)ptr, fd);
+}
