@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 18:34:04 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 18:34:30 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/26 19:52:58 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,9 @@ void	ft_putunbr_fd(unsigned int n, int fd);
 void	ft_putptr_fd(void *ptr, int fd);
 void	ft_putxnbr_fd(unsigned int n, int fd);
 void	ft_putxxnbr_fd(unsigned int n, int fd);
+int		ft_print_percent();
+int		ft_print_c(int c);
+int		ft_print_di(int n);
+int		ft_print_s(char *str);
 
 #endif

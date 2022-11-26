@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/26 18:47:36 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/26 19:54:51 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,23 +91,27 @@ NAME = libftprintf.a
 LIBFT = ./libft/libft.a
 HEADERDIR = ./includes
 
-SRCS	= 	srcs/ft_printf.c	 \
-			srcs/ft_putptr_fd.c  \
-			srcs/ft_putunbr_fd.c \
-			srcs/ft_putxnbr_fd.c \
-			srcs/ft_putxxnbr_fd.c
+SRCS	= 	srcs/ft_printf.c	  	\
+			srcs/ft_putptr_fd.c   	\
+			srcs/ft_putunbr_fd.c  	\
+			srcs/ft_putxnbr_fd.c  	\
+			srcs/ft_putxxnbr_fd.c 	\
+			srcs/ft_print_c.c 		\
+			srcs/ft_print_di.c 		\
+			srcs/ft_print_s.c		\
+			srcs/ft_print_percent.c
 
 OBJS = ${SRCS:.c=.o}
 
 .c.o:	
 	${CC} ${CFLAGS} -c -I ${HEADERDIR} $< -o ${<:.c=.o}
 
-
 ${NAME}:	${OBJS}
 			make -C libft
 			cp ${LIBFT} .
 			mv libft.a libftprintf.a
 			ar rcs ${NAME} ${OBJS}
+
 all:	${NAME}
 	
 test:	${NAME}

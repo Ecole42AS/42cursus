@@ -6,22 +6,25 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:25:59 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 18:41:37 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/26 20:07:52 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void	formating(char c, va_list ap)
+static int	formating(char c, va_list ap)
 {
+	int	len;
+
+	len = 0;
 	if (c == 'c')
-		ft_putchar_fd(va_arg(ap, int), 1);
+		len += ft_print_c(va_arg(ap, int));
 	else if (c == 's')
-		ft_putstr_fd(va_arg(ap, char *), 1);
+		ft_print_s(va_arg(ap, char *));
 	else if (c == 'p')
 		ft_putptr_fd(va_arg(ap, void *), 1);
 	else if (c == 'd' || c == 'i')
-		ft_putnbr_fd(va_arg(ap, int), 1);
+		ft_print_di(va_arg(ap, int));
 	else if (c == 'u')
 		ft_putunbr_fd(va_arg(ap, unsigned int), 1);
 	else if (c == 'x')
@@ -29,28 +32,29 @@ static void	formating(char c, va_list ap)
 	else if (c == 'X')
 		ft_putxxnbr_fd(va_arg(ap, int), 1);
 	else if (c == '%')
-		ft_putchar_fd('%', 1);
+		ft_print_percent();
+	return (len);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	int		i;
+	int		len;
 	va_list	ap;
 
-	va_start(ap, format);
 	i = 0;
+	len = 0;
+	va_start(ap, format);
 	while (format[i])
 	{
 		if (format[i] == '%')
-		{
-			formating(format[++i], ap);
-		}
+			len += formating(format[++i], ap);
 		else
-			write(1, &format[i], 1);
+			len += ft_print_c(format[i]);
 		i++;
 	}
 	va_end(ap);
-	return (1);
+	return (len);
 }
 
 // int main()
