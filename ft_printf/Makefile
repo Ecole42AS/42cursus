@@ -6,119 +6,120 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/26 13:00:45 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/26 18:47:36 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# NAME = libftprintf.a
+# NAME	= libftprintf.a
+# LIBFT = ./libft/libft.a
 
-# LIBFT = libft/libft.a
+# SRCS	= 	ft_printf.c	\
+# 			srcs/ft_putptr_fd.c \
+# 			srcs/ft_putunbr_fd.c \
+# 			srcs/ft_putxnbr_fd.c \
+# 			srcs/ft_putxxnbr_fd.c
 
-# SRCS =	srcs/ft_printf.c
-# #auxiliar_functions.c \
-# 			c_conversor.c \
-# 			ft_printf.c \
-# 			id_conversor.c \
-# 			p_conversor.c \
-# 			s_conversor.c \
-# 			u_conversor.c \
-# 			x_conversor.c 
+# OBJS	= ${SRCS:%.c=%.o}
 
-# #OBJS = $(SRCS:.c=.o)
+# FLAGS	= -Wall -Wextra -Werror -g
 
-# # %.o:%.c
-# #     gcc $(CFLAGS) $< -o $@
-# # %.o: %.c
-# # 	$(CC) -I. $(FLAGS) -o $@ -c $?
+# # $(NAME):
+# # 	gcc $(FLAGS) -c $(SRCS) -I ./
+# # 	ar rc $(NAME) $(OBJS)
 
-# CC = gcc
-
-# FLAGS = -Wall -Werror -Wextra -g
+# ${NAME}:	${OBJS}
+# 			make -C libft
+# 			cp ${LIBFT} .
+# 			mv libft.a libftprintf.a
+# 			ar rcs ${NAME} ${OBJS}
 
 # all: $(NAME)
 
-# $(NAME): $(OBJS)
-# 		$(MAKE) bonus -C ./libft
-# 		cp libft/libft.a $(NAME)
-# 		$(CC) $(FLAGS) -c $(SRCS) -I ./ 
-# 		ar rc $(NAME) $(OBJS)
-
 # clean:
-# 		rm -f *.o
-# 		/bin/rm -f $(OBJS)
-# 		$(MAKE) clean -C ./libft
+# 	rm -rf $(OBJS)
 
 # fclean: clean
-# 		$(MAKE) fclean -C ./libft
-# 		/bin/rm -f $(NAME)
+# 	rm -rf $(NAME)
 
 # re: fclean all
 
-# .PHONY: fclean re all clean
+# .PHONY: all clean fclean re
 
-# NAME 	= libftprintf.a
+# SRCS	= 	srcs/ft_printf.c	\
+# 			srcs/ft_putptr_fd.c \
+# 			srcs/ft_putunbr_fd.c \
+# 			srcs/ft_putxnbr_fd.c \
+# 			srcs/ft_putxxnbr_fd.c
 
-# SRCS 	= 	srcs/ft_printf.c
-			
-# OBJS	= ${SRCS:.c=.o}
+# OBJS	=	${SRCS:.c=.o}
 
+# NAME	=	libftprintf.a
 
-# CC		= gcc
-# FLAGS 	= -Wall -Wextra -Werror -g
+# LIBFT	= libft
 
-# RM		= rm -f
+# CC		=	gcc
 
-# ${NAME}:	$(OBJS)
-# 			ar rcs $(NAME) $(OBJS)
+# RM		=	rm -f
 
+# CFLAGS	=	-Wall -Wextra -Werror -g
 
-# %.o: %.c
-# 	$(CC) -I. $(FLAGS) -o $@ -c $?
-	
-# all: 		${NAME}
+# .c.o:		${CC} ${CFLAGS} -c $< -o ${<:.c=.o} # -I ${HEADERDIR}
 
-# clean:		
+# ${NAME}:	${OBJS}
+# 			@make -C $(LIBFT)
+# 			@cp libft/libft.a .
+# 			@mv libft.a $(NAME)
+# 			ar rcs ${NAME} ${OBJS}
+
+# all:		${NAME}
+
+# clean:
 # 			${RM} ${OBJS}
+# 			@make clean -C $(LIBFT)
 
 # fclean:		clean
 # 			${RM} ${NAME}
+# 			@$(RM) -f $(LIBFT)/libft.a
 
 # re:			fclean all
 
+# .PHONY:		all clean fclean re
 
-# .PHONY:		all clean fclean re .c.o
-
-NAME	= libftprintf.a
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
+NAME = libftprintf.a
 LIBFT = ./libft/libft.a
+HEADERDIR = ./includes
 
-SRCS	= 	ft_printf.c	\
-			srcs/ft_putptr_fd.c \
+SRCS	= 	srcs/ft_printf.c	 \
+			srcs/ft_putptr_fd.c  \
 			srcs/ft_putunbr_fd.c \
 			srcs/ft_putxnbr_fd.c \
 			srcs/ft_putxxnbr_fd.c
 
-OBJS	= ${SRCS:%.c=%.o}
+OBJS = ${SRCS:.c=.o}
 
-FLAGS	= -Wall -Wextra -Werror -g
+.c.o:	
+	${CC} ${CFLAGS} -c -I ${HEADERDIR} $< -o ${<:.c=.o}
 
-# $(NAME):
-# 	gcc $(FLAGS) -c $(SRCS) -I ./
-# 	ar rc $(NAME) $(OBJS)
 
 ${NAME}:	${OBJS}
 			make -C libft
 			cp ${LIBFT} .
 			mv libft.a libftprintf.a
 			ar rcs ${NAME} ${OBJS}
+all:	${NAME}
+	
+test:	${NAME}
+	${CC} ${CFLAGS} -o libftprintf main.c -L/. libftprintf.a
+	./libftprintf
 
-all: $(NAME)
+clean: 
+	rm -rf ${OBJS}
 
-clean:
-	rm -rf $(OBJS)
+fclean:	clean
+	rm -rf ${NAME}
 
-fclean: clean
-	rm -rf $(NAME)
+re: fclean ${NAME}
 
-re: fclean all
-
-.PHONY: all clean fclean re
+.PHONY: all fclean clean re test
