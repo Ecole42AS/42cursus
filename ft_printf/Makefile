@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/26 19:54:51 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/27 08:53:41 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,14 +91,14 @@ NAME = libftprintf.a
 LIBFT = ./libft/libft.a
 HEADERDIR = ./includes
 
-SRCS	= 	srcs/ft_printf.c	  	\
-			srcs/ft_putptr_fd.c   	\
-			srcs/ft_putunbr_fd.c  	\
-			srcs/ft_putxnbr_fd.c  	\
-			srcs/ft_putxxnbr_fd.c 	\
-			srcs/ft_print_c.c 		\
-			srcs/ft_print_di.c 		\
-			srcs/ft_print_s.c		\
+SRCS	= 	srcs/ft_printf.c  	\
+			srcs/ft_putptr.c   	\
+			srcs/ft_putunbr.c  	\
+			srcs/ft_putxnbr.c  	\
+			srcs/ft_putxxnbr.c 	\
+			srcs/ft_print_c.c	\
+			srcs/ft_print_di.c 	\
+			srcs/ft_print_s.c	\
 			srcs/ft_print_percent.c
 
 OBJS = ${SRCS:.c=.o}

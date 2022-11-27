@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 18:34:04 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 19:52:58 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/27 09:04:17 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include "stdarg.h"
 
 int		ft_printf(const char *format, ...);
-void	ft_putunbr_fd(unsigned int n, int fd);
-void	ft_putptr_fd(void *ptr, int fd);
-void	ft_putxnbr_fd(unsigned int n, int fd);
-void	ft_putxxnbr_fd(unsigned int n, int fd);
-int		ft_print_percent();
+int		ft_putunbr(unsigned int nb);
+int		ft_putptr(void *ptr);
+int		ft_putxnbr(unsigned int nb);
+int		ft_putxxnbr(unsigned int nb);
+int		ft_print_percent(void);
 int		ft_print_c(int c);
 int		ft_print_di(int n);
 int		ft_print_s(char *str);

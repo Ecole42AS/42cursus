@@ -1,29 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putxnbr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putxnbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:20:47 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/26 13:10:53 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/27 09:04:45 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putxnbr_fd(unsigned int n, int fd)
+static int	hexalen(unsigned int nb)
 {
-	if (n >= 16)
+	unsigned int	len;
+
+	len = 0;
+	if (nb == 0)
+		return (1);
+	while (nb != 0)
 	{
-		ft_putxnbr_fd((n / 16), fd);
-		ft_putxnbr_fd((n % 16), fd);
+		nb /= 16;
+		len++;
+	}
+	return (len);
+}
+
+int	ft_putxnbr_fd(unsigned int nb)
+{
+	unsigned int	len;
+
+	len = hexalen(nb);
+	if (nb >= 16)
+	{
+		ft_putxnbr_fd((nb / 16));
+		ft_putxnbr_fd((nb % 16));
 	}
 	else
 	{
-		if (n <= 9)
-			ft_putchar_fd((n + '0'), 1);
+		if (nb <= 9)
+			ft_putchar_fd((nb + '0'), 1);
 		else
-			ft_putchar_fd((n - 10 + 'a'), 1);
+			ft_putchar_fd((nb - 10 + 'a'), 1);
 	}
+	return (len);
 }
