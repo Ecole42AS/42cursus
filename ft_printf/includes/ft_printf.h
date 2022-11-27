@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 18:34:04 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/27 09:04:17 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/27 09:23:15 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int		ft_printf(const char *format, ...);
 int		ft_putunbr(unsigned int nb);
-int		ft_putptr(void *ptr);
+int		ft_putptr(unsigned long nb);
 int		ft_putxnbr(unsigned int nb);
 int		ft_putxxnbr(unsigned int nb);
 int		ft_print_percent(void);

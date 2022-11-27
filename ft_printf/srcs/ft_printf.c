@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:25:59 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/27 08:59:33 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/27 09:23:59 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	formating(char c, va_list ap)
 	else if (c == 's')
 		ft_print_s(va_arg(ap, char *));
 	else if (c == 'p')
-		ft_putptr(va_arg(ap, void *));
+		ft_putptr(va_arg(ap, unsigned long));
 	else if (c == 'd' || c == 'i')
 		len += ft_print_di(va_arg(ap, int));
 	else if (c == 'u')
