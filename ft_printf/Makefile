@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 18:46:37 by astutz            #+#    #+#              #
-#    Updated: 2022/11/27 09:08:45 by astutz           ###   ########.fr        #
+#    Updated: 2022/11/27 09:38:02 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,10 +113,6 @@ ${NAME}:	${OBJS}
 			ar rcs ${NAME} ${OBJS}
 
 all:	${NAME}
-	
-test:	${NAME}
-	${CC} ${CFLAGS} -o libftprintf main.c -L/. libftprintf.a
-	./libftprintf
 
 clean: 
 	rm -rf ${OBJS}
@@ -124,6 +120,6 @@ clean:
 fclean:	clean
 	rm -rf ${NAME}
 
-re: fclean ${NAME}
+re: fclean all
 
-.PHONY: all fclean clean re test
+.PHONY: all fclean clean re
