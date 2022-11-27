@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:32:42 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/27 09:25:13 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/27 10:14:28 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ static int	hexalen(unsigned int nb)
 	return (len);
 }
 
-int	ft_putxxnbr_fd(unsigned int nb)
+int	ft_putxxnbr(unsigned int nb)
 {
 	unsigned int	len;
 
 	len = hexalen(nb);
 	if (nb >= 16)
 	{
-		ft_putxnbr((nb / 16));
-		ft_putxnbr((nb % 16));
+		ft_putxxnbr((nb / 16));
+		ft_putxxnbr((nb % 16));
 	}
 	else
 	{

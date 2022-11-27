@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 10:13:29 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/27 09:06:35 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/27 10:13:30 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static int	intlen(unsigned int nb)
 	return (len);
 }
 
-int	ft_putunbr_fd(unsigned int nb)
+int	ft_putunbr(unsigned int nb)
 {
 	int	len;
 
 	len = intlen(nb);
 	if (nb > 9)
 	{
-		ft_putunbr_fd(nb / 10);
+		ft_putunbr(nb / 10);
 	}
 	ft_putchar_fd((nb % 10 + '0'), 1);
 	return (len);
