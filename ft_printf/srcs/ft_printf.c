@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:25:59 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/27 09:23:59 by astutz           ###   ########.fr       */
+/*   Updated: 2022/11/28 15:46:41 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ static int	formating(char c, va_list ap)
 	if (c == 'c')
 		len += ft_print_c(va_arg(ap, int));
 	else if (c == 's')
-		ft_print_s(va_arg(ap, char *));
+		len += ft_print_s(va_arg(ap, char *));
 	else if (c == 'p')
-		ft_putptr(va_arg(ap, unsigned long));
+		len += ft_putptr(va_arg(ap, unsigned long));
 	else if (c == 'd' || c == 'i')
 		len += ft_print_di(va_arg(ap, int));
 	else if (c == 'u')
 		len += ft_putunbr(va_arg(ap, unsigned int));
 	else if (c == 'x')
-		ft_putxnbr(va_arg(ap, int));
+		len += ft_putxnbr(va_arg(ap, int));
 	else if (c == 'X')
-		ft_putxxnbr(va_arg(ap, int));
+		len += ft_putxxnbr(va_arg(ap, int));
 	else if (c == '%')
-		ft_print_percent();
+		len += ft_print_percent();
 	return (len);
 }
 
