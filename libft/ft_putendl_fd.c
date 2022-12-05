@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/08 13:54:26 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/09 17:03:38 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_print_s(char *str)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int	n;
-
-	if (str == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	ft_putstr_fd(str, 1);
-	n = ft_strlen(str);
-	return (n);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
-
-// int	ft_print_s(char *str)
-// {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
-// }
-
-char *str[10][10]

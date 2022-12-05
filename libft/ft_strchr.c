@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/02 17:24:47 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/12 08:39:47 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+//WARNING doit prendre en considération le \0 d'ou le 2ème if
 
-int	ft_print_s(char *str)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
-	int	n;
+	int	i;
 
-	if (str == NULL)
+	i = 0;
+	while (s[i])
 	{
-		write(1, "(null)", 6);
-		return (6);
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
 	}
-	ft_putstr_fd(str, 1);
-	n = ft_strlen(str);
-	return (n);
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return (NULL);
 }
-
-// int	ft_print_s(char *str)
-// {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
-// }
-
-char *str[10][10]

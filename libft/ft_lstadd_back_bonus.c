@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/19 07:59:26 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/19 12:20:26 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_print_s(char *str)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	n;
+	t_list	*last;
 
-	if (str == NULL)
+	if (!lst && !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		write(1, "(null)", 6);
-		return (6);
+		last = ft_lstlast(*lst);
+		last->next = new;
 	}
-	ft_putstr_fd(str, 1);
-	n = ft_strlen(str);
-	return (n);
 }
-
-// int	ft_print_s(char *str)
-// {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
-// }
-
-char *str[10][10]

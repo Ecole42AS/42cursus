@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/16 20:46:59 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/17 17:21:11 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_print_s(char *str)
+t_list	*ft_lstnew(void *content)
 {
-	int	n;
+	t_list	*new;
 
-	if (str == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	ft_putstr_fd(str, 1);
-	n = ft_strlen(str);
-	return (n);
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
-
-// int	ft_print_s(char *str)
-// {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
-// }
-
-char *str[10][10]

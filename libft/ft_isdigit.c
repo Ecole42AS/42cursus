@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Created: 2022/10/28 14:06:43 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/01 18:18:11 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
+// #include "stdio.h"
 
-int	ft_print_s(char *str)
+int	ft_isdigit(int n)
 {
-	int	n;
-
-	if (str == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	ft_putstr_fd(str, 1);
-	n = ft_strlen(str);
-	return (n);
+	if (n >= '0' && n <= '9')
+		return (1);
+	return (0);
 }
 
-// int	ft_print_s(char *str)
+// int main()
 // {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
+//   int res = ft_isdigit(9);
+//   printf("%d", res);
 // }
-
-char *str[10][10]

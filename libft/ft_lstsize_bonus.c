@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/19 07:39:51 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/19 07:48:05 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_print_s(char *str)
+int	ft_lstsize(t_list *lst)
 {
-	int	n;
+	int	size;
 
-	if (str == NULL)
+	size = 0;
+	while (lst != NULL)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		size++;
+		lst = lst->next;
 	}
-	ft_putstr_fd(str, 1);
-	n = ft_strlen(str);
-	return (n);
+	return (size);
 }
-
-// int	ft_print_s(char *str)
-// {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
-// }
-
-char *str[10][10]

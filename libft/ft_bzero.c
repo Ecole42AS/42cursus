@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Created: 2022/10/30 14:42:35 by astutz            #+#    #+#             */
+/*   Updated: 2022/10/30 15:20:34 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
+#include "stdio.h"
 
-int	ft_print_s(char *str)
+void	ft_bzero(void *s, size_t n)
 {
-	int	n;
-
-	if (str == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	ft_putstr_fd(str, 1);
-	n = ft_strlen(str);
-	return (n);
+	ft_memset(s, 0, n);
 }
 
-// int	ft_print_s(char *str)
+// int main()
 // {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
+// 	// char s[] = "hello";
+// 	printf("hi");
 // }
 
-char *str[10][10]
+	// size_t i;
+
+	// i = 0;
+	// while (i < len)
+	// {
+	// 	((unsigned char *)s)[i] = '\0';
+	// 	i++;
+	// }

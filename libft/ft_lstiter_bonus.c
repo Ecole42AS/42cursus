@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_s.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Created: 2022/11/19 08:44:07 by astutz            #+#    #+#             */
+/*   Updated: 2022/11/19 08:48:25 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-int	ft_print_s(char *str)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	n;
-
-	if (str == NULL)
+	if (lst)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		while (lst)
+		{
+			f(lst->content);
+			lst = lst->next;
+		}
 	}
-	ft_putstr_fd(str, 1);
-	n = ft_strlen(str);
-	return (n);
 }
-
-// int	ft_print_s(char *str)
-// {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
-// }
-
-char *str[10][10]
