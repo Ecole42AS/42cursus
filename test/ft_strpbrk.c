@@ -1,45 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 11:11:43 by astutz            #+#    #+#             */
-/*   Updated: 2022/12/10 13:01:32 by astutz           ###   ########.fr       */
+/*   Created: 2022/12/11 12:57:33 by astutz            #+#    #+#             */
+/*   Updated: 2022/12/11 13:14:51 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "stdio.h"
+#include <string.h>
 
-int	ft_atoi(const char *str)
+char	*ft_strpbrk(const char *s1, const char *s2)
 {
 	int i;
-	int nb;
-	int sign;
+	int j;
 
-	nb = 0;
-	sign = 1;
+	if (!s1 || !s2)
+		return (0);
 	i = 0;
-	while((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	while (s1[i])
 	{
-		if (str[i] == '-')
-			sign = -1;
+		j = 0;
+		while (s2[j])
+		{
+			if (s1[i] == s2[j])
+				return ((char *)(s1 + i));
+			j++;
+		}
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		nb = nb * 10 + (str[i] - '0');
-		i++;
-	}
-	nb *= sign;
-	return (nb);
+	return (0);
 }
 
 int main()
 {
-	printf("%d", ft_atoi("    	-324dde"));
+	char s1[] = "astutz123456789";
+	char s2[] = "df";
+	char *res;
+	char *res1;
+	
+	res = ft_strpbrk(s1, s2);
+	res1 = strpbrk(s1, s2);
+	printf("%s\n", res);
+	printf("%s", res1);
 }
