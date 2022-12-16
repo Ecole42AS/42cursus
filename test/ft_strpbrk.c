@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 12:57:33 by astutz            #+#    #+#             */
-/*   Updated: 2022/12/11 13:14:51 by astutz           ###   ########.fr       */
+/*   Updated: 2022/12/14 09:22:48 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strpbrk(const char *s1, const char *s2)
 int main()
 {
 	char s1[] = "astutz123456789";
-	char s2[] = "df";
+	char s2[] = "";
 	char *res;
 	char *res1;
 	
