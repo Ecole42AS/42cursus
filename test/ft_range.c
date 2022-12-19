@@ -1,42 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_bits.c                                     :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 18:04:59 by astutz            #+#    #+#             */
-/*   Updated: 2022/12/19 16:00:53 by astutz           ###   ########.fr       */
+/*   Created: 2022/12/19 18:34:29 by astutz            #+#    #+#             */
+/*   Updated: 2022/12/19 18:38:08 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+
+#include <stdlib.h>
 #include <stdio.h>
 
-unsigned char	reverse_bits(unsigned char octet) // "2" --> ascii = 50
+int *ft_range(int start, int end)
 {
-	int i;
-	unsigned char res;
+	int size = end - start;
+	int *ret;
+	int *pointer;
 
-	res = 0;
-	i = 8;
-	while(i--)
+	if (size)
 	{
-		res = res * 2 + (octet % 2); //00110010
-		octet = octet / 2; 
+		pointer = (int *)malloc(sizeof(int) * size);
+		if (pointer)
+		{
+			ret = pointer;
+			while (start <= end)
+			{
+				*pointer = start;
+				pointer++;
+				start++;
+			}
+			return (ret);
+		}
 	}
-	return (res);//= 19
+	return (NULL);
 }
 
 int main()
 {
-
-    int chr = 76;
-    unsigned char i = chr;
-    unsigned char a;
-	a = reverse_bits(i);
-    printf("unsigned char: %c\n", a);
+	int *range;
+	int i;
 	
-
-    return 0;
+	i = 0;
+	range = ft_range(2, 5);
+	while (range[i])
+		printf("%d", range[i++]);
 }
