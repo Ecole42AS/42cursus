@@ -1,51 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   search_and_replace.c                               :+:      :+:    :+:   */
+/*   repeat_alpha2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 21:31:00 by astutz            #+#    #+#             */
-/*   Updated: 2022/12/20 19:59:47 by astutz           ###   ########.fr       */
+/*   Created: 2022/12/20 20:04:15 by astutz            #+#    #+#             */
+/*   Updated: 2022/12/20 20:50:47 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 
-int ft_strlen(char *str)
+void repeat_alpha(char *str)
 {
 	int i;
-	
-	i = 0;
-	while(str[i])
-		i++;
-	return (i);
-}
-
-char *search_and_replace(char *str, char *c, char *r)
-{
-	int i;
+	int j;
+	int k;
 
 	i = 0;
 	while(str[i])
 	{
-		if(ft_strlen(c) == 1 && ft_strlen(r) == 1)
+		if(str[i] >= 'a' && str[i] <= 'z')
 		{
-			if(str[i] == c[0])
-				str[i] = r[0];
+			j = 0;
+			while(j < str[i] - 96)
+			{
+				write(1, &str[i], 1);
+				j++;
+			}
 		}
-		write (1, &str[i], 1);
+		else if(str[i] >= 'A' && str[i] <= 'Z')
+		{
+			k = 0;
+			while(k < str[i] - 64)
+			{
+				write(1, &str[i], 1);
+				k++;
+			}
+		}
+		else
+			write(1, &str[i], 1);
 		i++;
 	}
-	return (str);
 }
 
 int main(int ac, char **av)
 {
-	if (ac == 4)
+	if(ac == 2)
 	{
-		search_and_replace(av[1], av[2], av[3]);
+		repeat_alpha(av[1]);
 	}
 	write(1, "\n", 1);
 }
