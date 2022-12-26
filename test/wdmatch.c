@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   max.c                                              :+:      :+:    :+:   */
+/*   wdmatch.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 15:32:12 by astutz            #+#    #+#             */
-/*   Updated: 2022/12/26 14:09:20 by astutz           ###   ########.fr       */
+/*   Created: 2022/12/26 14:59:50 by astutz            #+#    #+#             */
+/*   Updated: 2022/12/26 15:03:14 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int max( int *tab, unsigned int len)
+void ft_putstr(char const *str)
 {
-	int result;
 	int i = 0;
-	result = tab[i];
-	
-	while(i < len)
-	{
-		if (result < tab[i])
-		{
-			result = tab[i];
-		}
-		i++;
-	}
-	return result;
+
+	while (str[i])
+		write(1, &str[i++], 1);
 }
 
-int main()
+int	main(int argc, char const *argv[])
 {
-	int numbers[] = {3, 4, 2, 5, 1};
-	int res;
+	int i = 0;
+	int j = 0;
 
-	res = max(numbers, 0);
-	printf("%d", res);
+	if (argc == 3)
+	{
+		while (argv[2][j])
+			if (argv[2][j++] == argv[1][i])
+				i += 1;
+		if (!argv[1][i])
+			ft_putstr(argv[1]);
+	}
+	write(1, "\n", 1);
+	return (0);
 }
-

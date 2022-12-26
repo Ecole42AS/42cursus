@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 12:57:33 by astutz            #+#    #+#             */
-/*   Updated: 2022/12/14 09:22:48 by astutz           ###   ########.fr       */
+/*   Updated: 2022/12/26 14:17:16 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,28 @@ char	*ft_strpbrk(const char *s1, const char *s2)
 	}
 	return (0);
 }
+
+// char *ft_strpbrk(const char *s1, const char *s2)
+// {
+// 	int i = 0;
+	
+// 	if (!s1 || !s2)
+// 	{
+// 		return (0);
+// 	}
+// 	while(*s1)
+// 	{
+// 		i = 0;
+// 		while(s2[i])
+// 		{
+// 			if(*s1 == s2[i])
+// 				return (char *) s1;
+// 			i++;
+// 		}
+// 		s1++;	
+// 	}
+// 	return (0);
+// }
 
 int main()
 {
