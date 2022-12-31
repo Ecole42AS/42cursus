@@ -3,6 +3,7 @@
 	"files.associations": {
 		"libft.h": "c",
 		"ctype.h": "c",
-		"ft_printf.h": "c"
+		"ft_printf.h": "c",
+		"unistd.h": "c"
 	}
 }
