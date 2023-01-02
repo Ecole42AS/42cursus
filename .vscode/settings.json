@@ -4,6 +4,7 @@
 		"libft.h": "c",
 		"ctype.h": "c",
 		"ft_printf.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"flood_fill.h": "c"
 	}
 }
