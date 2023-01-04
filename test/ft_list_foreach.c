@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 14:19:11 by astutz            #+#    #+#             */
-/*   Updated: 2023/01/03 15:45:03 by astutz           ###   ########.fr       */
+/*   Updated: 2023/01/04 21:05:15 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+{
+	int swap;
+	t_list *tmp;
+
+	tmp = lst;
+	while (lst->next)
+	{
+		if (cmp(lst->data)(lst->next->data) == 0)
+			swap = lst->data;
+			lst->data = lst->next->data;
+			lst->next->data = swap;
+			lst = tmp;
+		else
+			lst = lst->next;
+	}
+	lst = tmp;
+	return(lst);
+}
+
 int		main(void)
 {
 	char straa[] = "String aa";
@@ -78,6 +98,7 @@ int		main(void)
 	// print_list(begin_list);
 	printf("----------\n");
 	printf("%p\n", begin_list);
+	// sort_list(begin_list, cmp())
 	ft_list_foreach(begin_list, ft_strlen);
 	printf("%p\n", begin_list);
 	// print_list(begin_list);
