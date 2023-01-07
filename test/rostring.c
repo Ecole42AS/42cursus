@@ -6,11 +6,12 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 19:52:38 by astutz            #+#    #+#             */
-/*   Updated: 2023/01/04 20:21:53 by astutz           ###   ########.fr       */
+/*   Updated: 2023/01/07 10:46:20 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 // int main(int argc, char **argv)
 // {
@@ -52,28 +53,40 @@ void rostring(char *str)
 {
 	int i;
 	int flag;
+	int flag2;
 	int start;
 	int end;
 
 	flag = 0;
+	flag2 = 0;
 	i = 0;
 	while (str[i] == '\t' || str[i] == ' ')
 		i++;
 	start = i;
 	while (str[i] && (str[i] != '\t' && str[i] != ' '))
 		i++;
-	end = i;
+	end = i - 1;
+	printf("%c\n --------\n", str[end]);
+	printf("%d\n --------\n", end);
 	while (str[i] == '\t' || str[i] == ' ')
 	i++;
 	while (str[i])
 	{
-		flag = 1;
-		write(1, &str[i], 1);
+		flag2 = 1;
+		if (str[i] == ' ' || str[i] == '\t')
+			flag = 1;
+		if (!(str[i] == ' ' || str[i] == '\t'))
+		{
+			if (flag)
+				write(1, " ", 1);
+			flag = 0;
+			write(1, &str[i], 1);
+		}
 		i++;
 	}
-	if (flag)
+	if (flag2)
 		write(1, " ", 1);
-	while (start < end)
+	while (start <= end)
 		write(1, &str[start++], 1);
 }
 
