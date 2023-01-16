@@ -6,6 +6,7 @@
 		"ft_printf.h": "c",
 		"unistd.h": "c",
 		"flood_fill.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"stdlib.h": "c"
 	}
 }
