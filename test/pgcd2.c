@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fprime.c                                           :+:      :+:    :+:   */
+/*   pgcd2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 11:50:13 by astutz            #+#    #+#             */
-/*   Updated: 2023/01/12 13:26:23 by astutz           ###   ########.fr       */
+/*   Created: 2023/01/18 13:36:10 by astutz            #+#    #+#             */
+/*   Updated: 2023/01/18 13:56:13 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-int	main(int argc, char *argv[])
+int main(int ac, char **av)
 {
-	int	i;
-	int	nb;
-
-	if (argc == 2)
+	unsigned int nb1;
+	unsigned int nb2;
+	unsigned int n;
+	
+	nb1 = atoi(av[1]);
+	nb2 = atoi(av[2]);
+	if (ac == 3)
 	{
-		i = 2;
-		nb = atoi(argv[1]);
-		if (nb == 1)
-			printf("1");
-		while (i <= nb)
+		while (nb1 != nb2)
 		{
-			if (nb % i == 0)
-			{
-				printf("%d", i);
-				if (nb == i)
-					break ;
-				printf("*");
-				nb /= i;
-				i = 2;
-			}
-			i++;
+			if (nb1 > nb2)
+				nb1 -= nb2;
+			else
+				nb2 -= nb1;
 		}
+		printf("%d", nb1);
 	}
 	printf("\n");
-	return (0);
 }
+

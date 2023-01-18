@@ -1,43 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fprime.c                                           :+:      :+:    :+:   */
+/*   ft_list_foreach2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 11:50:13 by astutz            #+#    #+#             */
-/*   Updated: 2023/01/12 13:26:23 by astutz           ###   ########.fr       */
+/*   Created: 2023/01/12 13:33:23 by astutz            #+#    #+#             */
+/*   Updated: 2023/01/12 13:39:10 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "ft_list.h"
 
-int	main(int argc, char *argv[])
+void    ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
-	int	i;
-	int	nb;
+	t_list *new
 
-	if (argc == 2)
+	new = begin_list;
+	while (new->next)
 	{
-		i = 2;
-		nb = atoi(argv[1]);
-		if (nb == 1)
-			printf("1");
-		while (i <= nb)
-		{
-			if (nb % i == 0)
-			{
-				printf("%d", i);
-				if (nb == i)
-					break ;
-				printf("*");
-				nb /= i;
-				i = 2;
-			}
-			i++;
-		}
+		(*f)(new->data);
+		new = new->next;
 	}
-	printf("\n");
-	return (0);
 }

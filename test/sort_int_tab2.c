@@ -1,43 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fprime.c                                           :+:      :+:    :+:   */
+/*   sort_int_tab2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 11:50:13 by astutz            #+#    #+#             */
-/*   Updated: 2023/01/12 13:26:23 by astutz           ###   ########.fr       */
+/*   Created: 2023/01/12 14:19:47 by astutz            #+#    #+#             */
+/*   Updated: 2023/01/12 14:34:54 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-int	main(int argc, char *argv[])
+void sort_int_tab(int *tab, unsigned int size)
 {
-	int	i;
-	int	nb;
+	int i;
+	int tmp;
 
-	if (argc == 2)
+	i = 0;
+	while (i < (size - 1))
 	{
-		i = 2;
-		nb = atoi(argv[1]);
-		if (nb == 1)
-			printf("1");
-		while (i <= nb)
+		if (tab[i] > tab[i + 1])
 		{
-			if (nb % i == 0)
-			{
-				printf("%d", i);
-				if (nb == i)
-					break ;
-				printf("*");
-				nb /= i;
-				i = 2;
-			}
-			i++;
+			tmp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = tmp;
 		}
 	}
-	printf("\n");
-	return (0);
 }
+
