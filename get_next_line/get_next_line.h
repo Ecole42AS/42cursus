@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 20:56:28 by astutz            #+#    #+#             */
-/*   Updated: 2022/12/04 20:33:04 by astutz           ###   ########.fr       */
+/*   Updated: 2023/02/12 09:30:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
+# include "get_next_line_utils.c"
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(char *s);

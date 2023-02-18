@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 22:46:12 by astutz            #+#    #+#             */
-/*   Updated: 2022/12/04 20:51:16 by astutz           ###   ########.fr       */
+/*   Updated: 2023/02/12 10:17:36 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,4 +144,28 @@ static char	*ft_strchr(char *s, int c)
 	if (s[i] == cc)
 		return ((char *) &s[i]);
 	return (NULL);
+}
+
+#include <stdio.h>
+#include <fcntl.h>
+#include "get_next_line.h"
+
+int		main(int argc, char **argv)
+{
+	int		fd;
+	char	*line;
+
+	if (argc == 2)
+	{
+		fd = open(argv[1], O_RDONLY);
+		while ((line = get_next_line(fd)))
+		{
+			printf("%s\n", line);
+			free(line);
+		}
+		close(fd);
+	}
+	else
+		printf("Usage: ./a.out file\n");
+	return (0);
 }
