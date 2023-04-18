@@ -6,17 +6,18 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:16:06 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/18 20:16:09 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/18 20:49:55 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf/ft_printf.h"
+#include "minitalk.h"
+#include "ft_printf/includes/ft_printf.h"
 
 void	bit_handler(int bit)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	g_msg.c += ((bit & 1) << g_msg.i);
 	g_msg.i++;
 	if (g_msg.i == 7)
