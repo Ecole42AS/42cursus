@@ -1,4 +1,5 @@
-#include "ft_printf/ft_printf.h"
+#include "ft_printf/includes/ft_printf.h"
+#include "minitalk.h"
 
 void	send_bit(int pid, char c)
 {

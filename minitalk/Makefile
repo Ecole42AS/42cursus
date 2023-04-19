@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/18 20:10:06 by astutz            #+#    #+#              #
-#    Updated: 2023/04/18 20:55:16 by astutz           ###   ########.fr        #
+#    Updated: 2023/04/19 20:44:15 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,34 +22,34 @@ CC		=		gcc
 
 CFLAGS	=		-Wall -Wextra -Werror -g
 
-all: 			server client server_bonus client_bonus
+all: 			server client #server_bonus client_bonus
 
-server: 		server.o Printf/libftprintf.a
+server: 		server.o ft_printf/libftprintf.a
 				$(CC) -o $@ $^
 
-server_bonus:	server_bonus.o Printf/libftprintf.a
+# server_bonus:	server_bonus.o ft_printf/libftprintf.a
+# 				$(CC) -o $@ $^
+
+client:			client.o ft_printf/libftprintf.a
 				$(CC) -o $@ $^
 
-client:			client.o Printf/libftprintf.a
-				$(CC) -o $@ $^
-
-client_bonus:	client_bonus.o Printf/libftprintf.a
-				$(CC) -o $@ $^
+# client_bonus:	client_bonus.o ft_printf/libftprintf.a
+# 				$(CC) -o $@ $^
 
 %.o: 			%.c
 				$(CC) -c $(CFLAGS) $?
 
-Printf/libftprintf.a:
-				@make -C Printf
+ft_printf/libftprintf.a:
+				@make -C ft_printf
 
 clean:
 				rm -f $(OBJS) $(OBJSB)
-				@make -C Printf clean
+				@make -C ft_printf clean
 
 fclean:			clean
-				rm -f server client Printf/libftprintf.a
+				rm -f server client ft_printf/libftprintf.a
 				rm -f server_bonus client_bonus
-				@make -C Printf fclean
+				@make -C ft_printf fclean
 
 re: 			fclean all
 
