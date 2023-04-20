@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:16:06 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/20 14:45:55 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/20 14:53:50 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	bit_handler(int bit)
 		g_msg.c = 0;
 		g_msg.i = 0;
 	}
-	if (g_msg.c == '\0')
-	{
-		kill(pid, SIGUSR1);
-	}
+	// if (g_msg.c == '\0')
+	// {
+	// 	kill(pid, SIGUSR1);
+	// }
 	
 }
 // quand le serveur recoit '/0', il doit envoyer un signal au client et lorsque le client recoit ce message, 

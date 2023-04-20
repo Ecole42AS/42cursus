@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	int		pid;
 	char	*str;
 
-	ft_printf("My Client PID is: %d\n", getpid());
+	// ft_printf("My Client PID is: %d\n", getpid());
 	if (argc == 3)
 	{
 		pid = ft_atoi(argv[1]);
@@ -52,10 +52,10 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("\nYOU EITHER LEFT IT BLANK OR ARE DOING MORE THAN 1 WORD\n\n");
 	return (0);
-	while (1)
-	{
-		signal(SIGUSR1, message_handler);
-		pause();
-	}
+	// while (1)
+	// {
+	// 	signal(SIGUSR1, message_handler);
+	// 	pause();
+	// }
 
 }
