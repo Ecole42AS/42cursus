@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:16:06 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/20 14:53:50 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/20 20:13:18 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	bit_handler(int bit)
 		// printf("bit_handler received character: %c\n", g_msg.c);
 		ft_printf("%c", g_msg.c);
 		if (!g_msg.c)
-			ft_printf("\n");
+			printf("\n");
 		g_msg.c = 0;
 		g_msg.i = 0;
 	}
@@ -39,8 +39,19 @@ void	bit_handler(int bit)
 //il doit afficher un message comme quoi le message a bien ete transmis au serveur.
 int	main(void)
 {
+	// (void)ac;
+	// t_msg gmsg = {0};
+	// int pid;
+	// char *str;
+	
 	ft_printf("Welcome To Alex's Server!\n");
 	ft_printf("My Server PID is: %d\n", getpid());
+	// if (gmsg.c == 0)
+	// {
+	// 	pid = ft_atoi(av[1]);
+	// 	str = av[2];
+	// 	ft_send_str(pid, str);
+	// }
 	
 	while (1)
 	{
