@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:42 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/20 19:14:44 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/22 10:02:43 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,10 @@ void	ft_send_str(int pid, char *str)
 	send_bit(pid, '\0');
 }
 
-// void	message_handler()
-// {
-
-// }
-
 int	main(int argc, char **argv)
 {
 	int		pid;
 	char	*str;
-
-	// ft_printf("My Client PID is: %d\n", getpid());
 
 	if (argc == 3)
 	{
@@ -65,10 +58,4 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("\nYOU EITHER LEFT IT BLANK OR ARE DOING MORE THAN 1 WORD\n\n");
 	return (0);
-	// while (1)
-	// {
-	// 	signal(SIGUSR1, message_handler);
-	// 	pause();
-	// }
-
 }
