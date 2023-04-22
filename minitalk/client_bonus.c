@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:27 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/22 09:52:29 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/22 10:30:27 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	ft_send_str(int pid, char *str)
 	send_bit(pid, '\0');
 }
 
-void	message_handler()
+void	message_handler(int sig)
 {
-	printf("Everything is alright, Captain!");
+	if (sig == SIGUSR1)
+		printf("Everything is alright, Captain!");
 }
 
 int	main(int argc, char **argv)
@@ -54,9 +55,6 @@ int	main(int argc, char **argv)
 	int		pid;
 	char	*str;
 	char	*client_pid;
-
-
-	// ft_printf("My Client PID is: %d\n", getpid());
 
 	if (argc == 3)
 	{

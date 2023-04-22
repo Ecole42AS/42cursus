@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:37:24 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/20 19:40:00 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/22 10:12:02 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	ft_send_str(int pid, char *str);
 
-typedef struct	s_msg
+typedef struct s_msg
 {
 	int		c;
 	int		i;
