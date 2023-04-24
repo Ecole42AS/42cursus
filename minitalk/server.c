@@ -6,12 +6,19 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:16:06 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/24 14:57:46 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:26:42 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include "ft_printf/includes/ft_printf.h"
+
+int	ft_recursive_power(int nb, int power) //si on utilise nb = 2 et power = 3
+{
+	if (power == 0)
+		return (1);
+	return (nb * ft_recursive_power(nb, power - 1)); //2 * (2 * (2 * 1))
+}
 
 char	*char_join(char *str, char c)
 {
@@ -37,9 +44,7 @@ char	*char_join(char *str, char c)
 void	bit_handler(int bit)
 {
 	static t_msg	g_msg = {0};
-	int	i;
 
-	i = 0;
 	g_msg.c += ((bit & 1) << g_msg.i);
 	g_msg.i++;
 	if (!g_msg.str)
@@ -47,6 +52,8 @@ void	bit_handler(int bit)
 		g_msg.str = malloc(sizeof(char) * 1);
 		g_msg.str[0] = 0;
 	}
+	if (bit == SIGUSR2) //bit = 1
+		g_msg.str += ft_recursive_power(2, g_msg.i);
 	if (g_msg.i == 8)
 	{
 		if (g_msg.c == 0)

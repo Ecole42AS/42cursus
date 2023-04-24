@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:42 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/22 10:02:43 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:00:55 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	send_bit(int pid, char c)
 	shift = 0;
 	while (shift < 8)
 	{
-		if (c >> shift & 1)
+		if (c >> shift & 1) //entre dans le if, seulement si le bit est 1
 		{
 			kill(pid, SIGUSR2);
 		}
