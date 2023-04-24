@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:27 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/22 10:30:27 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/24 13:53:39 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	ft_send_str(int pid, char *str)
 	send_bit(pid, '\0');
 }
 
-void	message_handler(int sig)
-{
-	if (sig == SIGUSR1)
-		printf("Everything is alright, Captain!");
-}
+// void	message_handler(int sig)
+// {
+// 	if (sig == SIGUSR1)
+// 		printf("Everything is alright, Captain!");
+// }
 
 int	main(int argc, char **argv)
 {
@@ -61,16 +61,17 @@ int	main(int argc, char **argv)
 		pid = ft_atoi(argv[1]);
 		str = argv[2];
 		client_pid = ft_itoa(getpid());
+		printf("%s", client_pid);
 		ft_send_str(pid, client_pid);
 		ft_send_str(pid, str);
 		free(client_pid);
 	}
 	else
 		ft_printf("\nYOU EITHER LEFT IT BLANK OR ARE DOING MORE THAN 1 WORD\n\n");
-	while (1)
-	{
-		signal(SIGUSR1, message_handler);
-		pause();
-	}
+	// while (1)
+	// {
+	// 	// signal(SIGUSR1, message_handler);
+	// 	pause();
+	// }
 	return (0);
 }

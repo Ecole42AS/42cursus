@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:37:24 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/22 10:12:02 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/24 14:52:41 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 # include "ft_printf/includes/ft_printf.h"
 # include "ft_printf/libft/libft.h"
 
-void	ft_send_str(int pid, char *str);
-
 typedef struct s_msg
 {
 	int		c;
 	int		i;
+	char	*str;
 }	t_msg;
 
 #endif
