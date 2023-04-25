@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:27 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/25 19:41:17 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/25 19:46:55 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	main(int argc, char **argv)
 {
 	int	pid;
 	char	*client_pid;
-
 
 	if (argv[1])
 	{

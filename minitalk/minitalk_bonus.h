@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:11:37 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/25 19:22:34 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/25 19:47:06 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_msg
 	int		c;
 	int		i;
 	int		msg_received;
-	pid_t	client_pid;
 }	t_msg;
 
 #endif
