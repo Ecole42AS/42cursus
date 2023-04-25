@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:42 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/25 18:10:33 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:18:15 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,41 @@ void	send_bit(int pid, char c)
 
 void	ft_send_str(int pid, char *str)
 {
-	size_t	i;
+	int	i;
+	int	j;
+	int	bit;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		send_bit(pid, str[i]);
+		j = 0;
+		while (j < 8)
+		{
+			bit = ;
+			if (str[i] >> j & 1)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid, SIGUSR2);
+			usleep(50);
+			j++;
+		}
 		i++;
 	}
-	send_bit(pid, '\0');
+	ft_send_end(pid, 0);
 }
+
+// void	ft_send_str(int pid, char *str)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (str[i] != '\0')
+// 	{
+// 		send_bit(pid, str[i]);
+// 		i++;
+// 	}
+// 	send_bit(pid, '\0');
+// }
 
 int	main(int argc, char **argv)
 {

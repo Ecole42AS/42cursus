@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 20:16:06 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/25 18:03:14 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:19:05 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*char_join(char *str, char c)
 	ptr[i] = c;
 	i++;
 	ptr[i] = '\0';
-	// free(str);
+	free(str);
 	return (ptr);
 }
 
@@ -59,8 +59,8 @@ void	bit_handler(int bit)
 		if (g_msg.c == 0)
 		{
 			ft_printf("%s\n", g_msg.str);
-			// free(g_msg.str);
-			// g_msg.str = NULL;
+			free(g_msg.str);
+			g_msg.str = NULL;
 		}
 		else
 			g_msg.str = char_join(g_msg.str, g_msg.c);
