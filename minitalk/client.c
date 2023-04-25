@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:42 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/24 20:00:55 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:10:33 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,18 @@ void	ft_send_str(int pid, char *str)
 int	main(int argc, char **argv)
 {
 	int		pid;
-	char	*str;
 
-	if (argc == 3)
+	if (argv[1])
 	{
 		pid = ft_atoi(argv[1]);
-		str = argv[2];
-		ft_send_str(pid, str);
+		if (!pid)
+		{
+			ft_printf("Please use the correct PID with only 1 arg behind.\n");
+			return (0);
+		}
 	}
+	if (argc == 3)
+		ft_send_str(pid, argv[2]);
 	else
 		ft_printf("\nYOU EITHER LEFT IT BLANK OR ARE DOING MORE THAN 1 WORD\n\n");
 	return (0);
