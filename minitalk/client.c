@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:42 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/25 18:18:15 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:20:20 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_send_str(int pid, char *str)
 {
 	int	i;
 	int	j;
-	int	bit;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -43,7 +42,6 @@ void	ft_send_str(int pid, char *str)
 		j = 0;
 		while (j < 8)
 		{
-			bit = ;
 			if (str[i] >> j & 1)
 				kill(pid, SIGUSR1);
 			else
@@ -53,7 +51,7 @@ void	ft_send_str(int pid, char *str)
 		}
 		i++;
 	}
-	ft_send_end(pid, 0);
+	ft_send_str(pid, 0);
 }
 
 // void	ft_send_str(int pid, char *str)

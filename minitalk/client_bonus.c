@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:14:27 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/24 13:53:39 by astutz           ###   ########.fr       */
+/*   Updated: 2023/04/25 19:41:17 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	send_bit(int pid, char c)
 	shift = 0;
 	while (shift < 8)
 	{
-		if (c >> shift & 1)
+		if (c >> shift & 1) //entre dans le if, seulement si le bit est 1
 		{
 			kill(pid, SIGUSR2);
 		}
@@ -33,45 +33,76 @@ void	send_bit(int pid, char c)
 
 void	ft_send_str(int pid, char *str)
 {
-	size_t	i;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		send_bit(pid, str[i]);
+		j = 0;
+		while (j < 8)
+		{
+			if (str[i] >> j & 1)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid, SIGUSR2);
+			usleep(50);
+			j++;
+		}
 		i++;
 	}
-	send_bit(pid, '\0');
+	ft_send_str(pid, 0);
 }
 
-// void	message_handler(int sig)
+void	bit_handler(int bit)
+{
+	if (bit == SIGUSR1)
+	{
+		ft_printf("Houston, we don't have a problem 🚀.\n");
+		exit(0);
+	}
+}
+// void	ft_send_str(int pid, char *str)
 // {
-// 	if (sig == SIGUSR1)
-// 		printf("Everything is alright, Captain!");
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (str[i] != '\0')
+// 	{
+// 		send_bit(pid, str[i]);
+// 		i++;
+// 	}
+// 	send_bit(pid, '\0');
 // }
 
 int	main(int argc, char **argv)
 {
-	int		pid;
-	char	*str;
+	int	pid;
 	char	*client_pid;
 
-	if (argc == 3)
+
+	if (argv[1])
 	{
 		pid = ft_atoi(argv[1]);
-		str = argv[2];
 		client_pid = ft_itoa(getpid());
-		printf("%s", client_pid);
-		ft_send_str(pid, client_pid);
-		ft_send_str(pid, str);
+		if (!pid)
+		{
+			ft_printf("Please use the correct PID with only 1 arg behind.\n");
+			return (0);
+		}
+		else if (argc == 3)
+		{
+			ft_send_str(pid, argv[2]);
+			ft_send_str(pid, pid_client);
+		}
+		else
+			ft_printf("\nYOU EITHER LEFT IT BLANK OR ARE DOING MORE THAN 1 WORD\n\n");
 		free(client_pid);
 	}
-	else
-		ft_printf("\nYOU EITHER LEFT IT BLANK OR ARE DOING MORE THAN 1 WORD\n\n");
-	// while (1)
-	// {
-	// 	// signal(SIGUSR1, message_handler);
-	// 	pause();
-	// }
+	while (1)
+	{
+		signal(SIGUSR1, bit_handler);
+		pause();
+	}
 	return (0);
 }
