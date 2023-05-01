@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 19:11:37 by astutz            #+#    #+#             */
-/*   Updated: 2023/04/25 19:47:06 by astutz           ###   ########.fr       */
+/*   Updated: 2023/05/01 17:16:57 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_msg
 {
 	int		c;
 	int		i;
+	char	*str;
 	int		msg_received;
 }	t_msg;
 
