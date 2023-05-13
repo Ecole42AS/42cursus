@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:34:00 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 12:19:59 by astutz           ###   ########.fr       */
+/*   Updated: 2023/05/13 20:54:43 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	isoutrange(char *nb)
 	}
 	while (++i < len)
 	{
-		if (!ft_isadigit(nb[i]))
+		if (!ft_isdigit(nb[i]))
 			return (1);
 		number = number * 10 + (nb[i] - '0');
 	}
@@ -114,12 +114,18 @@ int	main(int ac, char **av)
 	else if (ac == 2)
 	{
 		if (!array_to_add(ft_split(av[1], ' '), &head_a, 0, 'f'))
-			return (ft_putstr_fd("Error\n", 2));
+		{
+			(ft_putstr_fd("Error\n", 2));
+			return (1);
+		}
 	}
 	else
 	{
 		if (!array_to_add(av, &head_a, 1, ' '))
-			return (ft_putstr_fd("Error\n", 2));
+		{
+			(ft_putstr_fd("Error\n", 2));
+			return (1);
+		}
 	}
 	choose_sorting(&head_a, &head_b);
 	list_free(&head_a);

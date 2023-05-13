@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 11:43:14 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 12:19:45 by astutz           ###   ########.fr       */
+/*   Updated: 2023/05/13 20:34:10 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	isanumber(char *str)
 	int	i;
 
 	i = 0;
-	if (str[0] == '-' && ft_isadigit(str[1]))
+	if (str[0] == '-' && ft_isdigit(str[1]))
 		i++;
 	while (str[i])
 	{
-		if (!ft_isadigit(str[i]))
+		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
 	}
