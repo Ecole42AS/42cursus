@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/13 10:07:53 by astutz            #+#    #+#              #
-#    Updated: 2023/05/13 10:52:07 by astutz           ###   ########.fr        #
+#    Updated: 2023/05/13 12:24:41 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME = push_swap
 
 all: ${NAME}
 
-push_swap: *.o ft_printf/		bftprintf.a
+push_swap: *.o ft_printf/libftprintf.a
 	$(CC) -o $@ $^
 
 %.o: %.c

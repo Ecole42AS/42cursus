@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 11:45:38 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 11:45:41 by astutz           ###   ########.fr       */
+/*   Updated: 2023/05/13 12:20:18 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /* puts first element of list B and puts it
    on top of list A, returns if list
    A is NULL */
-void	pa(t_list **head_a, t_list **head_b)
+void	pa(s_list **head_a, s_list **head_b)
 {
-	t_list	*ele_b;
+	s_list	*ele_b;
 
 	if (*head_b)
 	{
@@ -32,9 +32,9 @@ void	pa(t_list **head_a, t_list **head_b)
 /* puts first element of list A and puts it
    on top of list B, returns if list
    B is NULL */
-void	pb(t_list **head_b, t_list **head_a)
+void	pb(s_list **head_b, s_list **head_a)
 {
-	t_list	*ele_a;
+	s_list	*ele_a;
 
 	if (*head_a)
 	{
@@ -47,10 +47,10 @@ void	pb(t_list **head_b, t_list **head_a)
 }
 
 /* swaps first 2 elements top of list A */
-void	sa(t_list **head_a)
+void	sa(s_list **head_a)
 {
-	t_list	*ele1;
-	t_list	*ele2;
+	s_list	*ele1;
+	s_list	*ele2;
 
 	ele1 = *head_a;
 	ele2 = (*head_a)->next;

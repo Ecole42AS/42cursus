@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:32:46 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 11:05:01 by astutz           ###   ########.fr       */
+/*   Updated: 2023/05/13 12:19:34 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 /*  add the integer to the end
 	of the linked list using malloc */
-void	add_int(t_list **head, int nb)
+void	add_int(s_list **head, int nb)
 {
-	t_list	*new_node;
-	t_list	*current;
+	s_list	*new_node;
+	s_list	*current;
 
-	new_node = (t_list *) malloc(sizeof(t_list));
+	new_node = (s_list *) malloc(sizeof(s_list));
 	new_node->data = nb;
 	new_node->index = index_calcuation(head, new_node->data);
 	new_node->next = NULL;
@@ -33,9 +33,9 @@ void	add_int(t_list **head, int nb)
 }
 
 /* returns last element of the linked list */
-t_list	*get_last(t_list *head)
+s_list	*get_last(s_list *head)
 {
-	t_list	*last;
+	s_list	*last;
 
 	if (!head)
 		return (NULL);
@@ -46,10 +46,10 @@ t_list	*get_last(t_list *head)
 }
 
 /*frees list entirely (ne free pas head)*/ 
-void	list_free(t_list **head)
+void	list_free(s_list **head)
 {
-	t_list	*current;
-	t_list	*stock;
+	s_list	*current;
+	s_list	*stock;
 
 	stock = *head;
 	while (stock != NULL)

@@ -6,16 +6,16 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:34:00 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 10:34:12 by astutz           ###   ########.fr       */
+/*   Updated: 2023/05/13 12:19:59 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* returns true if nb is a double, false otherwise */
-int	isdouble(t_list *head, int nb)
+int	isdouble(s_list *head, int nb)
 {
-	t_list	*current;
+	s_list	*current;
 
 	current = head;
 	while (current)
@@ -59,7 +59,7 @@ int	isoutrange(char *nb)
 /* adds an array to the stack A
 	returns false if error, true otherwise
 	condition free if split, none otherwise */
-int	array_to_add(char **nb, t_list **head, int flag, char condition)
+int	array_to_add(char **nb, s_list **head, int flag, char condition)
 {
 	int	i;
 
@@ -81,7 +81,7 @@ int	array_to_add(char **nb, t_list **head, int flag, char condition)
 
 /* choses the good sorting algorithm
    based on the size of the stack */
-void	choose_sorting(t_list **head_a, t_list **head_b)
+void	choose_sorting(s_list **head_a, s_list **head_b)
 {
 	int	size;
 
@@ -106,8 +106,8 @@ void	choose_sorting(t_list **head_a, t_list **head_b)
 /* launches the program */
 int	main(int ac, char **av)
 {
-	static t_list	*head_a;
-	static t_list	*head_b;
+	static s_list	*head_a;
+	static s_list	*head_b;
 
 	if (ac == 1 || av[1] == NULL)
 		return (0);
