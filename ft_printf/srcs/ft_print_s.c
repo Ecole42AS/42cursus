@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 19:43:48 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:37 by astutz           ###   ########.fr       */
+/*   Updated: 2023/05/13 12:26:26 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,3 @@ int	ft_print_s(char *str)
 	n = ft_strlen(str);
 	return (n);
 }
-
-// int	ft_print_s(char *str)
-// {
-// 	if (str == (NULL))
-// 		return (write(1, "(null)", 6));
-// 	return (write (1, str, ft_strlen(str)));
-// }
-
-char *str[10][10]
