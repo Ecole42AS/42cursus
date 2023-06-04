@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 11:43:14 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/04 12:59:21 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:13:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	isanumber(char *str)
 }
 
 /* prints the element of the list */
-void	print_node(t_node *head)
+void	print_nlist(t_nlist *head)
 {
-	t_node	*current;
+	t_nlist	*current;
 
 	current = head;
 	while (current != NULL)
@@ -44,9 +44,9 @@ void	print_node(t_node *head)
 }
 
 /*prints the index */
-void	print_node_index(t_node *head)
+void	print_nlist_index(t_nlist *head)
 {
-	t_node	*current;
+	t_nlist	*current;
 
 	current = head;
 	while (current != NULL)
@@ -58,9 +58,9 @@ void	print_node_index(t_node *head)
 }
 
 /* returns length of linked list */
-int	list_size(t_node *head)
+int	list_size(t_nlist *head)
 {
-	t_node	*current;
+	t_nlist	*current;
 	int		count;
 
 	count = 0;

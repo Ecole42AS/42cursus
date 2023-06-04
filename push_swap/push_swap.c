@@ -6,16 +6,16 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:34:00 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/04 12:59:21 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:13:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* returns true if nb is a double, false otherwise */
-int	isdouble(t_node *head, int nb)
+int	isdouble(t_nlist *head, int nb)
 {
-	t_node	*current;
+	t_nlist	*current;
 
 	current = head;
 	while (current)
@@ -59,7 +59,7 @@ int	isoutrange(char *nb)
 /* adds an array to the stack A
 	returns false if error, true otherwise
 	condition free if split, none otherwise */
-int	array_to_add(char **nb, t_node **head, int flag, char condition)
+int	array_to_add(char **nb, t_nlist **head, int flag, char condition)
 {
 	int	i;
 
@@ -81,7 +81,7 @@ int	array_to_add(char **nb, t_node **head, int flag, char condition)
 
 /* choses the good sorting algorithm
    based on the size of the stack */
-void	choose_sorting(t_node **head_a, t_node **head_b)
+void	choose_sorting(t_nlist **head_a, t_nlist **head_b)
 {
 	int	size;
 
@@ -106,8 +106,8 @@ void	choose_sorting(t_node **head_a, t_node **head_b)
 /* launches the program */
 int	main(int ac, char **av)
 {
-	static t_node	*head_a;
-	static t_node	*head_b;
+	static t_nlist	*head_a;
+	static t_nlist	*head_b;
 
 	if (ac == 1 || av[1] == NULL)
 		return (0);

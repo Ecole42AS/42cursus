@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 11:45:38 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/04 12:59:21 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:13:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /* puts first element of list B and puts it
    on top of list A, returns if list
    A is NULL */
-void	pa(t_node **head_a, t_node **head_b)
+void	pa(t_nlist **head_a, t_nlist **head_b)
 {
-	t_node	*ele_b;
+	t_nlist	*ele_b;
 
 	if (*head_b)
 	{
@@ -32,9 +32,9 @@ void	pa(t_node **head_a, t_node **head_b)
 /* puts first element of list A and puts it
    on top of list B, returns if list
    B is NULL */
-void	pb(t_node **head_b, t_node **head_a)
+void	pb(t_nlist **head_b, t_nlist **head_a)
 {
-	t_node	*ele_a;
+	t_nlist	*ele_a;
 
 	if (*head_a)
 	{
@@ -47,10 +47,10 @@ void	pb(t_node **head_b, t_node **head_a)
 }
 
 /* swaps first 2 elements top of list A */
-void	sa(t_node **head_a)
+void	sa(t_nlist **head_a)
 {
-	t_node	*ele1;
-	t_node	*ele2;
+	t_nlist	*ele1;
+	t_nlist	*ele2;
 
 	ele1 = *head_a;
 	ele2 = (*head_a)->next;

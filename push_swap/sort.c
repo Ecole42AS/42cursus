@@ -6,16 +6,16 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 11:44:52 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/04 12:59:21 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:13:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* returns the index of the number and actualize the others */
-int	index_calcuation(t_node **head, int nb)
+int	index_calcuation(t_nlist **head, int nb)
 {
-	t_node	*current;
+	t_nlist	*current;
 	int		i;
 
 	i = 0;
@@ -43,9 +43,9 @@ int	to_push(int nb, int i)
 }
 
 /* returns true if list is ordered */
-int	isordered(t_node *head)
+int	isordered(t_nlist *head)
 {
-	t_node	*current;
+	t_nlist	*current;
 	int		min;
 
 	current = head;
@@ -61,10 +61,10 @@ int	isordered(t_node *head)
 }
 
 /* sorting algorithm */
-void	sort(t_node **head_a, t_node **head_b)
+void	sort(t_nlist **head_a, t_nlist **head_b)
 {
 	static int	bit_position;
-	t_node		*current;
+	t_nlist		*current;
 	int			size;
 	int			i;
 

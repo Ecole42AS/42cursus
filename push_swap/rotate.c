@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 11:43:56 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/04 12:59:21 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:13:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 /* first element of stack A becomes last
    and all the others gain one place */
-void	ra(t_node **head_a)
+void	ra(t_nlist **head_a)
 {
-	t_node	*last;
-	t_node	*second;
-	t_node	*first;
+	t_nlist	*last;
+	t_nlist	*second;
+	t_nlist	*first;
 
 	second = (*head_a)->next;
 	last = get_last(*head_a);

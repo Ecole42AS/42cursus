@@ -6,16 +6,16 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 08:49:30 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/04 13:00:19 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:13:58 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-s_node	*ft_lstmap(s_node *lst, void *(*f)(void *), void (*del)(void *))
+s_nlist	*ft_lstmap(s_nlist *lst, void *(*f)(void *), void (*del)(void *))
 {
-	s_node	*lstnew;
-	s_node	*lstfinal;
+	s_nlist	*lstnew;
+	s_nlist	*lstfinal;
 
 	if (!lst || !f)
 		return (NULL);
@@ -34,10 +34,10 @@ s_node	*ft_lstmap(s_node *lst, void *(*f)(void *), void (*del)(void *))
 	return (lstfinal);
 }
 
-// s_node	*ft_lstmap(s_node *lst, void *(*f)(void *), void (*del)(void *))
+// s_nlist	*ft_lstmap(s_nlist *lst, void *(*f)(void *), void (*del)(void *))
 // {
-// 	s_node	*newlst;
-// 	s_node	*newelement;
+// 	s_nlist	*newlst;
+// 	s_nlist	*newelement;
 
 // 	if (lst == NULL || (*f) == NULL || (*del) == NULL)
 // 		return (NULL);
