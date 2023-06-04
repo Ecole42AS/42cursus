@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:32:46 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 12:19:34 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 12:20:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ s_list	*get_last(s_list *head)
 	return (last);
 }
 
-/*frees list entirely (ne free pas head)*/ 
+/*frees list entirely (ne free pas head)*/
 void	list_free(s_list **head)
 {
 	s_list	*current;

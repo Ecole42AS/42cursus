@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:34:00 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 20:54:43 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 12:20:35 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	choose_sorting(s_list **head_a, s_list **head_b)
 		if (size <= 1)
 			return ;
 		else if (size == 2)
-				sa(head_a);
+			sa(head_a);
 		else if (size == 3)
 			sort_3(head_a, 0);
 		else if (size == 4)
