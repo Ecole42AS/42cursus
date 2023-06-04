@@ -6,13 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 07:48:49 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/19 07:57:37 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:00:19 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+s_node	*ft_lstlast(s_node *lst)
 {
 	if (lst)
 	{

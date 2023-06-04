@@ -6,15 +6,15 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 08:26:07 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/19 08:43:26 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:00:19 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(s_node **lst, void (*del)(void*))
 {
-	t_list	*tmp;
+	s_node	*tmp;
 
 	if (!lst)
 		return ;

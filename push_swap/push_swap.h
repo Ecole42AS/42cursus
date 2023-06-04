@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 10:34:32 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 12:21:10 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:00:19 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,45 +17,45 @@
 # include <unistd.h>
 # include "ft_printf/includes/ft_printf.h"
 
-typedef struct t_list {
+typedef struct s_node {
 	int				data;
 	int				index;
-	struct t_list	*next;
-}	s_list;
+	struct s_node	*next;
+}	t_node;
 
 //linked_list
-void	add_int(s_list **head, int nb);
-s_list	*get_last(s_list *head);
-void	list_free(s_list **head);
+void	add_int(t_node **head, int nb);
+t_node	*get_last(t_node *head);
+void	list_free(t_node **head);
 
 //push_swap_utils
-int		list_size(s_list *head);
+int		list_size(t_node *head);
 int		isanumber(char *str);
-void	prins_list(s_list *head);
-void	prins_list_index(s_list *head);
+void	print_node(t_node *head);
+void	print_node_index(t_node *head);
 int		free_split(char **tofree, int flag, char condition);
 
 //rotate
-void	ra(s_list **head_a);
+void	ra(t_node **head_a);
 
 //reverse rotate
-void	rra(s_list **head_a);
+void	rra(t_node **head_a);
 
 //swap & push
-void	pa(s_list **head_a, s_list **head_b);
-void	pb(s_list **head_b, s_list **head_a);
-void	sa(s_list **head_a);
+void	pa(t_node **head_a, t_node **head_b);
+void	pb(t_node **head_b, t_node **head_a);
+void	sa(t_node **head_a);
 
 //sort
-void	sort(s_list **head_a, s_list **head_b);
-int		index_calcuation(s_list **head, int nb);
+void	sort(t_node **head_a, t_node **head_b);
+int		index_calcuation(t_node **head, int nb);
 int		to_push(int nb, int i);
-int		isordered(s_list *head);
+int		isordered(t_node *head);
 
 //sort small
-int		position(s_list *head, int nb);
-void	sort_3(s_list **head, int base);
-void	sort_4(s_list **head_a, s_list **head_b, int base);
-void	sort_5(s_list **head_a, s_list **head_b);
+int		position(t_node *head, int nb);
+void	sort_3(t_node **head, int base);
+void	sort_4(t_node **head_a, t_node **head_b, int base);
+void	sort_5(t_node **head_a, t_node **head_b);
 
 #endif

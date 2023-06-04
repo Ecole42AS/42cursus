@@ -6,13 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 07:39:51 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/19 07:48:05 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:00:19 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(s_node *lst)
 {
 	int	size;
 

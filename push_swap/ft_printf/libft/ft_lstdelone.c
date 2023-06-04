@@ -6,13 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 08:17:36 by astutz            #+#    #+#             */
-/*   Updated: 2022/11/19 08:25:49 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 13:00:19 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(s_node *lst, void (*del)(void*))
 {
 	if (lst && del)
 	{

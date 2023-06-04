@@ -6,16 +6,16 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 11:45:21 by astutz            #+#    #+#             */
-/*   Updated: 2023/05/13 12:20:14 by astutz           ###   ########.fr       */
+/*   Updated: 2023/06/04 12:59:21 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* returns position of the demanded index in the list */
-int	position(s_list *head, int nb)
+int	position(t_node *head, int nb)
 {
-	s_list	*current;
+	t_node	*current;
 	int		pos;
 
 	current = head;
@@ -31,7 +31,7 @@ int	position(s_list *head, int nb)
 }
 
 /* sorting algorithm for 3 numbers */
-void	sort_3(s_list **head, int base)
+void	sort_3(t_node **head, int base)
 {
 	if (isordered(*head))
 		return ;
@@ -54,7 +54,7 @@ void	sort_3(s_list **head, int base)
 }
 
 /* sorting algorithm for 4 numbers */
-void	sort_4(s_list **head_a, s_list **head_b, int base)
+void	sort_4(t_node **head_a, t_node **head_b, int base)
 {
 	if (position(*head_a, base) < 2)
 	{
@@ -72,7 +72,7 @@ void	sort_4(s_list **head_a, s_list **head_b, int base)
 }
 
 /* sorting algorithm for 5 numbers */
-void	sort_5(s_list **head_a, s_list **head_b)
+void	sort_5(t_node **head_a, t_node **head_b)
 {
 	if (position(*head_a, 0) < 3)
 	{
