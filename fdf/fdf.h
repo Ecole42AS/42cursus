@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 09:43:22 by astutz            #+#    #+#             */
-/*   Updated: 2023/07/05 13:29:18 by astutz           ###   ########.fr       */
+/*   Updated: 2023/07/05 13:45:05 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include "minilibx/mlx.h"
 # include <math.h>
+# include <fcntl.h>
 
 // Macro
 # define WIN_WIDTH 1920
