@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:33:38 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/09 10:33:51 by astutz           ###   ########.fr       */
+/*   Updated: 2023/07/05 13:40:21 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	ft_color_background(t_data *data)
 	else if (data->key.background == 3)
 		return (PIXEL_MISTYROSE);
 	else if (data->key.background == 4)
-		(PIXEL_HONEY);
+		return (PIXEL_HONEY);
 	else if (data->key.background > 4)
 	{
 		data->key.background = 0;
 		return (PIXEL_AZURE);
 	}
-	else if (data->key.background < 0)
+	else
 	{
 		data->key.background = 4;
 		return (PIXEL_HONEY);
