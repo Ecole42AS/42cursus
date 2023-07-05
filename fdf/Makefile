@@ -6,50 +6,22 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:11:43 by astutz            #+#    #+#              #
-#    Updated: 2023/06/07 10:39:23 by astutz           ###   ########.fr        #
+#    Updated: 2023/06/09 10:39:40 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= $(wildcard */*.c *.c)
-			libft/ft_isdigit.c \
-			ft_isalnum.c \
-			ft_isascii.c \
-			ft_strlen.c \
-			ft_atoi.c \
-			ft_isalpha.c \
-			ft_isprint.c \
-			ft_toupper.c \
-			ft_tolower.c \
-			ft_memcpy.c \
-			ft_memmove.c \
-			ft_memchr.c \
-			ft_memcmp.c \
-			ft_memset.c \
-			ft_strlcat.c \
-			ft_strlcpy.c \
-			ft_bzero.c \
-			ft_strncmp.c \
-			ft_strrchr.c \
-			ft_strchr.c \
-			ft_calloc.c \
-			ft_strnstr.c \
-			ft_strdup.c \
-			ft_substr.c \
-			ft_strjoin.c \
-			ft_strtrim.c \
-			ft_itoa.c \
-			ft_strmapi.c \
-			ft_striteri.c \
-			ft_putchar_fd.c \
-			ft_putstr_fd.c \
-			ft_putendl_fd.c \
-			ft_putnbr_fd.c \
-			ft_split.c
-
+SRCS	= 	draw.c			\
+			errors_free.c	\
+			fdf.c 			\
+			graphic.c 		\
+			hook.c 			\
+			convert.c 		\
+			colors.c 		\
+			parsing.c 
 
 OBJS	= ${SRCS:.c=.o}
 
-NAME 	= libft.a
+NAME 	= fdf
 
 CC 		= gcc
 
@@ -57,20 +29,30 @@ RM		= rm -f
 
 CFLAGS	= -Wall -Wextra -Werror -g
 
-.c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+%.o: 				%.c
+					${CC} ${CFLAGS} -Ilibft -I./minilibx -c $? -o $@
 
-${NAME}:	${OBJS}
-			ar rcs ${NAME} ${OBJS}
+${NAME}:			${OBJS}
+					@make -C libft
+					@make -C minilibx
+					${CC} ${CFLAGS} $^ -Llibft -lft -L./minilibx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
-all:		${NAME}
+libft/libft.a:
+					@make -C libft
+
+minilibx/libmlx.a:
+					@make -C minilibx
 
 clean:
-			${RM} ${OBJS}
+					${RM} $(OBJS)
+					@make -C libft clean
+					@make -C minilibx clean
 
-fclean:		clean
-			${RM} ${NAME}
+fclean:				clean
+					${RM} fdf libft/libft.a
+					@make -C libft fclean
+					@make -C minilibx fclean
 
-re:			fclean all
+re: 				fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:				all  clean fclean re
