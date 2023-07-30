@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:11:43 by astutz            #+#    #+#              #
-#    Updated: 2023/06/09 10:39:40 by astutz           ###   ########.fr        #
+#    Updated: 2023/07/30 18:17:16 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS	= 	draw.c			\
 			hook.c 			\
 			convert.c 		\
 			colors.c 		\
-			parsing.c 
+			parsing.c
 
 OBJS	= ${SRCS:.c=.o}
 
