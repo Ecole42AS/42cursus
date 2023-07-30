@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:11:43 by astutz            #+#    #+#              #
-#    Updated: 2023/07/30 18:17:16 by astutz           ###   ########.fr        #
+#    Updated: 2023/07/30 19:16:57 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CC 		= gcc
 
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror -g -w
 
 %.o: 				%.c
 					${CC} ${CFLAGS} -Ilibft -I./minilibx -c $? -o $@
