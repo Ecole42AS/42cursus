@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 09:42:34 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/09 10:34:46 by astutz           ###   ########.fr       */
+/*   Updated: 2023/07/31 17:37:00 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ void	ft_draw_background(t_data *data)
 	}
 }
 
-/*	Function used to draw between two points. */
+/*	Function used to draw between two points.
+pixels: it's the number of pixels needed to 
+draw the line(calculate with pythagore)
+ft_put_pixel: put the right color's pixel at
+the address of the image thanks to the coordinates*/
 void	ft_line(t_data *data, int start, int end, int color)
 {
 	float	delta_x;
