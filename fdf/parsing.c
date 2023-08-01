@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:36:51 by astutz            #+#    #+#             */
-/*   Updated: 2023/07/31 16:01:47 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/01 09:51:38 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	ft_define_size(t_data *data)
 }
 
 /*	Continuation of previous function.
-	Parsing to save the value of Z regarding the height and width (for the first line) */
+	Parsing to save the value of Z regarding
+	the height and width (for the first line) */
 void	ft_parsing_bis(t_data *data, char *line, int y)
 {
 	int	x;
@@ -62,7 +63,8 @@ void	ft_parsing_bis(t_data *data, char *line, int y)
 	free(line);
 }
 
-/*	Parsing to save the value of Z regarding the height and width(for every line) */
+/*	Parsing to save the value of Z regarding 
+the height and width(for every line) */
 void	ft_parsing(t_data *data)
 {
 	int		fd;

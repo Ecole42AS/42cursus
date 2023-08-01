@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 10:36:00 by astutz            #+#    #+#             */
-/*   Updated: 2023/06/09 11:41:23 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/01 10:49:40 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_initialization(t_data *data)
 	if (data->mlx_ptr == NULL)
 		ft_free_mlx(data, 1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
-							WIN_WIDTH, WIN_HEIGHT, "Fil de fer mon ami! \
+							WIN_WIDTH, WIN_HEIGHT, "FDF! \
 							MOVE = awsd \
 							| ZOOM = zx \
 							| ROTATE = rt \

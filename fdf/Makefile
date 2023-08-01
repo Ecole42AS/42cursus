@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:11:43 by astutz            #+#    #+#              #
-#    Updated: 2023/07/30 19:16:57 by astutz           ###   ########.fr        #
+#    Updated: 2023/08/01 10:41:10 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ libft/libft.a:
 
 minilibx/libmlx.a:
 					@make -C minilibx
+
+all:	${NAME}
 
 clean:
 					${RM} $(OBJS)
