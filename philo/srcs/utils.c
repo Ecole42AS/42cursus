@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:14:49 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/05 10:14:52 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/05 12:26:58 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	logs(char *msg, t_philo *philo, bool kill)
 	}
 	pthread_mutex_unlock(philo->stop->mutex);
 }
-
+/*temps écoulé depuis le lancement du programme en ms*/
 int	get_time_ms(void)
 {
 	static struct timeval	start_time = {0};

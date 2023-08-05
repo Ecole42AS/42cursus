@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:13:00 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/05 10:13:02 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/05 11:29:14 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ typedef struct s_fork
 	pthread_mutex_t	mutex;
 	bool			is_taken;
 }					t_fork;
-
+/*Contrôle la fin de la simulation*/
 typedef struct s_stop
 {
 	pthread_mutex_t	*mutex;
-	int				finish_counter;
-	bool			status;
+	int				finish_counter; //nb de philos qui ont finis leurs repas
+	bool			status; //savoir si la simulation doit continuer ou se terminer.
 }					t_stop;
 
 typedef struct s_philo
@@ -77,6 +77,16 @@ typedef struct s_philo
 	t_stop				*stop;
 
 }						t_philo;
+
+/*informations d'initialisation partagées 
+pour tous les philosophes*/
+typedef struct s_init_data
+{
+	int				i;
+	t_philos_stats	philos_stats;
+	t_fork			*forks;
+	t_stop			*stop;
+}				t_init_data;
 
 /*
 ** =============================================================================

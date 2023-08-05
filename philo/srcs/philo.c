@@ -6,12 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:14:27 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/05 10:19:23 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/05 12:19:00 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
+/* légère asynchronicité entre les threads 
+correspondant aux philosophes pairs et impairs.*/
 void	*brain(void *args)
 {
 	t_philo	*philo;

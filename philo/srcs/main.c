@@ -6,20 +6,16 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:13:44 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/05 10:13:47 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/05 11:20:56 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-typedef struct s_init_data
-{
-	int				i;
-	t_philos_stats	philos_stats;
-	t_fork			*forks;
-	t_stop			*stop;
-}				t_init_data;
-
+/*La fonction copie les informations 
+d'initialisation de t_init_data dans la structure t_philo
+last_eat_time et is_dead seront mis à jour 
+pendant l'exécution des philosophes */
 static void	init_philo(t_philo *philo, int i, t_init_data *init_data)
 {
 	philo->id = i;
@@ -34,7 +30,10 @@ static void	init_philo(t_philo *philo, int i, t_init_data *init_data)
 	philo->meal_number = 0;
 	philo->meal_goal = init_data->philos_stats.meal_goal;
 }
-
+/*Crée le tableau de 
+philosophes (t_philo) en fonction du 
+nombre de philosophes spécifié
+dans philos_stats.philos_numbers.*/
 t_philo	*init_philos(t_philos_stats philos_stats)
 {
 	t_philo			*philos;
