@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:13:44 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/05 11:20:56 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/05 12:40:07 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ void	start_philos(t_philos_stats philos_stats, t_philo *philos)
 		pthread_join(threads[i++], NULL);
 	free(threads);
 }
-
+/*./philo [number_of_philosophers] [time_to_die] 
+[time_to_eat] [time_to_sleep] 
+[optional_number_of_times_each_philosopher_must_eat]
+*/
 int	main(int ac, char **av)
 {
 	t_philos_stats	philos_stats;
