@@ -32,7 +32,7 @@ PATH_SRC =			./srcs/
 PATH_OBJS =			./objs/
 
 #---Compilation flags---#
-CC = gcc -g #-lpthread -fsanitize=thread # -fsanitize=address
+CC = gcc -g #-fsanitize=address -lpthread -fsanitize=thread
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = philo
