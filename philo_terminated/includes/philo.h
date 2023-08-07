@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:13:00 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/05 11:29:14 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/07 19:33:57 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ typedef struct s_fork
 	pthread_mutex_t	mutex;
 	bool			is_taken;
 }					t_fork;
-/*Contrôle la fin de la simulation*/
+/*Contrôle la fin de la simulation
+finish_counter; //nb de philos qui ont finis leurs repas
+status; //savoir si la simulation doit continuer ou se terminer.*/
 typedef struct s_stop
 {
 	pthread_mutex_t	*mutex;
-	int				finish_counter; //nb de philos qui ont finis leurs repas
-	bool			status; //savoir si la simulation doit continuer ou se terminer.
+	int				finish_counter;
+	bool			status;
 }					t_stop;
 
 typedef struct s_philo
