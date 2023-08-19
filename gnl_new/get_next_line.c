@@ -6,17 +6,20 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:08:13 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/09 21:28:13 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/19 19:14:52 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+
+
 char *get_next_line(int fd)
 {
 	char *line;
-	static char *stash;
+	static char *stash = NULL;
 	
+
 	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
 	{
 		free(stash);
@@ -29,34 +32,35 @@ char *get_next_line(int fd)
 	return (line);
 }
 
-// char	*read_file(int fd, char *stash)
-// {
-// 	char *buffer;
-// 	char *tmp;
-// 	int nb_bytes;
+char	*read_file(int fd, char *stash)
+{
+	char *buffer;
+	char *tmp;
+	int nb_bytes;
 
-// 	if (!stash)
-// 		stash = calloc(1, 1);
-// 	buffer = calloc((BUFFER_SIZE + 1), sizeof(char));
-// 	if (!buffer)
-// 		return(NULL);
-// 	nb_bytes = 1;
-// 	while(nb_bytes > 0 && (!ft_strchr(stash, '\n')))
-// 	{
-// 		nb_bytes = read(fd, buffer, BUFFER_SIZE);
-// 		if (nb_bytes == -1)
-// 		{
-// 			free(buffer);
-// 			free(stash);
-// 			return (NULL);
-// 		}
-// 		buffer[nb_bytes] = '\0';
-// 		tmp = ft_strjoin(stash, buffer);
-// 		free(stash);
-// 		stash = tmp;
-// 	}
-// 	return (stash);
-// }
+	if (!stash)
+		stash = calloc(1, 1);
+	buffer = calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!buffer)
+		return(NULL);
+	nb_bytes = 1;
+	while(nb_bytes > 0 && (!ft_strchr(stash, '\n')))
+	{
+		nb_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (nb_bytes == -1)
+		{
+			free(buffer);
+			free(stash);
+			return (NULL);
+		}
+		buffer[nb_bytes] = '\0';
+		tmp = ft_strjoin(stash, buffer);
+		free(stash);
+		stash = tmp;
+	}
+	free(buffer);
+	return (stash);
+}
 
 // char *read_file(int fd, char *stash)
 // {
@@ -113,11 +117,45 @@ char *create_line(char *stash)
 	return (line);
 }
 
-char *clean_stash(char *stash)
+// char *clean_stash(char *stash)
+// {
+// 	int i;
+// 	int j;
+// 	char *new_stash;
+
+// 	i = 0;
+// 	while (stash[i] && stash[i] != '\n')
+// 		i++;
+// 	if (!stash[i])
+// 	{
+// 		free(stash);
+// 		return (NULL);
+// 	}
+// 		printf("Entering get_next_line\n");
+// 	while(stash[i])
+// 		i++;
+// 	new_stash = calloc((i - j) + 1, sizeof(char));
+// 	if (!new_stash)
+// 		return (NULL);
+// 	i++;
+// 	j = 0;
+// 	while(stash[i])
+// 	{
+// 		new_stash[j] = stash[i];
+// 		i++;
+// 		j++;
+// 	}
+// 	new_stash[i] = '\0';
+// 	free(stash);
+// 	return (new_stash);
+// }
+
+char	*clean_stash(char *stash)
 {
-	int i;
-	int j;
-	char *new_stash;
+	int		i;
+	int		j;
+	char	*new_stash;
+	int		stash_len;
 
 	i = 0;
 	while (stash[i] && stash[i] != '\n')
@@ -127,24 +165,18 @@ char *clean_stash(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	while(stash[i])
-		j++;
-	new_stash = calloc((i - j) + 1, sizeof(char));
-	if (!new_stash)
-		return (NULL);
+	stash_len = 0;
+	while (stash[stash_len])
+		stash_len++;
+	new_stash = malloc((stash_len - i + 1) * sizeof(char));
 	i++;
 	j = 0;
-	while(stash[i])
-	{
-		new_stash[j] = stash[i];
-		i++;
-		j++;
-	}
-	new_stash[i] = '\0';
+	while (stash[i])
+		new_stash[j++] = stash[i++];
+	new_stash[j] = '\0';
 	free(stash);
 	return (new_stash);
 }
-
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -155,11 +187,16 @@ int	main()
 	{
 		perror("Erreur lors de l'ouverture du fichier");
 		return (1);
+	} 
+	else 
+		printf("no open error!");
+	int i = -1;
+	while (++i < 19)
+	{
+		char *line = get_next_line(fd);
+		printf("entering the loop");
+		printf("RES : |%s|\n", line);
+		free(line); // Libérez la mémoire allouée pour line
 	}
-	int i = 0;
-	while (i++ < 19)
-		//get_next_line(fd);
-		printf("RES : |%s|\n", get_next_line(fd));
-	close(fd);
 	return (0);
 }
