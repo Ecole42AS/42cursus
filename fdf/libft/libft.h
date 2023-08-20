@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:16:12 by astutz            #+#    #+#             */
-/*   Updated: 2023/07/30 19:31:13 by astutz           ###   ########.fr       */
+/*   Updated: 2023/08/20 12:23:30 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,15 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 /* GNL */
 char				*get_next_line(int fd);
-char				*ft_strjoin_gnl(char const *s1, char const *s2);
-/* printf */
+char				*ft_strchr(const char *s, int c);
+void				*ft_calloc(size_t nmemb, size_t size);
+char				*ft_strjoin(char const *s1, char const *s2);
+size_t				ft_strlen(const char *s);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
+char				*get_next_line(int fd);
+char				*read_file(int fd, char *stash);
+char				*create_line(char *stash);
+char				*clean_stash(char *stash);/* printf */
 int					ft_printf(const char *format, ...);
 int					ft_putunbr(unsigned int nb);
 int					ft_putptr(unsigned long nb);
