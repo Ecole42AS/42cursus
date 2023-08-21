@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-sudo apt-get install libglew-dev
 #include "mlx_int.h"
 
 
