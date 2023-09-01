@@ -8,6 +8,8 @@
 		"flood_fill.h": "c",
 		"stdio.h": "c",
 		"stdlib.h": "c",
-		"minitalk.h": "c"
+		"minitalk.h": "c",
+		"__locale": "c",
+		"iterator": "c"
 	}
 }
