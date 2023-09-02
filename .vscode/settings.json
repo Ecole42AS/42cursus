@@ -10,6 +10,7 @@
 		"stdlib.h": "c",
 		"minitalk.h": "c",
 		"__locale": "c",
-		"iterator": "c"
+		"iterator": "c",
+		"minishell.h": "c"
 	}
 }
