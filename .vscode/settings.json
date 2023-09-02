@@ -11,6 +11,7 @@
 		"minitalk.h": "c",
 		"__locale": "c",
 		"iterator": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"termios.h": "c"
 	}
 }
