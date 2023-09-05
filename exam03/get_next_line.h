@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 14:11:17 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/22 14:29:17 by astutz           ###   ########.fr       */
+/*   Created: 2023/08/22 14:18:34 by astutz            #+#    #+#             */
+/*   Updated: 2023/08/22 14:30:21 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 5
+#endif
 
-char	  *get_next_line(int fd)
-{
-	static char *stash;
-	char *line;
-	
-	if (!BUFFER_SIZE || fd < 0 || (read(fd, 0, 0) < 0))
-	{
-		
-		free(stash);
-		stash = NULL;
-		return (NULL);
-	}
-	
-	fd = read(fd, stash, BUFFER_SIZE);
-	
-	
-	return (line);
-}
+char	*get_next_line(int fd);
+char	*read_file(int fd);
 
-char *read_file(int fd)
-{
-	
-}
+
+
+
+
+#endif
