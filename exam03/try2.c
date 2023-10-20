@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:21:16 by astutz            #+#    #+#             */
-/*   Updated: 2023/08/22 14:06:45 by astutz           ###   ########.fr       */
+/*   Updated: 2023/09/05 21:21:44 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_printf(const char * restrict format, ...)
 	va_start(ap, format);
 	while(format[i])
 	{
-		if (((format[i] == '%') && (format[i + 1] == 's')) 
+		if (((format[i] == '%') && (format[i + 1] == 's'))
 		|| ((format[i] == '%') && (format[i + 1] == 'd')) 
 		|| ((format[i] == '%') && (format[i + 1] == 'x')))
 		{
