@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"microshell.h": "c",
+		"unistd.h": "c"
+	}
+}
