@@ -8,7 +8,7 @@ CC		=	gcc
 
 RM      =	rm -f
 
-CFLAGS	=	-Wall -Wextra -Werror -w -g3  #-fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g3 -w  #-fsanitize=address
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
