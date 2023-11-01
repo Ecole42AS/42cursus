@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:16:12 by astutz            #+#    #+#             */
-/*   Updated: 2023/10/05 10:25:39 by astutz           ###   ########.fr       */
+/*   Updated: 2023/10/31 10:06:08 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int					ft_is_space(int c);
 char				*ft_strndup(const char *s, int len);
 void				*ft_malloc_failed_msg(int size, size_t type);
 void				*my_realloc(void *ptr, size_t new_size);
+void				*ft_malloc_failed_msg(int size, size_t type);
 /*-----------------------------GNL----------------------------*/
 char				*get_next_line(int fd);
 char				*read_file(int fd, char *stash);

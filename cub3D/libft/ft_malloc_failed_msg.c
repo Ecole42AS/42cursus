@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_malloc_failed_msg.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 09:15:29 by astutz            #+#    #+#             */
-/*   Updated: 2023/11/01 08:31:19 by astutz           ###   ########.fr       */
+/*   Created: 2023/10/31 10:05:08 by astutz            #+#    #+#             */
+/*   Updated: 2023/10/31 10:08:10 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+void	*ft_malloc_failed_msg(int size, size_t type)
 {
-	if (ac != 2)
+	void	*ptr;
+
+	ptr = ft_calloc(size + 1, type);
+	if (!ptr)
 	{
-		perror("Should have 2 args");
-		return (1);		
+		perror("Memory allocation failure");
+		exit(1);
 	}
-	parser(av[1])
+	return (ptr);
 }

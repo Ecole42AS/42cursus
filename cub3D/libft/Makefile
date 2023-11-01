@@ -6,7 +6,7 @@
 #    By: astutz <astutz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 14:22:23 by astutz            #+#    #+#              #
-#    Updated: 2023/09/29 16:24:08 by astutz           ###   ########.fr        #
+#    Updated: 2023/10/31 10:05:37 by astutz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS =		ft_isdigit.c \
 			ft_strndup.c \
 			ft_split.c \
 			get_next_line.c \
+			ft_malloc_failed_msg.c \
 			ft_realloc.c
 
 BNS_SRCS =	ft_lstnew_bonus.c \
