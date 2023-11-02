@@ -1,4 +1,5 @@
-SRCS	=	sources/parsing.c
+SRCS	=	sources/parsing.c \
+			sources/main.c
 
 NAME	=	cub3D
 
@@ -8,7 +9,7 @@ CC		=	gcc
 
 RM      =	rm -f
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -w  #-fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g3 -w -fsanitize=address
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)

@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:08:13 by astutz            #+#    #+#             */
-/*   Updated: 2023/10/05 10:25:04 by astutz           ###   ########.fr       */
+/*   Updated: 2023/11/02 11:47:52 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*stash;
 
-	stash = NULL;
 	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
 	{
 		free(stash);
@@ -25,6 +24,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	stash = read_file(fd, stash);
+	if (!stash)
+		return (NULL);
 	line = create_line(stash);
 	stash = clean_stash(stash);
 	return (line);
@@ -74,7 +75,7 @@ char	*create_line(char *stash)
 	int		i;
 
 	i = 0;
-	if (!stash)
+	if (!stash[0])
 		return (NULL);
 	while (stash[i] != '\n' && stash[i])
 		i++;
@@ -85,7 +86,7 @@ char	*create_line(char *stash)
 		line[i] = stash[i];
 		i++;
 	}
-	if (line[i] && line[i] == '\n')
+	if (stash[i] && stash[i] == '\n')
 		line[i] = '\n';
 	return (line);
 }
@@ -117,3 +118,20 @@ char	*clean_stash(char *stash)
 	free(stash);
 	return (new_stash);
 }
+
+// int main() {
+//     int fd = open("test.txt", O_RDONLY);
+//     if (fd == -1) {
+//         perror("Erreur lors de l'ouverture du fichier");
+//         return 1;
+//     }
+
+//     char *line;
+//     while ((line = get_next_line(fd)) != NULL) {
+//         printf("Ligne lue : %s\n", line);
+//         free(line);
+//     }
+
+//     close(fd);
+//     return 0;
+// }

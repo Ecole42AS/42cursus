@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:16:12 by astutz            #+#    #+#             */
-/*   Updated: 2023/10/31 10:06:08 by astutz           ###   ########.fr       */
+/*   Updated: 2023/11/02 10:09:34 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <ctype.h>
 # include <stddef.h>
 # include <string.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {

@@ -16,6 +16,6 @@ typedef struct s_parsing
 	char	**parsed_lines;
 }			t_parsing;
 
-void print(char *str);
+char *gnl_unempty(char *file);
 
 #endif
