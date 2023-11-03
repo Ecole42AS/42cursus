@@ -5,28 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/03 20:56:28 by astutz            #+#    #+#             */
-/*   Updated: 2023/02/12 09:30:22 by astutz           ###   ########.fr       */
+/*   Created: 2023/08/09 10:37:33 by astutz            #+#    #+#             */
+/*   Updated: 2023/08/09 20:46:49 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
-# endif
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <string.h>
-# include <fcntl.h>
-# include "get_next_line_utils.c"
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 5
+#endif
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+char	*ft_strchr(const char *s, int c);
+void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char *s, unsigned int start, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*get_next_line(int fd);
+char	*read_file(int fd, char *stash);
+char	*create_line(char *stash);
+char	*clean_stash(char *stash);
+
 
 #endif

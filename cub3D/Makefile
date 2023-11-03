@@ -1,6 +1,7 @@
-SRCS	=	sources/parsing/parsing.c \
-			sources/parsing/textures.c \
-			sources/main.c
+SRCS	=	sources/parsing/parsing.c 	\
+			sources/parsing/textures.c 	\
+			sources/main.c				\
+			sources/init.c
 
 NAME	=	cub3D
 

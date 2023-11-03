@@ -5,167 +5,198 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/03 22:46:12 by astutz            #+#    #+#             */
-/*   Updated: 2023/02/12 10:17:36 by astutz           ###   ########.fr       */
+/*   Created: 2023/08/09 12:08:13 by astutz            #+#    #+#             */
+/*   Updated: 2023/08/19 19:14:52 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char		*_fill_line_buffer(int fd, char *left_c, char *buffer);
-static char		*_set_line(char *line);
-static char		*ft_strchr(char *s, int c);
 
-/*
- * the main function get_next_line "only" makes some check
- * about the file descriptor and the different memory allocations
- * once all the checks are done, it calls the _filL_line_buffer function
- * to read in the file descriptor until it finds a \n or \0 character
- * once the line variable is filled, we free the buffer so we don't have
- * any memory leaks, since it's not used after that.
- * once the buffer is freed, we set the line with the _set_line function
- * and we return the line, storing the return of the _set_line function
- * in a static variable, so that next time we call the get_next_line function
- * we have access to the first characters of the line that may have been read
- * before.
- * i.e. our file is "1\n234\n", our BUFFER_SIZE is 4
- * te first time we'll read through the file we'll read 1\n23
- * so what we are going to store in our static variable is '23', because the
- * next time we call the function on the same fd it will read 
- * starting at 4 in the
- * file.
- */
-char	*get_next_line(int fd)
+
+char *get_next_line(int fd)
 {
-	static char	*left_c;
-	char		*line;
-	char		*buffer;
+	char *line;
+	static char *stash = NULL;
+	
 
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
 	{
-		free(left_c);
-		free(buffer);
-		left_c = NULL;
-		buffer = NULL;
-		return (0);
+		free(stash);
+		stash = NULL;
+		return(NULL);
 	}
-	if (!buffer)
-		return (NULL);
-	line = _fill_line_buffer(fd, left_c, buffer);
-	free(buffer);
-	buffer = NULL;
-	if (!line)
-		return (NULL);
-	left_c = _set_line(line);
+	stash = read_file(fd, stash);
+	line = create_line(stash);
+	stash = clean_stash(stash);
 	return (line);
 }
 
-/*
- * this function takes the liine buffer as parameter
- * it reads in eat until a \n or \0 is found
- * meaning the end of a line, or the end of the file
- * this function sets the line_buffer a \0 at the end of the line
- * inside of it and takes a substring of the buffer
- * from : the end of the line to : the end of the buffer
- * and returns this value as left_c
- */
-static char	*_set_line(char *line_buffer)
+char	*read_file(int fd, char *stash)
 {
-	char	*left_c;
-	ssize_t	i;
+	char *buffer;
+	char *tmp;
+	int nb_bytes;
+
+	if (!stash)
+		stash = calloc(1, 1);
+	buffer = calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!buffer)
+		return(NULL);
+	nb_bytes = 1;
+	while(nb_bytes > 0 && (!ft_strchr(stash, '\n')))
+	{
+		nb_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (nb_bytes == -1)
+		{
+			free(buffer);
+			free(stash);
+			return (NULL);
+		}
+		buffer[nb_bytes] = '\0';
+		tmp = ft_strjoin(stash, buffer);
+		free(stash);
+		stash = tmp;
+	}
+	free(buffer);
+	return (stash);
+}
+
+// char *read_file(int fd, char *stash)
+// {
+//     char *buffer;
+//     char *tmp;
+//     int nb_bytes;
+//     int j; // Ajoutez cette déclaration
+
+//     if (!stash)
+//         stash = ft_calloc(1, sizeof(char)); // Utilisez ft_calloc ici
+//     buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char)); // Utilisez ft_calloc ici
+//     if (!buffer)
+//         return (NULL);
+//     nb_bytes = 1;
+//     j = 0; // Initialisez j ici
+//     while (nb_bytes > 0 && (!ft_strchr(stash, '\n')))
+//     {
+//         nb_bytes = read(fd, buffer, BUFFER_SIZE);
+//         if (nb_bytes == -1)
+//         {
+//             free(buffer);
+//             free(stash);
+//             return (NULL);
+//         }
+//         buffer[nb_bytes] = '\0';
+//         tmp = ft_strjoin(stash, buffer); // Utilisez ft_strjoin ici
+//         free(stash);
+//         stash = tmp;
+//         j += nb_bytes; // Incrémentez j ici
+//     }
+//     free(buffer); // Libérez la mémoire allouée pour buffer
+//     return (stash);
+// }
+
+char *create_line(char *stash)
+{
+	char *line;
+	int i;
 
 	i = 0;
-	while (line_buffer[i] != '\n' && line_buffer[i] != '\0')
+	if (!stash)
+		return(NULL);
+	while(stash[i] != '\n' && stash[i])
 		i++;
-	if (line_buffer[i] == 0 || line_buffer[1] == 0)
-		return (0);
-	left_c = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - i);
-	if (*left_c == 0)
-	{
-		free(left_c);
-		left_c = NULL;
-	}
-	line_buffer[i + 1] = 0;
-	return (left_c);
-}
-/*
- * This function fill the "line" buffer
- * it will read BUFFER_SIZE characters in each iteration until
- * there is a \n character in the line buffer
- * each time through it will check if there is already data
- * in the left_c buffer and append the new characters to it
- * if a \n is found, it will return the left_c buffer 
- * after appending the read characters to it.
- */
-
-static char	*_fill_line_buffer(int fd, char *left_c, char *buffer)
-{
-	ssize_t	b_read;
-	char	*tmp;
-
-	b_read = 1;
-	while (b_read > 0)
-	{
-		b_read = read(fd, buffer, BUFFER_SIZE);
-		if (b_read == -1)
-		{
-			free(left_c);
-			return (0);
-		}
-		else if (b_read == 0)
-			break ;
-		buffer[b_read] = 0;
-		if (!left_c)
-			left_c = ft_strdup("");
-		tmp = left_c;
-		left_c = ft_strjoin(tmp, buffer);
-		free(tmp);
-		tmp = NULL;
-		if (ft_strchr(buffer, '\n'))
-			break ;
-	}
-	return (left_c);
-}
-
-static char	*ft_strchr(char *s, int c)
-{
-	unsigned int	i;
-	char			cc;
-
-	cc = (char) c;
+	line = calloc((i + 2), sizeof(char));//peut etre inversé
 	i = 0;
-	while (s[i])
+	while(stash[i] != '\n' && stash[i])
 	{
-		if (s[i] == cc)
-			return ((char *) &s[i]);
+		line[i] = stash[i];
 		i++;
 	}
-	if (s[i] == cc)
-		return ((char *) &s[i]);
-	return (NULL);
+	if (line[i] && line[i] == '\n')
+		line[i] = '\n';
+	return (line);
 }
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
+// char *clean_stash(char *stash)
+// {
+// 	int i;
+// 	int j;
+// 	char *new_stash;
 
-int		main(int argc, char **argv)
+// 	i = 0;
+// 	while (stash[i] && stash[i] != '\n')
+// 		i++;
+// 	if (!stash[i])
+// 	{
+// 		free(stash);
+// 		return (NULL);
+// 	}
+// 		printf("Entering get_next_line\n");
+// 	while(stash[i])
+// 		i++;
+// 	new_stash = calloc((i - j) + 1, sizeof(char));
+// 	if (!new_stash)
+// 		return (NULL);
+// 	i++;
+// 	j = 0;
+// 	while(stash[i])
+// 	{
+// 		new_stash[j] = stash[i];
+// 		i++;
+// 		j++;
+// 	}
+// 	new_stash[i] = '\0';
+// 	free(stash);
+// 	return (new_stash);
+// }
+
+char	*clean_stash(char *stash)
 {
-	int		fd;
-	char	*line;
+	int		i;
+	int		j;
+	char	*new_stash;
+	int		stash_len;
 
-	if (argc == 2)
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (!stash[i])
 	{
-		fd = open(argv[1], O_RDONLY);
-		while ((line = get_next_line(fd)))
-		{
-			printf("%s\n", line);
-			free(line);
-		}
-		close(fd);
+		free(stash);
+		return (NULL);
 	}
-	else
-		printf("Usage: ./a.out file\n");
+	stash_len = 0;
+	while (stash[stash_len])
+		stash_len++;
+	new_stash = malloc((stash_len - i + 1) * sizeof(char));
+	i++;
+	j = 0;
+	while (stash[i])
+		new_stash[j++] = stash[i++];
+	new_stash[j] = '\0';
+	free(stash);
+	return (new_stash);
+}
+
+# include <stdio.h>
+# include <fcntl.h>
+int	main()
+{
+	int	fd = open("file2.txt", O_RDWR);
+	if (fd == -1)
+	{
+		perror("Erreur lors de l'ouverture du fichier");
+		return (1);
+	} 
+	else 
+		printf("no open error!");
+	int i = -1;
+	while (++i < 19)
+	{
+		char *line = get_next_line(fd);
+		printf("entering the loop");
+		printf("RES : |%s|\n", line);
+		free(line); // Libérez la mémoire allouée pour line
+	}
 	return (0);
 }
