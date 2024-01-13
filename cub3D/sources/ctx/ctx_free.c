@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ctx_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lray <lray@student.42lausanne.ch >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 08:26:07 by astutz            #+#    #+#             */
-/*   Updated: 2024/01/13 16:58:45 by astutz           ###   ########.fr       */
+/*   Created: 2023/12/30 00:10:40 by lray              #+#    #+#             */
+/*   Updated: 2024/01/12 09:08:59 by lray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/cub3d.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ctx_free(t_ctx *ctx)
 {
-	t_list	*tmp;
+	int	i;
 
-	if (!lst)
-		return ;
-	if (*lst && del)
+	i = 0;
+	while (i <= 4)
 	{
-		while (*lst)
-		{
-			tmp = (*lst)->next;
-			del((*lst)->content);
-			free(*lst);
-			*lst = tmp;
-		}
-		*lst = NULL;
+		img_free(ctx, ctx->textures[i]);
+		++i;
 	}
+	win_free(&ctx->win);
+	mlx_destroy_display(ctx->mlx);
+	free(ctx->mlx);
+	ctx->mlx = NULL;
+	ctx = NULL;
+	exit (0);
 }

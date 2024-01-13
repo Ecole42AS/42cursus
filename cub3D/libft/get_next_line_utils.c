@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 14:44:26 by astutz            #+#    #+#             */
-/*   Updated: 2023/09/29 14:50:36 by astutz           ###   ########.fr       */
+/*   Updated: 2024/01/13 17:00:23 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,10 @@ size_t	ft_strlen(const char *s)
 }
 
 char	*ft_strchr(const char *s, int c)
-{	
+{
 	while (*s)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
 	}
-	return (NULL);
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)

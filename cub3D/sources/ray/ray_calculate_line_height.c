@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ray_calculate_line_height.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lray <lray@student.42lausanne.ch >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 08:26:07 by astutz            #+#    #+#             */
-/*   Updated: 2024/01/13 16:58:45 by astutz           ###   ########.fr       */
+/*   Created: 2024/01/09 22:45:55 by lray              #+#    #+#             */
+/*   Updated: 2024/01/09 22:47:36 by lray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/cub3d.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ray_calculate_line_height(t_ctx *ctx, t_ray *ray)
 {
-	t_list	*tmp;
-
-	if (!lst)
-		return ;
-	if (*lst && del)
-	{
-		while (*lst)
-		{
-			tmp = (*lst)->next;
-			del((*lst)->content);
-			free(*lst);
-			*lst = tmp;
-		}
-		*lst = NULL;
-	}
+	ray->line_height = (int)(ctx->win.height / ray->perp_wall_dist);
 }

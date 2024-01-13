@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lray <lray@student.42lausanne.ch >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 08:26:07 by astutz            #+#    #+#             */
-/*   Updated: 2024/01/13 16:58:45 by astutz           ###   ########.fr       */
+/*   Created: 2024/01/04 00:03:00 by lray              #+#    #+#             */
+/*   Updated: 2024/01/09 23:13:33 by lray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/cub3d.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	player_init(t_player *player, t_vec pos, t_vec dir, t_vec cam)
 {
-	t_list	*tmp;
-
-	if (!lst)
-		return ;
-	if (*lst && del)
-	{
-		while (*lst)
-		{
-			tmp = (*lst)->next;
-			del((*lst)->content);
-			free(*lst);
-			*lst = tmp;
-		}
-		*lst = NULL;
-	}
+	player->pos.x = pos.x;
+	player->pos.y = pos.y;
+	player->dir.x = dir.x;
+	player->dir.y = dir.y;
+	player->cam.x = cam.x;
+	player->cam.y = cam.y;
 }

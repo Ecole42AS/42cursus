@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   clr_make_trgb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lray <lray@student.42lausanne.ch >         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 08:26:07 by astutz            #+#    #+#             */
-/*   Updated: 2024/01/13 16:58:45 by astutz           ###   ########.fr       */
+/*   Created: 2023/12/18 18:46:15 by lray              #+#    #+#             */
+/*   Updated: 2024/01/09 23:06:08 by lray             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/cub3d.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	clr_make_trgb(unsigned char t, unsigned char r, \
+	unsigned char g, unsigned char b)
 {
-	t_list	*tmp;
-
-	if (!lst)
-		return ;
-	if (*lst && del)
-	{
-		while (*lst)
-		{
-			tmp = (*lst)->next;
-			del((*lst)->content);
-			free(*lst);
-			*lst = tmp;
-		}
-		*lst = NULL;
-	}
+	return (*(int *)(unsigned char [4]){b, g, r, t});
 }

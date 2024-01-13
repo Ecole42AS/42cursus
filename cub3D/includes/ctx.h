@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ctx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 08:26:07 by astutz            #+#    #+#             */
-/*   Updated: 2024/01/13 16:58:45 by astutz           ###   ########.fr       */
+/*   Created: 2023/12/30 00:02:37 by lray              #+#    #+#             */
+/*   Updated: 2024/01/13 13:39:10 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef CTX_H
+# define CTX_H
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
-{
-	t_list	*tmp;
+# include "structures.h"
 
-	if (!lst)
-		return ;
-	if (*lst && del)
-	{
-		while (*lst)
-		{
-			tmp = (*lst)->next;
-			del((*lst)->content);
-			free(*lst);
-			*lst = tmp;
-		}
-		*lst = NULL;
-	}
-}
+void	ctx_init(t_ctx *ctx, int width, int height, char *name);
+int		ctx_init_textures(t_ctx *ctx, unsigned int colors[2], char **tex_path);
+void	ctx_show(t_ctx *ctx);
+void	ctx_free(t_ctx *ctx);
+
+#endif
