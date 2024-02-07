@@ -221,6 +221,13 @@ int main()
 //     return(nb);
 // }
 
+//utiliser #pragma once dans les fichiers .hpp
+
+/*
+#pragma once est une directive de préprocesseur utilisée dans les fichiers d'en-tête (header files) en C++ pour éviter les problèmes de double inclusion. Lorsqu'elle est placée au début d'un fichier d'en-tête, elle indique au compilateur de ne l'inclure qu'une seule fois dans un fichier source, même si cet en-tête est inclus plusieurs fois dans le même fichier source ou dans plusieurs fichiers source différents. 
+Cela améliore l'efficacité de la compilation en évitant la répétition inutile de code et en évitant les conflits de définitions multiples.*/
+
+
 // std::endl --> vide le tampon de sortie et ajoute un retour à la ligne.
 //std::flush vide le tampon de sortie
 /*dans des situations où le contrôle précis du moment où les données sont écrites est crucial,
