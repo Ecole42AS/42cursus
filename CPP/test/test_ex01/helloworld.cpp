@@ -61,7 +61,7 @@ int main()
 }
 
 // template <typename T, typename C>
-// g
+// gf
 // C max(T nb1, C nb2)
 // {
 //     return(nb1 > nb2) ? nb1 : nb2;
