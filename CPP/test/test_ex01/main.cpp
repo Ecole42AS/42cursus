@@ -6,10 +6,11 @@ int main() {
 	while (input != "ADD" && input != "EXIT" && input != "SEARCH")
 	{
 		std::cout << "Choose ADD, SEARCH or EXIT: " << std::endl;
-		std::cin >> input;
+		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
-			Contact::create_contact();
+			Contact contact = Contact::create_contact();
+			contact.afficher();
 		}
 		else if (input == "SEARCH")
 			return (1);

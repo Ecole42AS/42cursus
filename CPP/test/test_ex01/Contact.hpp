@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <limits>
 
 class Contact
 {
@@ -19,9 +20,12 @@ private:
     // Méthode privée pour saisir les informations de contact
     static std::string _enter_contact_info(const std::string& prompt);
 
+
 public:
+	// Contact();
     // Méthode de classe statique pour créer une nouvelle instance de contact
     static Contact create_contact();
+
 
     // Méthodes d'accès pour les membres de données const
     std::string get_first_name() const;
@@ -32,4 +36,5 @@ public:
 
     // Méthode pour afficher les informations du contact
     void afficher() const;
+
 };

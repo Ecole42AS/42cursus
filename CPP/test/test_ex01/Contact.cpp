@@ -11,10 +11,14 @@ Contact::Contact(const std::string& first_name, const std::string& last_name,
 // Méthode privée pour saisir les informations de contact
 std::string Contact::_enter_contact_info(const std::string& prompt)
 {
-    std::string input;
+    std::string contact_input;
     std::cout << prompt << std::endl;
-    std::getline(std::cin >> std::ws, input);
-    return input;
+    std::getline(std::cin, contact_input);
+    if (contact_input.empty()) {
+        std::cout << "Input cannot be empty. Please enter a valid input." << std::endl;
+        return _enter_contact_info(prompt); // Rappel récursif si la saisie est vide
+    }
+    return contact_input;
 }
 
 // Méthode de classe statique pour créer une nouvelle instance de contact
