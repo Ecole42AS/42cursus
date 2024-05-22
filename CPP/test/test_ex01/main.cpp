@@ -9,8 +9,7 @@ int main() {
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
-			Contact contact = Contact::create_contact();
-			contact.afficher();
+			Contact::create_contact().afficher();
 		}
 		else if (input == "SEARCH")
 			return (1);

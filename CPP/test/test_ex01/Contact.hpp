@@ -22,7 +22,6 @@ private:
 
 
 public:
-	// Contact();
     // Méthode de classe statique pour créer une nouvelle instance de contact
     static Contact create_contact();
 
