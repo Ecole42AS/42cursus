@@ -1,7 +1,8 @@
-#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 int main() {
 	std::string input;
+    int _current_index = 0; // Déclaration de la variable _current_index
 
 	while (input != "ADD" && input != "EXIT" && input != "SEARCH")
 	{
@@ -9,7 +10,8 @@ int main() {
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
-			Contact::create_contact().afficher();
+			PhoneBook phonebook; // Création d'une instance de PhoneBook
+			phonebook.add_phonebook_contact(_current_index); // Appel de la méthode add_phonebook_contact()
 		}
 		else if (input == "SEARCH")
 			return (1);

@@ -1,9 +1,12 @@
 #include "Contact.hpp"
 
+// Default constructor
+Contact::Contact() {}
+
 // Constructeur privé prenant toutes les valeurs nécessaires
-Contact::Contact(const std::string& first_name, const std::string& last_name,
-                 const std::string& nickname, const std::string& phone_number,
-                 const std::string& darkest_secret)
+Contact::Contact(std::string& first_name, std::string& last_name,
+                std::string& nickname, std::string& phone_number,
+                std::string& darkest_secret)
     : first_name(first_name), last_name(last_name),
       nickname(nickname), phone_number(phone_number),
       darkest_secret(darkest_secret) {}

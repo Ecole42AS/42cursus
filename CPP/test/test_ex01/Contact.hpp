@@ -6,22 +6,23 @@
 class Contact
 {
 private:
-    const std::string first_name;
-    const std::string last_name;
-    const std::string nickname;
-    const std::string phone_number;
-    const std::string darkest_secret;
+    std::string first_name;
+    std::string last_name;
+    std::string nickname;
+    std::string phone_number;
+    std::string darkest_secret;
 
     // Constructeur privé prenant toutes les valeurs nécessaires
-    Contact(const std::string& first_name, const std::string& last_name,
-            const std::string& nickname, const std::string& phone_number,
-            const std::string& darkest_secret);
+    Contact(std::string& first_name, std::string& last_name,
+            std::string& nickname, std::string& phone_number,
+            std::string& darkest_secret);
 
     // Méthode privée pour saisir les informations de contact
     static std::string _enter_contact_info(const std::string& prompt);
 
-
 public:
+	Contact();
+
     // Méthode de classe statique pour créer une nouvelle instance de contact
     static Contact create_contact();
 
