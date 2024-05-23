@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/23 13:15:17 by astutz            #+#    #+#             */
+/*   Updated: 2024/05/23 13:15:18 by astutz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 int main() {
 	std::string input;
-    int _current_index = 0; // Déclaration de la variable _current_index
-	PhoneBook phonebook; // Création d'une instance de PhoneBook
+    int _current_index = 0;
+	PhoneBook phonebook;
 
 	while (1)
 	{
@@ -11,12 +23,12 @@ int main() {
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
-			phonebook.add_phonebook_contact(_current_index); // Appel de la méthode add_phonebook_contact()
+			phonebook.add_phonebook_contact(_current_index);
 		}
 		else if (input == "SEARCH")
-			phonebook.print_contacts();
+			phonebook.search_contact();
 		else if (input == "EXIT")
-			break; //exit();
+			break;
 		else
 			std::cout << "Invalid choice: please choose between ADD, SEARCH and EXIT" << std::endl;
 
