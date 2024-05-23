@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:15:17 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/23 13:15:18 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/23 13:29:58 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main() {
 		}
 		else if (input == "SEARCH")
 			phonebook.search_contact();
-		else if (input == "EXIT")
+		else if (input == "EXIT" || std::cin.eof())
 			break;
 		else
 			std::cout << "Invalid choice: please choose between ADD, SEARCH and EXIT" << std::endl;
