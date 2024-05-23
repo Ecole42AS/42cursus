@@ -43,12 +43,29 @@ std::string Contact::get_nickname() const { return nickname; }
 std::string Contact::get_phone_number() const { return phone_number; }
 std::string Contact::get_darkest_secret() const { return darkest_secret; }
 
-// Méthode pour afficher les informations du contact
-void Contact::afficher() const
+void Contact::truncate(std::string& str)
 {
-    std::cout << "First Name: " << first_name << std::endl;
-    std::cout << "Last Name: " << last_name << std::endl;
-    std::cout << "Nickname: " << nickname << std::endl;
+    if (str.length() > 10)
+        str = str.substr(0, 9) + '.';
+}
+// Méthode pour display les informations du contact
+void Contact::display_phonebook() const
+{
+	std::string tmp_first_name = first_name; 
+	std::string tmp_last_name = last_name; 
+	std::string tmp_nickname = nickname;
+
+	truncate(tmp_first_name);
+	truncate(tmp_last_name);
+	truncate(tmp_nickname);
+
+	//  if (first_name.length() > 10)
+    //     first_name = first_name.substr(0, 9) + '.';
+    std::cout << std::setw(10) << tmp_first_name << "|";
+    std::cout << std::setw(10) << tmp_last_name << "|";
+    std::cout << std::setw(10) << tmp_nickname << std::endl;
     // std::cout << "Phone Number: " << phone_number << std::endl;
     // std::cout << "Darkest Secret: " << darkest_secret << std::endl;
 }
+
+

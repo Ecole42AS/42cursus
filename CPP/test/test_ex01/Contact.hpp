@@ -35,7 +35,9 @@ public:
     std::string get_phone_number() const;
     std::string get_darkest_secret() const;
 
-    // Méthode pour afficher les informations du contact
-    void afficher() const;
+    // Méthode pour display les informations du contact
+    void display_phonebook() const;
+	static void truncate(std::string &str);
+
 
 };
