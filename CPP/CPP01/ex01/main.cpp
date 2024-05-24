@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:09:32 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/24 12:16:49 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/24 19:01:17 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 int main()
 {
-	
+    int N = 4;
+    Zombie* horde = zombie_horde(N, "Andrew");
+
+    delete[] horde;
+    return 0;
 }
