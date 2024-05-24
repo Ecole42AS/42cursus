@@ -11,8 +11,7 @@ FLAGS =	-Werror -Wextra -Wall -std=c++98
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CPP) $(FLAGS) -o $@ $^
-# && echo -e "\033[32mCOMPILATION SUCCESSFUL\033[0m !"
+	@$(CPP) $(FLAGS) -o $@ $^ && echo "\033[32mCOMPILATION SUCCESSFUL !\033[0m"
 
 %.o: %.cpp
 	@$(CPP) $(FLAGS) -c $< -o $@
