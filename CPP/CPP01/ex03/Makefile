@@ -1,4 +1,4 @@
-NAME =	Zooooombie
+NAME =	Waaar
 
 SRCS =	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 

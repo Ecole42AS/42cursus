@@ -6,11 +6,14 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 21:04:38 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/24 21:05:41 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/25 08:56:20 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "HumanA.hpp"
 #include "Weapon.hpp"
+#include "HumanB.hpp"
+
 
 int main()
 {
