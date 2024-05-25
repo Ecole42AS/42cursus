@@ -6,14 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 08:53:22 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/25 10:00:52 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/25 12:57:56 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-
-HumanB::HumanB(std::string name): name(name), w(NULL) {}
+HumanB::HumanB(std::string name): w(NULL), name(name) {}
 
 HumanB::~HumanB() {}
 
@@ -27,5 +26,5 @@ void	HumanB::attack()
 
 void	HumanB::setWeapon(Weapon &w)
 {
-		w = &w;
+		this->w = &w;
 }
