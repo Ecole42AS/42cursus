@@ -1,4 +1,4 @@
-NAME =	Waaar
+NAME =	Sed
 
 SRCS =	main.cpp
 
