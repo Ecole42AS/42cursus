@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 11:53:37 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/26 12:13:38 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/27 08:57:18 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void Harl::complain(std::string level) {
     // Tableau ou structure de pointeurs vers les méthodes membres
     struct LevelMethod {
         std::string levelName;
-        void (Harl::*method)();
+        void (Harl::*methodPtr)();
     };
 
     LevelMethod levels[] = {
@@ -55,7 +55,7 @@ void Harl::complain(std::string level) {
     // Recherche du niveau correspondant et appel de la méthode
     for (int i = 0; i < 4; ++i) {
         if (levels[i].levelName == level) {
-            (this->*levels[i].method)(); // Appel de la méthode via le pointeur
+            (this->*levels[i].methodPtr)(); // Appel de la méthode via le pointeur
             return;
         }
     }
