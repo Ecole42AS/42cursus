@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 21:04:38 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/25 13:01:33 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/27 09:35:38 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Weapon.hpp"
 #include "HumanB.hpp"
 
-
+//une réfrence ne peut pas être null tandis qu'un pointeur oui, donc HumanB peut exister sans arme si on lui passe un ptr
 int main()
 {
 	{
