@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:12:22 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/28 11:40:41 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/28 12:03:51 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ Fixed &Fixed::operator=(const Fixed &rhs)
 	return *this;
 }
 
+//donne l entier avant la virgule
 Fixed::Fixed(const int i)
 {
 	std::cout << "Int constructor called" << std::endl;
 	_decimalBits = i << _fractionalBits;
 }
 
+//Ce constructeur convertit efficacement un nombre à virgule flottante en une représentation fixe à virgule fixe en tenant compte du nombre de bits fractionnaires spécifié par _fractionalBits.
 Fixed::Fixed(const float f)
 {
 	std::cout << "Float constructor called" << std::endl;
-	_decimalBits = roundf(f * (1 << _fractionalBits));
+	_decimalBits = roundf(f * (1 << _fractionalBits));// roundf(f * 256)  //roundf arrondi au plus proche
 }
 
 
