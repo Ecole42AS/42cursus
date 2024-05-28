@@ -1,4 +1,4 @@
-NAME =	float
+NAME =	fixed_point_nb
 
 SRCS =	main.cpp Fixed.cpp
 
