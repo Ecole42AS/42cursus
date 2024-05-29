@@ -6,14 +6,14 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:12:50 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/29 10:49:21 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/29 10:59:30 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <string>
-#include <math.h>
+#include <cmath>
 
 class Fixed
 {
