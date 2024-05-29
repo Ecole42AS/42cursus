@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:12:50 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/28 12:00:19 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/29 10:49:21 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Fixed
 {
 private:
-	int _decimalBits;
+	int _nb;
 	static int const _fractionalBits = 8;
 public:
 	Fixed();
