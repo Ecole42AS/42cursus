@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:12:22 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/29 11:15:47 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/29 23:36:07 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ Fixed::Fixed(const int i)
 Fixed::Fixed(const float f)
 {
 	std::cout << "Float constructor called" << std::endl;
-	_nb = roundf(f * (1 << _fractionalBits));// roundf(f * 256)  //roundf arrondi au plus proche
+	_nb = roundf(f * (1 << _fractionalBits));// roundf(f * 256)
 }
 
 
 int Fixed::getRawBits() const
 {
-    return this->_nb;
+    return _nb;
 }
 
 void Fixed::setRawBits(int const raw)
 {
     std::cout << "setRawBits member function called" << std::endl;
-    this->_nb = raw;
+    _nb = raw;
 }
 
 float Fixed::toFloat() const
