@@ -6,31 +6,23 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:12:22 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/29 23:36:07 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/30 11:56:29 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _nb(0)
-{
-	std::cout << "Default constructor called" << std::endl;	
-}
+Fixed::Fixed() : _nb(0) {}
 
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() {}
 
 Fixed::Fixed(const Fixed &src)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 }
 
 Fixed &Fixed::operator=(const Fixed &rhs)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 		this->_nb = rhs.getRawBits();
 	return *this;
@@ -39,14 +31,12 @@ Fixed &Fixed::operator=(const Fixed &rhs)
 //donne l entier avant la virgule
 Fixed::Fixed(const int i)
 {
-	std::cout << "Int constructor called" << std::endl;
 	_nb = i << _fractionalBits;
 }
 
 //Ce constructeur convertit efficacement un nombre à virgule flottante en une représentation fixe à virgule fixe en tenant compte du nombre de bits fractionnaires spécifié par _fractionalBits.
 Fixed::Fixed(const float f)
 {
-	std::cout << "Float constructor called" << std::endl;
 	_nb = roundf(f * (1 << _fractionalBits));// roundf(f * 256)
 }
 
@@ -58,7 +48,6 @@ int Fixed::getRawBits() const
 
 void Fixed::setRawBits(int const raw)
 {
-    std::cout << "setRawBits member function called" << std::endl;
     _nb = raw;
 }
 
@@ -77,53 +66,107 @@ std::ostream &operator<<(std::ostream &os, const Fixed &rhs) {
 	return os;
 }
 
-std::ostream &operator>(std::ostream &os, const Fixed &rhs)
+bool	Fixed::operator>(const Fixed &nb) const
 {
-	
+	return (this->toFloat() > nb.toFloat());
 }
 
-std::ostream &operator<(std::ostream &os, const Fixed &rhs)
+bool	Fixed::operator<(const Fixed &nb) const
 {
-	
+	return (this->toFloat() < nb.toFloat());
 }
 
-std::ostream &operator>=(std::ostream &os, const Fixed &rhs)
+bool	Fixed::operator>=(const Fixed &nb) const
 {
-	
+	return (this->toFloat() >= nb.toFloat());
 }
 
-std::ostream &operator<=(std::ostream &os, const Fixed &rhs)
+bool	Fixed::operator<=(const Fixed &nb) const
 {
-	
+	return (this->toFloat() <= nb.toFloat());
 }
 
-std::ostream &operator==(std::ostream &os, const Fixed &rhs)
+bool	Fixed::operator==(const Fixed &n) const
 {
-	
+	return (this->toFloat() == n.toFloat());
 }
 
-std::ostream &operator!=(std::ostream &os, const Fixed &rhs)
+bool	Fixed::operator!=(const Fixed &n) const
 {
-	
+	return (this->toFloat() != n.toFloat());
 }
 
-std::ostream &operator+(std::ostream &os, const Fixed &rhs)
+Fixed	Fixed::operator+(const Fixed &n) const
 {
-	
+	return (Fixed(this->toFloat() + n.toFloat()));
 }
 
-std::ostream &operator-(std::ostream &os, const Fixed &rhs)
+Fixed	Fixed::operator-(const Fixed &n) const
 {
-	
+	return (Fixed(this->toFloat() - n.toFloat()));
 }
 
-std::ostream &operator*(std::ostream &os, const Fixed &rhs)
+Fixed	Fixed::operator*(const Fixed &n) const
 {
-	
+	return (Fixed(this->toFloat() * n.toFloat()));
 }
 
-std::ostream &operator/(std::ostream &os, const Fixed &rhs)
+Fixed	Fixed::operator/(const Fixed &n) const
 {
-	
+	return (Fixed(this->toFloat() / n.toFloat()));
 }
 
+
+Fixed	&Fixed::operator++(void)
+{
+	setRawBits(getRawBits() + 1);
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	z = (*this);
+	setRawBits(getRawBits() + 1);
+	return (z);
+}
+
+Fixed	&Fixed::operator--(void)
+{
+	setRawBits(getRawBits() + 1);
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	z = (*this);
+	setRawBits(getRawBits() + 1);
+	return (z);
+}
+
+Fixed	&Fixed::min(Fixed &nb, Fixed &nb2)
+{
+	if (nb < nb2)
+		return nb;
+	return nb2;
+}
+
+Fixed const	&Fixed::min(const Fixed &nb, const Fixed &nb2)
+{
+	if (nb < nb2)
+		return nb;
+	return nb2;
+}
+
+Fixed	&Fixed::max(Fixed &nb, Fixed &nb2)
+{
+	if (nb > nb2)
+		return nb;
+	return nb2;
+}
+
+Fixed const	&Fixed::max(const Fixed &nb, const Fixed &nb2)
+{
+	if (nb > nb2)
+		return nb;
+	return nb2;
+}

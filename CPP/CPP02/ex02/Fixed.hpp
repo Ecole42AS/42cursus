@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:12:50 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/29 23:22:26 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/30 11:54:23 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,28 @@ public:
 	Fixed &operator=(const Fixed &rhs);
 	Fixed(const int i);
 	Fixed(const float f);
-	int 			getRawBits() const;
-	void 			setRawBits(int const raw); 
-	float 			toFloat() const;
-	int 			toInt() const;
-	static Fixed 	&min(Fixed &nb, Fixed &nb2);
-	static Fixed 	&min(const Fixed &nb, const Fixed &nb2);
-	static Fixed	&max(Fixed &nb, Fixed &nb2);
-	static Fixed	&max(const Fixed &nb, const Fixed &nb2);
-	bool 			&operator>(const Fixed &nb);
-	bool 			&operator<(const Fixed &nb);
-	bool			&operator>=(const Fixed &nb);
-	bool			&operator<=(const Fixed &nb);
-	bool			&operator==(const Fixed &nb);
-	bool			&operator!=(const Fixed &nb);
-	Fixed			&operator+(const Fixed &nb);
-	Fixed			&operator-(const Fixed &nb);
-	Fixed			&operator*(const Fixed &nb);
-	Fixed			&operator/(const Fixed &nb);
-	Fixed			&operator++(void);
-	Fixed			operator++(int);
-	Fixed			&operator--(void);
-	Fixed			operator--(int);
+	int 				getRawBits() const;
+	void 				setRawBits(int const raw); 
+	float 				toFloat() const;
+	int 				toInt() const;
+	static Fixed 		&min(Fixed &nb, Fixed &nb2);
+	const static Fixed 	&min(const Fixed &nb, const Fixed &nb2);
+	static Fixed		&max(Fixed &nb, Fixed &nb2);
+	const static Fixed	&max(const Fixed &nb, const Fixed &nb2);
+	bool 				operator>(const Fixed &nb) const;
+	bool 				operator<(const Fixed &nb) const;
+	bool				operator>=(const Fixed &nb) const;
+	bool				operator<=(const Fixed &nb) const;
+	bool				operator==(const Fixed &nb) const;
+	bool				operator!=(const Fixed &nb) const;
+	Fixed				operator+(const Fixed &nb) const;
+	Fixed				operator-(const Fixed &nb) const;
+	Fixed				operator*(const Fixed &nb) const;
+	Fixed				operator/(const Fixed &nb) const;
+	Fixed				&operator++(void);
+	Fixed				operator++(int);
+	Fixed				&operator--(void);
+	Fixed				operator--(int);
 
 	
 };
