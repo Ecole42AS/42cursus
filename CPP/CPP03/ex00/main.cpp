@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:26:53 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/31 10:25:37 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/31 10:37:11 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,25 @@
 int	main(void)
 {
 	unsigned int	i = 1;
-	ClapTrap	Bob("Bob");
-	ClapTrap	Optimus("Optimus");
+	ClapTrap	Louison("Louison");
+	ClapTrap	Genievre("Genievre");
 	std::cout << std::endl;
 
-	Bob.getStats();
-	Optimus.getStats();
+	Louison.getStats();
+	Genievre.getStats();
 	std::cout << std::endl;
 
-	while (Optimus.getHitPoints() > 0)
-	// while (i < 30)
+	while (Genievre.getHitPoints() > 0)
 	{
-		Bob.setAttackDamage(i);
-		Bob.attack("Optimus");
-		Optimus.takeDamage(Bob.getAttackDamage());
-		Optimus.beRepaired(2);
+		Louison.setAttackDamage(i);
+		Louison.attack("Genievre");
+		Genievre.takeDamage(Louison.getAttackDamage());
+		Genievre.beRepaired(2);
 		i *= 3;
 		std::cout << std::endl;
 	}
-	Bob.getStats();
-	Optimus.getStats();
+	Louison.getStats();
+	Genievre.getStats();
 	std::cout << std::endl;
 	return (0);
 }
