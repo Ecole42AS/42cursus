@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:31:35 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/30 15:57:28 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/31 10:27:50 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,25 @@ void ClapTrap::attack(const std::string& target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hitPoints == 0)
-		std::cout << "ClapTrap " << _name << " is already dead !" << std::endl;
+		std::cout << "ClapTrap " << _name << " est déjà mort !" << std::endl;
 	else if (_hitPoints <= amount)
-		std::cout << "ClapTrap " << _name << " has no more life, he takes too much damage, he DIED !" << std::endl;
+	{
+		_hitPoints = 0;
+		std::cout << "ClapTrap " << _name << " a pris trop de dégâts et est MORT !" << std::endl;
+	}
 	else
 	{
 		_hitPoints -= amount;
-		std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage and has now " << _hitPoints << " points of life left." << std::endl;
+		std::cout << "ClapTrap " << _name << " prend " << amount << " points de dégâts et a maintenant " << _hitPoints << " points de vie restants." << std::endl;
 	}
-	return;	
 }
+
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (_hitPoints == 0)
+	if (_hitPoints <= 0)
 		std::cout << "ClapTrap " << _name << " is already dead !" << std::endl;
-	else if (_energyPoints == 0)
+	else if (_energyPoints <= 0)
 		std::cout << "ClapTrap " << _name << " has no more energy !" << std::endl;
 	else
 	{

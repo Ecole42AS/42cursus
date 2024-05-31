@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:26:53 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/30 15:56:27 by astutz           ###   ########.fr       */
+/*   Updated: 2024/05/31 10:25:37 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(void)
 	std::cout << std::endl;
 
 	while (Optimus.getHitPoints() > 0)
+	// while (i < 30)
 	{
 		Bob.setAttackDamage(i);
 		Bob.attack("Optimus");
