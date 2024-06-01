@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:23:54 by astutz            #+#    #+#             */
-/*   Updated: 2024/05/30 15:56:08 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/01 10:53:20 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 class ClapTrap
 {
-private:
+protected:
 	std::string _name;
 	unsigned int _hitPoints;
 	unsigned int _energyPoints;
