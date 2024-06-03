@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:22:27 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/03 12:47:05 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/03 17:29:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ const std::string* Brain::getIdea(int index) const {
 			return NULL;
 }
 
-void Brain::setIdea(int index, std::string &idea)
+void Brain::setIdea(int index, const std::string &idea)
 {
 	if (index >=0 && index <= 100)
 		_ideas[index] = idea;
