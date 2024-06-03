@@ -6,13 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:13:11 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/03 11:13:45 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/03 12:04:29 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : _type("default")
+WrongAnimal::WrongAnimal() : _type("WrongAnimal")
 {
 	std::cout << "WrongAnimal default constructor called" << std::endl;
 }
@@ -43,7 +43,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &rhs)
 
 void WrongAnimal::makeSound() const
 {
-	std::cout << "No sound's emitted.." << std::endl;
+	std::cout << "No sound's emitted..(from WRONG Animal)" << std::endl;
 }
 
 std::string WrongAnimal::getType() const
