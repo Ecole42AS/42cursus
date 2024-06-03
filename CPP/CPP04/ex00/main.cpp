@@ -6,11 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:44:09 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/03 09:44:33 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/03 10:58:06 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
 
 int main()
 {
@@ -22,6 +24,6 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
-	...
+	// ...
 	return 0;
 }

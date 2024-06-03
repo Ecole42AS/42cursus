@@ -6,8 +6,8 @@ OBJS = ${SRCS:.cpp=.o}
 
 CPP =	c++
 
-FLAGS =	-Werror -Wextra -Wall -std=c++98
-
+FLAGS = -Werror -Wextra -Wall -std=c++98
+#-g -fsanitize=address
 all: $(NAME)
 
 $(NAME): $(OBJS)

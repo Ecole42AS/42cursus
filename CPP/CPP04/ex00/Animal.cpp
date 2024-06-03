@@ -6,15 +6,20 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:50:39 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/03 10:18:30 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/03 10:52:45 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal()
+Animal::Animal() : _type("default")
 {
 	std::cout << "Animal default constructor called" << std::endl;
+}
+
+Animal::Animal(std::string type) : _type(type)
+{
+	std::cout << "Type animal constructor called" << std::endl;
 }
 
 Animal::~Animal()
@@ -30,6 +35,7 @@ Animal::Animal(const Animal &src)
 
 Animal &Animal::operator=(const Animal &rhs)
 {
+    std::cout << "Animal copy assignment operator called" << std::endl;
 	if (this != &rhs)
 		_type = rhs._type;
 	return *this;
@@ -40,7 +46,7 @@ void Animal::makeSound() const
 	std::cout << "No sound's emitted.." << std::endl;
 }
 
-std::string getType() const
+std::string Animal::getType() const
 {
 	return _type;
 }
