@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 10:17:03 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/04 09:19:59 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/04 09:29:29 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,9 @@ Dog &Dog::operator=(const Dog &rhs)
 void Dog::makeSound() const
 {
 	std::cout << "Woooooof" << std::endl;
+}
+
+Brain	*Dog::getBrain(void) const
+{
+	return _Brain;
 }

@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 10:17:03 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/04 09:05:43 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/04 09:29:56 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,9 @@ Cat &Cat::operator=(const Cat &rhs)
 void Cat::makeSound() const
 {
 	std::cout << "Miaaaaooow" << std::endl;
+}
+
+Brain	*Cat::getBrain(void) const
+{
+	return _Brain;
 }
