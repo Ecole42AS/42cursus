@@ -1,4 +1,4 @@
-NAME =	Polymorphism
+NAME =	AbstractClass
 
 SRCS =	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
 
