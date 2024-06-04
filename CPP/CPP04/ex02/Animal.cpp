@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:50:39 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/04 11:03:05 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/04 10:35:12 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ Animal &Animal::operator=(const Animal &rhs)
 	return *this;
 }
 
-void Animal::makeSound() const
-{
-	std::cout << "No sound's emitted.." << std::endl;
-}
+// void Animal::makeSound() const
+// {
+// 	std::cout << "No sound's emitted.." << std::endl;
+// }
 
 std::string Animal::getType() const
 {
