@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 09:41:26 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/05 10:20:39 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/05 15:20:25 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ AMateria::AMateria() : type("default")
 	std::cout << "AMateria default constructor called" << std::endl;
 }
 
-AMateria::AMateria(std::string const & type) : type(type)
+AMateria::AMateria(std::string const &type) : type(type)
 {
 	std::cout << "AMateria type constructor called" << std::endl;
 }
