@@ -6,15 +6,27 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:30:28 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/05 14:21:04 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/05 15:04:36 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include "AMateria.hpp"  
+#include "Character.hpp"  
+#include "Cure.hpp"  
+#include "ICharacter.hpp"  
+#include "IMateriaSource.hpp"  
+#include "Ice.hpp"  
+#include "MateriaSource.hpp"
+// #include "Ice.hpp""
+// #include "Cure.hpp"
+// #include "Character.hpp"
+// #include "MateriaSource.hpp"
+#include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
 #include "Character.hpp"
 #include "MateriaSource.hpp"
-
 // int	main(void)
 // {
 // 	IMateriaSource* 	src = new MateriaSource();
