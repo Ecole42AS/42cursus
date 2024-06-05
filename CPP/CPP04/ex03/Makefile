@@ -1,6 +1,6 @@
-NAME =	Polymorphism
+NAME =	Interface
 
-SRCS =	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
+SRCS =	$(wildcard *.cpp)
 
 OBJS = ${SRCS:.cpp=.o}
 

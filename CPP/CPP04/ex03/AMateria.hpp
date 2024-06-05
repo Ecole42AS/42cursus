@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:38:38 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/05 10:09:13 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/05 11:16:56 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <string>
 #include "ICharacter.hpp"
 
+//Les Materias sont des sorts
 class AMateria
 {
 protected:
