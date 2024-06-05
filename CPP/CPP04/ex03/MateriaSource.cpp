@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:23:17 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/05 14:37:17 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/05 16:15:55 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 MateriaSource::MateriaSource() : _index(0) 
 {
+	std::cout << "MateriaSource default constructor called" << std::endl;
     for (int i = 0; i < MAX_STOCK_SIZE; ++i) 
     {
         _stock[i] = NULL;
@@ -22,11 +23,13 @@ MateriaSource::MateriaSource() : _index(0)
 
 MateriaSource::MateriaSource(const MateriaSource &src) 
 {
+	std::cout << "MateriaSource copy constructor called" << std::endl;
     *this = src;
 }
 
 MateriaSource::~MateriaSource() 
 {
+	std::cout << "MateriaSource destructor called" << std::endl;
     for (int i = 0; i < MAX_STOCK_SIZE; ++i) 
     {
         delete _stock[i];
@@ -35,6 +38,7 @@ MateriaSource::~MateriaSource()
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &rhs) 
 {
+	std::cout << "MateriaSource copy assignment operator called" << std::endl;
     if (this != &rhs) 
     {
         for (int i = 0; i < MAX_STOCK_SIZE; ++i) 

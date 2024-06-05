@@ -1,0 +1,26 @@
+MateriaSource default constructor called
+AMateria type constructor called
+Ice default constructor called
+AMateria type constructor called
+Cure default constructor called
+Character me constructor called
+AMateria copy constructor called
+Ice copy constructor called
+me equip the ice material in the slot number 0.
+AMateria copy constructor called
+Cure copy constructor called
+me equip the cure material in the slot number 1.
+Character bob constructor called
+* shoots an ice bolt at bob *
+* heals bob's wounds *
+Character bob destructor called
+Character me destructor called
+Ice destructor called
+AMateria destructor called
+Cure destructor called
+AMateria destructor called
+MateriaSource destructor called
+Ice destructor called
+AMateria destructor called
+Cure destructor called
+AMateria destructor called

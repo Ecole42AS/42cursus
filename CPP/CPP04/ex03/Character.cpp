@@ -3,7 +3,7 @@
 Character::Character() : _name("defaultName")
 {
 	std::cout << "Character default constructor called" << std::endl;
-    for (int i = 0; i < 4; ++i) 
+    for (int i = 0; i < 4; ++i)
     {
         _inventory[i] = NULL;
         _ground[i] = NULL;
@@ -12,7 +12,7 @@ Character::Character() : _name("defaultName")
 
 Character::Character(std::string name) : _name(name)
 {
-	std::cout << "Character " << _name << " constructor called" << std::endl;
+	std::cout << "Character name: " << _name << " constructor called" << std::endl;
     for (int i = 0; i < 4; ++i) 
     {
         _inventory[i] = NULL;
@@ -149,6 +149,5 @@ void Character::use(int idx, ICharacter& target)
         std::cout << "There is no slot " << idx << " !" << std::endl;
         return;
     }
-	std::cout << _name << "uses " << _inventory[idx] << " against " << target.getName() << std::endl;
 	_inventory[idx]->use(target);
 }
