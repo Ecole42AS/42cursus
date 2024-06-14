@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:14:31 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/14 10:36:02 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/14 13:57:04 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class Bureaucrat
 {
 private:
-	std::string _name;
+	const std::string _name;
 	unsigned int _grade;
 public:
 	class GradeTooHighException : public std::exception

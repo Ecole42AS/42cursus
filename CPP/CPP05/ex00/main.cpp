@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:13:35 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/14 11:11:20 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/14 13:59:58 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main()
 		Bureaucrat Joe;
 		Joe.downGrade();
 		std::cout << Joe << std::endl;
-		Bureaucrat Thierry("Thierry", 0);
+		Bureaucrat Thierry("Thierry", 1);
 		Thierry.upGrade();
 		std::cout << Joe << std::endl;
 		std::cout << Thierry << std::endl;
