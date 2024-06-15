@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 21:30:51 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/15 23:28:03 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/15 23:39:14 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,29 @@
 
 	void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	{
-		std::string fileName = _target + "_shrubbery";
-		
-		std::ofstream file(fileName.c_str());
-		
-		if (file.is_open())
+		if (executor.getGrade() <= getGradeToExecute())
 		{
-			file << "    _-_\n"
-				<< "  /~~   ~~\\\n"
-				<< " /~~        ~~\\\n"
-				<< "{    O  O      }\n"
-				<< " \\      <       /\n"
-				<< "    \\         /\n"
-				<< "      ~-____-~\n";			
+			std::string fileName = _target + "_shrubbery";
+			
+			std::ofstream file(fileName.c_str());
+			
+			if (file.is_open())
+			{
+				file << "    _-_\n"
+					<< "  /~~   ~~\\\n"
+					<< " /~~        ~~\\\n"
+					<< "{    O  O      }\n"
+					<< " \\      <       /\n"
+					<< "    \\         /\n"
+					<< "      ~-____-~\n";			
+			}
+			else
+			{
+				std::cerr << "Failed to create " << fileName << std::endl;
+				return;
+			}
+			file.close();
 		}
 		else
-		{
-			std::cerr << executor << " Failed to create " << fileName << std::endl;
-	        return;
-		}
-		file.close();
+			throw GradeTooLowException();
 	}
