@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:14:31 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/15 21:09:41 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/15 22:55:36 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ public:
 	void upGrade();
 	void downGrade();
 	void signForm(AForm &form);
+	void executeForm(AForm const & form);
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj);

@@ -6,12 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 21:04:34 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/15 22:54:17 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/15 23:00:58 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "Bureaucrat.hpp"
+#include <fstream>
 
 class Bureaucrat;
 class AForm
@@ -51,7 +52,7 @@ public:
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
 	bool beSigned(Bureaucrat &obj);
-	
+	virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &os, const AForm &obj);
