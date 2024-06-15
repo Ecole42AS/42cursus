@@ -6,13 +6,12 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:13:38 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/14 14:17:03 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/15 21:08:54 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
 class Bureaucrat;
 class Form
