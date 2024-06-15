@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 21:04:34 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/15 21:47:47 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/15 22:54:17 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 class Bureaucrat;
 class AForm
 {
-protected:
+private:
 	const std::string _name;
 	bool _isSigned;
 	const int _gradeToSign;
 	const int _gradeToExec;
-public:
+protected:
 	class GradeTooHighException : public std::exception
 	{
 	public:
@@ -40,6 +40,7 @@ public:
 		}
 	};
 	
+public:
 	AForm();
 	AForm(const std::string name, bool isSigned, const int gradeToSign, const int gradeToExec);
 	~AForm();
