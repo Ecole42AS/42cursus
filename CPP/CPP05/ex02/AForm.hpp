@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 21:04:34 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/15 21:05:13 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/15 21:47:47 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 class Bureaucrat;
 class AForm
 {
-private:
+protected:
 	const std::string _name;
 	bool _isSigned;
 	const int _gradeToSign;
@@ -27,7 +27,7 @@ public:
 	public:
 		virtual const char *what() const throw()
 		{
-			return ("Grade is too high to sign the Aform !");
+			return ("Grade is too high to sign the form !");
 		}
 	};
 
@@ -36,7 +36,7 @@ public:
 	public:
 		virtual const char *what() const throw()
 		{
-			return ("Grade is too low to sign the Aform !");
+			return ("Grade is too low to sign the form !");
 		}
 	};
 	
@@ -50,6 +50,7 @@ public:
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
 	bool beSigned(Bureaucrat &obj);
+	
 };
 
 std::ostream &operator<<(std::ostream &os, const AForm &obj);
