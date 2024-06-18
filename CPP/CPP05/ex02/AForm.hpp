@@ -6,13 +6,15 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 21:04:34 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/15 23:00:58 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/18 10:59:22 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "Bureaucrat.hpp"
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 class Bureaucrat;
 class AForm
@@ -28,7 +30,7 @@ protected:
 	public:
 		virtual const char *what() const throw()
 		{
-			return ("Grade is too high to sign the form !");
+			return ("Grade is too high to sign the form or execute it !");
 		}
 	};
 
@@ -37,7 +39,7 @@ protected:
 	public:
 		virtual const char *what() const throw()
 		{
-			return ("Grade is too low to sign the form !");
+			return ("Grade is too low to sign the form or execute it !");
 		}
 	};
 	
