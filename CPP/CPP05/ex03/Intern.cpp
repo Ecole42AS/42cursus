@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 11:28:48 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/18 12:37:21 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/19 13:52:10 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,40 @@ Intern::Intern(const Intern &src)
 
 Intern &Intern::operator=(const Intern &rhs)
 {
+	*this = rhs;
 	return *this;
 }
 
+AForm* Intern::createRobotomyRequestForm(std::string const &target) {
+	return new RobotomyRequestForm(target);
+}
+
+AForm* Intern::createShrubberyCreationForm(std::string const &target) {
+	return new ShrubberyCreationForm(target);
+}
+
+AForm* Intern::createPresidentialPardonForm(std::string const &target) {
+	return new PresidentialPardonForm(target);
+}
+
 AForm* Intern::makeForm(std::string const &formName, std::string const &target) {
-	std::vector<std::pair<std::string, std::function<AForm*(std::string const&)>>> forms = {
-		{"robotomy request", [](std::string const &target) -> AForm* { return new RobotomyRequestForm(target); }},
-		{"shrubbery creation", [](std::string const &target) -> AForm* { return new ShrubberyCreationForm(target); }},
-		{"presidential pardon", [](std::string const &target) -> AForm* { return new PresidentialPardonForm(target); }}
+	struct FormMethod {
+		std::string name;
+		AForm* (Intern::*methodPtr)(std::string const &);
 	};
 
-	for (auto &form : forms) {
-		if (form.first == formName) {
+	FormMethod forms[] = {
+		{"robotomy request", &Intern::createRobotomyRequestForm},
+		{"shrubbery creation", &Intern::createShrubberyCreationForm},
+		{"presidential pardon", &Intern::createPresidentialPardonForm}
+	};
+
+	for (int i = 0; i < 3; ++i) {
+		if (forms[i].name == formName) {
+			AForm* form = (this->*forms[i].methodPtr)(target);
 			std::cout << "Intern creates " << formName << std::endl;
-			return form.second(target);
+			return form;
 		}
 	}
 	throw FormNotFoundException();
-	// std::cout << "Error: Requested form \"" << formName << "\" does not exist." << std::endl;
-	// return nullptr;
 }

@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -14,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 
 int main()
@@ -23,13 +25,16 @@ int main()
 		Bureaucrat Antoine("Antoine", 137);
 		Bureaucrat Joe("Joe", 45);
 		Bureaucrat Victor("Victor", 5);
-		ShrubberyCreationForm shrubForm("myTarget");
+		// ShrubberyCreationForm shrubForm("myTarget");
 		RobotomyRequestForm robotomyForm("mySecondTarget");
 		PresidentialPardonForm PresidentialForm("myThirdTarget");
+		Intern intern;
 		// shrubForm.execute(Antoine);
 		// robotomyForm.execute(Joe);
 		// PresidentialForm.execute(Victor);
-		Antoine.executeForm(shrubForm);
+		AForm *shrub = intern.makeForm("shrubbery creatin", "myTarget");
+		std::cout << *shrub << std::endl;
+		Antoine.executeForm(*shrub);
 	}
 	catch(const std::exception& e)
 	{
