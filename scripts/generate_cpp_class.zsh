@@ -9,13 +9,13 @@ function generate_canonical_files() {
         # Générer le nom du fichier .cpp en remplaçant l'extension .hpp par .cpp
         cpp_file="${hpp_file:r}.cpp"  # Utilisation de ${hpp_file:r} pour enlever l'extension .hpp
         
-        # Générer le contenu du fichier .cpp avec un en-tête standard
+        # Générer le contenu du fichier .cpp avec les méthodes spécifiées
         if [ ! -f "${cpp_file}" ]; then
             cat > "${cpp_file}" <<EOF
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ${hpp_file:r}.cpp                               :+:      :+:    :+:   */
+/*   ${hpp_file:r}.cpp                               			:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,7 +26,29 @@ function generate_canonical_files() {
 
 #include "${hpp_file}"
 
-// Implementations here
+${hpp_file%.hpp}::${hpp_file%.hpp}()
+{
+    // Constructor implementation
+}
+
+${hpp_file%.hpp}::~${hpp_file%.hpp}()
+{
+    // Destructor implementation
+}
+
+${hpp_file%.hpp}::${hpp_file%.hpp}(const ${hpp_file%.hpp} &src)
+{
+    *this = src;
+}
+
+${hpp_file%.hpp} &${hpp_file%.hpp}::operator=(const ${hpp_file%.hpp} &rhs)
+{
+    if (this != &rhs) {
+        // Copy assignment implementation
+        // Example: member_variable = rhs.member_variable;
+    }
+    return *this;
+}
 
 EOF
             echo "Fichier ${cpp_file} généré avec succès !"
@@ -34,7 +56,7 @@ EOF
             echo "Le fichier ${cpp_file} existe déjà, aucune action nécessaire."
         fi
 
-        # Générer le contenu du fichier .hpp avec la classe canonique
+        # Générer le contenu du fichier .hpp avec la classe canonique et #pragma once
         if [ ! -f "${hpp_file}" ]; then
             cat > "${hpp_file}" <<EOF
 /* ************************************************************************** */
@@ -49,6 +71,9 @@ EOF
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+#include <iostream>
+
 class ${hpp_file%.hpp} {
 private:
     // Private members here
@@ -60,7 +85,7 @@ public:
 };
 
 EOF
-            echo "Fichier ${hpp_file} généré avec succès avec la classe canonique !"
+            echo "Fichier ${hpp_file} généré avec succès avec la classe canonique et #pragma once !"
         else
             echo "Le fichier ${hpp_file} existe déjà, aucune action nécessaire."
         fi
@@ -71,7 +96,7 @@ EOF
 
 # Vérifier si un argument est fourni en ligne de commande
 if [ $# -eq 0 ]; then
-    echo "Usage: ./generate_cpp.zsh <nom_du_fichier>.hpp"
+    echo "Usage: ./generate_cpp_class.zsh <nom_du_fichier>.hpp"
     exit 1
 fi
 
