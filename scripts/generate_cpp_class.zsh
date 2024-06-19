@@ -85,7 +85,7 @@ public:
 };
 
 EOF
-            echo "Fichier ${hpp_file} généré avec succès avec la classe canonique et #pragma once !"
+            echo "Fichier ${hpp_file} généré avec succès avec la classe canonique !"
         else
             echo "Le fichier ${hpp_file} existe déjà, aucune action nécessaire."
         fi
