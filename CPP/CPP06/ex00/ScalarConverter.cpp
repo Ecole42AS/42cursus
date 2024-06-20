@@ -36,3 +36,28 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
     return *this;
 }
 
+void ScalarConverter::convert(const std::string &literal)
+{
+    try
+    {
+        if (literal.empty()) // Vérifie si la chaîne est vide
+        {
+            throw TooShortInput();
+        }
+
+        for (size_t i = 0; i < literal.length(); ++i)
+        {
+            if (!std::isdigit(static_cast<unsigned char>(literal[i])))
+            {
+                throw NotADigit();
+            }
+        }
+		int intValue = atoi(literal.c_str());
+		std::cout << intValue << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+}
+

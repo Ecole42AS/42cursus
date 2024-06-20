@@ -23,9 +23,7 @@ $(NAME): $(OBJS)
 
 fclean:
 	@rm -f $(OBJS) $(NAME)
-	@find . -type f -name "*_shrubbery" -delete
 	@echo "$(GREEN)Cleaning complete$(RESET)"
-
 
 re: fclean all
 
