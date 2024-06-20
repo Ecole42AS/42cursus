@@ -26,15 +26,9 @@ function generate_canonical_files() {
 
 #include "${hpp_file}"
 
-${hpp_file%.hpp}::${hpp_file%.hpp}()
-{
-    // Constructor implementation
-}
+${hpp_file%.hpp}::${hpp_file%.hpp}() {}
 
-${hpp_file%.hpp}::~${hpp_file%.hpp}()
-{
-    // Destructor implementation
-}
+${hpp_file%.hpp}::~${hpp_file%.hpp}() {}
 
 ${hpp_file%.hpp}::${hpp_file%.hpp}(const ${hpp_file%.hpp} &src)
 {
@@ -44,8 +38,7 @@ ${hpp_file%.hpp}::${hpp_file%.hpp}(const ${hpp_file%.hpp} &src)
 ${hpp_file%.hpp} &${hpp_file%.hpp}::operator=(const ${hpp_file%.hpp} &rhs)
 {
     if (this != &rhs) {
-        // Copy assignment implementation
-        // Example: member_variable = rhs.member_variable;
+		
     }
     return *this;
 }
