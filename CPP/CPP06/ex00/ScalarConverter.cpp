@@ -12,27 +12,18 @@
 
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter()
-{
-    // Constructor implementation
-}
+ScalarConverter::ScalarConverter() {}
 
-ScalarConverter::~ScalarConverter()
-{
-    // Destructor implementation
-}
+ScalarConverter::~ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &src)
 {
-    *this = src;
+	(void)src;
 }
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
 {
-    if (this != &rhs) {
-        // Copy assignment implementation
-        // Example: member_variable = rhs.member_variable;
-    }
+	(void)rhs;
     return *this;
 }
 
