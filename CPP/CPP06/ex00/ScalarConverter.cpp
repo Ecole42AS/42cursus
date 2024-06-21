@@ -99,29 +99,29 @@ void				ScalarConverter::getType(std::string str)
 void				ScalarConverter::convertInt(int nb)
 {
 	if (nb < INT_MIN || nb > INT_MAX)
-		std::cout << ": impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << ": " << nb << std::endl;
+		std::cout << "int: " << nb << std::endl;
 }
 
 void				ScalarConverter::convertDouble(double nb)
 {
-	std::cout << ": " << std::fixed << std::setprecision(1) << nb << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << nb << std::endl;
 }
 
 void				ScalarConverter::convertFloat(float nb)
 {
-	std::cout << ": " << std::fixed << std::setprecision(1) << nb << "f" << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << nb << "f" << std::endl;
 }
 
 void ScalarConverter::convertChar(char nb)
 {
 	if ((nb >= 0 && nb <= 32) || nb == 127) {
-		std::cout << ": Non displayable" << std::endl;
+		std::cout << "char: Non displayable" << std::endl;
 		// } else if (nb > 127) {
-		// 	std::cout << ": Impossible" << std::endl;
+		// 	std::cout << "char: Impossible" << std::endl;
 	} else {
-		std::cout << ": '" << nb << "'" << std::endl;
+		std::cout << "char: '" << nb << "'" << std::endl;
 	}
 }
 
@@ -165,10 +165,10 @@ void				ScalarConverter::printError()
 
 void				ScalarConverter::printSpecial(std::string str)
 {
-	std::cout << ": impossible" << std::endl;
-	std::cout << ": impossible" << std::endl;
-	std::cout << ": " << str << std::endl;
-	std::cout << ": " << str << "f" << std::endl;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "double: " << str << std::endl;
+	std::cout << "float: " << str << "f" << std::endl;
 }
 
 void				ScalarConverter::convert(const std::string &str)
