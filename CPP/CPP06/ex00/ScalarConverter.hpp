@@ -32,12 +32,12 @@ public:
 			return ("Error: Not a digit");
 		}
 	};
-	class TooShortInput: public std::exception
+	class EmptyInput: public std::exception
 	{
 	public:
 		virtual const char *what() const throw()
 		{
-			return ("Error: too short input");
+			return ("Error: Empty input");
 		}
 	};
 	static void convert(const std::string &literal);

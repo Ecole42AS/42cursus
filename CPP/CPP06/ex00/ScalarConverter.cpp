@@ -31,9 +31,9 @@ void ScalarConverter::convert(const std::string &literal)
 {
     try
     {
-        if (literal.empty()) // Vérifie si la chaîne est vide
+        if (literal.empty())
         {
-            throw TooShortInput();
+            throw EmptyInput();
         }
 
         for (size_t i = 0; i < literal.length(); ++i)
