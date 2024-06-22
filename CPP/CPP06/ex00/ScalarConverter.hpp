@@ -27,7 +27,7 @@ private:
 	~ScalarConverter();
     ScalarConverter(const ScalarConverter &src);
     ScalarConverter &operator=(const ScalarConverter &rhs);
-	static void		getType(std::string str);
+	static void		getType(std::string literal);
 	static void		convertInt(int nb);
 	static void		convertDouble(double nb);
 	static void		convertFloat(float nb);
@@ -37,7 +37,7 @@ private:
 	static void		printFloat(float nb);
 	static void		printChar(char c);
 	static void		printError();
-	static void		printSpecial(std::string str);
+	static void		printSpecial(std::string literal);
 public:
 	class NotADigit : public std::exception
 	{
