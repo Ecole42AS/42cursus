@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 10:17:10 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/25 12:19:06 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/25 13:24:42 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,31 @@ void identify(Base *p)
 
 void identify(Base &p)
 {
-	try
-	{
-		dynamic_cast<A &>(p);
-		std::cout << "Reference to A" << std::endl;
-		return;
-	}
-	catch(const std::bad_cast& e) {}
-	try
-	{
-		dynamic_cast<B &>(p);
-		std::cout << "Reference to B" << std::endl;
-		return;
-	}
-	catch(const std::bad_cast& e) {}
-	try
-	{
-		dynamic_cast<C &>(p);
-		std::cout << "Reference to C" << std::endl;
-		return;
-	}
-	catch(const std::bad_cast& e) {}
+    try
+    {
+        dynamic_cast<A &>(p);
+        std::cout << "Reference to A" << std::endl;
+        return;
+    }
+    catch (const std::exception& e) {}
+
+    try
+    {
+        dynamic_cast<B &>(p);
+        std::cout << "Reference to B" << std::endl;
+        return;
+    }
+    catch (const std::exception& e) {}
+
+    try
+    {
+        dynamic_cast<C &>(p);
+        std::cout << "Reference to C" << std::endl;
+        return;
+    }
+    catch (const std::exception& e) {}
 }
+
 
 int main()
 {
