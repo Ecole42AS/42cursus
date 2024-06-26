@@ -1,4 +1,4 @@
-NAME =	IdentifyRealType
+NAME =	Template
 
 SRCS = $(wildcard *.cpp)
 
