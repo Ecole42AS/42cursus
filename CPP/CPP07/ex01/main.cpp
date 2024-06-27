@@ -1,19 +1,4 @@
-#include <iostream>
-#include <string>
-#include "iter.hpp"  // Inclure la déclaration de votre fonction template iter
-
-// Définir les fonctions non templates pour printElement et increment
-void printInt(const int &element) {
-    std::cout << element << std::endl;
-}
-
-void printString(const std::string &element) {
-    std::cout << element << std::endl;
-}
-
-void incrementInt(int &element) {
-    ++element;
-}
+#include "iter.hpp"
 
 int main() {
     int intArray[] = {1, 2, 3, 4, 5};
