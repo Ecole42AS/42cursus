@@ -24,15 +24,15 @@ int main() {
 
     // Test with printElement
     std::cout << "Printing intArray:" << std::endl;
-    iter(intArray, intArraySize, printInt);
+    iter(intArray, intArraySize, print<int>);
     
     std::cout << "Printing strArray:" << std::endl;
-    iter(strArray, strArraySize, printString);
+    iter(strArray, strArraySize, print<std::string>);
 
     // Test with increment
     std::cout << "Incrementing intArray:" << std::endl;
-    iter(intArray, intArraySize, incrementInt);
-    iter(intArray, intArraySize, printInt);
+    iter(intArray, intArraySize, increment<int>);
+    iter(intArray, intArraySize, print<int>);
 
     return 0;
 }
