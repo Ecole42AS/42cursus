@@ -1,4 +1,4 @@
-NAME =	Iter
+NAME =	Array
 
 SRCS = $(wildcard *.cpp)
 

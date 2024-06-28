@@ -31,10 +31,10 @@ public:
 };
 
 template <typename T>
-Array<T>::Array() : _arr(NULL), _size(0) {}
+Array<T>::Array() : _size(0), _arr(NULL) {}
 
 template <typename T>
-Array<T>::Array(unsigned int size) : _size(size), _arr(new T[size]) {}
+Array<T>::Array(unsigned int size) : _arr(new T[size]), _size(size) {}
 
 template <typename T>
 Array<T>::~Array()
@@ -44,7 +44,7 @@ Array<T>::~Array()
 }
 
 template <typename T>
-Array<T>::Array(const Array &src) : _size(src._size), _arr(NULL)
+Array<T>::Array(const Array &src) : _arr(NULL), _size(src._size)
 {
     if (src._arr) 
 	{
