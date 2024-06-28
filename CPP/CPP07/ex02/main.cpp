@@ -6,13 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 09:28:47 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/27 09:28:59 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/28 10:47:04 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // **************************** EXERCISE FILE *************************
-#include <iostream>
-#include <Array.hpp>
+
+#include "Array.hpp"
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -61,6 +61,6 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }

@@ -12,40 +12,67 @@
 
 #pragma once
 #include <iostream>
+#include <cstring>
+#include <ctime>
+#include <cstdlib>
 
 template <typename T>
 class Array {
 private:
-
+	T *_arr;
+	unsigned int _size;
 public:
     Array<T>();
-    Array<T>(size_t len);
+    Array<T>(unsigned int size);
     ~Array<T>();
     Array<T>(const Array &src);
     Array<T> &operator=(const Array &rhs);
+	T &operator[](unsigned int i);
 };
 
-Array::Array<T>()
+template <typename T>
+Array<T>::Array() : _arr(NULL), _size(0) {}
+
+template <typename T>
+Array<T>::Array(unsigned int size) : _size(size), _arr(new T[size]) {}
+
+template <typename T>
+Array<T>::~Array()
 {
-	
+	if (_arr)
+		delete[] _arr;
 }
 
-Array::Array<T>(size_t len)
+template <typename T>
+Array<T>::Array(const Array &src) : _size(src._size), _arr(NULL)
 {
-
+    if (src._arr) 
+	{
+        _arr = new T[_size];
+		std::memcpy(_arr, src._arr, src._size * sizeof(T));
+    }
 }
 
-Array::~Array<T>()
+template <typename T>
+Array<T> &Array<T>::operator=(const Array &rhs)
 {
-
+	if (this != &rhs)
+	{
+		delete[] _arr;
+		_size = rhs._size;
+		_arr = new T[rhs._size];
+		for (unsigned int i = 0; i < _size; i++)
+		{
+			_arr[i] = rhs._arr[i];
+		}
+	}
+	return *this;
 }
 
-Array::Array<T>(const Array &src)
+template <typename T>
+T &Array<T>::operator[](unsigned int i)
 {
-
-}
-
-Array::Array<T> &operator=(const Array &rhs)
-{
-
+	if (i >= _size)
+		throw std::out_of_range("out of range");
+	return (_arr[i]);
 }
