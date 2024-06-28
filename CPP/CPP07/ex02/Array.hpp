@@ -28,10 +28,11 @@ public:
     Array<T>(const Array &src);
     Array<T> &operator=(const Array &rhs);
 	T &operator[](unsigned int i);
+	unsigned int getSize() const;
 };
 
 template <typename T>
-Array<T>::Array() : _size(0), _arr(NULL) {}
+Array<T>::Array() : _arr(NULL), _size(0) {}
 
 template <typename T>
 Array<T>::Array(unsigned int size) : _arr(new T[size]), _size(size) {}
@@ -73,6 +74,12 @@ template <typename T>
 T &Array<T>::operator[](unsigned int i)
 {
 	if (i >= _size)
-		throw std::out_of_range("out of range");
+		throw std::out_of_range("index out of range");
 	return (_arr[i]);
+}
+
+template <typename T>
+unsigned int Array<T>::getSize() const
+{
+	return _size;
 }
