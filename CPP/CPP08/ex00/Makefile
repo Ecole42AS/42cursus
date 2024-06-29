@@ -1,4 +1,4 @@
-NAME =	Iter
+NAME =	easyfind
 
 SRCS = $(wildcard *.cpp)
 
