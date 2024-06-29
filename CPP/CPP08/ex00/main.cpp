@@ -6,11 +6,11 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 12:06:56 by astutz            #+#    #+#             */
-/*   Updated: 2024/06/29 13:59:09 by astutz           ###   ########.fr       */
+/*   Updated: 2024/06/29 14:00:43 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp" // Inclure le fichier d'en-tête contenant votre code
+#include "easyfind.hpp"
 
 int main() {
     std::vector<int> vec;
