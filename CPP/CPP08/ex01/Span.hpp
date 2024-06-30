@@ -26,8 +26,11 @@ public:
     Span(const Span &src);
     Span &operator=(const Span &rhs);
 	const std::vector<int> &getVec() const;
+	void setVec(std::vector<int> vec);
 	void addNumber(int n);
   	int shortestSpan() const;
 	int longestSpan() const;
+	void fillVec(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd, int n);
+	void printVec() const;
 };
 

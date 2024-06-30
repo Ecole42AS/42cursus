@@ -1,4 +1,4 @@
-NAME =	easyfind
+NAME =	span
 
 SRCS = $(wildcard *.cpp)
 

@@ -37,6 +37,11 @@ const std::vector<int> &Span::getVec() const
 	return _vec;
 }
 
+void Span::setVec(std::vector<int> vec)
+{
+	_vec = vec;
+}
+
 void Span::addNumber(int n)
 {
 	if (_vec.size() < _maxSize)
@@ -65,9 +70,6 @@ int Span::shortestSpan() const {
     return minSpan;
 }
 
-
-
-
 int Span::longestSpan() const
 {
     if (_vec.size() < 2) {
@@ -89,3 +91,27 @@ int Span::longestSpan() const
     return maxSpan;
 }
 
+void Span::fillVec(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd, int n)
+{
+	if (_vec.size() + std::distance(itBegin, itEnd) > _maxSize)
+		throw std::runtime_error("You don't respect the max size !");
+	for (; itBegin < itEnd; itBegin++)
+	{
+		std::vector<int> vec;
+std::vector<int> source = {1, 2, 3, 4};
+
+// Utilisation de std::copy avec std::back_inserter pour ajouter les éléments de source à vec
+std::copy(source.begin(), source.end(), std::back_inserter(vec));
+
+		// *itBegin = n;
+		_vec.push_back(*itBegin + n);
+	}		
+}
+
+void Span::printVec() const
+{
+	for (std::vector<int>::const_iterator it = _vec.begin(); it != _vec.end(); it++)
+	{
+		std::cout << *it << std::endl;
+	}
+}
