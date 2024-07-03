@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MutantStack.hpp                               			:+:      :+:    :+:   */
+/*   MutantStack.cpp                               			:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <iostream>
-#include <stack>
+#include "MutantStack.hpp"
 
-template <typename T>
-class MutantStack : public std::stack<T>
+template<typename T>
+MutantStack<T>::MutantStack() {}
+
+MutantStack::~MutantStack() {}
+
+MutantStack::MutantStack(const MutantStack &src)
 {
-private:
-    typedef typename std::stack<T>::container_type::iterator iterator;
-public:
-    MutantStack();
-    ~MutantStack();
-    MutantStack(const MutantStack &src);
-    MutantStack &operator=(const MutantStack &rhs);
-};
+    *this = src;
+}
+
+MutantStack &MutantStack::operator=(const MutantStack &rhs)
+{
+    if (this != &rhs) {
+		
+    }
+    return *this;
+}
 
