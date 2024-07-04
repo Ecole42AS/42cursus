@@ -10,6 +10,13 @@
 		"stdlib.h": "c",
 		"minitalk.h": "c",
 		"microshell.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"array": "cpp",
+		"deque": "cpp",
+		"string": "cpp",
+		"unordered_map": "cpp",
+		"vector": "cpp",
+		"string_view": "cpp",
+		"initializer_list": "cpp"
 	}
 }
