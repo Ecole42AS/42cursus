@@ -32,7 +32,7 @@ int main()
 		// shrubForm.execute(Antoine);
 		// robotomyForm.execute(Joe);
 		// PresidentialForm.execute(Victor);
-		AForm *shrub = intern.makeForm("shrubbery creatin", "myTarget");
+		AForm *shrub = intern.makeForm("shrubbery creation", "myTarget");
 		std::cout << *shrub << std::endl;
 		Antoine.executeForm(*shrub);
 	}
