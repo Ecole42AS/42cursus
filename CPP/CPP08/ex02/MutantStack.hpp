@@ -18,8 +18,8 @@ template <typename T>
 class MutantStack : public std::stack<T>
 {
 private:
-    typedef typename std::stack<T>::container_type::iterator iterator;
 public:
+    typedef typename std::stack<T>::container_type::iterator iterator;
     MutantStack();
     ~MutantStack();
     MutantStack(const MutantStack &src);
