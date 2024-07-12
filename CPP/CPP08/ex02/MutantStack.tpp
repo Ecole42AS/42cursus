@@ -12,22 +12,21 @@
 
 #include "MutantStack.hpp"
 
-
-template<typename T>v
+template <typename T>
 MutantStack<T>::MutantStack() {}
 
 MutantStack::~MutantStack() {}
 
-MutantStack::MutantStack(const MutantStack &src)
+MutantStack<T>::MutantStack(const MutantStack &src)
 {
-    *this = src;
+	*this = src;
 }
 
-MutantStack &MutantStack::operator=(const MutantStack &rhs)
+MutantStack<T> &MutantStack<T>::operator=(const MutantStack &rhs)
 {
-    if (this != &rhs) {
-		
-    }
-    return *this;
+	if (this != &rhs)
+	{
+	}
+	return *this;
 }
 
