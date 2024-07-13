@@ -1,6 +1,6 @@
 NAME =	span
 
-SRCS = $(wildcard *.cpp, wildcard *.tpp) 
+SRCS = $(wildcard *.cpp) 
 
 OBJS = ${SRCS:.cpp=.o}
 
