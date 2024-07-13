@@ -27,40 +27,12 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs)
     return *this;
 }
 
-// void ScalarConverter::convert(const std::string &literal)
-// {
-//     try
-//     {
-//         if (literal.empty())
-//         {
-//             throw EmptyInput();
-//         }
-
-//         for (size_t i = 0; i < literal.length(); ++i)
-//         {
-//             if (!std::isdigit(static_cast<unsigned char>(literal[i])))
-//             {
-//                 throw NotADigit();
-//             }
-//         }
-// 		int intValue = atoi(literal.c_str());
-// 		std::cout << intValue << std::endl;
-//     }
-//     catch(const std::exception& e)
-//     {
-//         std::cout << e.what() << std::endl;
-//     }
-// }
-
-
-
-
-
 void	ScalarConverter::getType(std::string literal)
 {
 	bool				isDouble = false;
 	bool				isFloat = false;
 	std::stringstream	ss(literal);
+
 
 	if (literal.empty())
 		return printError();
@@ -84,15 +56,27 @@ void	ScalarConverter::getType(std::string literal)
 	}
 	if (isDouble)
 	{
-		printDouble(std::atof(literal.c_str()));
+		double				nb;
+		ss >> nb;
+		if (ss.fail() || !ss.eof()) // verifie si toutes les données ont été lues
+            printError();
+		printDouble(nb);
 	}
 	else if (isFloat)
 	{
-		printFloat(std::atof(literal.c_str()));
+		float				nb;
+		ss >> nb;
+		if (ss.fail() || !ss.eof())
+			printError();
+		printFloat(nb);
 	}
 	else
 	{
-		printInt(std::atoi(literal.c_str()));
+		int					nb;
+		ss >> nb;
+		if (ss.fail() || !ss.eof())
+			printError();
+		printInt(nb);
 	}
 }
 
@@ -106,12 +90,28 @@ void	ScalarConverter::convertInt(int nb)
 
 void	ScalarConverter::convertDouble(double nb)
 {
-	std::cout << "double: " << std::fixed << std::setprecision(1) << nb << std::endl;
+	std::numeric_limits<double> limits;
+	// std::cout << limits.min() << std::endl;
+	// std::cout << DBL_MIN << std::endl;
+	// std::cout << limits.max() << std::endl;
+	// std::cout << DBL_MAX << std::endl;
+	if (nb < limits.min() || nb > limits.max())
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << std::fixed << std::setprecision(1) << nb << std::endl;
 }
 
 void	ScalarConverter::convertFloat(float nb)
 {
-	std::cout << "float: " << std::fixed << std::setprecision(1) << nb << "f" << std::endl;
+	std::numeric_limits<float> limits;
+	// std::cout << limits.min() << std::endl;
+	// std::cout << FLT_MIN << std::endl;
+	// std::cout << limits.max() << std::endl;
+	// std::cout << FLT_MAX << std::endl;
+	if (nb < limits.min() || nb > limits.max())
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << std::fixed << std::setprecision(1) << nb << "f" << std::endl;
 }
 
 void ScalarConverter::convertChar(char nb)

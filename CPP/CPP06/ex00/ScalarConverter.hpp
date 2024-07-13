@@ -19,6 +19,8 @@
 #include <climits>
 #include <cstdlib>
 #include <cctype>
+#include <limits>
+#include <cfloat>
 
 
 class ScalarConverter {
