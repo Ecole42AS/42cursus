@@ -1,4 +1,4 @@
-NAME =	Template
+NAME =	btc
 
 SRCS = $(wildcard *.cpp)
 
