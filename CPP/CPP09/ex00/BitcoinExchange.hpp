@@ -17,7 +17,8 @@
 
 class BitcoinExchange {
 private:
-    std::map<std::string, double> _exchangeRate;
+    std::map<std::string, double> _csvFile;
+    std::map<std::string, double> inputFile;
 public:
     BitcoinExchange();
     ~BitcoinExchange();
