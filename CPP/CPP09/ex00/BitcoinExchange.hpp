@@ -18,12 +18,13 @@
 class BitcoinExchange {
 private:
     std::map<std::string, double> _csvFile;
-    std::map<std::string, double> inputFile;
+    std::map<std::string, double> _inputFile;
 public:
     BitcoinExchange();
     ~BitcoinExchange();
     BitcoinExchange(const BitcoinExchange &src);
     BitcoinExchange &operator=(const BitcoinExchange &rhs);
+	void parseCSV(std::string fileName);
 };
 
 
