@@ -33,11 +33,12 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
     return *this;
 }
 
-BitcoinExchange::BitcoinExchange parseCSV(std::string fileName)
+void BitcoinExchange::parseCSV(std::string fileName)
 {
-	std::ifstream file(fileName);
+	std::ifstream file(fileName.c_str());
 	std::string date;
 	std::string line;
+	unsigned int price;
 
 
 	if (!file.is_open())
@@ -46,11 +47,11 @@ BitcoinExchange::BitcoinExchange parseCSV(std::string fileName)
 		return;
 	}
 
-	while (std::get_line(file))
+	while (std::getline(file, line))
 	{
-
+		std::cout << line << std::endl;
 	}
-
+	file.close();
 
 }
 
