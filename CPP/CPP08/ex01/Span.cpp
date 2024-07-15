@@ -97,11 +97,11 @@ void Span::fillVec(std::vector<int>::iterator itBegin, std::vector<int>::iterato
 		throw std::runtime_error("You don't respect the max size !");
 	for (; itBegin < itEnd; itBegin++)
 	{
-		std::vector<int> vec;
-std::vector<int> source = {1, 2, 3, 4};
+		// std::vector<int> vec;
+		// std::vector<int> source = {1, 2, 3, 4};
 
-// Utilisation de std::copy avec std::back_inserter pour ajouter les éléments de source à vec
-std::copy(source.begin(), source.end(), std::back_inserter(vec));
+		// // Utilisation de std::copy avec std::back_inserter pour ajouter les éléments de source à vec
+		// std::copy(source.begin(), source.end(), std::back_inserter(vec));
 
 		// *itBegin = n;
 		_vec.push_back(*itBegin + n);
