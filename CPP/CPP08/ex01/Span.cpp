@@ -32,14 +32,13 @@ Span &Span::operator=(const Span &rhs)
     return *this;
 }
 
-const std::vector<int> &Span::getVec() const
-{
+std::vector<int> Span::getVec() const {
 	return _vec;
 }
 
-void Span::setVec(std::vector<int> vec)
+unsigned int Span::getMaxSize() const
 {
-	_vec = vec;
+	return _maxSize;
 }
 
 void Span::addNumber(int n)
@@ -93,6 +92,7 @@ int Span::longestSpan() const
 
 void Span::fillVec(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd, int n)
 {
+	std::cout << "distance: " << std::distance(itBegin, itEnd) << std::endl;
 	if (_vec.size() + std::distance(itBegin, itEnd) > _maxSize)
 		throw std::runtime_error("You don't respect the max size !");
 	for (; itBegin < itEnd; itBegin++)

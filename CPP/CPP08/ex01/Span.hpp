@@ -25,8 +25,8 @@ public:
     ~Span();
     Span(const Span &src);
     Span &operator=(const Span &rhs);
-	const std::vector<int> &getVec() const;
-	void setVec(std::vector<int> vec);
+	std::vector<int> getVec() const;
+	unsigned int getMaxSize() const;
 	void addNumber(int n);
   	int shortestSpan() const;
 	int longestSpan() const;
