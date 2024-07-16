@@ -90,22 +90,17 @@ int Span::longestSpan() const
     return maxSpan;
 }
 
-void Span::fillVec(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd, int n)
+void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) 
 {
-	std::cout << "distance: " << std::distance(itBegin, itEnd) << std::endl;
-	if (_vec.size() + std::distance(itBegin, itEnd) > _maxSize)
-		throw std::runtime_error("You don't respect the max size !");
-	for (; itBegin < itEnd; itBegin++)
+	std::cout << "capacity: " << _vec.capacity() << std::endl;
+	std::cout << "maxSize: " << _maxSize << std::endl;
+	std::cout << "size: " << _vec.size() << std::endl;
+	std::cout << "distance: " << std::distance(begin, end) << std::endl;
+	if (_vec.size() + std::distance(begin, end) > _maxSize) 
 	{
-		// std::vector<int> vec;
-		// std::vector<int> source = {1, 2, 3, 4};
-
-		// // Utilisation de std::copy avec std::back_inserter pour ajouter les éléments de source à vec
-		// std::copy(source.begin(), source.end(), std::back_inserter(vec));
-
-		// *itBegin = n;
-		_vec.push_back(*itBegin + n);
-	}		
+		throw std::runtime_error("Vector is full");
+	}
+	_vec.insert(_vec.end(), begin, end);
 }
 
 void Span::printVec() const

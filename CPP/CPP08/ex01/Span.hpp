@@ -30,7 +30,7 @@ public:
 	void addNumber(int n);
   	int shortestSpan() const;
 	int longestSpan() const;
-	void fillVec(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd, int n);
+	void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 	void printVec() const;
 };
 
