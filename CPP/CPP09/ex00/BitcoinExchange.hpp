@@ -14,6 +14,11 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <cstdlib>
+
 
 class BitcoinExchange {
 private:
@@ -25,6 +30,7 @@ public:
     BitcoinExchange(const BitcoinExchange &src);
     BitcoinExchange &operator=(const BitcoinExchange &rhs);
 	void parseCSV(std::string fileName);
+
 };
 
 
