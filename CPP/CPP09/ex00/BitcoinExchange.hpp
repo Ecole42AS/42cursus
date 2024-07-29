@@ -29,7 +29,9 @@ public:
     ~BitcoinExchange();
     BitcoinExchange(const BitcoinExchange &src);
     BitcoinExchange &operator=(const BitcoinExchange &rhs);
-	void parseCSV(std::string fileName);
+	void parseCSV();
+	void parseInput(std::string fileName);
+	std::string trim(const std::string& str);
 
 };
 

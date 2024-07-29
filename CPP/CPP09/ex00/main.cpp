@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 15:33:49 by astutz            #+#    #+#             */
-/*   Updated: 2024/07/15 11:55:42 by astutz           ###   ########.fr       */
+/*   Updated: 2024/07/29 20:57:36 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int main(int ac, char **av)
 	if (ac == 2)
 	{
 		BitcoinExchange btc;
-		btc.parseCSV(av[1]);
+		btc.parseCSV();
+		btc.parseInput(av[1]);
 		// std::ifstream ifs(av[1]);
 		
 		// if (!ifs)
