@@ -22,8 +22,8 @@
 
 class BitcoinExchange {
 private:
-    std::map<std::string, double> _csvFile;
-    std::map<std::string, double> _inputFile;
+    std::map<std::string, float> _csvFile;
+    std::map<std::string, float> _inputFile;
 public:
     BitcoinExchange();
     ~BitcoinExchange();
@@ -32,8 +32,12 @@ public:
 	void parseCSV();
 	void parseInput(std::string fileName);
 	std::string trim(const std::string& str);
-
+	bool isValidDate(const std::string& date);
+	bool isValidValue(const float value);
+	void processLines();
+	void printInputFile();
 };
+
 
 
 
