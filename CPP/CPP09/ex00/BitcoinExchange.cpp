@@ -47,67 +47,6 @@ void BitcoinExchange::parseCSV()
     }
 }
 
-// void BitcoinExchange::parseInput(std::string fileName)
-// {
-//     std::ifstream file(fileName.c_str());
-//     if (!file.is_open())
-//     {
-//         std::cerr << "Error: could not open input file." << std::endl;
-//         return;
-//     }
-
-//     std::string line;
-// 	std::cout << line << std::endl;
-//     if (!std::getline(file, line) || trim(line) != "date | value")
-//     {
-//         std::cerr << "Error: incorrect header in input file. Expected 'date | value'." << std::endl;
-//         return;
-//     }
-// 	std::cout << line << std::endl;
-
-//     while (std::getline(file, line))
-//     {
-
-//         std::string trimmedLine = trim(line);
-
-//         if (!trimmedLine.empty())
-//         {
-//             std::string date;
-//             float value;
-
-//             std::istringstream ss(trimmedLine);
-//             if (std::getline(ss, date, '|') && (ss >> value))
-//             {
-//                 date = trim(date);
-//                 // if (isValidDate(date) && isValidValue(value))
-//                 // {
-// 				// std::cout << date << std::endl;
-// 				// std::cout << value << std::endl;
-//                     _inputFile[date] = value;
-//                 // }
-//                 // else
-//                 // {
-//                 //     if (value < 0)
-//                 //         std::cerr << "Error: not a positive number." << std::endl;
-//                 //     else if (value > 1000)
-//                 //         std::cerr << "Error: too large a number." << std::endl;
-//                 //     else
-//                 //         std::cerr << "Error: invalid data in line '" << trimmedLine << "'." << std::endl;
-//                 // }
-//             }
-//             // else
-//             // {
-//             //     std::cerr << "Error: bad input => " << trimmedLine << std::endl;
-//             // }
-//         }
-// 		// processLines();
-//     }
-// 	for (std::map<std::string, float>::iterator it = _inputFile.begin(); it != _inputFile.end(); ++it) {
-// 		std::cout << it->first << ": " << std::fixed << std::setprecision(2) << it->second << std::endl;
-// 	}
-// }
-
-
 void BitcoinExchange::parseInput(std::string fileName)
 {
     std::ifstream file(fileName.c_str());
@@ -118,11 +57,19 @@ void BitcoinExchange::parseInput(std::string fileName)
     }
 
     std::string line;
-    if (!std::getline(file, line) || trim(line) != "date | value")
+
+    if (!std::getline(file, line))
     {
-        std::cerr << "Error: incorrect header in input file. Expected 'date | value'." << std::endl;
+        std::cerr << "Error: file is empty or could not read from file." << std::endl;
         return;
     }
+
+    std::string trimmedLine = trim(line);
+    if (trimmedLine != "date | value")
+    {
+        std::cerr << "Error: incorrect header in input file. Expected 'date | value', but found '" << trimmedLine << "'." << std::endl;
+    }
+
 
     while (std::getline(file, line))
     {
@@ -137,27 +84,24 @@ void BitcoinExchange::parseInput(std::string fileName)
             if (std::getline(ss, date, '|') && (ss >> value))
             {
                 date = trim(date);
-                // if (isValidDate(date) && isValidValue(value))
-				std::map<std::string, float>::iterator it = _csvFile.find(date);
-				if (it != _csvFile.end())
-					std::cout << date << " => " << value << " = " << value * it->second << std::endl;
+				if (!isValidDate(date))
+					std::cerr << "Error: invalid date." << std::endl;
+				else if (value < 0)
+					std::cerr << "Error: not a positive number." << std::endl;
+				else if (value > 1000)
+					std::cerr << "Error: too large a number." << std::endl;
 				else
 				{
-					it = _csvFile.lower_bound(date);
-					--it;
-					std::cout << date << " => " << value << " = " << value * it->second << std::endl;
-				}	
-				// return ;
-			// }
-            //     else
-            //     {
-            //         if (value < 0)
-            //             std::cerr << "Error: not a positive number." << std::endl;
-            //         else if (value > 1000)
-            //             std::cerr << "Error: too large a number." << std::endl;
-            //         else
-            //             std::cerr << "Error: invalid data in line '" << trimmedLine << "'." << std::endl;
-            //     }
+					std::map<std::string, float>::iterator it = _csvFile.find(date);
+					if (it != _csvFile.end() && isValidDate(date))
+						std::cout << date << " => " << value << " = " << value * it->second << std::endl;
+					else
+					{
+						it = _csvFile.lower_bound(date); //retourne iterator sur le premier élément >= date
+						--it;
+						std::cout << date << " => " << value << " = " << value * it->second << std::endl;
+					}	
+				}
             }
             else
             {
@@ -166,47 +110,6 @@ void BitcoinExchange::parseInput(std::string fileName)
         }
     }
 }
-
-
-
-// void BitcoinExchange::printInputFile()
-// {
-// 	std::string outputFileName = "output.txt";
-//     std::ofstream outFile(outputFileName.c_str());
-
-//     if (!outFile.is_open()) {
-//         std::cerr << "Error: could not open output file." << std::endl;
-//         return;
-//     }
-
-//     for (std::map<std::string, float>::iterator it = _inputFile.begin(); it != _inputFile.end(); ++it) {
-//         outFile << it->first << ": " << std::fixed << std::setprecision(2) << it->second << std::endl;
-//     }
-
-//     outFile.close();
-
-// }
-
-
-void BitcoinExchange::printInputFile()
-{
-    std::string outputFileName = "output.txt";
-    std::ofstream outFile(outputFileName.c_str());
-
-    if (!outFile.is_open())
-    {
-        std::cerr << "Error: could not open output file." << std::endl;
-        return;
-    }
-
-    for (std::map<std::string, float>::const_iterator it = _inputFile.begin(); it != _inputFile.end(); ++it)
-    {
-        outFile << it->first << ": " << std::fixed << std::setprecision(2) << it->second << std::endl;
-    }
-
-    outFile.close();
-}
-
 
 std::string BitcoinExchange::trim(const std::string& str)
 {
@@ -222,34 +125,53 @@ std::string BitcoinExchange::trim(const std::string& str)
     return trimmed.substr(start, end - start + 1);
 }
 
-bool BitcoinExchange::isValidDate(const std::string& date)
+#include "BitcoinExchange.hpp"
+#include <ctime>
+#include <cstdlib>
+#include <sstream>
+#include <iostream>
+
+bool BitcoinExchange::isValidDate(const std::string& date) const
 {
-    if (date.size() != 10) return false;
-    return date[4] == '-' && date[7] == '-' && 
-           std::isdigit(date[0]) && std::isdigit(date[1]) && std::isdigit(date[2]) && std::isdigit(date[3]) &&
-           std::isdigit(date[5]) && std::isdigit(date[6]) &&
-           std::isdigit(date[8]) && std::isdigit(date[9]);
+    if (date.size() != 10)
+        return false;
+
+    if (date[4] != '-' || date[7] != '-' || !std::isdigit(date[0]) || !std::isdigit(date[1]) ||
+        !std::isdigit(date[2]) || !std::isdigit(date[3]) || !std::isdigit(date[5]) ||
+        !std::isdigit(date[6]) || !std::isdigit(date[8]) || !std::isdigit(date[9]))
+    {
+        return false;
+    }
+
+    int year = std::atoi(date.substr(0, 4).c_str());
+    int month = std::atoi(date.substr(5, 2).c_str());
+    int day = std::atoi(date.substr(8, 2).c_str());
+
+    if (year < 2009 || (year == 2009 && (month < 1 || (month == 1 && day < 2))))
+        return false;
+
+    if (month < 1 || month > 12)
+        return false;
+
+    if (day < 1 || day > 31)
+        return false;
+
+    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+        return false;
+
+    if (month == 2)
+	{
+        bool isLeapYear = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+        if (isLeapYear && day > 29)
+            return false;
+        
+        else if (!isLeapYear && day > 28)
+            return false;
+    }
+
+    return true;
 }
 
-bool BitcoinExchange::isValidValue(const float value)
-{
-    return value >= 0 && value <= 1000;
-}
-
-// bool BitcoinExchange::isValidValue(float value)
-// {
-//     if (value < 0)
-//     {
-//         std::cerr << "Error: not a positive number." << std::endl;
-//         return false;
-//     }
-//     if (value > 1000)
-//     {
-//         std::cerr << "Error: too large a number." << std::endl;
-//         return false;
-//     }
-//     return true;
-// }
 
 
 void BitcoinExchange::processLines()

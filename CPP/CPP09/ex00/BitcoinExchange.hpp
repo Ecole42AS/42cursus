@@ -18,6 +18,8 @@
 #include <sstream>
 #include <iomanip>
 #include <cstdlib>
+#include <ctime>
+
 
 
 class BitcoinExchange {
@@ -32,10 +34,9 @@ public:
 	void parseCSV();
 	void parseInput(std::string fileName);
 	std::string trim(const std::string& str);
-	bool isValidDate(const std::string& date);
+	bool isValidDate(const std::string& date) const;
 	bool isValidValue(const float value);
 	void processLines();
-	void printInputFile();
 };
 
 
