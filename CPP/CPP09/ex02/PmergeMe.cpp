@@ -36,10 +36,11 @@ void PmergeMe::setArrayCapacity(size_t capacity) {
 
 void PmergeMe::merge(const std::vector<int>& leftArray, const std::vector<int>& rightArray, std::vector<int>& array) {
     size_t leftSize = leftArray.size();
+	std::cout << "leftSize: " << leftSize << std::endl;
     size_t rightSize = rightArray.size();
+	std::cout << "rightSize: " << rightSize << std::endl;
     size_t i = 0, l = 0, r = 0;
 
-    // Fusionner les tableaux
     while (l < leftSize && r < rightSize) {
         if (leftArray[l] < rightArray[r]) {
             array[i++] = leftArray[l++];
@@ -48,27 +49,26 @@ void PmergeMe::merge(const std::vector<int>& leftArray, const std::vector<int>& 
         }
     }
 
-    // Copier les éléments restants de leftArray, s'il y en a
     while (l < leftSize) {
         array[i++] = leftArray[l++];
     }
 
-    // Copier les éléments restants de rightArray, s'il y en a
     while (r < rightSize) {
         array[i++] = rightArray[r++];
     }
 }
 
 void PmergeMe::mergeSort(std::vector<int>& array, size_t length) {
-    if (length <= 1) return; // Cas de base
-
+    if (length <= 1)
+		return;
+	std::cout << "length: " << length << std::endl;
     size_t middle = length / 2;
+	std::cout << "middle: " << middle << std::endl;
     std::vector<int> leftArray(array.begin(), array.begin() + middle);
     std::vector<int> rightArray(array.begin() + middle, array.end());
 
     mergeSort(leftArray, middle);
     mergeSort(rightArray, length - middle);
-
-    // Merge the sorted halves back into the original array
+	std::cout << "leftArray: TEST" << std::endl;
     merge(leftArray, rightArray, array);
 }
