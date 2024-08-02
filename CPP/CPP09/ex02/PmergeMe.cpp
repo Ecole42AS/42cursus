@@ -16,22 +16,28 @@ PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {}
 
-PmergeMe::PmergeMe(const PmergeMe &src)
-{
-    *this = src;
-}
+PmergeMe::PmergeMe(const PmergeMe &src) : _array(src._array), _deque(src._deque) {}
 
-PmergeMe &PmergeMe::operator=(const PmergeMe &rhs)
-{
+PmergeMe &PmergeMe::operator=(const PmergeMe &rhs) {
     if (this != &rhs) {
-		
+        _array = rhs._array;
+        _deque = rhs._deque;
     }
     return *this;
 }
 
-// Fonction de fusion des tableaux
-void PmergeMe::merge(int* leftArray, int leftSize, int* rightArray, int rightSize, int* array) {
-    int i = 0, l = 0, r = 0;
+std::vector<int>& PmergeMe::getArray() {
+    return _array;
+}
+
+void PmergeMe::setArrayCapacity(size_t capacity) {
+    _array.reserve(capacity);
+}
+
+void PmergeMe::merge(const std::vector<int>& leftArray, const std::vector<int>& rightArray, std::vector<int>& array) {
+    size_t leftSize = leftArray.size();
+    size_t rightSize = rightArray.size();
+    size_t i = 0, l = 0, r = 0;
 
     // Fusionner les tableaux
     while (l < leftSize && r < rightSize) {
@@ -53,27 +59,16 @@ void PmergeMe::merge(int* leftArray, int leftSize, int* rightArray, int rightSiz
     }
 }
 
-// Fonction de tri par fusion
-void PmergeMe::mergeSort(int* array, int length) {
+void PmergeMe::mergeSort(std::vector<int>& array, size_t length) {
     if (length <= 1) return; // Cas de base
 
-    int middle = length / 2;
-    int* leftArray = new int[middle];
-    int* rightArray = new int[length - middle];
-
-    // Copier les données dans les tableaux temporaires
-    for (int i = 0; i < middle; ++i) {
-        leftArray[i] = array[i];
-    }
-    for (int i = middle; i < length; ++i) {
-        rightArray[i - middle] = array[i];
-    }
+    size_t middle = length / 2;
+    std::vector<int> leftArray(array.begin(), array.begin() + middle);
+    std::vector<int> rightArray(array.begin() + middle, array.end());
 
     mergeSort(leftArray, middle);
     mergeSort(rightArray, length - middle);
-    merge(leftArray, middle, rightArray, length - middle, array);
 
-    delete[] leftArray;
-    delete[] rightArray;
+    // Merge the sorted halves back into the original array
+    merge(leftArray, rightArray, array);
 }
-
