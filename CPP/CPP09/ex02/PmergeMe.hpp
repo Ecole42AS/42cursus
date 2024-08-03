@@ -15,6 +15,7 @@
 #include <vector>
 #include <deque>
 #include <cstdlib>
+#include <climits>
 
 class PmergeMe {
 private:
@@ -28,6 +29,10 @@ public:
     
     void merge(const std::vector<int>& leftArray, const std::vector<int>& rightArray, std::vector<int>& array);
     void mergeSort(std::vector<int>& array, size_t length);
-    std::vector<int>& getArray();  // Modifié pour retourner une référence non-const
+    std::vector<int>& getArray();
     void setArrayCapacity(size_t capacity);
+	std::deque<int>& getDeque();
+	void setDequeCapacity(size_t capacity);
+	void mergeSortDeque(std::deque<int>& deque);
+	void mergeDeque(const std::deque<int>& leftDeque, const std::deque<int>& rightDeque, std::deque<int>& deque);
 };
