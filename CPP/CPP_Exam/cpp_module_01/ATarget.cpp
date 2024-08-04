@@ -6,48 +6,45 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 10:14:57 by astutz            #+#    #+#             */
-/*   Updated: 2024/08/04 10:23:03 by astutz           ###   ########.fr       */
+/*   Updated: 2024/08/04 13:07:25 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Atarget.hpp"
+#include "ATarget.hpp"
 
-Atarget::Atarget()
+ATarget::ATarget()
 {
 	
 }
 
-virtual Atarget::~Atarget()
+ATarget::~ATarget()
 {
 	
 }
 
-Atarget::Atarget(std::string type) : _type(type)
+ATarget::ATarget(std::string type) : _type(type)
 {
 
 }
 
-Atarget::ATarget(const Atarget &src) : _type(src._type), _effects(src._effects)
+ATarget::ATarget(const ATarget &src) : _type(src._type)
 {
 	
 }
 
-ATarget &Atarget::operator=(const ATarget &rhs)
+ATarget &ATarget::operator=(const ATarget &rhs)
 {
 	if (this != &rhs)
-	{
-		_type = rhs._type
-		_effects = rhs._effects
-	}
+		_type = rhs._type;
 	return *this;
 }
 
-std::string Atarget::getType() const
+const std::string &ATarget::getType() const
 {
 	return _type;
 }
 
-void Atarget::getHitBySpell(const Aspell &spell) const
+void ATarget::getHitBySpell(const ASpell &spell) const
 {
-	
+	std::cout << _type << " has been " << spell.getEffects() << "!" << std::endl;
 }

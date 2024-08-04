@@ -6,12 +6,13 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 09:24:13 by astutz            #+#    #+#             */
-/*   Updated: 2024/08/04 10:23:54 by astutz           ###   ########.fr       */
+/*   Updated: 2024/08/04 12:49:14 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
+#include "ATarget.hpp"
 
 class ATarget;
 class ASpell
@@ -23,10 +24,10 @@ class ASpell
 		ASpell();
 		virtual ~ASpell();
 		ASpell(std::string name, std::string effects);
-		Aspell(const ASpell &src);
-		Aspell &operator=(const Aspell &rhs);
+		ASpell(const ASpell &src);
+		ASpell &operator=(const ASpell &rhs);
 		std::string getName() const;
 		std::string getEffects() const;
-		virtual Aspell *clone() const = 0;
+		virtual ASpell *clone() const = 0;
 		void launch(const ATarget &target) const;
 };

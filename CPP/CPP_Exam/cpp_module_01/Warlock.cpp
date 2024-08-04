@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:07:36 by astutz            #+#    #+#             */
-/*   Updated: 2024/08/03 17:36:22 by astutz           ###   ########.fr       */
+/*   Updated: 2024/08/04 13:01:15 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,26 @@ void Warlock::setTitle(const std::string &title)
 void Warlock::introduce() const
 {
 	std::cout << _name << ": I am " << _name << ", " << _title << "!" << std::endl;
+}
+
+
+void Warlock::learnSpell(ASpell *spell)
+{
+	if (spell)	
+		if (_spellBook.find(spell->getName()) == _spellBook.end())
+			_spellBook[spell->getName()] = spell->clone();
+}
+
+void Warlock::forgetSpell(std::string spellName)
+{
+	if (_spellBook.find(spellName) != _spellBook.end())
+		_spellBook.erase(_spellBook.find(spellName));
+}
+
+void Warlock::launchSpell(std::string spellName, ATarget &target)
+{
+	if (_spellBook.find(spellName) != _spellBook.end())
+		_spellBook[spellName]->launch(target);
 }
 
 
