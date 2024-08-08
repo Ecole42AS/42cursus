@@ -6,7 +6,7 @@
 /*   By: astutz <astutz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 21:54:49 by astutz            #+#    #+#             */
-/*   Updated: 2024/08/04 22:53:49 by astutz           ###   ########.fr       */
+/*   Updated: 2024/08/06 17:08:58 by astutz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ TargetGenerator::TargetGenerator()
 
 TargetGenerator::~TargetGenerator()
 {
-	// std::map<std::string, ATarget*>::iterator it = _target.begin();
-	// for (; it != _target.end(); ++it)
-	// 	delete it->second;
-	// _target.clear();
 }
 
 TargetGenerator::TargetGenerator(const TargetGenerator &src) : _target(src._target)
@@ -41,6 +37,7 @@ void TargetGenerator::learnTargetType(ATarget* target)
 	if (target)
 		_target[target->getType()] = target;
 }
+
 
 void TargetGenerator::forgetTargetType(std::string const &targetType)
 {
