@@ -39,7 +39,7 @@
 // }
 
 std::string extractBody(const std::string& raw_request) {
-    size_t body_start = raw_request.find("\\r\\n\\r\\n");
+    size_t body_start = raw_request.find("\r\n\r\n");
     if (body_start != std::string::npos) {
         return raw_request.substr(body_start + 4);
     }
