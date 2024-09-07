@@ -2,7 +2,7 @@
 #include <map>
 #include <string>
 #include <stdexcept>
-#include "parsing2.hpp"
+#include "parsing/parsing2.hpp"
 
 // Fonction utilitaire pour gérer les erreurs d'extraction de sous-chaînes
 std::string safe_substr(const std::string& str, size_t start, size_t length) {
@@ -10,6 +10,7 @@ std::string safe_substr(const std::string& str, size_t start, size_t length) {
     if (start + length > str.size()) length = str.size() - start;
     return str.substr(start, length);
 }
+
 
 // Fonction utilitaire pour enlever les espaces de début et de fin
 std::string trim(const std::string& str) {
@@ -21,11 +22,20 @@ std::string trim(const std::string& str) {
 }
 
 // Extraction de la méthode HTTP
+// std::string extractMethod(const std::string& raw_request) {
+//     size_t method_end = raw_request.find(' ');
+//     if (method_end == std::string::npos) throw std::runtime_error("Invalid request format: missing method.");
+//     return raw_request.substr(0, method_end);
+// }
+
 std::string extractMethod(const std::string& raw_request) {
     size_t method_end = raw_request.find(' ');
-    if (method_end == std::string::npos) throw std::runtime_error("Invalid request format: missing method.");
+    if (method_end == std::string::npos || method_end == 0) {
+        throw std::runtime_error("Invalid request format: missing method.");
+    }
     return raw_request.substr(0, method_end);
 }
+
 
 // Extraction de l'URI
 std::string extractURI(const std::string& raw_request) {
@@ -99,51 +109,51 @@ bool checkIfChunked(const std::string& raw_request) {
     return encoding == "chunked";
 }
 
-int main() {
-    try {
-        const std::string raw_request = 
-            "POST /api/v1/upload HTTP/1.1\r\n"
-            "Bi: 123\r\n"
-            "Host: www.example.com\r\n"
-            "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\r\n"
-            "Accept: application/json\r\n"
-            "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW\r\n"
-            "Content-Length: 123\r\n"
-            "Authorization: Bearer your_access_token_here\r\n"
-            "Cookie: sessionId=abc123; userId=789\r\n"
-            "Accept-Encoding: gzip, deflate\r\n"
-            "\r\n"
-            "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\n"
-            "Content-Disposition: form-data; name=\"file\"; filename=\"example.txt\"\r\n"
-            "Content-Type: text/plain\r\n"
-            "\r\n"
-            "This is the content of the file.\r\n"
-            "------WebKitFormBoundary7MA4YWxkTrZu0gW--\r\n";
+// int main() {
+//     try {
+//         const std::string raw_request = 
+//             "POST /api/v1/upload HTTP/1.1\r\n"
+//             "Bi: 123\r\n"
+//             "Host: www.example.com\r\n"
+//             "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\r\n"
+//             "Accept: application/json\r\n"
+//             "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW\r\n"
+//             "Content-Length: 123\r\n"
+//             "Authorization: Bearer your_access_token_here\r\n"
+//             "Cookie: sessionId=abc123; userId=789\r\n"
+//             "Accept-Encoding: gzip, deflate\r\n"
+//             "\r\n"
+//             "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\n"
+//             "Content-Disposition: form-data; name=\"file\"; filename=\"example.txt\"\r\n"
+//             "Content-Type: text/plain\r\n"
+//             "\r\n"
+//             "This is the content of the file.\r\n"
+//             "------WebKitFormBoundary7MA4YWxkTrZu0gW--\r\n";
 
-        std::string method = extractMethod(raw_request);
-        std::string uri = extractURI(raw_request);
-        std::string http_version = extractHTTPVersion(raw_request);
-        std::map<std::string, std::string> headers = extractHeaders(raw_request);
-        std::string body = extractBody(raw_request);
+//         std::string method = extractMethod(raw_request);
+//         std::string uri = extractURI(raw_request);
+//         std::string http_version = extractHTTPVersion(raw_request);
+//         std::map<std::string, std::string> headers = extractHeaders(raw_request);
+//         std::string body = extractBody(raw_request);
 
-        std::cout << "Method: " << method << std::endl;
-        std::cout << "URI: " << uri << std::endl;
-        std::cout << "HTTP Version: " << http_version << std::endl;
-        std::cout << "Headers:" << std::endl;
-        for (std::map<std::string, std::string>::const_iterator it = headers.begin(); it != headers.end(); ++it) {
-            std::cout << it->first << ": " << it->second << std::endl;
-        }
-        std::cout << "Body: " << body << std::endl;
+//         std::cout << "Method: " << method << std::endl;
+//         std::cout << "URI: " << uri << std::endl;
+//         std::cout << "HTTP Version: " << http_version << std::endl;
+//         std::cout << "Headers:" << std::endl;
+//         for (std::map<std::string, std::string>::const_iterator it = headers.begin(); it != headers.end(); ++it) {
+//             std::cout << it->first << ": " << it->second << std::endl;
+//         }
+//         std::cout << "Body: " << body << std::endl;
         
-        // Check if the request is chunked
-        if (checkIfChunked(raw_request)) {
-            std::cout << "The request is chunked." << std::endl;
-        } else {
-            std::cout << "The request is not chunked." << std::endl;
-        }
-    } catch (const std::runtime_error& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+//         // Check if the request is chunked
+//         if (checkIfChunked(raw_request)) {
+//             std::cout << "The request is chunked." << std::endl;
+//         } else {
+//             std::cout << "The request is not chunked." << std::endl;
+//         }
+//     } catch (const std::runtime_error& e) {
+//         std::cerr << "Error: " << e.what() << std::endl;
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
