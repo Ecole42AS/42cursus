@@ -21,18 +21,10 @@ std::string trim(const std::string& str) {
     return safe_substr(str, first_non_space, last_non_space - first_non_space + 1);
 }
 
-// Extraction de la méthode HTTP
-// std::string extractMethod(const std::string& raw_request) {
-//     size_t method_end = raw_request.find(' ');
-//     if (method_end == std::string::npos) throw std::runtime_error("Invalid request format: missing method.");
-//     return raw_request.substr(0, method_end);
-// }
-
+Extraction de la méthode HTTP
 std::string extractMethod(const std::string& raw_request) {
     size_t method_end = raw_request.find(' ');
-    if (method_end == std::string::npos || method_end == 0) {
-        throw std::runtime_error("Invalid request format: missing method.");
-    }
+    if (method_end == std::string::npos) throw std::runtime_error("Invalid request format: missing method.");
     return raw_request.substr(0, method_end);
 }
 
