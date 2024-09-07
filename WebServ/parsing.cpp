@@ -1,42 +1,42 @@
 #include "parsing.hpp"
 
-// std::string extractMethod(const std::string& raw_request) {
-//     size_t method_end = raw_request.find(' ');
-//     return raw_request.substr(0, method_end);//substr(start, length)
-// }
+std::string extractMethod(const std::string& raw_request) {
+    size_t method_end = raw_request.find(' ');
+    return raw_request.substr(0, method_end);//substr(start, length)
+}
 
-// std::string extractURI(const std::string& raw_request) {
-//     size_t method_end = raw_request.find(' ');
-//     size_t uri_end = raw_request.find(' ', method_end + 1);
-//     return raw_request.substr(method_end + 1, uri_end - method_end - 1);
-// }
+std::string extractURI(const std::string& raw_request) {
+    size_t method_end = raw_request.find(' ');
+    size_t uri_end = raw_request.find(' ', method_end + 1);
+    return raw_request.substr(method_end + 1, uri_end - method_end - 1);
+}
 
-// std::string extractHTTPVersion(const std::string& raw_request) {
-//     size_t uri_end = raw_request.find(' ', raw_request.find(' ') + 1);
-//     size_t version_end = raw_request.find("\r\n", uri_end + 1);
-//     return raw_request.substr(uri_end + 1, version_end - uri_end - 1);
-// }
+std::string extractHTTPVersion(const std::string& raw_request) {
+    size_t uri_end = raw_request.find(' ', raw_request.find(' ') + 1);
+    size_t version_end = raw_request.find("\r\n", uri_end + 1);
+    return raw_request.substr(uri_end + 1, version_end - uri_end - 1);
+}
 
 
-// std::map<std::string, std::string> extractHeaders(const std::string& raw_request) {
-//     std::map<std::string, std::string> headers;
-//     size_t headers_start = raw_request.find("\r\n") + 2;
-// 	std::cout << "headers_start: " << headers_start << std::endl;
-// 	std::cout << "headers_start: " << raw_request[headers_start] << std::endl;
-//     size_t headers_end = raw_request.find("\r\n\r\n");
+std::map<std::string, std::string> extractHeaders(const std::string& raw_request) {
+    std::map<std::string, std::string> headers;
+    size_t headers_start = raw_request.find("\r\n") + 2;
+	std::cout << "headers_start: " << headers_start << std::endl;
+	std::cout << "headers_start: " << raw_request[headers_start] << std::endl;
+    size_t headers_end = raw_request.find("\r\n\r\n");
 
-//     size_t current = headers_start;
-//     while (current < headers_end) {
-//         size_t line_end = raw_request.find("\r\n", current);
-//         size_t colon_pos = raw_request.find(':', current);
-//         std::string key = raw_request.substr(current, colon_pos - current);
-//         std::string value = raw_request.substr(colon_pos + 2, line_end - colon_pos - 2);  // +2 to skip ": "
-//         headers[key] = value;
-//         current = line_end + 2;  // Move to next line
-//     }
+    size_t current = headers_start;
+    while (current < headers_end) {
+        size_t line_end = raw_request.find("\r\n", current);
+        size_t colon_pos = raw_request.find(':', current);
+        std::string key = raw_request.substr(current, colon_pos - current);
+        std::string value = raw_request.substr(colon_pos + 2, line_end - colon_pos - 2);  // +2 to skip ": "
+        headers[key] = value;
+        current = line_end + 2;  // Move to next line
+    }
 
-//     return headers;
-// }
+    return headers;
+}
 
 std::string extractBody(const std::string& raw_request) {
     size_t body_start = raw_request.find("\r\n\r\n");
@@ -45,7 +45,8 @@ std::string extractBody(const std::string& raw_request) {
     }
     return "";
 }
-
+/* aide à déterminer le mode de transfert des données dans une requête HTTP(en morceaux ou non), 
+permettant au serveur de gérer correctement les données reçues.*/
 bool checkIfChunked(const std::string& raw_request) {
     std::map<std::string, std::string> headers = extractHeaders(raw_request);
     return headers.find("Transfer-Encoding") != headers.end() && headers["Transfer-Encoding"] == "chunked";
@@ -56,7 +57,7 @@ bool checkIfChunked(const std::string& raw_request) {
 #include <sstream>
 #include <stdexcept>
 
-// Fonction utilitaire pour gérer les erreurs d'extraction de sous-chaînes
+// Fonction utilitaire pour gérer les erreurs d'extraction de sous-chaînes (dépassement de la taille de la chaîne // limites)
 std::string safe_substr(const std::string& str, size_t start, size_t length) {
     if (start >= str.size()) return "";
     if (start + length > str.size()) length = str.size() - start;
@@ -120,6 +121,20 @@ std::map<std::string, std::string> extractHeaders(const std::string& raw_request
     return headers;
 }
 
+std::string extractBody(const std::string& raw_request) {
+    size_t body_start = raw_request.find("\r\n\r\n");
+    if (body_start != std::string::npos) {
+        return raw_request.substr(body_start + 4);
+    }
+    return "";
+}
+/* aide à déterminer le mode de transfert des données dans une requête HTTP(en morceaux ou non), 
+permettant au serveur de gérer correctement les données reçues.*/
+bool checkIfChunked(const std::string& raw_request) {
+    std::map<std::string, std::string> headers = extractHeaders(raw_request);
+    return headers.find("Transfer-Encoding") != headers.end() && headers["Transfer-Encoding"] == "chunked";
+}
+
 
 int main() {
 
@@ -165,6 +180,8 @@ int main() {
 	}
     return 0;
 }
+
+/*Je dois parser // valider la data // gérer les cas spéciaux*/
 
 /*Je dois set les variable privées de la classe HTTP de Bat*/
 
