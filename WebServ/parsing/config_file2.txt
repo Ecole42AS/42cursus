@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name www.example.com;
+
+    location / {
+        root /var/www/html;
+        index index.html;
+    }
+
+    location /images/ {
+        root /var/www/images;
+        autoindex on;
+    }
+
+    error_page 404 /404.html;
+
+    access_log /var/log/webserv/access.log;
+    error_log /var/log/webserv/error.log;
+}

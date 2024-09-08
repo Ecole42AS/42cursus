@@ -85,7 +85,7 @@ void Config::parseLocationDirective(const std::string& line) {
 int main() {
     try {
         Config config;
-        config.parseConfigFile("config_file.txt");
+        config.parseConfigFile("config_file2.txt");
 
         // Afficher les informations générales du serveur
         std::map<std::string, std::string> server_config = config.getServerConfig();
@@ -94,7 +94,7 @@ int main() {
         }
 
         // Afficher la configuration d'une location spécifique
-        std::map<std::string, std::string> location_config = config.getLocationConfig("/downloads/");
+        std::map<std::string, std::string> location_config = config.getLocationConfig("/images/"); ///downloads/
         for (std::map<std::string, std::string>::const_iterator it = location_config.begin(); it != location_config.end(); ++it) {
             std::cout << it->first << ": " << it->second << std::endl;
         }
