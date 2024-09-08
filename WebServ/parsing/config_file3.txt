@@ -1,0 +1,37 @@
+server {
+    listen 80;
+    server_name www.example.com;
+    root /var/www/example.com/html;
+    index index.html;
+
+    # Configuration des emplacements
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location /static/ {
+        alias /var/www/example.com/static/;
+        autoindex on;
+    }
+
+    location /api/ {
+        proxy_pass http://backend.example.com/api/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location /uploads/ {
+        alias /var/www/example.com/uploads/;
+        client_max_body_size 10M;
+    }
+
+    # Redirection HTTP vers HTTPS
+    location /secure/ {
+        return 301 https://$host$request_uri;
+    }
+
+    # Configuration SSL (si utilisé)
+    ssl_certificate /etc/ssl/certs/example.com.crt;
+    ssl_certificate_key /etc/ssl/private/example.com.key;
+}
