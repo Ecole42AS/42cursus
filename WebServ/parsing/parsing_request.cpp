@@ -11,7 +11,6 @@ std::string safe_substr(const std::string& str, size_t start, size_t length) {
     return str.substr(start, length);
 }
 
-
 std::string trim(const std::string& str) {
     size_t first_non_space = str.find_first_not_of(" \t");
     if (first_non_space == std::string::npos) return "";
@@ -84,12 +83,14 @@ std::string extractBody(const std::string& raw_request) {
 }
 
 /* aide à déterminer le mode de transfert des données dans une requête HTTP(en morceaux ou non), 
-permettant au serveur de gérer correctement les données reçues.*/bool checkIfChunked(const std::string& raw_request) {
+permettant au serveur de gérer correctement les données reçues.*/
+bool checkIfChunked(const std::string& raw_request) {
     std::map<std::string, std::string> headers = extractHeaders(raw_request);
     std::map<std::string, std::string>::const_iterator it = headers.find("Transfer-Encoding");
     if (it == headers.end()) return false;
     std::string encoding = it->second;
     encoding = trim(encoding);
+
     return encoding == "chunked";
 }
 
@@ -107,11 +108,15 @@ int main() {
             "Cookie: sessionId=abc123; userId=789\r\n"
             "Accept-Encoding: gzip, deflate\r\n"
             "\r\n"
-            "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\n"
+            "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\n" // pour délimiter les différentes parties des données envoyées dans le body
             "Content-Disposition: form-data; name=\"file\"; filename=\"example.txt\"\r\n"
             "Content-Type: text/plain\r\n"
             "\r\n"
             "This is the content of the file.\r\n"
+            "------WebKitFormBoundary7MA4YWxkTrZu0gW--\r\n";
+			 "Content-Disposition: form-data; name=\"description\"\r\n"
+            "\r\n"
+            "This is a description for the file.\r\n"
             "------WebKitFormBoundary7MA4YWxkTrZu0gW--\r\n";
 
         std::string method = extractMethod(raw_request);

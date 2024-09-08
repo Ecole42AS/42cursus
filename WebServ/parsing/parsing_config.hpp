@@ -1,0 +1,158 @@
+// fichier de configuration pour le parsing
+
+# Définition du serveur HTTP
+server {
+    # Port d'écoute
+    listen 80;
+    
+    # Nom du serveur (domaine)
+    server_name www.example.com;
+    
+    # Localisation de la racine du site web
+    root /var/www/example.com/html;
+    
+    # Page par défaut à charger (index)
+    index index.html index.htm;
+
+    # Gestion des erreurs personnalisées
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+
+    # Localisation racine pour les requêtes
+    location / {
+        # Les fichiers HTML sont servis à partir de la racine
+        try_files $uri $uri/ =404;
+    }
+    
+    # Localisation pour les fichiers statiques (images, JS, CSS)
+    location /static/ {
+        alias /var/www/example.com/static/;
+        autoindex on;  # Affiche les fichiers dans le répertoire si l'URL finit par /
+    }
+
+    # Gérer les fichiers téléchargeables
+    location /downloads/ {
+        alias /var/www/example.com/downloads/;
+        autoindex off;  # Ne pas afficher la liste des fichiers
+        allow all;      # Tout le monde peut télécharger
+    }
+
+    # Redirection HTTP vers HTTPS
+    location /secure/ {
+        return 301 https://$host$request_uri;
+    }
+    
+    # Localisation pour les API backend (ex. requêtes vers un service Node.js)
+    location /api/ {
+        proxy_pass http://backend.example.com/api/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # Localisation pour des fichiers PHP (si le serveur supporte PHP)
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    # Redirection d'URL pour les anciennes routes
+    location /old-section/ {
+        return 301 /new-section/;  # Redirection permanente
+    }
+    
+    # Gestion des fichiers uploadés (formulaires multipart/form-data)
+    location /uploads/ {
+        alias /var/www/example.com/uploads/;
+        client_max_body_size 10M;  # Limite la taille des fichiers uploadés
+    }
+
+    # Gestion des fichiers de cache
+    location ~* \.(jpg|jpeg|png|gif|css|js|ico|xml|txt)$ {
+        expires 30d;
+        access_log off;
+    }
+
+    # Localisation pour les requêtes WebSocket
+    location /ws/ {
+        proxy_pass http://backend.example.com/ws/;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    # Localisation pour l'accès restreint (exemple : admin)
+    location /admin/ {
+        auth_basic "Administrator's Area";
+        auth_basic_user_file /etc/nginx/.htpasswd;  # Fichier contenant les utilisateurs et mots de passe
+    }
+
+    # Redirection d'URL spécifique
+    location = /custom-redirect {
+        return 302 https://www.example.com/new-url;
+    }
+
+    # Gestion des requêtes POST multipart/form-data (exemple pour un upload)
+    location /upload {
+        client_max_body_size 50M;  # Limite la taille des uploads à 50 MB
+        proxy_pass http://upload.backend.server/upload/;  # Envoie la requête à un autre serveur
+    }
+    
+    # Bloquer certains types de requêtes (par exemple, bloquer un certain type de fichier)
+    location ~* \.(exe|bat|sh)$ {
+        deny all;
+    }
+
+    # Cache-Control pour les fichiers JS et CSS
+    location ~* \.(js|css)$ {
+        add_header Cache-Control "public, max-age=3600";
+        access_log off;
+    }
+    
+    # Limiter la bande passante pour certains types de fichiers
+    location ~* \.(mp4|mp3|avi)$ {
+        limit_rate 50k;  # Limiter la vitesse à 50KB par seconde
+    }
+
+    # Gestion des requêtes compressées (GZIP)
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_proxied any;
+    gzip_vary on;
+}
+
+# Serveur pour écouter sur le port HTTPS (443)
+server {
+    listen 443 ssl;
+    server_name www.example.com;
+
+    # Chemins vers les certificats SSL
+    ssl_certificate /etc/ssl/certs/example.com.crt;
+    ssl_certificate_key /etc/ssl/private/example.com.key;
+
+    # Paramètres SSL pour la sécurité
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    
+    # Les mêmes localisations que pour HTTP (ou plus, si nécessaire)
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Redirection des fichiers téléchargés vers une autre destination
+    location /downloads/ {
+        alias /var/www/example.com/secure_downloads/;
+        allow all;
+    }
+
+    # Limiter les attaques DDoS ou les abus avec un module de rate limiting
+    limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+    
+    location /api/ {
+        limit_req zone=one burst=5 nodelay;
+        proxy_pass http://backend.example.com/api/;
+    }
+}
