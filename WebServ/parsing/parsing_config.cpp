@@ -12,7 +12,7 @@ std::map<std::string, std::string> Config::getLocationConfig(const std::string& 
 }
 
 void Config::parseConfigFile(const std::string& filename) {
-	std::ifstream config_file(filename);
+	std::ifstream config_file(filename.c_str());
 	if (!config_file.is_open()) {
 		throw std::runtime_error("Failed to open config file: " + filename);
 	}
@@ -21,9 +21,8 @@ void Config::parseConfigFile(const std::string& filename) {
 	std::string current_section;
 
 	while (std::getline(config_file, line)) {
-		line = trim(line);  // Supprimer les espaces inutiles
+		line = trim(line);
 
-		// Ignorer les lignes vides ou les commentaires
 		if (line.empty() || line[0] == '#') continue;
 
 		// Détection des blocs "server" ou "location"
@@ -66,7 +65,7 @@ void Config::parseLocation(const std::string& line) {
 	if (space_pos == std::string::npos || brace_pos == std::string::npos) return;
 
 	std::string location_path = trim(line.substr(space_pos, brace_pos - space_pos));
-	location_configs_[location_path] = std::map<std::string, std::string>();
+	_location_configs[location_path] = std::map<std::string, std::string>();
 }
 
 void Config::parseLocationDirective(const std::string& line) {
@@ -77,26 +76,27 @@ void Config::parseLocationDirective(const std::string& line) {
 	std::string value = trim(line.substr(space_pos + 1));
 
 	// Assigner le dernier emplacement ajouté dans _location_configs
-	if (!location_configs_.empty()) {
-		location_configs_.rbegin()->second[key] = value;
+	std::map<std::string, std::map<std::string, std::string> >::reverse_iterator it = _location_configs.rbegin();
+	if (it != _location_configs.rend()) {
+		it->second[key] = value;
 	}
 }
 
 int main() {
     try {
         Config config;
-        config.parseConfigFile("server.conf");
+        config.parseConfigFile("config_file.txt");
 
         // Afficher les informations générales du serveur
         std::map<std::string, std::string> server_config = config.getServerConfig();
-        for (const auto& kv : server_config) {
-            std::cout << kv.first << ": " << kv.second << std::endl;
+        for (std::map<std::string, std::string>::const_iterator it = server_config.begin(); it != server_config.end(); ++it) {
+            std::cout << it->first << ": " << it->second << std::endl;
         }
 
         // Afficher la configuration d'une location spécifique
-        std::map<std::string, std::string> location_config = config.getLocationConfig("/images/");
-        for (const auto& kv : location_config) {
-            std::cout << kv.first << ": " << kv.second << std::endl;
+        std::map<std::string, std::string> location_config = config.getLocationConfig("/downloads/");
+        for (std::map<std::string, std::string>::const_iterator it = location_config.begin(); it != location_config.end(); ++it) {
+            std::cout << it->first << ": " << it->second << std::endl;
         }
 
     } catch (const std::runtime_error& e) {
