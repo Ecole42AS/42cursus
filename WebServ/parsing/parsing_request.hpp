@@ -8,8 +8,54 @@
 #include <string>
 #include <stdexcept>
 
+// Exceptions personnalisées
+class HttpRequestException : public std::runtime_error {
+public:
+    explicit HttpRequestException(const std::string& message)
+        : std::runtime_error(message) {}
+};
+
+class MissingMethodException : public HttpRequestException {
+public:
+    MissingMethodException()
+        : HttpRequestException("Invalid request format: missing method.") {}
+};
+
+class MissingURIException : public HttpRequestException {
+public:
+    MissingURIException()
+        : HttpRequestException("Invalid request format: missing URI.") {}
+};
+
+class MissingHTTPVersionException : public HttpRequestException {
+public:
+    MissingHTTPVersionException()
+        : HttpRequestException("Invalid request format: missing HTTP version.") {}
+};
+
+class MissingHeadersException : public HttpRequestException {
+public:
+    MissingHeadersException()
+        : HttpRequestException("Invalid request format: missing headers.") {}
+};
+
+class MissingEndOfHeadersException : public HttpRequestException {
+public:
+    MissingEndOfHeadersException()
+        : HttpRequestException("Invalid request format: missing end of headers.") {}
+};
+
+class InvalidHeaderFormatException : public HttpRequestException {
+public:
+    InvalidHeaderFormatException()
+        : HttpRequestException("Invalid header format: missing colon or invalid header.") {}
+};
+
+
+void parse(const std::string& raw_request);
 std::string extractMethod(const std::string& raw_request);
 std::string extractURI(const std::string& raw_request);
+std::map<std::string, std::string> extractQueryParameters(const std::string& uri);
 std::string extractHTTPVersion(const std::string& raw_request);
 std::map<std::string, std::string> extractHeaders(const std::string& raw_request);
 std::string extractBody(const std::string& raw_request);

@@ -1,6 +1,28 @@
 #include "parsing_request.hpp"
+#include "HttpRequest.hpp"
 
-// Fonction utilitaire pour gérer les erreurs d'extraction de sous-chaînes (dépassement de la taille de la chaîne // limites)
+void HttpRequest::parse(const std::string& raw_request) {
+    try {
+        setMethod(extractMethod(raw_request));
+        setURI(extractURI(raw_request));
+        setHTTPVersion(extractHTTPVersion(raw_request));
+        setHeaders(extractHeaders(raw_request));
+        setBody(extractBody(raw_request));
+        setIsChunked(checkIfChunked(raw_request));
+        setQueryParameters(extractQueryParameters(_uri));
+    } catch (const HttpRequestException& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        _method.clear();
+        _uri.clear();
+        _query_params.clear();
+        _version.clear();
+        _headers.clear();
+        _body.clear();
+        _is_chunked = false;
+    }
+}
+
+// Fonction utilitaire pour gérer les erreurs d'extraction de sous-chaînes (dépassement de la taille de la chaîne)
 std::string safe_substr(const std::string& str, size_t start, size_t length) {
     if (start >= str.size()) return "";
     if (start + length > str.size()) length = str.size() - start;
@@ -17,27 +39,53 @@ std::string trim(const std::string& str) {
 
 std::string extractMethod(const std::string& raw_request) {
     size_t method_end = raw_request.find(' ');
-    if (method_end == std::string::npos) throw std::runtime_error("Invalid request format: missing method.");
+    if (method_end == std::string::npos) throw MissingMethodException();
     return raw_request.substr(0, method_end);
 }
 
-
 std::string extractURI(const std::string& raw_request) {
     size_t method_end = raw_request.find(' ');
-    if (method_end == std::string::npos) throw std::runtime_error("Invalid request format: missing method.");
+    if (method_end == std::string::npos) throw MissingMethodException();
 
     size_t uri_end = raw_request.find(' ', method_end + 1);
-    if (uri_end == std::string::npos) throw std::runtime_error("Invalid request format: missing URI.");
+    if (uri_end == std::string::npos) throw MissingURIException();
 
     return safe_substr(raw_request, method_end + 1, uri_end - method_end - 1);
 }
 
+std::map<std::string, std::string> extractQueryParameters(const std::string& uri) {
+    std::map<std::string, std::string> query_params;
+    size_t query_start = uri.find('?');
+    if (query_start == std::string::npos) return query_params; // Pas de paramètres de requête présents
+
+    std::string query_string = uri.substr(query_start + 1);
+    size_t param_start = 0;
+
+    while (param_start < query_string.size()) {
+        size_t param_end = query_string.find('&', param_start);
+        if (param_end == std::string::npos) param_end = query_string.size();
+
+        std::string param = query_string.substr(param_start, param_end - param_start);
+        size_t equal_pos = param.find('=');
+
+        if (equal_pos != std::string::npos) {
+            std::string key = trim(param.substr(0, equal_pos));
+            std::string value = trim(param.substr(equal_pos + 1));
+            query_params[key] = value;
+        }
+
+        param_start = param_end + 1;
+    }
+
+    return query_params;
+}
+
 std::string extractHTTPVersion(const std::string& raw_request) {
     size_t uri_end = raw_request.find(' ', raw_request.find(' ') + 1);
-    if (uri_end == std::string::npos) throw std::runtime_error("Invalid request format: missing URI or version.");
+    if (uri_end == std::string::npos) throw MissingURIException();
 
     size_t version_end = raw_request.find("\r\n", uri_end + 1);
-    if (version_end == std::string::npos) throw std::runtime_error("Invalid request format: missing HTTP version.");
+    if (version_end == std::string::npos) throw MissingHTTPVersionException();
 
     return safe_substr(raw_request, uri_end + 1, version_end - uri_end - 1);
 }
@@ -45,11 +93,11 @@ std::string extractHTTPVersion(const std::string& raw_request) {
 std::map<std::string, std::string> extractHeaders(const std::string& raw_request) {
     std::map<std::string, std::string> headers;
     size_t headers_start = raw_request.find("\r\n");
-    if (headers_start == std::string::npos) throw std::runtime_error("Invalid request format: missing headers.");
+    if (headers_start == std::string::npos) throw MissingHeadersException();
     headers_start += 2;  // Passer les caractères \r\n
 
     size_t headers_end = raw_request.find("\r\n\r\n", headers_start);
-    if (headers_end == std::string::npos) throw std::runtime_error("Invalid request format: missing end of headers.");
+    if (headers_end == std::string::npos) throw MissingEndOfHeadersException();
 
     size_t current = headers_start;
     while (current < headers_end) {
@@ -57,7 +105,7 @@ std::map<std::string, std::string> extractHeaders(const std::string& raw_request
         if (line_end == std::string::npos || line_end > headers_end) break;
 
         size_t colon_pos = raw_request.find(':', current);
-        if (colon_pos == std::string::npos || colon_pos > line_end) throw std::runtime_error("Invalid header format: missing colon.");
+        if (colon_pos == std::string::npos || colon_pos > line_end) throw InvalidHeaderFormatException();
 
         std::string key = safe_substr(raw_request, current, colon_pos - current);
         std::string value = safe_substr(raw_request, colon_pos + 2, line_end - colon_pos - 2);  // +2 to skip ": "
@@ -90,7 +138,6 @@ bool checkIfChunked(const std::string& raw_request) {
     return encoding == "chunked";
 }
 
-
 // Fonction de test pour vérifier le parsing de la requête
 void testRequest(const std::string& raw_request) {
     try {
@@ -116,21 +163,9 @@ void testRequest(const std::string& raw_request) {
         } else {
             std::cout << "The request is not chunked." << std::endl;
         }
-    } catch (const std::runtime_error& e) {
+    } catch (const HttpRequestException& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 }
 
-
-
-/*Je dois parser // valider la data // gérer les cas spéciaux*/
-
-/*Je dois set les variable privées de la classe HTTP de Bat*/
-
-/*Voir si j'ai besoin d'utiliser unordered map*/
-
-/*Voir pour parser le body*/
-
-//demander a gpt de me faire avec la gestion d erreur et de la memoire
-
-//g++ -std=c++98 -Werror -Wall -Wextra parsing.cpp -o parsing
+//g++ -std=c++98 -Werror -Wall -Wextra parsing_request.cpp main.cpp -o parsing
