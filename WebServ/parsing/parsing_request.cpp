@@ -22,6 +22,38 @@ void HttpRequest::parse(const std::string& raw_request) {
     }
 }
 
+
+void HttpRequest::parse(const std::string& raw_request) {
+    if (!isValidRequest(raw_request)) {
+        throw HttpRequestException("Invalid request format: request is not properly formatted.");
+    }
+
+    try {
+        setMethod(extractMethod(raw_request));
+        setURI(extractURI(raw_request));
+        setHTTPVersion(extractHTTPVersion(raw_request));
+        setHeaders(extractHeaders(raw_request));
+        setBody(extractBody(raw_request));
+        setIsChunked(checkIfChunked(raw_request));
+        setQueryParameters(extractQueryParameters(_uri));
+    } catch (const HttpRequestException& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        // Réinitialiser les membres privés
+        _method.clear();
+        _uri.clear();
+        _version.clear();
+        _headers.clear();
+        _body.clear();
+        _is_chunked = false;
+    }
+}
+
+bool HttpRequest::isValidRequest(const std::string& raw_request) const {
+    size_t first_space = raw_request.find(' ');
+    size_t second_space = raw_request.find(' ', first_space + 1);
+    return (first_space != std::string::npos && second_space != std::string::npos);
+}
+
 // Fonction utilitaire pour gérer les erreurs d'extraction de sous-chaînes (dépassement de la taille de la chaîne)
 std::string safe_substr(const std::string& str, size_t start, size_t length) {
     if (start >= str.size()) return "";

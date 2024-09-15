@@ -62,5 +62,6 @@ std::string extractBody(const std::string& raw_request);
 bool checkIfChunked(const std::string& raw_request);
 std::string safe_substr(const std::string& str, size_t start, size_t length);
 std::string trim(const std::string& str);
+bool isValidRequest(const std::string& raw_request);
 void testRequest(const std::string& raw_request);
 
