@@ -64,6 +64,10 @@ public:
         : HttpRequestException("Invalid header format: missing colon or invalid header.") {}
 };
 
+class BodyTooLargeException : public HttpRequestException {
+public:
+    BodyTooLargeException() : HttpRequestException("Request body is too large.") {}
+};
 
 // void parse(const std::string& raw_request);
 std::string extractMethod(const std::string& raw_request);

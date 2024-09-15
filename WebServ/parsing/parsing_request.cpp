@@ -1,5 +1,7 @@
 #include "parsing_request.hpp"
 #include "HttpRequest.hpp"
+const size_t MAX_BODY_SIZE = 2 * 1024 * 1024; // 2 Mo
+
 
 void HttpRequest::parse(const std::string& raw_request) {
     if (!isValidRequest(raw_request)) {
@@ -45,13 +47,12 @@ bool isValidRequest(const std::string& raw_request) {
     }
 
     std::string version = raw_request.substr(second_space + 1, raw_request.find("\r\n") - second_space - 1);
-    if (version != "HTTP/1.1" && version != "HTTP/1.0") {
-        return false; 
-    }
+    if (version != "HTTP/1.1" && version != "HTTP/1.0" && version != "HTTP/2" && version != "HTTP/3") {
+    return false;
+	}
 
     return true;
 }
-
 
 // Fonction utilitaire pour gérer les erreurs d'extraction de sous-chaînes (dépassement de la taille de la chaîne)
 std::string safe_substr(const std::string& str, size_t start, size_t length) {
@@ -63,7 +64,6 @@ std::string safe_substr(const std::string& str, size_t start, size_t length) {
     }
     return str.substr(start, length);
 }
-
 
 std::string trim(const std::string& str) {
     size_t first_non_space = str.find_first_not_of(" \t");
@@ -168,7 +168,13 @@ std::map<std::string, std::string> extractHeaders(const std::string& raw_request
 std::string extractBody(const std::string& raw_request) {
     size_t body_start = raw_request.find("\r\n\r\n");
     if (body_start == std::string::npos) return ""; // Pas de corps présent
-    return safe_substr(raw_request, body_start + 4, std::string::npos);
+
+    std::string body = safe_substr(raw_request, body_start + 4, std::string::npos);
+    if (body.size() > MAX_BODY_SIZE) {
+        throw BodyTooLargeException();
+    }
+
+    return body;
 }
 
 /* aide à déterminer le mode de transfert des données dans une requête HTTP(en morceaux ou non), 
