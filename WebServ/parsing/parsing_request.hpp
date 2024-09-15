@@ -15,6 +15,19 @@ public:
         : std::runtime_error(message) {}
 };
 
+class MissingBodyException : public HttpRequestException {
+public:
+    MissingBodyException()
+        : HttpRequestException("Invalid request format: missing body.") {}
+};
+
+class InvalidQueryStringException : public HttpRequestException {
+public:
+    InvalidQueryStringException()
+        : HttpRequestException("Invalid request format: invalid query string.") {}
+};
+
+
 class MissingMethodException : public HttpRequestException {
 public:
     MissingMethodException()
@@ -64,4 +77,3 @@ std::string safe_substr(const std::string& str, size_t start, size_t length);
 std::string trim(const std::string& str);
 bool isValidRequest(const std::string& raw_request);
 void testRequest(const std::string& raw_request);
-

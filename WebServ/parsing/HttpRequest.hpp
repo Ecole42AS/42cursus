@@ -44,6 +44,7 @@ class HttpRequest {
 
         // Other Methods
         void parse(const std::string& rawRequest);
+		void clearRequestData();
         std::set<std::string> initMethods();
         bool isMethodAllowed(const std::string& method) const;
 };
