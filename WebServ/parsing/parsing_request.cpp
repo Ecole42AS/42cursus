@@ -36,8 +36,10 @@ void HttpRequest::clearRequestData() {
 bool isValidRequest(const std::string& raw_request) {
     size_t first_space = raw_request.find(' ');
     size_t second_space = raw_request.find(' ', first_space + 1);
+	size_t version_end = raw_request.find("\r\n", second_space + 1);
+
     
-    if (first_space == std::string::npos || second_space == std::string::npos) {
+    if (first_space == std::string::npos || second_space == std::string::npos || version_end == std::string::npos) {
         return false; 
     }
 
@@ -48,7 +50,7 @@ bool isValidRequest(const std::string& raw_request) {
 
     std::string version = raw_request.substr(second_space + 1, raw_request.find("\r\n") - second_space - 1);
     if (version != "HTTP/1.1" && version != "HTTP/1.0" && version != "HTTP/2" && version != "HTTP/3") {
-    return false;
+    	return false;
 	}
 
     return true;
@@ -156,6 +158,8 @@ std::map<std::string, std::string> extractHeaders(const std::string& raw_request
 
         key = trim(key);
         value = trim(value);
+
+        if (key.empty()) throw InvalidHeaderFormatException();
 
         headers[key] = value;
         current = line_end + 2;
