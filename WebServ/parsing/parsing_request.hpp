@@ -52,7 +52,7 @@ public:
 };
 
 
-void parse(const std::string& raw_request);
+// void parse(const std::string& raw_request);
 std::string extractMethod(const std::string& raw_request);
 std::string extractURI(const std::string& raw_request);
 std::map<std::string, std::string> extractQueryParameters(const std::string& uri);
