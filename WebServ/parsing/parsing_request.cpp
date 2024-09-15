@@ -31,30 +31,105 @@ void HttpRequest::clearRequestData() {
     _body.clear();
     _is_chunked = false;
 }
-
-
 bool isValidRequest(const std::string& raw_request) {
-    size_t first_space = raw_request.find(' ');
-    size_t second_space = raw_request.find(' ', first_space + 1);
-	size_t version_end = raw_request.find("\r\n", second_space + 1);
+    // Check if the request ends with "\r\n\r\n" for non-chunked requests
+    size_t body_start = raw_request.find("\r\n\r\n");
+    if (body_start == std::string::npos) {
+        // If not found, check for chunked encoding
+        std::map<std::string, std::string> headers = extractHeaders(raw_request);
+        std::map<std::string, std::string>::const_iterator it = headers.find("Transfer-Encoding");
+        if (it != headers.end() && it->second == "chunked") {
+            // Chunked encoding should have a valid chunked body format
+            return checkIfChunked(raw_request);
+        }
+        return false; // Invalid if not chunked and "\r\n\r\n" is not found
+    }
 
+    // Check the headers part
+    std::string headers_part = raw_request.substr(0, body_start);
     
-    if (first_space == std::string::npos || second_space == std::string::npos || version_end == std::string::npos) {
-        return false; 
+    // Ensure that the headers part ends with "\r\n\r\n"
+    // size_t headers_end = headers_part.find("\r\n\r\n");
+    // if (headers_end == std::string::npos || headers_end != headers_part.size() - 4) {
+    //     return false; // No valid end of headers found
+    // }
+
+    // // Check if each line ends with "\r\n"
+    // size_t pos = 0;
+    // while ((pos = headers_part.find("\r\n", pos)) != std::string::npos) {
+    //     if (pos + 2 < headers_part.size()) {
+    //         if (headers_part[pos + 2] != '\r' && headers_part[pos + 2] != '\n') {
+    //             return false; // Invalid line ending
+    //         }
+    //         pos += 2;
+    //     } else {
+    //         return false; // Incomplete line ending
+    //     }
+    // }
+
+    // Check if the headers part has at least one valid header
+    if (headers_part.find(":") == std::string::npos) {
+        return false; // No headers found
     }
 
-    std::string method = raw_request.substr(0, first_space);
+    // Validate request line (Method URI HTTP-Version)
+    size_t method_end = raw_request.find(' ');
+    if (method_end == std::string::npos) return false;
+    size_t uri_end = raw_request.find(' ', method_end + 1);
+    if (uri_end == std::string::npos) return false;
+    size_t version_end = raw_request.find("\r\n", uri_end + 1);
+    if (version_end == std::string::npos) return false;
+
+    std::string method = raw_request.substr(0, method_end);
     if (method != "GET" && method != "POST" && method != "PUT" && method != "DELETE" && method != "HEAD") {
-        return false; 
+        return false;
     }
 
-    std::string version = raw_request.substr(second_space + 1, raw_request.find("\r\n") - second_space - 1);
+    std::string version = raw_request.substr(uri_end + 1, version_end - uri_end - 1);
     if (version != "HTTP/1.1" && version != "HTTP/1.0" && version != "HTTP/2" && version != "HTTP/3") {
-    	return false;
-	}
+        return false;
+    }
 
     return true;
 }
+
+
+// bool isValidRequest(const std::string& raw_request) {
+//     // Check if the request ends with "\r\n\r\n"
+//     if (raw_request.size() < 4 || raw_request.substr(raw_request.size() - 4) != "\r\n\r\n") {
+//         return false;
+//     }
+
+//     // Check if each line ends with "\r\n"
+//     size_t pos = 0;
+//     while ((pos = raw_request.find("\r\n", pos)) != std::string::npos) {
+//         if (pos + 2 < raw_request.size() && raw_request[pos + 2] != '\r' && raw_request[pos + 2] != '\n') {
+//             return false; // Invalid line ending
+//         }
+//         pos += 2;
+//     }
+
+//     // Check the method, URI, and HTTP version
+//     size_t first_space = raw_request.find(' ');
+//     size_t second_space = raw_request.find(' ', first_space + 1);
+//     size_t version_end = raw_request.find("\r\n", second_space + 1);
+
+//     if (first_space == std::string::npos || second_space == std::string::npos || version_end == std::string::npos) {
+//         return false; 
+//     }
+
+//     std::string method = raw_request.substr(0, first_space);
+//     if (method != "GET" && method != "POST" && method != "PUT" && method != "DELETE" && method != "HEAD") {
+//         return false; 
+//     }
+
+//     std::string version = raw_request.substr(second_space + 1, version_end - second_space - 1);
+//     if (version != "HTTP/1.1" && version != "HTTP/1.0" && version != "HTTP/2" && version != "HTTP/3") {
+//         return false;
+//     }
+
+//     return true;
+// }
 
 // Fonction utilitaire pour gérer les erreurs d'extraction de sous-chaînes (dépassement de la taille de la chaîne)
 std::string safe_substr(const std::string& str, size_t start, size_t length) {
@@ -183,45 +258,107 @@ std::string extractBody(const std::string& raw_request) {
 
 /* aide à déterminer le mode de transfert des données dans une requête HTTP(en morceaux ou non), 
 permettant au serveur de gérer correctement les données reçues.*/
+// bool checkIfChunked(const std::string& raw_request) {
+//     std::map<std::string, std::string> headers = extractHeaders(raw_request);
+//     std::map<std::string, std::string>::const_iterator it = headers.find("Transfer-Encoding");
+//     if (it == headers.end()) return false;
+//     std::string encoding = trim(it->second);
+
+//     return encoding == "chunked";
+// }
+
 bool checkIfChunked(const std::string& raw_request) {
+    // Extract headers
     std::map<std::string, std::string> headers = extractHeaders(raw_request);
     std::map<std::string, std::string>::const_iterator it = headers.find("Transfer-Encoding");
     if (it == headers.end()) return false;
+    
     std::string encoding = trim(it->second);
+    if (encoding != "chunked") return false;
 
-    return encoding == "chunked";
+    // Extract and validate chunked data
+    size_t body_start = raw_request.find("\r\n\r\n");
+    if (body_start == std::string::npos) return false; // No body found
+
+    std::string body = raw_request.substr(body_start + 4);
+    size_t pos = 0;
+    bool valid = true;
+
+    while (pos < body.size()) {
+        // Find the end of the chunk size line
+        size_t chunk_size_end = body.find("\r\n", pos);
+        if (chunk_size_end == std::string::npos) {
+            valid = false;
+            break;
+        }
+
+        // Extract and convert chunk size
+        std::string chunk_size_str = body.substr(pos, chunk_size_end - pos);
+        int chunk_size = 0;
+        for (size_t i = 0; i < chunk_size_str.size(); ++i) {
+            char c = chunk_size_str[i];
+            if (c >= '0' && c <= '9') {
+                chunk_size = (chunk_size << 4) + (c - '0');
+            } else if (c >= 'a' && c <= 'f') {
+                chunk_size = (chunk_size << 4) + (c - 'a' + 10);
+            } else if (c >= 'A' && c <= 'F') {
+                chunk_size = (chunk_size << 4) + (c - 'A' + 10);
+            } else {
+                valid = false;
+                break;
+            }
+        }
+
+        if (!valid) break;
+
+        // Check for zero-sized chunk
+        if (chunk_size == 0) {
+            pos = chunk_size_end + 2;
+            if (pos != body.size()) {
+                valid = false;
+            }
+            break;
+        }
+
+        // Move past the chunk data
+        pos = chunk_size_end + 2 + chunk_size;
+        if (pos > body.size()) {
+            valid = false;
+            break;
+        }
+    }
+
+    return valid;
 }
-
 
 // Fonction de test pour vérifier le parsing de la requête
 void testRequest(const std::string& raw_request) {
+    HttpRequest request;
     try {
-        std::string method = extractMethod(raw_request);
-        std::string uri = extractURI(raw_request);
-        std::string http_version = extractHTTPVersion(raw_request);
-        std::map<std::string, std::string> headers = extractHeaders(raw_request);
-        std::string body = extractBody(raw_request);
+        request.parse(raw_request);
 
-        std::cout << "Method: " << method << std::endl;
-        std::cout << "URI: " << uri << std::endl;
-        std::cout << "HTTP Version: " << http_version << std::endl;
+        // Vérifiez les données après parsing
+        std::cout << "Method: " << request.getMethod() << std::endl;
+        std::cout << "URI: " << request.getURI() << std::endl;
+        std::cout << "HTTP Version: " << request.getHTTPVersion() << std::endl;
         std::cout << "Headers:" << std::endl;
 
+        std::map<std::string, std::string> headers = request.getHeaders();
         for (std::map<std::string, std::string>::const_iterator it = headers.begin(); it != headers.end(); ++it) {
             std::cout << it->first << ": " << it->second << std::endl;
         }
 
-        std::cout << "Body: " << body << std::endl;
+        std::cout << "Body: " << request.getBody() << std::endl;
 
-        if (checkIfChunked(raw_request)) {
+        if (request.isChunked()) {
             std::cout << "The request is chunked." << std::endl;
         } else {
             std::cout << "The request is not chunked." << std::endl;
         }
+
     } catch (const HttpRequestException& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        std::cerr << "Error during request parsing: " << e.what() << std::endl;
     }
 }
-
 
 //g++ -std=c++98 -Werror -Wall -Wextra parsing_request.cpp main.cpp -o parsing

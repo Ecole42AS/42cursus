@@ -7,6 +7,8 @@
 #include <map>
 #include <string>
 #include <stdexcept>
+#include <sstream>
+#include <iomanip>
 
 // Exceptions personnalisées
 class HttpRequestException : public std::runtime_error {
@@ -79,5 +81,6 @@ std::string extractBody(const std::string& raw_request);
 bool checkIfChunked(const std::string& raw_request);
 std::string safe_substr(const std::string& str, size_t start, size_t length);
 std::string trim(const std::string& str);
+std::string normalizeRequest(const std::string& raw_request);
 bool isValidRequest(const std::string& raw_request);
 void testRequest(const std::string& raw_request);
