@@ -2,6 +2,10 @@
 #include "HttpRequest.hpp"
 
 void HttpRequest::parse(const std::string& raw_request) {
+	if (!isValidRequest(raw_request)) {
+		throw HttpRequestException("Invalid request format: request is not properly formatted.");
+	}
+
     try {
         setMethod(extractMethod(raw_request));
         setURI(extractURI(raw_request));
@@ -48,7 +52,9 @@ void HttpRequest::parse(const std::string& raw_request) {
     }
 }
 
+// Fonction de validation simple pour vérifier si la requête est bien formatée
 bool HttpRequest::isValidRequest(const std::string& raw_request) const {
+	// Validation simple, par exemple vérifier si la première ligne contient au moins deux espaces
     size_t first_space = raw_request.find(' ');
     size_t second_space = raw_request.find(' ', first_space + 1);
     return (first_space != std::string::npos && second_space != std::string::npos);
