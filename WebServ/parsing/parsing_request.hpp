@@ -84,3 +84,4 @@ std::string trim(const std::string& str);
 std::string normalizeRequest(const std::string& raw_request);
 bool isValidRequest(const std::string& raw_request);
 void testRequest(const std::string& raw_request);
+bool hasBody(const std::string& raw_request);
