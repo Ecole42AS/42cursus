@@ -1,8 +1,6 @@
 #include "parsing_request.hpp"
 #include "HttpRequest.hpp"
-#include <iostream>
-#include <sstream>
-#include <map>
+#include "HttpRequestException.hpp"
 
 const size_t MAX_BODY_SIZE = 2 * 1024 * 1024; // 2 MB
 

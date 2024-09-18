@@ -10,66 +10,65 @@
 #include <sstream>
 #include <iomanip>
 
-// Exceptions personnalisées
-class HttpRequestException : public std::runtime_error {
-public:
-    explicit HttpRequestException(const std::string& message)
-        : std::runtime_error(message) {}
-};
+// class HttpRequestException : public std::runtime_error {
+// public:
+//     explicit HttpRequestException(const std::string& message)
+//         : std::runtime_error(message) {}
+// };
 
-class MissingBodyException : public HttpRequestException {
-public:
-    MissingBodyException()
-        : HttpRequestException("Invalid request format: missing body.") {}
-};
+// class MissingBodyException : public HttpRequestException {
+// public:
+//     MissingBodyException()
+//         : HttpRequestException("Invalid request format: missing body.") {}
+// };
 
-class InvalidQueryStringException : public HttpRequestException {
-public:
-    InvalidQueryStringException()
-        : HttpRequestException("Invalid request format: invalid query string.") {}
-};
+// class InvalidQueryStringException : public HttpRequestException {
+// public:
+//     InvalidQueryStringException()
+//         : HttpRequestException("Invalid request format: invalid query string.") {}
+// };
 
 
-class MissingMethodException : public HttpRequestException {
-public:
-    MissingMethodException()
-        : HttpRequestException("Invalid request format: missing method.") {}
-};
+// class MissingMethodException : public HttpRequestException {
+// public:
+//     MissingMethodException()
+//         : HttpRequestException("Invalid request format: missing method.") {}
+// };
 
-class MissingURIException : public HttpRequestException {
-public:
-    MissingURIException()
-        : HttpRequestException("Invalid request format: missing URI.") {}
-};
+// class MissingURIException : public HttpRequestException {
+// public:
+//     MissingURIException()
+//         : HttpRequestException("Invalid request format: missing URI.") {}
+// };
 
-class MissingHTTPVersionException : public HttpRequestException {
-public:
-    MissingHTTPVersionException()
-        : HttpRequestException("Invalid request format: missing HTTP version.") {}
-};
+// class MissingHTTPVersionException : public HttpRequestException {
+// public:
+//     MissingHTTPVersionException()
+//         : HttpRequestException("Invalid request format: missing HTTP version.") {}
+// };
 
-class MissingHeadersException : public HttpRequestException {
-public:
-    MissingHeadersException()
-        : HttpRequestException("Invalid request format: missing headers.") {}
-};
+// class MissingHeadersException : public HttpRequestException {
+// public:
+//     MissingHeadersException()
+//         : HttpRequestException("Invalid request format: missing headers.") {}
+// };
 
-class MissingEndOfHeadersException : public HttpRequestException {
-public:
-    MissingEndOfHeadersException()
-        : HttpRequestException("Invalid request format: missing end of headers.") {}
-};
+// class MissingEndOfHeadersException : public HttpRequestException {
+// public:
+//     MissingEndOfHeadersException()
+//         : HttpRequestException("Invalid request format: missing end of headers.") {}
+// };
 
-class InvalidHeaderFormatException : public HttpRequestException {
-public:
-    InvalidHeaderFormatException()
-        : HttpRequestException("Invalid header format: missing colon or invalid header.") {}
-};
+// class InvalidHeaderFormatException : public HttpRequestException {
+// public:
+//     InvalidHeaderFormatException()
+//         : HttpRequestException("Invalid header format: missing colon or invalid header.") {}
+// };
 
-class BodyTooLargeException : public HttpRequestException {
-public:
-    BodyTooLargeException() : HttpRequestException("Request body is too large.") {}
-};
+// class BodyTooLargeException : public HttpRequestException {
+// public:
+//     BodyTooLargeException() : HttpRequestException("Request body is too large.") {}
+// };
 
 // void parse(const std::string& raw_request);
 std::string extractMethod(const std::string& raw_request);
