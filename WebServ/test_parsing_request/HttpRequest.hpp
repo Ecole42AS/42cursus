@@ -14,7 +14,7 @@ class HttpRequest {
         std::string _version;
         std::map<std::string, std::string> _headers;
         std::string _body;
-        std::string _queryParameters;
+        std::map<std::string, std::string> _queryParameters;
         bool _isChunked;
         std::set<std::string> _allowedMethods;
 
@@ -27,7 +27,7 @@ class HttpRequest {
         std::string extractBody(const std::string& raw_request);
         std::string extractHTTPVersion(const std::string& raw_request);
         std::map<std::string, std::string> extractQueryParameters(const std::string& uri);
-        bool checkIfChunked(const std::string& raw_request);
+        bool checkIfChunked();
 
         // Fonctions auxiliaires
         std::string trim(const std::string& str);
@@ -44,14 +44,16 @@ class HttpRequest {
 
         // Méthode de parsing principale
         void parse(const std::string& raw_request);
+		void testRequest(const std::string& raw_request);
 
         // Getters
         std::string getMethod() const;
         std::string getURI() const;
         std::string getHTTPVersion() const;
         std::map<std::string, std::string> getHeaders() const;
+		std::string getHeader(const std::string& name) const;
         std::string getBody() const;
-        std::string getQueryParameters() const;
+		std::map<std::string, std::string> getQueryParameters() const;
         bool isChunked() const;
 };
 
