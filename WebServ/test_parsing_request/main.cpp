@@ -1,7 +1,8 @@
-#include "parsing_request.hpp"
+#include <iostream>
+#include <string>
 #include "HttpRequest.hpp"
 
-
+// Déclaration de la fonction testRequest
 void testRequest(const std::string& raw_request);
 
 int main() {
