@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	# Bibliothèque tierces
 	'rest_framework',
     'corsheaders',
-    'ft_transcendence',
+	# Applications
+	'users',
+	# 'api',
+	# 'game',
+	# 'chat',
 ]
 
 MIDDLEWARE = [
