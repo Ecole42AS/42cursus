@@ -4,9 +4,9 @@ from .serializers import UserSerializer
 from .serializers import UserProfileSerializer
 from django.contrib.auth.models import User
 
-# INSCRIPTION
+# INSCRIPTION (queryset, serializer_class, permission_classes sont des attributs de classe) 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all() # récupère tous les utilisateurs
+    queryset = User.objects.all() # récupère tous les utilisateurs (requête SQL ORM)
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny] # autorise les utilisateurs non authentifiés à accéder à la vue
 
