@@ -16,9 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include # include permet d'inclure des URL d'autres fichiers
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/', include('user.urls')),
     path('api-auth/', include('rest_framework.urls')),  # Permet d'utiliser l'interface d'authentification de DRF
 ]
+
+# Permet de servir les fichiers médias en mode DEBUG (en production, les fichiers médias sont servis par un serveur dédié)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

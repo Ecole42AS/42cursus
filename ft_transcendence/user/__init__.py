@@ -1,0 +1,1 @@
+default_app_config = 'users.apps.UsersConfig' # Définit le nom de l'application par défaut
