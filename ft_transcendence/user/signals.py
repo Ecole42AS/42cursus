@@ -1,5 +1,6 @@
 # Les signaux dans Django permettent d'exécuter du code en réponse à des 
 # événements spécifiques, comme la sauvegarde ou la suppression d'un objet.
+# Dans ce cas, nous utilisons les signaux pour créer un profil utilisateur lorsque le user est créé et cela automatiquement.
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.dispatch import receiver # Permet de recevoir des signaux
