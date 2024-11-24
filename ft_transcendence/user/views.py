@@ -18,4 +18,4 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
     parser_classes = (MultiPartParser, FormParser) # permet de gérer les fichiers envoyés avec la requête
 
     def get_object(self):
-        return self.request.user
+        return self.request.user.profile

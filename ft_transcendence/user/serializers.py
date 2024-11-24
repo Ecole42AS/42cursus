@@ -33,19 +33,34 @@ class UserSerializer(serializers.ModelSerializer): # Serializer pour les utilisa
         user.set_password(password)  # Hashage du mot de passe
         user.save()  # Sauvegarde dans la base de données
         # Profile.objects.update_or_create(user=user, defaults=profile_data)
-        Profile.objects.create(user=user, **profile_data)
+        Profile.objects.get_or_create(user=user, defaults=profile_data)
         return user
 
+    # def update(self, instance, validated_data):
+    #     profile_data = validated_data.pop('profile', {})
+    #     instance.email = validated_data.get('email', instance.email)
+    #     instance.save()
+    #     # Profile.objects.update_or_create(user=instance, defaults=profile_data)
+        
+    #     # Mise à jour ou création du profil associé
+    #     profile = instance.profile
+    #     for attr, value in profile_data.items():
+    #         setattr(profile, attr, value)  # Mise à jour des attributs du profil
+    #     profile.save()  # Sauvegarde dans la base de données
+
+    #     return instance
+
     def update(self, instance, validated_data):
+        # Extraction des données du profil
         profile_data = validated_data.pop('profile', {})
+        # Mise à jour des champs de l'utilisateur
         instance.email = validated_data.get('email', instance.email)
         instance.save()
-        # Profile.objects.update_or_create(user=instance, defaults=profile_data)
-        
-        # Mise à jour ou création du profil associé
-        profile = instance.profile
-        for attr, value in profile_data.items():
-            setattr(profile, attr, value)  # Mise à jour des attributs du profil
-        profile.save()  # Sauvegarde dans la base de données
+
+        # Utilisation de update_or_create pour gérer le profil
+        Profile.objects.update_or_create(
+            user=instance,  # Critère de recherche
+            defaults=profile_data  # Données à mettre à jour ou à utiliser pour la création
+        )
 
         return instance
