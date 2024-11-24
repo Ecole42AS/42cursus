@@ -3,6 +3,7 @@ from rest_framework import generics, permissions # permet de créer des vues gé
 from .serializers import UserSerializer
 from .serializers import UserProfileSerializer
 from django.contrib.auth.models import User
+from rest_framework.parsers import MultiPartParser, FormParser
 
 # INSCRIPTION (queryset, serializer_class, permission_classes sont des attributs de classe) 
 class RegisterView(generics.CreateAPIView):
@@ -14,6 +15,7 @@ class RegisterView(generics.CreateAPIView):
 class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserProfileSerializer
     permission_classes = [permissions.IsAuthenticated] # autorise uniquement les utilisateurs authentifiés à accéder à la vue
+    parser_classes = (MultiPartParser, FormParser) # permet de gérer les fichiers envoyés avec la requête
 
     def get_object(self):
         return self.request.user
