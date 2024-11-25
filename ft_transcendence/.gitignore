@@ -12,3 +12,8 @@ __pycache__/
 # Configurations de l'IDE
 .vscode/
 .idea/
+
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
