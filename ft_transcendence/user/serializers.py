@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from .models import Profile
 from django.contrib.auth.models import User
+from django.db import IntegrityError
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class ProfileSerializer(serializers.ModelSerializer):
     # Serializer pour les profils utilisateurs (public)
@@ -34,15 +39,32 @@ class UserSerializer(serializers.ModelSerializer):
         profile_data = validated_data.pop('profile', {})
         avatar = profile_data.pop('avatar', None)  # Avatar optionnel
         password = validated_data.pop('password')  # Extrait le mot de passe brut
+        logger.info(f"Avatar received: {avatar}")
 
         user = User.objects.create(**validated_data)  # Crée l'utilisateur sans mot de passe
         user.set_password(password)  # Hashage du mot de passe
         user.save()  # Sauvegarde dans la base de données
 
-        profile, created = Profile.objects.get_or_create(user=user, defaults=profile_data)
+        # try:
+        #     # Création du profil
+        #     profile = Profile.objects.create(user=user, **profile_data)
+        # except IntegrityError as e:
+        #     # Supprime l'utilisateur si la création du profil échoue
+        #     user.delete()
+        #     raise serializers.ValidationError({'profile': 'Impossible de créer le profil : {}'.format(str(e))})
+
+        # profile = Profile.objects.create(user=user, **profile_data)
+        profile, created = Profile.objects.update_or_create(
+            user=user,
+            defaults={**profile_data, 'avatar': avatar}
+        )
+        logger.info(f"Profile: {profile}")
+
         if avatar:
             profile.avatar = avatar
             profile.save()
+            logger.info(f"Avatar updated for profile: {profile.avatar}")
+
 
         return user
 
@@ -58,11 +80,11 @@ class UserSerializer(serializers.ModelSerializer):
             instance.user.email = email
             instance.user.save()
 
-        # # Mise à jour ou création du profil
-        # profile, created = Profile.objects.update_or_create(
-        #     user=instance,  # Critère de recherche
-        #     defaults=profile_data  # Données à mettre à jour ou à utiliser pour la création
-        # )
+        # if email and User.objects.filter(email=email).exclude(pk=instance.pk).exists():
+        #     raise serializers.ValidationError({"email": "Cet email est déjà utilisé."})
+        # if email:
+        #     instance.email = email
+        #     instance.save()
 
         # Mise à jour du profil
         profile = instance.profile  # Récupération du profil lié à l'utilisateur

@@ -165,3 +165,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default Primary Key Field Type
 # ------------------------------------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Logging Configuration
+# ------------------------------------------------------------------------------
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        '__main__': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
