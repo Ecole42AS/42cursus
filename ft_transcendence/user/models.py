@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+from datetime import timedelta
 
 def user_directory_path(instance, filename): # instance est une instance du modèle Profile
     # Le fichier sera uploadé vers MEDIA_ROOT/user_<id>/<filename>
@@ -11,6 +13,21 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to=user_directory_path, default='default_avatar.png')
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
+    last_activity = models.DateTimeField(null=True, blank=True)
+
+    def is_online(self):
+        if self.last_activity:
+            now = timezone.now()
+            return now - self.last_activity < timedelta(minutes=5)
+        return False
 
     def __str__(self):
         return self.display_name # Affiche le nom d'affichage du profil dans l'interface admin sous forme de chaîne de caractères
+
+class Friendship(models.Model):
+    from_user = models.ForeignKey(User, related_name='friendships', on_delete=models.CASCADE) # related_name permet de renommer la relation dans l'autre sens
+    to_user = models.ForeignKey(User, related_name='followers', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('from_user', 'to_user')

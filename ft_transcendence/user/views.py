@@ -4,6 +4,12 @@ from .serializers import UserSerializer
 from .serializers import ProfileSerializer
 from django.contrib.auth.models import User
 from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.db import IntegrityError
+from .models import Friendship
+
 
 # Register (queryset, serializer_class, permission_classes sont des attributs de classe) 
 class RegisterView(generics.CreateAPIView):
@@ -20,3 +26,24 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user.profile
+
+class AddFriendView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, user_id):
+        try:
+            to_user = User.objects.get(pk=user_id)
+            Friendship.objects.create(from_user=request.user, to_user=to_user)
+            return Response({'status': 'Ami ajouté'}, status=status.HTTP_201_CREATED)
+        except User.DoesNotExist:
+            return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+        except IntegrityError:
+            return Response({'error': 'Déjà ami'}, status=status.HTTP_400_BAD_REQUEST)
+
+class FriendsListView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        friendships = request.user.friendships.all()
+        serializer = UserSerializer([f.to_user for f in friendships], many=True)
+        return Response(serializer.data)
