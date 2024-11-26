@@ -3,6 +3,7 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from django.contrib.auth.models import User
 from .models import Friendship
+from .serializers import UserSerializer
 
 class UserTests(APITestCase):
 
@@ -43,3 +44,20 @@ class AddFriendViewTest(APITestCase):
         response = self.client.post(f'/api/user/add_friend/{self.user2.id}/')
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.data['error'], 'Déjà ami')
+
+class UserSerializerTest(APITestCase):
+    def test_user_serializer_create(self):
+        data = {'username': 'testuser', 'email': 'test@example.com', 'password': 'password123'}
+        serializer = UserSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
+        user = serializer.save()
+        self.assertEqual(user.username, 'testuser')
+        self.assertTrue(user.check_password('password123'))
+
+    def test_user_serializer_invalid_data(self):
+        data = {'username': '', 'email': 'invalid-email', 'password': 'short'}
+        serializer = UserSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('username', serializer.errors)
+        self.assertIn('email', serializer.errors)
+        self.assertIn('password', serializer.errors)
