@@ -4,18 +4,12 @@ from django.contrib.auth.models import User
 
 class ProfileSerializer(serializers.ModelSerializer):
     # Serializer pour les profils utilisateurs (public)
-    email = serializers.EmailField(source='user.email', required=True)
     avatar = serializers.ImageField(required=False)
 
     class Meta: # définit des comportements spécifiques pour une table de DB (ici Profile)
         model = Profile
-        fields = ['display_name', 'email', 'avatar', 'wins', 'losses']
+        fields = ['display_name', 'avatar', 'wins', 'losses']
         read_only_fields = ['wins', 'losses']
-   
-    def validate_email(self, value): # self est une instance de la classe ProfileSerializer
-        if User.objects.filter(email=value).exclude(id=self.instance.user.id).exists(): # vérifie si l'email est déjà utilisé par un autre utilisateur
-            raise serializers.ValidationError("Cet email est déjà utilisé.")
-        return value
 
 class UserSerializer(serializers.ModelSerializer):
     # Serializer pour les utilisateurs (privé)
@@ -23,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'profile', 'password']
+        fields = ['id', 'username', 'password', 'email', 'profile']
         extra_kwargs = {'password': {'write_only': True}}
 
     def validate(self, data):
@@ -38,11 +32,18 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # Création d'un utilisateur avec un profil
         profile_data = validated_data.pop('profile', {})
+        avatar = profile_data.pop('avatar', None)  # Avatar optionnel
         password = validated_data.pop('password')  # Extrait le mot de passe brut
+
         user = User.objects.create(**validated_data)  # Crée l'utilisateur sans mot de passe
         user.set_password(password)  # Hashage du mot de passe
         user.save()  # Sauvegarde dans la base de données
-        Profile.objects.get_or_create(user=user, defaults=profile_data)
+
+        profile, created = Profile.objects.get_or_create(user=user, defaults=profile_data)
+        if avatar:
+            profile.avatar = avatar
+            profile.save()
+
         return user
 
     def update(self, instance, validated_data):

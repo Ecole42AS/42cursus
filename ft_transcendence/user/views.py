@@ -10,6 +10,7 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all() # récupère tous les utilisateurs (requête SQL ORM)
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny] # autorise les utilisateurs non authentifiés à accéder à la vue
+    parser_classes = (MultiPartParser, FormParser)
 
 # Profil Utilisateur
 class UserProfileView(generics.RetrieveUpdateAPIView):
