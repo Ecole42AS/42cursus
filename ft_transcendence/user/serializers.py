@@ -4,66 +4,63 @@ from django.contrib.auth.models import User
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    # Sérialiseur pour les profils utilisateurs (public)
-    avatar = serializers.ImageField(required=False)
-
     class Meta:
         model = Profile
         fields = ['display_name', 'avatar', 'wins', 'losses']
         read_only_fields = ['wins', 'losses']
 
+    def update(self, instance, validated_data):
+        display_name = validated_data.get('display_name', instance.display_name)
+
+        # Validation de l'unicité du nom d'affichage
+        if Profile.objects.filter(display_name=display_name).exclude(pk=instance.pk).exists():
+            raise serializers.ValidationError({'display_name': 'Ce nom d\'affichage est déjà utilisé.'})
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance
+
 
 class UserSerializer(serializers.ModelSerializer):
-    # Sérialiseur pour les utilisateurs (privé)
-    profile = ProfileSerializer()
+    display_name = serializers.CharField(write_only=True, required=True)
+    avatar = serializers.ImageField(write_only=True, required=False)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'email', 'profile']
+        fields = ['id', 'username', 'password', 'email', 'display_name', 'avatar']
         extra_kwargs = {'password': {'write_only': True}}
 
-    def validate(self, data):
-        profile_data = data.get('profile', {})
-        display_name = profile_data.get('display_name')
-        if not display_name:
-            raise serializers.ValidationError({'profile': {'display_name': 'Ce champ est requis.'}})
-        if Profile.objects.filter(display_name=display_name).exists():
-            raise serializers.ValidationError({'profile': {'display_name': 'Ce nom d\'affichage est déjà utilisé.'}})
-        return data
-
     def create(self, validated_data):
-        # Création d'un utilisateur avec un profil
-        profile_data = validated_data.pop('profile', {})
-        avatar = profile_data.pop('avatar', None)  # Avatar optionnel
-        password = validated_data.pop('password')  # Extrait le mot de passe brut
+        display_name = validated_data.pop('display_name')
+        avatar = validated_data.pop('avatar', None)
+        password = validated_data.pop('password')
 
         # Création de l'utilisateur
-        user = User.objects.create(**validated_data)
-        user.set_password(password)
-        user.save()
+        user = User.objects.create_user(password=password, **validated_data)
 
-        # Création du profil utilisateur
-        profile, created = Profile.objects.get_or_create(user=user, defaults=profile_data)
+        # Mettre à jour le profil créé automatiquement par le signal
+        profile = user.profile
+        profile.display_name = display_name
         if avatar:
             profile.avatar = avatar
-            profile.save()
+        profile.save()
 
         return user
 
     def update(self, instance, validated_data):
-        # Extraction des données validées du profil
         profile_data = validated_data.pop('profile', {})
-        avatar = profile_data.pop('avatar', None)  # None si l'avatar n'est pas fourni
-        email = validated_data.get('email')
+        avatar = profile_data.pop('avatar', None)  # None si l'avatar est absent
 
-        # Mise à jour des informations utilisateur
         instance.username = validated_data.get('username', instance.username)
-        if email:
-            if User.objects.filter(email=email).exclude(pk=instance.pk).exists():
-                raise serializers.ValidationError({"email": "Cet email est déjà utilisé."})
-            instance.email = email
+        email = validated_data.get('email', instance.email)
+
+        if email and User.objects.filter(email=email).exclude(pk=instance.pk).exists():
+            raise serializers.ValidationError({"email": "Cet email est déjà utilisé."})
+
         if 'password' in validated_data:
             instance.set_password(validated_data['password'])
+
         instance.save()
 
         # Mise à jour du profil utilisateur
@@ -75,3 +72,9 @@ class UserSerializer(serializers.ModelSerializer):
         profile.save()
 
         return instance
+    
+    def validate_display_name(self, value):
+        if Profile.objects.filter(display_name=value).exists():
+            raise serializers.ValidationError('Ce nom d\'affichage est déjà utilisé.')
+        return value
+

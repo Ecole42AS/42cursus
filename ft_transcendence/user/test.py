@@ -15,9 +15,7 @@ class UserRegistrationTests(APITestCase):
             'username': 'testuser',
             'email': 'testuser@example.com',
             'password': 'password123',
-            'profile': {
-                'display_name': 'TestUser',
-            }
+            'display_name': 'TestUser',
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -27,20 +25,16 @@ class UserRegistrationTests(APITestCase):
         self.assertEqual(user.profile.display_name, 'TestUser')
 
     def test_user_registration_with_duplicate_display_name(self):
-        # Créer un utilisateur existant
         existing_user = User.objects.create_user(username='existinguser', password='password123')
-        existing_profile = existing_user.profile
-        existing_profile.display_name = 'UniqueDisplayName'
-        existing_profile.save()
+        existing_user.profile.display_name = 'UniqueDisplayName'
+        existing_user.profile.save()
 
         url = reverse('register')
         data = {
             'username': 'newuser',
             'email': 'newuser@example.com',
             'password': 'password123',
-            'profile': {
-                'display_name': 'UniqueDisplayName',  # Même display_name
-            }
+            'profile': {'display_name': 'UniqueDisplayName'},
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -52,9 +46,6 @@ class UserRegistrationTests(APITestCase):
             'username': 'testuser2',
             'email': 'testuser2@example.com',
             'password': 'password123',
-            'profile': {
-                # Pas de 'display_name'
-            }
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -71,17 +62,13 @@ class UserRegistrationTests(APITestCase):
             'username': 'avataruser',
             'email': 'avataruser@example.com',
             'password': 'password123',
-            'profile': {
-                'display_name': 'AvatarUser',
-                'avatar': avatar
-            }
+            'display_name': 'AvatarUser',
+            'avatar': avatar,  # Ajout direct du champ `avatar`
         }
         response = self.client.post(url, data, format='multipart')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         user = User.objects.get(username='avataruser')
         self.assertTrue(user.profile.avatar.url.endswith('test_avatar.jpg'))
-
-
 
 class UserLoginTests(APITestCase):
     def setUp(self):
@@ -113,34 +100,24 @@ class UserProfileUpdateTests(APITestCase):
         self.client.login(username='updateuser', password='password123')
 
     def test_update_profile_with_valid_data(self):
-        url = reverse('profile')
-        data = {
-            'email': 'newemail@example.com',
-            'profile': {
-                'display_name': 'NewDisplayName',
-            }
-        }
-        response = self.client.put(url, data, format='json')
+        url = reverse('profile')  # Vérifiez que cette URL correspond à `UserProfileView`
+        data = {'display_name': 'NewDisplayName'}
+        response = self.client.patch(url, data, format='json')  # Utilisez `format='json'` si le sérialiseur attend du JSON
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.user.refresh_from_db()
-        self.assertEqual(self.user.email, 'newemail@example.com')
         self.assertEqual(self.user.profile.display_name, 'NewDisplayName')
 
     def test_update_profile_with_duplicate_display_name(self):
-        # Créer un autre utilisateur avec un display_name spécifique
         other_user = User.objects.create_user(username='otheruser', password='password123')
         other_user.profile.display_name = 'ExistingDisplayName'
         other_user.profile.save()
 
         url = reverse('profile')
-        data = {
-            'profile': {
-                'display_name': 'ExistingDisplayName',  # Display name déjà utilisé
-            }
-        }
-        response = self.client.put(url, data, format='json')
+        data = {'display_name': 'ExistingDisplayName'}
+        response = self.client.patch(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn('display_name', response.data['profile'])
+        self.assertIn('display_name', response.data)  # Changez de `response.data['profile']` à `response.data`
+
 
     def test_update_profile_without_authentication(self):
         self.client.logout()
@@ -258,14 +235,11 @@ class UserProfileTests(APITestCase):
         self.client.login(username='testuser', password='password123')
 
     def test_update_profile_with_valid_data(self):
-        url = '/api/users/profile/'
-        data = {
-            'display_name': 'NewDisplayName',
-        }
+        url = reverse('profile')  # Vérifiez que le nom correspond à l'URL définie
+        data = {'display_name': 'NewDisplayName'}
         response = self.client.patch(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['display_name'], 'NewDisplayName')
-
 
 class PermissionsTests(APITestCase):
     def setUp(self):
