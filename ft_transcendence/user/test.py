@@ -63,7 +63,7 @@ class UserRegistrationTests(APITestCase):
             'email': 'avataruser@example.com',
             'password': 'password123',
             'display_name': 'AvatarUser',
-            'avatar': avatar,  # Ajout direct du champ `avatar`
+            'avatar': avatar,
         }
         response = self.client.post(url, data, format='multipart')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

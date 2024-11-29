@@ -22,6 +22,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         return instance
 
 
+from rest_framework import serializers
+from django.contrib.auth.models import User
+from .models import Profile
+
 class UserSerializer(serializers.ModelSerializer):
     display_name = serializers.CharField(write_only=True, required=True)
     avatar = serializers.ImageField(write_only=True, required=False)
@@ -39,7 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
         # Création de l'utilisateur
         user = User.objects.create_user(password=password, **validated_data)
 
-        # Mettre à jour le profil créé automatiquement par le signal
+        # Mise à jour du profil
         profile = user.profile
         profile.display_name = display_name
         if avatar:
