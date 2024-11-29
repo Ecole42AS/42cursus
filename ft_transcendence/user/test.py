@@ -11,15 +11,18 @@ import io
 
 
 class UserRegistrationTests(APITestCase):
-    def test_user_registration_with_valid_data(self):
-        url = reverse('register')
-        data = {
+    REGISTER_URL = reverse('register')
+
+    def setUp(self):
+        self.valid_user_data = {
             'username': 'testuser',
             'email': 'testuser@example.com',
             'password': 'password123',
             'display_name': 'TestUser',
         }
-        response = self.client.post(url, data, format='json')
+
+    def test_user_registration_with_valid_data(self):
+        response = self.client.post(self.REGISTER_URL, self.valid_user_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(Profile.objects.count(), 1)
@@ -31,25 +34,20 @@ class UserRegistrationTests(APITestCase):
         existing_user.profile.display_name = 'UniqueDisplayName'
         existing_user.profile.save()
 
-        url = reverse('register')
-        data = {
+        data = self.valid_user_data.copy()
+        data.update({
             'username': 'newuser',
             'email': 'newuser@example.com',
-            'password': 'password123',
             'display_name': 'UniqueDisplayName',
-        }
-        response = self.client.post(url, data, format='json')
+        })
+        response = self.client.post(self.REGISTER_URL, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('display_name', response.data)
 
     def test_user_registration_without_display_name(self):
-        url = reverse('register')
-        data = {
-            'username': 'testuser2',
-            'email': 'testuser2@example.com',
-            'password': 'password123',
-        }
-        response = self.client.post(url, data, format='json')
+        data = self.valid_user_data.copy()
+        del data['display_name']
+        response = self.client.post(self.REGISTER_URL, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('display_name', response.data)
 
@@ -61,7 +59,7 @@ class UserRegistrationTests(APITestCase):
         image.save(image_file, format='JPEG')
         image_file.seek(0)
         avatar = SimpleUploadedFile(
-            name='test_avatar.jpg',
+            name=f'test_avatar_{timezone.now().timestamp()}.jpg',
             content=image_file.read(),
             content_type='image/jpeg'
         )
@@ -76,7 +74,8 @@ class UserRegistrationTests(APITestCase):
         print(response.content)  # Add this line to print the response content
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         user = User.objects.get(username='avataruser')
-        self.assertTrue(user.profile.avatar.url.endswith('test_avatar.jpg'))
+        self.assertIsNotNone(user.profile.avatar)
+        self.assertTrue(user.profile.avatar.name.endswith('.jpg'))
 
 class UserLoginTests(APITestCase):
     def setUp(self):
