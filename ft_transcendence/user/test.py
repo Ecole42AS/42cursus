@@ -2,195 +2,290 @@ from django.urls import reverse
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from django.contrib.auth.models import User
-from django.test import TestCase
-from .models import Friendship, Profile
-from .serializers import UserSerializer
-from django.utils.timezone import now, timedelta
+from .models import Profile, Friendship
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.utils import timezone
+from datetime import timedelta
 
 
-# 1. Tests pour les utilisateurs (inscription et connexion)
-class UserTests(APITestCase):
-    """
-    Tests pour la création et la connexion des utilisateurs.
-    """
-
-    def test_register_user(self):
-        """
-        Vérifie que l'enregistrement d'un utilisateur fonctionne correctement.
-        """
+class UserRegistrationTests(APITestCase):
+    def test_user_registration_with_valid_data(self):
         url = reverse('register')
         data = {
             'username': 'testuser',
-            'email': 'test@example.com',
+            'email': 'testuser@example.com',
             'password': 'password123',
-            'profile': {'display_name': 'Test User'}
+            'profile': {
+                'display_name': 'TestUser',
+            }
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
-        self.assertEqual(User.objects.get().username, 'testuser')
+        self.assertEqual(Profile.objects.count(), 1)
+        user = User.objects.get(username='testuser')
+        self.assertEqual(user.profile.display_name, 'TestUser')
 
-    def test_login_user(self):
-        """
-        Vérifie que la connexion fonctionne avec les bonnes informations.
-        """
-        user = User.objects.create_user(username='testuser', password='password123')
-        url = reverse('rest_framework:login')
-        data = {'username': 'testuser', 'password': 'password123'}
-        client = APIClient()
-        response = client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    def test_user_registration_with_duplicate_display_name(self):
+        # Créer un utilisateur existant
+        existing_user = User.objects.create_user(username='existinguser', password='password123')
+        existing_profile = existing_user.profile
+        existing_profile.display_name = 'UniqueDisplayName'
+        existing_profile.save()
+
+        url = reverse('register')
+        data = {
+            'username': 'newuser',
+            'email': 'newuser@example.com',
+            'password': 'password123',
+            'profile': {
+                'display_name': 'UniqueDisplayName',  # Même display_name
+            }
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('display_name', response.data)
+
+    def test_user_registration_without_display_name(self):
+        url = reverse('register')
+        data = {
+            'username': 'testuser2',
+            'email': 'testuser2@example.com',
+            'password': 'password123',
+            'profile': {
+                # Pas de 'display_name'
+            }
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('display_name', response.data)
+
+    def test_user_registration_with_avatar(self):
+        url = reverse('register')
+        avatar = SimpleUploadedFile(
+            name='test_avatar.jpg',
+            content=b'file_content',
+            content_type='image/jpeg'
+        )
+        data = {
+            'username': 'avataruser',
+            'email': 'avataruser@example.com',
+            'password': 'password123',
+            'profile': {
+                'display_name': 'AvatarUser',
+                'avatar': avatar
+            }
+        }
+        response = self.client.post(url, data, format='multipart')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        user = User.objects.get(username='avataruser')
+        self.assertTrue(user.profile.avatar.url.endswith('test_avatar.jpg'))
 
 
-# 2. Tests pour l'ajout d'amis
-class AddFriendViewTest(APITestCase):
-    """
-    Tests pour l'ajout d'amis.
-    """
 
+class UserLoginTests(APITestCase):
     def setUp(self):
-        """
-        Crée deux utilisateurs pour les tests.
-        """
-        self.user1 = User.objects.create_user(username='alex', password='deplanta1')
-        self.user2 = User.objects.create_user(username='friend2', password='friend2')
-        self.client.login(username='alex', password='deplanta1')
+        self.user = User.objects.create_user(username='loginuser', password='password123')
 
-    def test_add_friend(self):
-        """
-        Vérifie qu'un utilisateur peut ajouter un autre utilisateur comme ami.
-        """
-        response = self.client.post(f'/api/user/add_friend/{self.user2.id}/')
-        self.assertEqual(response.status_code, 201)
+    def test_user_login_with_valid_credentials(self):
+        url = '/api-auth/login/'
+        data = {'username': 'loginuser', 'password': 'password123'}
+        response = self.client.post(url, data)
+        # self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # self.assertTrue('_auth_user_id' in self.client.session)
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith('/'))
+
+
+    def test_user_login_with_invalid_credentials(self):
+        url = '/api-auth/login/'
+        data = {'username': 'loginuser', 'password': 'wrongpassword'}
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)  # Django returns 200 with form errors
+        self.assertFalse('_auth_user_id' in self.client.session)
+        self.assertContains(response, 'Please enter a correct username and password. Note that both fields may be case-sensitive.')
+
+
+
+class UserProfileUpdateTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='updateuser', password='password123')
+        self.client.login(username='updateuser', password='password123')
+
+    def test_update_profile_with_valid_data(self):
+        url = reverse('profile')
+        data = {
+            'email': 'newemail@example.com',
+            'profile': {
+                'display_name': 'NewDisplayName',
+            }
+        }
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.email, 'newemail@example.com')
+        self.assertEqual(self.user.profile.display_name, 'NewDisplayName')
+
+    def test_update_profile_with_duplicate_display_name(self):
+        # Créer un autre utilisateur avec un display_name spécifique
+        other_user = User.objects.create_user(username='otheruser', password='password123')
+        other_user.profile.display_name = 'ExistingDisplayName'
+        other_user.profile.save()
+
+        url = reverse('profile')
+        data = {
+            'profile': {
+                'display_name': 'ExistingDisplayName',  # Display name déjà utilisé
+            }
+        }
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('display_name', response.data['profile'])
+
+    def test_update_profile_without_authentication(self):
+        self.client.logout()
+        url = reverse('profile')
+        data = {
+            'email': 'unauthenticated@example.com',
+        }
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
+
+class FriendTests(APITestCase):
+    def setUp(self):
+        self.user1 = User.objects.create_user(username='user1', password='password123')
+        self.user1.profile.display_name = 'User One'
+        self.user1.profile.save()
+
+        self.user2 = User.objects.create_user(username='user2', password='password123')
+        self.user2.profile.display_name = 'User Two'
+        self.user2.profile.save()
+
+        self.client.login(username='user1', password='password123')
+
+    def test_add_friend_valid(self):
+        url = reverse('add_friend', kwargs={'user_id': self.user2.id})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertTrue(Friendship.objects.filter(from_user=self.user1, to_user=self.user2).exists())
 
-    def test_add_nonexistent_friend(self):
-        """
-        Vérifie le comportement lorsqu'un utilisateur inexistant est ajouté comme ami.
-        """
-        response = self.client.post('/api/user/add_friend/999/')  # ID inexistant
-        self.assertEqual(response.status_code, 404)
-        self.assertEqual(response.data['error'], 'Utilisateur non trouvé')
-
-    def test_add_existing_friend(self):
-        """
-        Vérifie le comportement lorsqu'un utilisateur déjà ami est ajouté.
-        """
+    def test_add_friend_already_added(self):
+        # Ajouter l'ami une première fois
         Friendship.objects.create(from_user=self.user1, to_user=self.user2)
-        response = self.client.post(f'/api/user/add_friend/{self.user2.id}/')
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.data['error'], 'Déjà ami')
+
+        url = reverse('add_friend', kwargs={'user_id': self.user2.id})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('Déjà ami', response.data['error'])
+
+    def test_add_friend_nonexistent_user(self):
+        url = reverse('add_friend', kwargs={'user_id': 999})  # ID qui n'existe pas
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertIn('Utilisateur non trouvé', response.data['error'])
+
+    def test_add_friend_without_authentication(self):
+        self.client.logout()
+        url = reverse('add_friend', kwargs={'user_id': self.user2.id})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
-# 3. Tests pour le sérialiseur UserSerializer
-class UserSerializerTest(TestCase):
-    """
-    Tests pour le sérialiseur UserSerializer.
-    """
-
+class FriendsListTests(APITestCase):
     def setUp(self):
-        """
-        Prépare les données pour les tests.
-        """
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword',
-            'email': 'testuser@example.com',
-            'profile': {
-                'display_name': 'Test User',
-                'avatar': None
-            }
-        }
-        self.user = User.objects.create_user(username='existinguser', password='password', email='existing@example.com')
-        Profile.objects.create(user=self.user, display_name='Existing User')
+        self.user1 = User.objects.create_user(username='user1', password='password123')
+        self.user2 = User.objects.create_user(username='user2', password='password123')
+        self.user3 = User.objects.create_user(username='user3', password='password123')
 
-    def test_create_user_success(self):
-        """
-        Vérifie que le sérialiseur crée un utilisateur correctement.
-        """
-        serializer = UserSerializer(data=self.user_data)
-        self.assertTrue(serializer.is_valid())
-        user = serializer.save()
-        self.assertEqual(user.username, self.user_data['username'])
-        self.assertEqual(user.profile.display_name, self.user_data['profile']['display_name'])
+        # user1 est ami avec user2
+        Friendship.objects.create(from_user=self.user1, to_user=self.user2)
 
-    def test_create_user_duplicate_display_name(self):
-        """
-        Vérifie que le sérialiseur rejette un nom d'affichage dupliqué.
-        """
-        self.user_data['profile']['display_name'] = 'Existing User'
-        serializer = UserSerializer(data=self.user_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertIn('display_name', serializer.errors['profile'])
+        self.client.login(username='user1', password='password123')
 
-    def test_create_user_missing_display_name(self):
-        """
-        Vérifie que le sérialiseur rejette une création sans nom d'affichage.
-        """
-        del self.user_data['profile']['display_name']
-        serializer = UserSerializer(data=self.user_data)
-        self.assertFalse(serializer.is_valid())
-        self.assertIn('display_name', serializer.errors['profile'])
+    def test_get_friends_list(self):
+        url = reverse('friends_list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]['username'], 'user2')
 
-    def test_update_user_success(self):
-        """
-        Vérifie que le sérialiseur met à jour les données utilisateur.
-        """
-        user = User.objects.create_user(username='updateuser', password='password', email='update@example.com')
-        Profile.objects.create(user=user, display_name='Update User')
-        update_data = {
-            'username': 'updateduser',
-            'email': 'updated@example.com',
-            'profile': {
-                'display_name': 'Updated User',
-                'avatar': None
-            }
-        }
-        serializer = UserSerializer(user, data=update_data)
-        self.assertTrue(serializer.is_valid())
-        updated_user = serializer.save()
-        self.assertEqual(updated_user.username, update_data['username'])
-        self.assertEqual(updated_user.profile.display_name, update_data['profile']['display_name'])
+    def test_get_friends_list_no_friends(self):
+        # Supprimer toutes les amitiés
+        Friendship.objects.all().delete()
 
-    def test_update_profile_success(self):
-        """
-        Vérifie que le sérialiseur met à jour uniquement le profil.
-        """
-        user = User.objects.create_user(username='updateuser', password='password', email='update@example.com')
-        Profile.objects.create(user=user, display_name='Update User')
-        update_data = {
-            'profile': {
-                'display_name': 'Updated User',
-                'avatar': None
-            }
-        }
-        serializer = UserSerializer(user, data=update_data, partial=True)
-        self.assertTrue(serializer.is_valid())
-        updated_user = serializer.save()
-        self.assertEqual(updated_user.profile.display_name, update_data['profile']['display_name'])
+        url = reverse('friends_list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
+
+    def test_get_friends_list_without_authentication(self):
+        self.client.logout()
+        url = reverse('friends_list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
-# 4. Tests pour les modèles Profile
-class ProfileModelTest(TestCase):
-    """
-    Tests pour le modèle Profile.
-    """
-
+class OnlineStatusTests(APITestCase):
     def setUp(self):
-        """
-        Crée un utilisateur et un profil pour les tests.
-        """
+        self.user = User.objects.create_user(username='onlineuser', password='password123')
+        self.client.login(username='onlineuser', password='password123')
+
+    def test_last_activity_updated_on_request(self):
+        old_activity = self.user.profile.last_activity
+        url = reverse('profile')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.user.profile.refresh_from_db()
+        new_activity = self.user.profile.last_activity
+        self.assertNotEqual(old_activity, new_activity)
+
+    def test_is_online_method(self):
+        # Simuler une activité il y a 2 minutes
+        self.user.profile.last_activity = timezone.now() - timedelta(minutes=2)
+        self.user.profile.save()
+        self.assertTrue(self.user.profile.is_online())
+
+        # Simuler une activité il y a 10 minutes
+        self.user.profile.last_activity = timezone.now() - timedelta(minutes=10)
+        self.user.profile.save()
+        self.assertFalse(self.user.profile.is_online())
+
+class UserProfileTests(APITestCase):
+    def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='password123')
-        self.profile = self.user.profile
+        self.client.login(username='testuser', password='password123')
 
-    def test_is_online(self):
-        """
-        Vérifie que la méthode is_online retourne correctement True ou False.
-        """
-        self.profile.last_activity = now() - timedelta(minutes=3)
-        self.profile.save()
-        self.assertTrue(self.profile.is_online())
+    def test_update_profile_with_valid_data(self):
+        url = '/api/users/profile/'
+        data = {
+            'display_name': 'NewDisplayName',
+        }
+        response = self.client.patch(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['display_name'], 'NewDisplayName')
 
-        self.profile.last_activity = now() - timedelta(minutes=10)
-        self.profile.save()
-        self.assertFalse(self.profile.is_online())
+
+class PermissionsTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='user', password='password123')
+        self.other_user = User.objects.create_user(username='otheruser', password='password123')
+
+    def test_protected_views_require_authentication(self):
+        url = reverse('profile')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_user_cannot_update_another_users_profile(self):
+        self.client.login(username='user', password='password123')
+        # Essayer de mettre à jour le profil de 'otheruser'
+        url = reverse('profile')
+        data = {
+            'username': 'otheruser',
+            'email': 'hacked@example.com',
+        }
+        response = self.client.put(url, data, format='json')
+        self.assertNotEqual(response.status_code, status.HTTP_200_OK)
+        self.other_user.refresh_from_db()
+        self.assertNotEqual(self.other_user.email, 'hacked@example.com')

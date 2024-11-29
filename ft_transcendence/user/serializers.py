@@ -2,17 +2,19 @@ from rest_framework import serializers
 from .models import Profile
 from django.contrib.auth.models import User
 
+
 class ProfileSerializer(serializers.ModelSerializer):
-    # Serializer pour les profils utilisateurs (public)
+    # Sérialiseur pour les profils utilisateurs (public)
     avatar = serializers.ImageField(required=False)
 
-    class Meta: # définit des comportements spécifiques pour une table de DB (ici Profile)
+    class Meta:
         model = Profile
         fields = ['display_name', 'avatar', 'wins', 'losses']
         read_only_fields = ['wins', 'losses']
 
+
 class UserSerializer(serializers.ModelSerializer):
-    # Serializer pour les utilisateurs (privé)
+    # Sérialiseur pour les utilisateurs (privé)
     profile = ProfileSerializer()
 
     class Meta:
@@ -24,9 +26,9 @@ class UserSerializer(serializers.ModelSerializer):
         profile_data = data.get('profile', {})
         display_name = profile_data.get('display_name')
         if not display_name:
-            raise serializers.ValidationError({'display_name': 'Ce champ est requis.'})
+            raise serializers.ValidationError({'profile': {'display_name': 'Ce champ est requis.'}})
         if Profile.objects.filter(display_name=display_name).exists():
-            raise serializers.ValidationError({'display_name': 'Ce nom d\'affichage est déjà utilisé.'})
+            raise serializers.ValidationError({'profile': {'display_name': 'Ce nom d\'affichage est déjà utilisé.'}})
         return data
 
     def create(self, validated_data):
@@ -35,10 +37,12 @@ class UserSerializer(serializers.ModelSerializer):
         avatar = profile_data.pop('avatar', None)  # Avatar optionnel
         password = validated_data.pop('password')  # Extrait le mot de passe brut
 
-        user = User.objects.create(**validated_data)  # Crée l'utilisateur sans mot de passe
-        user.set_password(password)  # Hashage du mot de passe
-        user.save()  # Sauvegarde dans la base de données
+        # Création de l'utilisateur
+        user = User.objects.create(**validated_data)
+        user.set_password(password)
+        user.save()
 
+        # Création du profil utilisateur
         profile, created = Profile.objects.get_or_create(user=user, defaults=profile_data)
         if avatar:
             profile.avatar = avatar
@@ -49,30 +53,25 @@ class UserSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         # Extraction des données validées du profil
         profile_data = validated_data.pop('profile', {})
-        avatar = profile_data.pop('avatar', None) # None si l'avatar n'est pas fourni
+        avatar = profile_data.pop('avatar', None)  # None si l'avatar n'est pas fourni
         email = validated_data.get('email')
 
+        # Mise à jour des informations utilisateur
+        instance.username = validated_data.get('username', instance.username)
         if email:
-            if User.objects.filter(email=email).exclude(pk=instance.user.pk).exists():
+            if User.objects.filter(email=email).exclude(pk=instance.pk).exists():
                 raise serializers.ValidationError({"email": "Cet email est déjà utilisé."})
-            instance.user.email = email
-            instance.user.save()
+            instance.email = email
+        if 'password' in validated_data:
+            instance.set_password(validated_data['password'])
+        instance.save()
 
-        # # Mise à jour ou création du profil
-        # profile, created = Profile.objects.update_or_create(
-        #     user=instance,  # Critère de recherche
-        #     defaults=profile_data  # Données à mettre à jour ou à utiliser pour la création
-        # )
-
-        # Mise à jour du profil
-        profile = instance.profile  # Récupération du profil lié à l'utilisateur
+        # Mise à jour du profil utilisateur
+        profile = instance.profile
         for attr, value in profile_data.items():
-            setattr(profile, attr, value)  # Mise à jour des champs du profil
-
-        if avatar:  # Mise à jour séparée de l'avatar
+            setattr(profile, attr, value)
+        if avatar:
             profile.avatar = avatar
-
-        profile.save()  # Sauvegarde des modifications du profil
-
+        profile.save()
 
         return instance

@@ -16,11 +16,24 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny] # autorise les utilisateurs non authentifiés à accéder à la vue
     parser_classes = (JSONParser, MultiPartParser, FormParser)
 
+from rest_framework import generics, permissions
+from .serializers import UserSerializer
+from django.contrib.auth.models import User
+
+# User Update
+class UserUpdateView(generics.UpdateAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
+
+
 # Profil Utilisateur
 class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated] # autorise uniquement les utilisateurs authentifiés à accéder à la vue
-    parser_classes = (MultiPartParser, FormParser) # permet de gérer les fichiers envoyés avec la requête
+    parser_classes = (MultiPartParser, FormParser, JSONParser) # permet de gérer les fichiers envoyés avec la requête
 
     def get_object(self):
         return self.request.user.profile
