@@ -6,6 +6,8 @@ from .models import Profile, Friendship
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import timezone
 from datetime import timedelta
+from PIL import Image
+import io
 
 
 class UserRegistrationTests(APITestCase):
@@ -34,7 +36,7 @@ class UserRegistrationTests(APITestCase):
             'username': 'newuser',
             'email': 'newuser@example.com',
             'password': 'password123',
-            'profile': {'display_name': 'UniqueDisplayName'},
+            'display_name': 'UniqueDisplayName',
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -53,9 +55,14 @@ class UserRegistrationTests(APITestCase):
 
     def test_user_registration_with_avatar(self):
         url = reverse('register')
+        # Create a valid image file
+        image = Image.new('RGB', (100, 100))
+        image_file = io.BytesIO()
+        image.save(image_file, format='JPEG')
+        image_file.seek(0)
         avatar = SimpleUploadedFile(
             name='test_avatar.jpg',
-            content=b'file_content',
+            content=image_file.read(),
             content_type='image/jpeg'
         )
         data = {
@@ -66,6 +73,7 @@ class UserRegistrationTests(APITestCase):
             'avatar': avatar,
         }
         response = self.client.post(url, data, format='multipart')
+        print(response.content)  # Add this line to print the response content
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         user = User.objects.get(username='avataruser')
         self.assertTrue(user.profile.avatar.url.endswith('test_avatar.jpg'))

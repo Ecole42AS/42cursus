@@ -166,3 +166,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default Primary Key Field Type
 # ------------------------------------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Test Settings
+# ------------------------------------------------------------------------------
+# Temporary storage for test cases
+if 'test' in sys.argv:
+    import tempfile
+    from django.core.files.storage import FileSystemStorage
+
+    class TemporaryTestStorage(FileSystemStorage):
+        def __init__(self, *args, **kwargs):
+            super().__init__(location=tempfile.mkdtemp(), *args, **kwargs)
+
+    DEFAULT_FILE_STORAGE = 'ft_transcendence.settings.TemporaryTestStorage'
+
