@@ -39,6 +39,7 @@ class AddFriendView(APIView):
             return Response({'error': 'Déjà ami'}, status=status.HTTP_400_BAD_REQUEST)
 
 class FriendsListView(APIView):
+    # Liste des amis de l'utilisateur authentifié
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
