@@ -7,18 +7,17 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.db import IntegrityError
 from .models import Friendship
+from django.contrib.auth import get_user_model
 
+
+CustomUser = get_user_model()
 
 # Register (queryset, serializer_class, permission_classes sont des attributs de classe) 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all() # récupère tous les utilisateurs (requête SQL ORM)
+    queryset = CustomUser.objects.all() # récupère tous les utilisateurs (requête SQL ORM)
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny] # autorise les utilisateurs non authentifiés à accéder à la vue
     parser_classes = (JSONParser, MultiPartParser, FormParser)
-
-from rest_framework import generics, permissions
-from .serializers import UserSerializer
-from django.contrib.auth.models import User
 
 # User Update
 class UserUpdateView(generics.UpdateAPIView):
@@ -43,10 +42,10 @@ class AddFriendView(APIView):
 
     def post(self, request, user_id):
         try:
-            to_user = User.objects.get(pk=user_id)
+            to_user = CustomUser.objects.get(pk=user_id)
             Friendship.objects.create(from_user=request.user, to_user=to_user)
             return Response({'status': 'Ami ajouté'}, status=status.HTTP_201_CREATED)
-        except User.DoesNotExist:
+        except CustomUser.DoesNotExist:
             return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
         except IntegrityError:
             return Response({'error': 'Déjà ami'}, status=status.HTTP_400_BAD_REQUEST)

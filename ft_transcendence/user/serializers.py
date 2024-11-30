@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from .models import Profile
+from .models import Profile, CustomUser
 from django.contrib.auth.models import User
-
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,19 +20,24 @@ class ProfileSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-
-from rest_framework import serializers
-from django.contrib.auth.models import User
-from .models import Profile
-
 class UserSerializer(serializers.ModelSerializer):
     display_name = serializers.CharField(write_only=True, required=True)
     avatar = serializers.ImageField(write_only=True, required=False)
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['id', 'username', 'password', 'email', 'display_name', 'avatar']
         extra_kwargs = {'password': {'write_only': True}}
+
+    def validate_display_name(self, value):
+        if Profile.objects.filter(display_name=value).exists():
+            raise serializers.ValidationError('Ce nom d\'affichage est déjà utilisé.')
+        return value
+
+    def validate_email(self, value):
+        if CustomUser.objects.filter(email=value).exists():
+            raise serializers.ValidationError('Cet email est déjà utilisé.')
+        return value
 
     def create(self, validated_data):
         display_name = validated_data.pop('display_name')
@@ -41,7 +45,7 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password')
 
         # Création de l'utilisateur
-        user = User.objects.create_user(password=password, **validated_data)
+        user = CustomUser.objects.create_user(password=password, **validated_data)
 
         # Mise à jour du profil
         profile = user.profile
@@ -77,8 +81,3 @@ class UserSerializer(serializers.ModelSerializer):
 
         return instance
     
-    def validate_display_name(self, value):
-        if Profile.objects.filter(display_name=value).exists():
-            raise serializers.ValidationError('Ce nom d\'affichage est déjà utilisé.')
-        return value
-
