@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Profile, CustomUser
-from django.contrib.auth.models import User
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,11 +33,6 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('user with this display name already exists.')
         return value
 
-    def validate_email(self, value):
-        if CustomUser.objects.filter(email=value).exists():
-            raise serializers.ValidationError('Cet email est déjà utilisé.')
-        return value
-
     def create(self, validated_data):
         display_name = validated_data.pop('display_name')
         avatar = validated_data.pop('avatar', None)
@@ -61,10 +55,7 @@ class UserSerializer(serializers.ModelSerializer):
         avatar = profile_data.pop('avatar', None)  # None si l'avatar est absent
 
         instance.username = validated_data.get('username', instance.username)
-        email = validated_data.get('email', instance.email)
-
-        if email and User.objects.filter(email=email).exclude(pk=instance.pk).exists():
-            raise serializers.ValidationError({"email": "Cet email est déjà utilisé."})
+        instance.email = validated_data.get('email', instance.email)
 
         if 'password' in validated_data:
             instance.set_password(validated_data['password'])

@@ -125,8 +125,6 @@ else:
 
 # Authentication Settings
 # ------------------------------------------------------------------------------
-LOGIN_REDIRECT_URL = 'api/user/profile/'
-LOGOUT_REDIRECT_URL = '/api-auth/login/'
 AUTH_USER_MODEL = 'user.CustomUser'
 
 
