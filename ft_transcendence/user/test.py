@@ -168,6 +168,13 @@ class FriendTests(APITestCase):
         response = self.client.post(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_cannot_add_self_as_friend(self):
+        url = reverse('add_friend', kwargs={'user_id': self.user1.id})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data['error'], 'Vous ne pouvez pas vous ajouter en tant qu’ami.')
+
+
 class FriendsListTests(APITestCase):
     def setUp(self):
         self.user1 = create_user('user1', 'user1@example.com')
@@ -177,10 +184,12 @@ class FriendsListTests(APITestCase):
         self.client.login(username='user1', password='password123')
 
     def test_get_friends_list(self):
+        # user1 a un ami user2
+        expected_friend_count = Friendship.objects.filter(from_user=self.user1).count()
         url = reverse('friends_list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data), expected_friend_count)
 
     def test_get_friends_list_no_friends(self):
         Friendship.objects.all().delete()
