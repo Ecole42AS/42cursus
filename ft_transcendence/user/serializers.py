@@ -13,7 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         # Validation de l'unicité du nom d'affichage
         if Profile.objects.filter(display_name=display_name).exclude(pk=instance.pk).exists():
-            raise serializers.ValidationError({'display_name': 'Ce nom d\'affichage est déjà utilisé.'})
+            raise serializers.ValidationError({'display_name': 'user with this display name already exists.'})
 
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
@@ -31,7 +31,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def validate_display_name(self, value):
         if Profile.objects.filter(display_name=value).exists():
-            raise serializers.ValidationError('Ce nom d\'affichage est déjà utilisé.')
+            raise serializers.ValidationError('user with this display name already exists.')
         return value
 
     def validate_email(self, value):
