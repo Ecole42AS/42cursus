@@ -72,7 +72,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         return instance
 
-# Serializer pour les utilisateurs publics    
+# Serializer pour les utilisateurs publics (voir si besoin par le front-end)
 class PublicUserSerializer(serializers.ModelSerializer):
     display_name = serializers.CharField(source='profile.display_name', read_only=True)
     avatar = serializers.ImageField(source='profile.avatar', read_only=True)
