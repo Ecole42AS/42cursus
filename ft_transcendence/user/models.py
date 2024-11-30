@@ -4,7 +4,7 @@ from django.utils import timezone
 from datetime import timedelta
 from django.conf import settings
 
-
+# settings.AUTH_USER_MODEL reprend ma table d'utilisateurs personnalisée qui hérite de AbstractUser (User)
 def user_directory_path(instance, filename): # instance est une instance du modèle Profile
     # Le fichier sera uploadé vers MEDIA_ROOT/user_<id>/<filename>
     return f'user_{instance.user.id}/{filename}'
@@ -20,7 +20,7 @@ class Profile(models.Model):
     def is_online(self):
         if self.last_activity:
             now = timezone.now()
-            return now - self.last_activity < timedelta(minutes=5)
+            return now - self.last_activity < timedelta(minutes=1)
         return False
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Friendship(models.Model):
     class Meta:
         unique_together = ('from_user', 'to_user')
 
-class CustomUser(AbstractUser):
+class CustomUser(AbstractUser): # Hérite de la classe AbstractUser qui fournit des fonctionnalités de base pour les utilisateurs
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True)
 

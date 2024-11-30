@@ -149,9 +149,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # ------------------------------------------------------------------------------
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
+TIME_ZONE = 'Europe/Zurich'
+USE_I18N = True # internationalisation (traduction, format de date, etc.)
+USE_TZ = True # convertit dans le fuseau horaire UTC local
 
 
 # Static and Media Files
