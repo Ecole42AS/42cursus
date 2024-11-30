@@ -71,4 +71,12 @@ class UserSerializer(serializers.ModelSerializer):
         profile.save()
 
         return instance
-    
+
+# Serializer pour les utilisateurs publics    
+class PublicUserSerializer(serializers.ModelSerializer):
+    display_name = serializers.CharField(source='profile.display_name', read_only=True)
+    avatar = serializers.ImageField(source='profile.avatar', read_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'display_name', 'avatar']
