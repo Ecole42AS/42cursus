@@ -20,7 +20,7 @@ class Profile(models.Model):
     def is_online(self):
         if self.last_activity:
             now = timezone.now()
-            return now - self.last_activity < timedelta(minutes=1)
+            return now - self.last_activity < timedelta(seconds=5)
         return False
 
     def __str__(self):

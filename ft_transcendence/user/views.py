@@ -36,7 +36,7 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user.profile
 
-class AddFriendView(APIView):
+class AddFriendView(APIView): # APIView : Vue de base pour définir manuellement les comportements des requêtes HTTP (GET, POST, etc.)
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, user_id):
@@ -58,5 +58,5 @@ class FriendsListView(APIView):
 
     def get(self, request):
         friendships = request.user.friendships.all()
-        serializer = UserSerializer([f.to_user for f in friendships], many=True)
+        serializer = UserSerializer([f.to_user for f in friendships], many=True) # many=True pour sérialiser une liste d'objets et pour chaque ami de l'utilisateur authentifié, on renvoie un objet UserSerializer
         return Response(serializer.data)
