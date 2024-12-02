@@ -13,7 +13,7 @@ class GameSession(models.Model):
             return f"GameSession {self.id} between {self.player1.username} and {self.player2.username}"
 
 class Tournament(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     players = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='tournaments') # many to many relationship with the User model
     created_at = models.DateTimeField(auto_now_add=True)
 
