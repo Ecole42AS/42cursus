@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/', include('user.urls')),
     path('api-auth/', include('rest_framework.urls')),  # Permet d'utiliser l'interface d'authentification de DRF
+    path('api/game/', include('game.urls')),
 ]
 
 # Permet de servir les fichiers médias en mode DEBUG (en production, les fichiers médias sont servis par un serveur dédié)

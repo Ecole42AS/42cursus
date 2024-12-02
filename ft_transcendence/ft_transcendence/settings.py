@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     # Local apps
     'user',
     # 'api',
-    # 'game',
+    'game',
     # 'chat',
 ]
 
