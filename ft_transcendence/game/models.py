@@ -15,7 +15,8 @@ class GameSession(models.Model):
 
 class Tournament(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_tournaments', on_delete=models.CASCADE, default=1)  # Assurez-vous que l'utilisateur avec l'ID 1 existe
+    # creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_tournaments', on_delete=models.CASCADE, default=1)  # Assurez-vous que l'utilisateur avec l'ID 1 existe
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_tournaments', on_delete=models.CASCADE, null=True, blank=True)
     players = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='tournaments') # many to many relationship with the User model
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -23,9 +24,13 @@ class Tournament(models.Model):
         if self.players.count() < 2:
             raise ValidationError("A tournament must have at least two players (excluding the creator).")
 
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)  # Save the instance first
+    #     self.clean()  # Perform validation after saving
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Save the instance first
         self.clean()  # Perform validation after saving
+
 
     def __str__(self):
         return self.name

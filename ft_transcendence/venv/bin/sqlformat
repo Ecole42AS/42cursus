@@ -1,4 +1,4 @@
-#!/home/alex/Ecole42/42cursus/ft_transcendence/venv/bin/python3
+#!/home/alex/Ecole42/42cursus/ft_transcendence/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys
