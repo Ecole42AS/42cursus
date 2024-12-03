@@ -196,11 +196,10 @@ class TournamentMatchModelTests(TestCase):
         matches = TournamentMatch.objects.filter(tournament=self.tournament)
         self.assertEqual(matches.count(), 1)
 
-class GameSessionPermissionsTestCase(APITestCase):
+class NonAuthenticatedUserTests(APITestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com')
         self.player2 = create_user('player2', 'player2@example.com')
-        self.other_user = create_user('otheruser', 'otheruser@example.com')
         self.game = GameSession.objects.create(player1=self.player1, player2=self.player2)
         self.tournament = Tournament.objects.create(name='Test Tournament')
 
@@ -208,6 +207,15 @@ class GameSessionPermissionsTestCase(APITestCase):
         url = reverse('game-detail', args=[self.game.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+class GameSessionPermissionsTestCase(APITestCase):
+    def setUp(self):
+        self.player1 = create_user('player1', 'player1@example.com')
+        self.player2 = create_user('player2', 'player2@example.com')
+        self.client.login(username='player1', password='password123')  # S'assurer que le login est bien fait
+        self.other_user = create_user('otheruser', 'otheruser@example.com')
+        self.game = GameSession.objects.create(player1=self.player1, player2=self.player2)
+        self.tournament = Tournament.objects.create(name='Test Tournament')
 
     def test_user_cannot_modify_others_game(self):
         self.client.login(username='otheruser', password='password123')
