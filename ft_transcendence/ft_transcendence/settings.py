@@ -180,3 +180,50 @@ if 'test' in sys.argv:
 
     DEFAULT_FILE_STORAGE = 'ft_transcendence.settings.TemporaryTestStorage'
 
+# Logging Configuration
+# ------------------------------------------------------------------------------
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/alex/Ecole42/42cursus/ft_transcendence/logs/debug.log',  # Update this path
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',  # Change to INFO to reduce verbosity
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'ERROR',  # Log only errors for requests
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['file'],
+            'level': 'ERROR',  # Log only errors for database operations
+            'propagate': False,
+        },
+        'myapp': {  # Replace 'myapp' with your app name
+            'handlers': ['file'],
+            'level': 'DEBUG',  # Keep debug level for your app
+            'propagate': False,
+        },
+    },
+}
