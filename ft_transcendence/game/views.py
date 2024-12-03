@@ -18,7 +18,12 @@ class TournamentViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        tournament = serializer.save()
+        user = self.request.user
+        friends = serializer.validated_data.get('players')
+        if len(friends) < 2:
+            raise PermissionDenied("You must select at least two friends to create a tournament.")
+        tournament = serializer.save(creator=user)
+        tournament.players.add(user, *friends)
         generate_tournament_matches(tournament)
 
 class TournamentMatchViewSet(viewsets.ModelViewSet):

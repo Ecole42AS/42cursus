@@ -42,7 +42,10 @@ class TournamentSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(f"{player.username} is not your friend.")
         return players
 
-
+    def validate(self, data):
+        if 'players' in data and len(data['players']) < 2:
+            raise serializers.ValidationError("You must select at least two friends to create a tournament.")
+        return data
 
 class TournamentMatchSerializer(serializers.ModelSerializer):
     class Meta:
