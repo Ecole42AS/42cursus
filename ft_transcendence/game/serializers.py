@@ -1,16 +1,32 @@
 from rest_framework import serializers
 from .models import GameSession, Tournament, TournamentMatch
 from user.models import Friendship
+from django.contrib.auth import get_user_model
+
+CustomUser = get_user_model()
 
 class GameSerializer(serializers.ModelSerializer):
-    player1 = serializers.CharField(source='player1.username', read_only=True)
-    player2 = serializers.CharField(source='player2.username', read_only=True)
+    player1 = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    player2 = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
     winner = serializers.CharField(source='winner.username', read_only=True)
+    is_active = serializers.BooleanField(required=False)
 
-    class Meta: # classe Meta pour définir les champs à sérialiser
+    class Meta:
         model = GameSession
-        fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'created_at', 'ended_at']
+        fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
 
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['player1'] = instance.player1.username
+        ret['player2'] = instance.player2.username
+        ret['score_player1'] = instance.score_player1
+        ret['score_player2'] = instance.score_player2
+        ret['is_active'] = instance.is_active
+        if instance.winner:
+            ret['winner'] = instance.winner.username
+        else:
+            ret['winner'] = None
+        return ret
 
 class TournamentSerializer(serializers.ModelSerializer):
     players_display_names = serializers.SerializerMethodField()
@@ -51,6 +67,13 @@ class TournamentSerializer(serializers.ModelSerializer):
         # Ajouter le créateur aux joueurs
         tournament.players.add(creator, *players)
         return tournament
+    
+    def update(self, instance, validated_data):
+        players = validated_data.pop('players', None)
+        if players is not None:
+            # Inclure le créateur dans les joueurs
+            instance.players.set([instance.creator] + list(players))
+        return super().update(instance, validated_data)
 
 
 

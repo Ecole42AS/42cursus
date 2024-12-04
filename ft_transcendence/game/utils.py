@@ -1,16 +1,16 @@
-import random
 from django.utils import timezone
 from .models import TournamentMatch
 
 def generate_tournament_matches(tournament):
     players = list(tournament.players.all())
-    random.shuffle(players)
-    while len(players) >= 2:
-        player1 = players.pop()
-        player2 = players.pop()
-        match = TournamentMatch.objects.create(
-            tournament=tournament,
-            player1=player1,
-            player2=player2,
-            scheduled_at=timezone.now()
-        )
+    matches = []
+    for i in range(len(players)):
+        for j in range(i + 1, len(players)):
+            match = TournamentMatch.objects.create(
+                tournament=tournament,
+                player1=players[i],
+                player2=players[j],
+                scheduled_at=timezone.now()
+            )
+            matches.append(match)
+    return matches

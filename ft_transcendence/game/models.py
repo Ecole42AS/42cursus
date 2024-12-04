@@ -25,7 +25,7 @@ class Tournament(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 class TournamentMatch(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE) # many to one relationship with the Tournament model ( automatically sets up a reverse relationship ) add a column which stock id from the tournament
     player1 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tournament_matches_as_player1', on_delete=models.CASCADE)

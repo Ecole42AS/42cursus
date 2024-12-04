@@ -79,7 +79,7 @@ class GameSessionAPITests(APITestCase):
         url = reverse('game-detail', args=[game.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['player1'], 'player1')
+        self.assertEqual(response.data['player1'], self.player1.username)
 
     def test_list_game_sessions(self):
         GameSession.objects.create(player1=self.player1, player2=self.player2)
@@ -201,25 +201,43 @@ class TournamentAPITests(APITestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com', password='password123')
         self.player2 = create_user('player2', 'player2@example.com', password='password123')
+        self.player3 = create_user('player3', 'player3@example.com', password='password123')
         self.client.login(username='player1', password='password123')
 
-        # Créer une amitié entre player1 et player2
+
+        # Créer des amitiés
         Friendship.objects.create(from_user=self.player1, to_user=self.player2)
         Friendship.objects.create(from_user=self.player2, to_user=self.player1)
+        Friendship.objects.create(from_user=self.player1, to_user=self.player3)
+        Friendship.objects.create(from_user=self.player3, to_user=self.player1)
 
-    def test_create_tournament(self):
+    def test_create_tournament_with_less_than_two_friends(self):
         url = reverse('tournament-list')
         data = {
-            'name': 'Test Tournament',
-            'players': [self.player2.id],  # Ajouter les amis seulement
+            'name': 'Tournament with One Friend',
+            'players': [self.player2.id],
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('You must select at least two friends', str(response.data))
+
+    def test_create_tournament_with_two_friends(self):
+        url = reverse('tournament-list')
+        data = {
+            'name': 'Tournament with Two Friends',
+            'players': [self.player2.id, self.player3.id],
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Tournament.objects.count(), 1)
-        tournament = Tournament.objects.first()
-        self.assertEqual(tournament.creator, self.player1)
+        tournament = Tournament.objects.get(name='Tournament with Two Friends')
+        # Vérifier que le créateur est dans la liste des joueurs du tournoi
         self.assertIn(self.player1, tournament.players.all())
+        # Vérifier que les joueurs sont correctement ajoutés
         self.assertIn(self.player2, tournament.players.all())
+        self.assertIn(self.player3, tournament.players.all())
+        # Vérifier que la réponse contient 'all_players' avec le créateur inclus
+        self.assertIn('all_players', response.data)
+        self.assertIn(self.player1.id, response.data['all_players'])
 
     def test_list_tournaments(self):
         Tournament.objects.create(name='Tournament 1', creator=self.player1)
@@ -232,12 +250,15 @@ class TournamentAPITests(APITestCase):
     def test_add_players_to_tournament(self):
         tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
         url = reverse('tournament-detail', args=[tournament.id])
-        data = {'players': [self.player2.id]}
+        data = {'players': [self.player2.id, self.player3.id]}
         response = self.client.patch(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         tournament.refresh_from_db()
-        self.assertEqual(tournament.players.count(), 1)  # Seulement player2 car le PATCH remplace les joueurs
+        # Le PATCH par défaut remplace les joueurs, mais le créateur doit toujours être inclus
+        self.assertEqual(tournament.players.count(), 3)
+        self.assertIn(self.player1, tournament.players.all())
         self.assertIn(self.player2, tournament.players.all())
+        self.assertIn(self.player3, tournament.players.all())
 
     def test_delete_tournament(self):
         tournament = Tournament.objects.create(name='Tournament to Delete', creator=self.player1)
@@ -251,11 +272,24 @@ class TournamentAPITests(APITestCase):
         url = reverse('tournament-list')
         data = {
             'name': 'Tournament with Non-Friend',
-            'players': [non_friend.id],
+            'players': [non_friend.id, self.player2.id],
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn('is not your friend', str(response.data))
+        self.assertIn('The following users are not your friends: ', str(response.data))
+
+    def test_delete_player_removes_from_tournament(self):
+        self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
+        self.tournament.players.add(self.player1, self.player2)
+        self.player1.delete()
+        self.assertNotIn(self.player1, self.tournament.players.all())
+
+    def test_create_tournament_with_duplicate_name(self):
+        Tournament.objects.create(name='Duplicate Tournament', creator=self.player1)
+        url = reverse('tournament-list')
+        data = {'name': 'Duplicate Tournament', 'players': [self.player2.id, self.player3.id]}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 # -------------------------------
 # Tests pour le modèle TournamentMatch
@@ -264,7 +298,9 @@ class TournamentMatchModelTests(TestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com')
         self.player2 = create_user('player2', 'player2@example.com')
+        self.player3 = create_user('player3', 'player3@example.com')
         self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
+        self.tournament.players.add(self.player1, self.player2, self.player3)
 
     def test_tournament_match_creation(self):
         match = TournamentMatch.objects.create(
@@ -289,10 +325,9 @@ class TournamentMatchModelTests(TestCase):
         self.assertEqual(str(match), f"Match in Test Tournament between player1 and player2")
 
     def test_generate_matches(self):
-        self.tournament.players.add(self.player1, self.player2)
         generate_tournament_matches(self.tournament)
         matches = TournamentMatch.objects.filter(tournament=self.tournament)
-        self.assertEqual(matches.count(), 1)
+        self.assertEqual(matches.count(), 3)  # Pour 3 joueurs, il y a 3 matchs dans un tournoi en round-robin
 
 # -------------------------------
 # Tests pour les utilisateurs non authentifiés
@@ -318,7 +353,6 @@ class GameSessionPermissionsTestCase(APITestCase):
         self.player2 = create_user('player2', 'player2@example.com', password='password123')
         self.other_user = create_user('otheruser', 'otheruser@example.com', password='password123')
         self.game = GameSession.objects.create(player1=self.player1, player2=self.player2)
-        self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
 
         # Créer des amitiés si nécessaire
         Friendship.objects.create(from_user=self.player1, to_user=self.player2)
@@ -347,17 +381,6 @@ class GameSessionPermissionsTestCase(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_delete_player_removes_from_tournament(self):
-        self.tournament.players.add(self.player1, self.player2)
-        self.player1.delete()
-        self.assertNotIn(self.player1, self.tournament.players.all())
-
-    def test_create_tournament_with_duplicate_name(self):
-        Tournament.objects.create(name='Duplicate Tournament', creator=self.player1)
-        url = reverse('tournament-list')
-        data = {'name': 'Duplicate Tournament', 'players': [self.player2.id]}
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 # -------------------------------
 # Fin du fichier tests.py
