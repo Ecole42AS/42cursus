@@ -11,6 +11,7 @@ from django.db.models import Q
 from user.models import Profile
 from django.contrib.auth import get_user_model
 from rest_framework import status
+from django.utils import timezone
 
 CustomUser = get_user_model()
 
@@ -56,9 +57,6 @@ class CreateGameSessionView(APIView):
         except CustomUser.DoesNotExist:
             return Response({'error': 'Utilisateur non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
 
-# game/views.py
-
-from django.utils import timezone
 
 class UpdateGameScoreView(APIView):
     permission_classes = [IsAuthenticated]
@@ -66,26 +64,26 @@ class UpdateGameScoreView(APIView):
     def post(self, request, game_id):
         try:
             game = GameSession.objects.get(pk=game_id)
+
+            if not game.is_active:
+                return Response({'error': 'Ce match est terminé. Les scores ne peuvent pas être modifiés.'}, status=status.HTTP_400_BAD_REQUEST)
+
             if request.user not in [game.player1, game.player2]:
                 return Response({'error': 'Vous ne participez pas à ce match.'}, status=status.HTTP_403_FORBIDDEN)
 
-            # Récupérer le score envoyé par le joueur
             player_score = request.data.get('score')
             if player_score is None:
                 return Response({'error': 'Score non fourni.'}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Mettre à jour le score du joueur
             if request.user == game.player1:
                 game.score_player1 = player_score
             else:
                 game.score_player2 = player_score
 
-            # Vérifier si le match est terminé (par exemple, premier à atteindre 10 points)
-            if game.score_player1 >= 10 or game.score_player2 >= 10:
+            if game.score_player1 >= 5 or game.score_player2 >= 5:
                 game.is_active = False
                 game.ended_at = timezone.now()
 
-                # Déterminer le gagnant
                 if game.score_player1 > game.score_player2:
                     game.winner = game.player1
                     winner = game.player1
@@ -96,17 +94,16 @@ class UpdateGameScoreView(APIView):
                     loser = game.player1
 
                 game.save()
-
-                # Mettre à jour les statistiques des joueurs
                 update_player_stats(winner, loser)
 
                 serializer = GameSerializer(game)
                 return Response(serializer.data)
-            else:
-                game.save()
-                return Response({'detail': 'Score mis à jour.'})
+
+            game.save()
+            return Response({'detail': 'Score mis à jour.'})
         except GameSession.DoesNotExist:
             return Response({'error': 'Match non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
+
 
 
 class TournamentViewSet(viewsets.ModelViewSet):
