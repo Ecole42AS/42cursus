@@ -1,5 +1,5 @@
 from django.test import TestCase
-from rest_framework.test import APITestCase, APIClient
+from rest_framework.test import APITestCase
 from rest_framework import status
 from django.urls import reverse
 from django.utils.timezone import now
@@ -7,15 +7,19 @@ from .models import GameSession, Tournament, TournamentMatch
 from .utils import generate_tournament_matches
 from django.contrib.auth import get_user_model
 from .views import update_player_stats
+from user.models import Friendship
 
 CustomUser = get_user_model()
 
-# Utility function to create users
+# Fonction utilitaire pour créer des utilisateurs
 def create_user(username, email, password='password123'):
-    return CustomUser.objects.create_user(username=username, email=email, password=password)
+    user = CustomUser.objects.create_user(username=username, email=email)
+    user.set_password(password)
+    user.save()
+    return user
 
 # -------------------------------
-# Tests for GameSession Model
+# Tests pour le modèle GameSession
 # -------------------------------
 class GameSessionModelTests(TestCase):
     def setUp(self):
@@ -31,7 +35,7 @@ class GameSessionModelTests(TestCase):
     def test_game_session_str(self):
         game = GameSession.objects.create(player1=self.player1, player2=self.player2)
         self.assertEqual(str(game), f"GameSession {game.id} between player1 and player2")
-    
+
     def test_update_player_stats(self):
         game = GameSession.objects.create(player1=self.player1, player2=self.player2)
         # Simuler la fin du match avec player1 comme gagnant
@@ -47,32 +51,21 @@ class GameSessionModelTests(TestCase):
         self.assertEqual(self.player2.profile.losses, 1)
 
 # -------------------------------
-# Tests for GameSession API
+# Tests pour l'API GameSession
 # -------------------------------
 class GameSessionAPITests(APITestCase):
-    # def setUp(self):
-    #     self.player1 = create_user('player1', 'player1@example.com')
-    #     self.player2 = create_user('player2', 'player2@example.com')
-    #     self.client.login(username='player1', password='password123')
-    #     self.other_user = create_user('otheruser', 'otheruser@example.com')
-    #     self.tournament = Tournament.objects.create(name='Test Tournament')
-
     def setUp(self):
-        self.player1 = create_user('player1', 'player1@example.com')
-        self.player1_password = 'password123'
-        self.player1.set_password(self.player1_password)
-        self.player1.save()
+        self.player1 = create_user('player1', 'player1@example.com', password='password123')
+        self.player2 = create_user('player2', 'player2@example.com', password='password123')
+        self.other_user = create_user('otheruser', 'otheruser@example.com', password='password123')
+        self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
+        self.client.login(username='player1', password='password123')
 
-        self.player2 = create_user('player2', 'player2@example.com')
-        self.player2.set_password('password123')
-        self.player2.save()
-
-        self.other_user = create_user('otheruser', 'otheruser@example.com')
-        self.other_user.set_password('password123')
-        self.other_user.save()
-
-        self.tournament = Tournament.objects.create(name='Test Tournament')
-        self.client.login(username='player1', password=self.player1_password)
+        # Créer des amitiés
+        Friendship.objects.create(from_user=self.player1, to_user=self.player2)
+        Friendship.objects.create(from_user=self.player2, to_user=self.player1)
+        Friendship.objects.create(from_user=self.player1, to_user=self.other_user)
+        Friendship.objects.create(from_user=self.other_user, to_user=self.player1)
 
     def test_create_game_session(self):
         url = reverse('game-list')
@@ -86,7 +79,7 @@ class GameSessionAPITests(APITestCase):
         url = reverse('game-detail', args=[game.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['player1'], self.player1.id)
+        self.assertEqual(response.data['player1'], 'player1')
 
     def test_list_game_sessions(self):
         GameSession.objects.create(player1=self.player1, player2=self.player2)
@@ -116,7 +109,7 @@ class GameSessionAPITests(APITestCase):
         GameSession.objects.create(player1=self.player2, player2=self.other_user)
         response = self.client.get(reverse('game-list'))
         for game in response.data:
-            self.assertIn(self.player1.id, [game['player1'], game['player2']])
+            self.assertIn(self.player1.username, [game['player1'], game['player2']])
 
     def test_generate_matches_with_single_player(self):
         self.tournament.players.add(self.player1)
@@ -178,27 +171,14 @@ class GameSessionAPITests(APITestCase):
         self.assertIn(game1.id, game_ids)
         self.assertIn(game2.id, game_ids)
 
-    def test_authenticated_user_sees_only_their_games(self):
-        # Créer des matchs
-        GameSession.objects.create(player1=self.player1, player2=self.player2)
-        GameSession.objects.create(player1=self.player2, player2=self.other_user)
-        # Devrait seulement voir les matchs où player1 est impliqué
-        response = self.client.get(reverse('game-list'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        for game in response.data:
-            self.assertIn(self.player1.username, [game['player1'], game['player2']])
-
-
-
-
 # -------------------------------
-# Tests for Tournament Model
+# Tests pour le modèle Tournament
 # -------------------------------
 class TournamentModelTests(TestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com')
         self.player2 = create_user('player2', 'player2@example.com')
-        self.tournament = Tournament.objects.create(name='Test Tournament')
+        self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
 
     def test_add_players_to_tournament(self):
         self.tournament.players.add(self.player1, self.player2)
@@ -215,57 +195,76 @@ class TournamentModelTests(TestCase):
         self.assertEqual(str(self.tournament), 'Test Tournament')
 
 # -------------------------------
-# Tests for Tournament API
+# Tests pour l'API Tournament
 # -------------------------------
 class TournamentAPITests(APITestCase):
     def setUp(self):
-        self.player1 = create_user('player1', 'player1@example.com')
-        self.player2 = create_user('player2', 'player2@example.com')
+        self.player1 = create_user('player1', 'player1@example.com', password='password123')
+        self.player2 = create_user('player2', 'player2@example.com', password='password123')
         self.client.login(username='player1', password='password123')
+
+        # Créer une amitié entre player1 et player2
+        Friendship.objects.create(from_user=self.player1, to_user=self.player2)
+        Friendship.objects.create(from_user=self.player2, to_user=self.player1)
 
     def test_create_tournament(self):
         url = reverse('tournament-list')
         data = {
             'name': 'Test Tournament',
-            'players': [self.player1.id, self.player2.id],  # Ajoutez les joueurs ici
+            'players': [self.player2.id],  # Ajouter les amis seulement
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Tournament.objects.count(), 1)
-
+        tournament = Tournament.objects.first()
+        self.assertEqual(tournament.creator, self.player1)
+        self.assertIn(self.player1, tournament.players.all())
+        self.assertIn(self.player2, tournament.players.all())
 
     def test_list_tournaments(self):
-        Tournament.objects.create(name='Tournament 1')
-        Tournament.objects.create(name='Tournament 2')
+        Tournament.objects.create(name='Tournament 1', creator=self.player1)
+        Tournament.objects.create(name='Tournament 2', creator=self.player1)
         url = reverse('tournament-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
 
     def test_add_players_to_tournament(self):
-        tournament = Tournament.objects.create(name='Test Tournament')
+        tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
         url = reverse('tournament-detail', args=[tournament.id])
-        data = {'players': [self.player1.id, self.player2.id]}
+        data = {'players': [self.player2.id]}
         response = self.client.patch(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         tournament.refresh_from_db()
-        self.assertEqual(tournament.players.count(), 2)
+        self.assertEqual(tournament.players.count(), 1)  # Seulement player2 car le PATCH remplace les joueurs
+        self.assertIn(self.player2, tournament.players.all())
 
     def test_delete_tournament(self):
-        tournament = Tournament.objects.create(name='Tournament to Delete')
+        tournament = Tournament.objects.create(name='Tournament to Delete', creator=self.player1)
         url = reverse('tournament-detail', args=[tournament.id])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Tournament.objects.count(), 0)
 
+    def test_create_tournament_with_non_friend(self):
+        non_friend = create_user('nonfriend', 'nonfriend@example.com', password='password123')
+        url = reverse('tournament-list')
+        data = {
+            'name': 'Tournament with Non-Friend',
+            'players': [non_friend.id],
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('is not your friend', str(response.data))
+
 # -------------------------------
-# Tests for Tournament Match Model
+# Tests pour le modèle TournamentMatch
 # -------------------------------
 class TournamentMatchModelTests(TestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com')
         self.player2 = create_user('player2', 'player2@example.com')
-        self.tournament = Tournament.objects.create(name='Test Tournament')
+        self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
 
     def test_tournament_match_creation(self):
         match = TournamentMatch.objects.create(
@@ -295,15 +294,15 @@ class TournamentMatchModelTests(TestCase):
         matches = TournamentMatch.objects.filter(tournament=self.tournament)
         self.assertEqual(matches.count(), 1)
 
-# # -------------------------------
-# Tests for Non-Authenticated Users
-# # -------------------------------
+# -------------------------------
+# Tests pour les utilisateurs non authentifiés
+# -------------------------------
 class NonAuthenticatedUserTests(APITestCase):
     def setUp(self):
-        self.player1 = create_user('player1', 'player1@example.com')
-        self.player2 = create_user('player2', 'player2@example.com')
+        self.player1 = create_user('player1', 'player1@example.com', password='password123')
+        self.player2 = create_user('player2', 'player2@example.com', password='password123')
         self.game = GameSession.objects.create(player1=self.player1, player2=self.player2)
-        self.tournament = Tournament.objects.create(name='Test Tournament')
+        self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
 
     def test_non_authenticated_user_cannot_access(self):
         url = reverse('game-detail', args=[self.game.id])
@@ -311,53 +310,40 @@ class NonAuthenticatedUserTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 # -------------------------------
-# Tests for GameSession Permissions
+# Tests pour les permissions de GameSession
 # -------------------------------
 class GameSessionPermissionsTestCase(APITestCase):
-    # def setUp(self):
-    #     self.player1 = create_user('player1', 'player1@example.com')
-    #     self.player2 = create_user('player2', 'player2@example.com')
-    #     self.client.login(username='player1', password='password123')  # S'assurer que le login est bien fait
-    #     self.other_user = create_user('otheruser', 'otheruser@example.com')
-    #     self.game = GameSession.objects.create(player1=self.player1, player2=self.player2)
-    #     self.tournament = Tournament.objects.create(name='Test Tournament')
-
     def setUp(self):
-        self.player1 = create_user('player1', 'player1@example.com')
-        self.player1.set_password('password123')
-        self.player1.save()
-
-        self.player2 = create_user('player2', 'player2@example.com')
-        self.player2.set_password('password123')
-        self.player2.save()
-
-        self.other_user = create_user('otheruser', 'otheruser@example.com')
-        self.other_user.set_password('password123')
-        self.other_user.save()
-
+        self.player1 = create_user('player1', 'player1@example.com', password='password123')
+        self.player2 = create_user('player2', 'player2@example.com', password='password123')
+        self.other_user = create_user('otheruser', 'otheruser@example.com', password='password123')
         self.game = GameSession.objects.create(player1=self.player1, player2=self.player2)
-        self.tournament = Tournament.objects.create(name='Test Tournament')
+        self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
 
+        # Créer des amitiés si nécessaire
+        Friendship.objects.create(from_user=self.player1, to_user=self.player2)
+        Friendship.objects.create(from_user=self.player2, to_user=self.player1)
 
     def test_user_cannot_modify_others_game(self):
         self.client.login(username='otheruser', password='password123')
-        url = reverse('game-detail', args=[self.game.id])
-        data = {'is_active': False}
-        response = self.client.patch(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        url = reverse('update_game_score', args=[self.game.id])
+        data = {'score': 10}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_user_can_modify_own_game(self):
         self.client.login(username='player1', password='password123')
-        url = reverse('game-detail', args=[self.game.id])
-        data = {'is_active': False}
-        response = self.client.patch(url, data, format='json')
+        url = reverse('update_game_score', args=[self.game.id])
+        data = {'score': 10}
+        response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.game.refresh_from_db()
         self.assertFalse(self.game.is_active)
 
     def test_create_game_session_with_missing_player(self):
+        self.client.login(username='player1', password='password123')
         url = reverse('game-list')
-        data = {'player1': self.player1.id}  # player2 missing
+        data = {'player1': self.player1.id}  # player2 manquant
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -367,24 +353,12 @@ class GameSessionPermissionsTestCase(APITestCase):
         self.assertNotIn(self.player1, self.tournament.players.all())
 
     def test_create_tournament_with_duplicate_name(self):
-        Tournament.objects.create(name='Duplicate Tournament')
+        Tournament.objects.create(name='Duplicate Tournament', creator=self.player1)
         url = reverse('tournament-list')
-        data = {'name': 'Duplicate Tournament', 'players': [self.player1.id, self.player2.id]}
+        data = {'name': 'Duplicate Tournament', 'players': [self.player2.id]}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_user_cannot_modify_others_game(self):
-        self.client.login(username='otheruser', password='password123')
-        url = reverse('update_game_score', args=[self.game.id])
-        data = {'score': 10}
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
-    def test_user_can_modify_own_game(self):
-        self.client.login(username='player1', password='password123')
-        url = reverse('update_game_score', args=[self.game.id])
-        data = {'score': 10}
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.game.refresh_from_db()
-        self.assertFalse(self.game.is_active)
+# -------------------------------
+# Fin du fichier tests.py
+# -------------------------------
