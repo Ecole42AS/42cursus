@@ -12,31 +12,16 @@ class GameSerializer(serializers.ModelSerializer):
         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'created_at', 'ended_at']
 
 class TournamentSerializer(serializers.ModelSerializer):
-    # Champ personnalisé pour afficher les display_names des joueurs
     players_display_names = serializers.SerializerMethodField()
+    creator = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Tournament
-        fields = ['id', 'name', 'players', 'players_display_names', 'created_at']  # Inclure les champs nécessaires
+        fields = ['id', 'name', 'creator', 'players', 'players_display_names', 'created_at']
+        read_only_fields = ['id', 'created_at']
 
     def get_players_display_names(self, obj):
-        # Récupérer les display_names des joueurs dans le tournoi
         return [player.profile.display_name for player in obj.players.all()]
-
-    def update(self, instance, validated_data):
-        players = validated_data.pop('players', None)
-        if players:
-            instance.players.set(players)  # Remplace les joueurs existants
-        instance.save()
-        return instance
-    
-    # validation pour s'assurer que les joueurs que l'ont peut ajouté au tournoi sont des amis de l'utilisateur
-    # def validate_players(self, players):
-    #     user_friends = self.context['request'].user.friends.all()
-    #     for player in players:
-    #         if player not in user_friends:
-    #             raise serializers.ValidationError(f"{player.profile.display_name} is not your friend.")
-    #     return players
 
     def validate_players(self, players):
         user = self.context['request'].user
@@ -46,10 +31,19 @@ class TournamentSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(f"{player.username} is not your friend.")
         return players
 
-    def validate(self, data):
-        if 'players' in data and len(data['players']) < 2:
-            raise serializers.ValidationError("You must select at least two friends to create a tournament.")
-        return data
+    def create(self, validated_data):
+        players = validated_data.pop('players', [])
+        creator = validated_data.pop('creator')
+
+        # Vérifier que les joueurs sont des amis (déjà fait dans validate_players)
+        # total_players inclut le créateur
+        total_players = len(players) + 1
+        if total_players < 2:
+            raise serializers.ValidationError("A tournament must have at least two players.")
+
+        tournament = Tournament.objects.create(creator=creator, **validated_data)
+        tournament.players.add(creator, *players)
+        return tournament
 
 class TournamentMatchSerializer(serializers.ModelSerializer):
     class Meta:

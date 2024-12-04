@@ -19,26 +19,13 @@ class GameSession(models.Model):
 
 class Tournament(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    # creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_tournaments', on_delete=models.CASCADE, default=1)  # Assurez-vous que l'utilisateur avec l'ID 1 existe
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_tournaments', on_delete=models.CASCADE, null=True, blank=True)
-    players = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='tournaments') # many to many relationship with the User model
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_tournaments', on_delete=models.CASCADE)
+    players = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='tournaments')
     created_at = models.DateTimeField(auto_now_add=True)
-
-    def clean(self):
-        if self.players.count() < 2:
-            raise ValidationError("A tournament must have at least two players (excluding the creator).")
-
-    # def save(self, *args, **kwargs):
-    #     super().save(*args, **kwargs)  # Save the instance first
-    #     self.clean()  # Perform validation after saving
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Save the instance first
-        self.clean()  # Perform validation after saving
-
 
     def __str__(self):
         return self.name
-
+    
 class TournamentMatch(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE) # many to one relationship with the Tournament model ( automatically sets up a reverse relationship ) add a column which stock id from the tournament
     player1 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tournament_matches_as_player1', on_delete=models.CASCADE)
