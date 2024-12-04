@@ -223,15 +223,15 @@ class TournamentAPITests(APITestCase):
         self.player2 = create_user('player2', 'player2@example.com')
         self.client.login(username='player1', password='password123')
 
-    # def test_create_tournament(self):
-    #     url = reverse('tournament-list')
-    #     data = {
-    #         'name': 'Test Tournament',
-    #         'players': [self.player1.id, self.player2.id],  # Ajoutez les joueurs ici
-    #     }
-    #     response = self.client.post(url, data, format='json')
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-    #     self.assertEqual(Tournament.objects.count(), 1)
+    def test_create_tournament(self):
+        url = reverse('tournament-list')
+        data = {
+            'name': 'Test Tournament',
+            'players': [self.player1.id, self.player2.id],  # Ajoutez les joueurs ici
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Tournament.objects.count(), 1)
 
 
     def test_list_tournaments(self):
