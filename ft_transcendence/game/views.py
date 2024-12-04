@@ -1,8 +1,6 @@
 from rest_framework import viewsets, permissions
 from .models import GameSession, Tournament, TournamentMatch
 from .serializers import GameSerializer, TournamentSerializer, TournamentMatchSerializer
-from .utils import generate_tournament_matches
-from rest_framework.exceptions import PermissionDenied
 from user.models import Profile
 from rest_framework.views import APIView
 from rest_framework.response import Response
