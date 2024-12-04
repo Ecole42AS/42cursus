@@ -7,11 +7,15 @@ class GameSession(models.Model):
     player2 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='games_as_player2', on_delete=models.CASCADE)
     score_player1 = models.IntegerField(default=0)
     score_player2 = models.IntegerField(default=0)
+    winner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='won_games', on_delete=models.SET_NULL, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    ended_at = models.DateTimeField(null=True, blank=True)
+
 
     def __str__(self):
             return f"GameSession {self.id} between {self.player1.username} and {self.player2.username}"
+
 
 class Tournament(models.Model):
     name = models.CharField(max_length=255, unique=True)

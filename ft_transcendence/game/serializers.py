@@ -3,9 +3,13 @@ from .models import GameSession, Tournament, TournamentMatch
 from user.models import Friendship
 
 class GameSerializer(serializers.ModelSerializer):
+    player1 = serializers.CharField(source='player1.username', read_only=True)
+    player2 = serializers.CharField(source='player2.username', read_only=True)
+    winner = serializers.CharField(source='winner.username', read_only=True)
+
     class Meta: # classe Meta pour définir les champs à sérialiser
         model = GameSession
-        fields = '__all__'
+        fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'created_at', 'ended_at']
 
 class TournamentSerializer(serializers.ModelSerializer):
     # Champ personnalisé pour afficher les display_names des joueurs
