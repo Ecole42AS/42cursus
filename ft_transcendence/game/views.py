@@ -11,6 +11,7 @@ from user.models import Profile
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.utils import timezone
+from user.models import Friendship
 
 logger = logging.getLogger(__name__)
 
@@ -135,10 +136,15 @@ class TournamentViewSet(viewsets.ModelViewSet):
     serializer_class = TournamentSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def get_serializer_context(self):
+        """
+        Fournir le contexte pour que le sérialiseur ait accès à la requête et à l'utilisateur connecté.
+        """
+        return {'request': self.request}
+
+
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)
-
-
 
 class TournamentMatchViewSet(viewsets.ModelViewSet):
     """
