@@ -1,7 +1,13 @@
+import logging
 from django.utils import timezone
 from .models import TournamentMatch
 
+logger = logging.getLogger(__name__)
+
 def generate_tournament_matches(tournament):
+    """
+    Génère les matchs pour un tournoi donné.
+    """
     players = list(tournament.players.all())
     matches = []
     for i in range(len(players)):
@@ -13,4 +19,5 @@ def generate_tournament_matches(tournament):
                 scheduled_at=timezone.now()
             )
             matches.append(match)
+    logger.info(f"Generated {len(matches)} matches for tournament {tournament.name}.")
     return matches

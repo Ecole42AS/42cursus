@@ -38,13 +38,10 @@ class GameSessionModelTests(TestCase):
 
     def test_update_player_stats(self):
         game = GameSession.objects.create(player1=self.player1, player2=self.player2)
-        # Simuler la fin du match avec player1 comme gagnant
         game.is_active = False
         game.winner = self.player1
         game.save()
-        # Appeler la fonction pour mettre à jour les stats
         update_player_stats(self.player1, self.player2)
-        # Rafraîchir les profils
         self.player1.profile.refresh_from_db()
         self.player2.profile.refresh_from_db()
         self.assertEqual(self.player1.profile.wins, 1)
@@ -61,7 +58,6 @@ class GameSessionAPITests(APITestCase):
         self.tournament = Tournament.objects.create(name='Test Tournament', creator=self.player1)
         self.client.login(username='player1', password='password123')
 
-        # Créer des amitiés
         Friendship.objects.create(from_user=self.player1, to_user=self.player2)
         Friendship.objects.create(from_user=self.player2, to_user=self.player1)
         Friendship.objects.create(from_user=self.player1, to_user=self.other_user)
@@ -128,27 +124,20 @@ class GameSessionAPITests(APITestCase):
         self.assertTrue(game.is_active)
 
     def test_update_game_score_and_end_game(self):
-        # Créer un match
         game = GameSession.objects.create(player1=self.player1, player2=self.player2)
-        # Mettre à jour le score en tant que player1
         url = reverse('update_game_score', args=[game.id])
-        data = {'score': 10}  # Supposons qu'un score de 10 termine le match
+        data = {'score': 5}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # Rafraîchir le match et les profils
         game.refresh_from_db()
         self.player1.profile.refresh_from_db()
         self.player2.profile.refresh_from_db()
-        # Vérifier que le match est terminé
         self.assertFalse(game.is_active)
-        # Vérifier que le gagnant est player1
         self.assertEqual(game.winner, self.player1)
-        # Vérifier que les statistiques sont mises à jour
         self.assertEqual(self.player1.profile.wins, 1)
         self.assertEqual(self.player2.profile.losses, 1)
 
     def test_match_history(self):
-        # Créer des matchs terminés pour player1
         game1 = GameSession.objects.create(
             player1=self.player1,
             player2=self.player2,
@@ -230,12 +219,9 @@ class TournamentAPITests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         tournament = Tournament.objects.get(name='Tournament with Two Friends')
-        # Vérifier que le créateur est dans la liste des joueurs du tournoi
         self.assertIn(self.player1, tournament.players.all())
-        # Vérifier que les joueurs sont correctement ajoutés
         self.assertIn(self.player2, tournament.players.all())
         self.assertIn(self.player3, tournament.players.all())
-        # Vérifier que la réponse contient 'all_players' avec le créateur inclus
         self.assertIn('all_players', response.data)
         self.assertIn(self.player1.id, response.data['all_players'])
 
@@ -254,7 +240,6 @@ class TournamentAPITests(APITestCase):
         response = self.client.patch(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         tournament.refresh_from_db()
-        # Le PATCH par défaut remplace les joueurs, mais le créateur doit toujours être inclus
         self.assertEqual(tournament.players.count(), 3)
         self.assertIn(self.player1, tournament.players.all())
         self.assertIn(self.player2, tournament.players.all())
@@ -354,7 +339,6 @@ class GameSessionPermissionsTestCase(APITestCase):
         self.other_user = create_user('otheruser', 'otheruser@example.com', password='password123')
         self.game = GameSession.objects.create(player1=self.player1, player2=self.player2)
 
-        # Créer des amitiés si nécessaire
         Friendship.objects.create(from_user=self.player1, to_user=self.player2)
         Friendship.objects.create(from_user=self.player2, to_user=self.player1)
 

@@ -1,3 +1,4 @@
+import logging
 from rest_framework import viewsets, permissions
 from .models import GameSession, Tournament, TournamentMatch
 from .serializers import GameSerializer, TournamentSerializer, TournamentMatchSerializer
@@ -11,9 +12,14 @@ from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.utils import timezone
 
+logger = logging.getLogger(__name__)
+
 CustomUser = get_user_model()
 
-def update_player_stats(winner, loser): # doit être appelée après chaque partie pour mettre à jour les statistiques des joueurs
+def update_player_stats(winner, loser):
+    """
+    Met à jour les statistiques des joueurs après chaque partie.
+    """
     winner_profile = Profile.objects.get(user=winner)
     loser_profile = Profile.objects.get(user=loser)
     winner_profile.wins += 1
@@ -21,16 +27,25 @@ def update_player_stats(winner, loser): # doit être appelée après chaque part
     winner_profile.save()
     loser_profile.save()
 
-class GameViewSet(viewsets.ModelViewSet): # viewset DRF gère les actions CRUD (list, retrieve, create, update, delete)
+class GameViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet pour gérer les actions CRUD des sessions de jeu.
+    """
     queryset = GameSession.objects.all()
     serializer_class = GameSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self): # surcharge de la méthode get_queryset pour filtrer les parties en fonction de l'utilisateur connecté et impliqué (soit user1, soit user2)
+    def get_queryset(self):
+        """
+        Surcharge de la méthode get_queryset pour filtrer les parties en fonction de l'utilisateur connecté et impliqué (soit user1, soit user2).
+        """
         return GameSession.objects.filter(player1=self.request.user) | GameSession.objects.filter(player2=self.request.user)
 
 
 class CreateGameSessionView(APIView):
+    """
+    Vue pour créer une nouvelle session de jeu.
+    """
     permission_classes = [IsAuthenticated]
 
     def post(self, request, user_id):
@@ -57,9 +72,16 @@ class CreateGameSessionView(APIView):
 
 
 class UpdateGameScoreView(APIView):
+    """
+    Vue pour mettre à jour le score d'une session de jeu.
+    """
     permission_classes = [IsAuthenticated]
 
     def post(self, request, game_id):
+        if not request.user.is_staff:
+            logger.warning(f"User {request.user.username} attempted to update score without permission.")
+            return Response({'error': 'Vous n\'êtes pas autorisé à modifier les scores.'}, status=status.HTTP_403_FORBIDDEN)
+        
         try:
             game = GameSession.objects.get(pk=game_id)
 
@@ -100,11 +122,15 @@ class UpdateGameScoreView(APIView):
             game.save()
             return Response({'detail': 'Score mis à jour.'})
         except GameSession.DoesNotExist:
+            logger.error(f"GameSession with id {game_id} not found.")
             return Response({'error': 'Match non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
 
 
 
 class TournamentViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet pour gérer les actions CRUD des tournois.
+    """
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -115,11 +141,17 @@ class TournamentViewSet(viewsets.ModelViewSet):
 
 
 class TournamentMatchViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet pour gérer les actions CRUD des matchs de tournoi.
+    """
     queryset = TournamentMatch.objects.all()
     serializer_class = TournamentMatchSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 class MatchHistoryView(APIView):
+    """
+    Vue pour récupérer l'historique des matchs d'un utilisateur.
+    """
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

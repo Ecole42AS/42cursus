@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 CustomUser = get_user_model()
 
 class GameSerializer(serializers.ModelSerializer):
-    player1 = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    player1 = serializers.HiddenField(default=serializers.CurrentUserDefault()) # Le joueur 1 est l'utilisateur connecté (hiddenfield pour ne pas être modifié)
     player2 = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
     winner = serializers.CharField(source='winner.username', read_only=True)
     is_active = serializers.BooleanField(required=False)
@@ -15,8 +15,8 @@ class GameSerializer(serializers.ModelSerializer):
         model = GameSession
         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
 
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
+    def to_representation(self, instance): # Surcharge de la méthode to_representation pour afficher les noms des joueurs au lieu des ids
+        ret = super().to_representation(instance) # VOIR CE QUE FAIT SUPER
         ret['player1'] = instance.player1.username
         ret['player2'] = instance.player2.username
         ret['score_player1'] = instance.score_player1
