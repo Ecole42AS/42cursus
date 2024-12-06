@@ -139,7 +139,6 @@ class TournamentViewSet(viewsets.ModelViewSet):
         serializer.save(creator=self.request.user)
 
 
-
 class TournamentMatchViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour gérer les actions CRUD des matchs de tournoi.

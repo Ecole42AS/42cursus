@@ -218,9 +218,9 @@ LOGGING = {
             'level': 'ERROR',  # Log only errors for database operations
             'propagate': False,
         },
-        'myapp': {  # Replace 'myapp' with your app name
+        'myapp': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Keep debug level for your app
+            'level': 'DEBUG',  # Keep debug level for your app (capture all messages)
             'propagate': False,
         },
     },

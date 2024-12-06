@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 def generate_tournament_matches(tournament):
     """
-    Génère les matchs pour un tournoi donné.
+    Génère les matchs pour un tournoi donné (chaque joueur affronte tous les autres une fois).
     """
     players = list(tournament.players.all())
     matches = []
