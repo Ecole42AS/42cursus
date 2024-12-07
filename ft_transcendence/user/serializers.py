@@ -2,15 +2,14 @@ from rest_framework import serializers
 from .models import Profile, CustomUser
 
 class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
+    class Meta: # Meta est une classe interne à ProfileSerializer qui permet de définir des options supplémentaires
         model = Profile
         fields = ['display_name', 'avatar', 'wins', 'losses']
         read_only_fields = ['wins', 'losses']
 
     def update(self, instance, validated_data):
-        display_name = validated_data.get('display_name', instance.display_name)
+        display_name = validated_data.get('display_name', instance.display_name) # Récupère le nom d'affichage modifié ou le nom d'affichage actuel
 
-        # Validation de l'unicité du nom d'affichage
         if Profile.objects.filter(display_name=display_name).exclude(pk=instance.pk).exists():
             raise serializers.ValidationError({'display_name': 'user with this display name already exists.'})
 
@@ -26,22 +25,20 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'username', 'password', 'email', 'display_name', 'avatar']
-        extra_kwargs = {'password': {'write_only': True}}
+        extra_kwargs = {'password': {'write_only': True}} # Le mot de passe ne sera pas renvoyé dans la réponse
 
-    def validate_display_name(self, value):
+    def validate_display_name(self, value): # méthode appelée automatiquement lors de la validation des données (nomenclature validate_<champ>)
         if Profile.objects.filter(display_name=value).exists():
             raise serializers.ValidationError('user with this display name already exists.')
         return value
 
-    def create(self, validated_data):
+    def create(self, validated_data): #surcharge de la méthode create pour créer un utilisateur et son profil associé
         display_name = validated_data.pop('display_name')
         avatar = validated_data.pop('avatar', None)
         password = validated_data.pop('password')
 
-        # Création de l'utilisateur
-        user = CustomUser.objects.create_user(password=password, **validated_data)
+        user = CustomUser.objects.create_user(password=password, **validated_data) #crate_user est une méthode de AbstractUser qui hash le mot de passe (prend la variable python pour la mettre dans la base de données)
 
-        # Mise à jour du profil
         profile = user.profile
         profile.display_name = display_name
         if avatar:
@@ -52,7 +49,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         profile_data = validated_data.pop('profile', {})
-        avatar = profile_data.pop('avatar', None)  # None si l'avatar est absent
+        avatar = profile_data.pop('avatar', None)
 
         instance.username = validated_data.get('username', instance.username)
         instance.email = validated_data.get('email', instance.email)
@@ -64,7 +61,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         # Mise à jour du profil utilisateur
         profile = instance.profile
-        for attr, value in profile_data.items():
+        for attr, value in profile_data.items(): # profile_data est un dictionnaire contenant les données du profil (nomenclature <relation>_data, par défaut prend le nom du modèle en minuscule)
             setattr(profile, attr, value)
         if avatar:
             profile.avatar = avatar

@@ -27,7 +27,7 @@ class Profile(models.Model):
         return self.display_name # Affiche le nom d'affichage du profil dans l'interface admin sous forme de chaîne de caractères
 
 class Friendship(models.Model):
-    from_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='friendships', on_delete=models.CASCADE) # related_name permet de renommer la relation dans l'autre sens
+    from_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='friendships', on_delete=models.CASCADE) # related_name permet de renommer la relation dans l'autre sens (CustomUser.friendships)
     to_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='followers', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
