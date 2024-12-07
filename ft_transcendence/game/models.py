@@ -33,6 +33,8 @@ class TournamentMatch(models.Model):
     winner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='won_matches', on_delete=models.SET_NULL, null=True, blank=True)
     scheduled_at = models.DateTimeField()
     is_completed = models.BooleanField(default=False)
+    # round_number = models.IntegerField(default=1) # used for elimination tournaments
+
 
     def __str__(self):
         return f"Match in {self.tournament.name} between {self.player1.username} and {self.player2.username}"

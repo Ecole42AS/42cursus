@@ -16,7 +16,7 @@ class GameSerializer(serializers.ModelSerializer):
         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
 
     def to_representation(self, instance): # Surcharge de la méthode to_representation pour afficher les noms des joueurs au lieu des ids
-        ret = super().to_representation(instance) # VOIR CE QUE FAIT SUPER
+        ret = super().to_representation(instance)
         ret['player1'] = instance.player1.username
         ret['player2'] = instance.player2.username
         ret['score_player1'] = instance.score_player1
