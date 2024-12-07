@@ -10,7 +10,7 @@ import os
 from django.db.models.signals import pre_save
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created, **kwargs): # created est un booléen qui indique si l'instance a été créée ou mise à jour
     if created:
         Profile.objects.get_or_create(user=instance, defaults={'display_name': instance.username})
         
@@ -27,7 +27,7 @@ def delete_old_avatar_on_update(sender, instance, **kwargs):
         return
 
     try:
-        old_avatar = Profile.objects.get(pk=instance.pk).avatar
+        old_avatar = Profile.objects.get(pk=instance.pk).avatar # Récupère l'avatar actuel depuis la base de données
     except Profile.DoesNotExist:
         return
 
@@ -36,4 +36,4 @@ def delete_old_avatar_on_update(sender, instance, **kwargs):
             if os.path.isfile(old_avatar.path):  # Vérifie si le fichier existe avant de le supprimer
                 os.remove(old_avatar.path)
 
-        transaction.on_commit(delete_old_file)
+        transaction.on_commit(delete_old_file) # Supprime le fichieruniquement après que les modifications de la base de données ont été validées (commit).
