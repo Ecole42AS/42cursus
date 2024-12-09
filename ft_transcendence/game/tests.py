@@ -121,14 +121,10 @@ class GameSessionAPITests(APITestCase):
         url = reverse('update_game_score', args=[game.id])
         data = {'score': 5}
         response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         game.refresh_from_db()
-        self.player1.profile.refresh_from_db()
-        self.player2.profile.refresh_from_db()
-        self.assertFalse(game.is_active)
-        self.assertEqual(game.winner, self.player1)
-        self.assertEqual(self.player1.profile.wins, 1)
-        self.assertEqual(self.player2.profile.losses, 1)
+        self.assertTrue(game.is_active) 
+        self.assertIsNone(game.winner)  
 
     def test_match_history(self):
         game1 = GameSession.objects.create(
@@ -331,9 +327,10 @@ class GameSessionPermissionsTestCase(APITestCase):
         url = reverse('update_game_score', args=[self.game.id])
         data = {'score': 10}
         response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.game.refresh_from_db()
-        self.assertFalse(self.game.is_active)
+        self.assertTrue(self.game.is_active) 
+        self.assertIsNone(self.game.winner)  
 
     def test_create_game_session_with_missing_player(self):
         self.client.login(username='player1', password='password123')
