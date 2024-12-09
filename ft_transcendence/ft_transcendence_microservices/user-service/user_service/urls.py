@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Interface d'administration
+    path('api-auth/', include('rest_framework.urls')),  # Ajoutez cette ligne
     path('api/user/', include('user.urls')),  # Routes spécifiques à l'app 'user'
 ]
 

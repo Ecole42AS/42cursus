@@ -71,17 +71,24 @@ TEMPLATES = [
 # Application WSGI
 WSGI_APPLICATION = 'user_service.wsgi.application'
 
-# Configuration de la base de données
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'user_service_db',  # Remplacez par le nom de votre base utilisateur
-        'USER': 'user_service_user',  # Remplacez par votre utilisateur de base de données
-        'PASSWORD': 'yourpassword',  # Mot de passe de la base de données
-        'HOST': 'localhost',  # Hôte de la base de données
-        'PORT': '5432',  # Port de la base de données
+if 'test' in sys.argv: 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mydb',
+            'USER': 'alex',
+            'PASSWORD': 'deplanta1',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+   }
 
 # Modèle utilisateur personnalisé
 AUTH_USER_MODEL = 'user.CustomUser'
@@ -115,7 +122,10 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Gestion des fichiers temporaires pour les tests
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 if 'test' in sys.argv:
     import tempfile
     from django.core.files.storage import FileSystemStorage
@@ -161,8 +171,13 @@ LOGGING = {
         },
         'django.db.backends': {
             'handlers': ['file'],
-            'level': 'ERROR',
+            'level': 'ERROR', 
             'propagate': False,
+        },
+        'myapp': {
+            'handlers': ['file'],
+            'level': 'DEBUG', 
+           'propagate': False,
         },
     },
 }
