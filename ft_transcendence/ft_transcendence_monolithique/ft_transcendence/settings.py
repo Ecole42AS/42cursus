@@ -162,7 +162,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/alex/Ecole42/42cursus/ft_transcendence/logs/debug.log', 
+            'filename': '/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_monolithique/logs/debug.log', 
             'formatter': 'verbose',
         },
     },
