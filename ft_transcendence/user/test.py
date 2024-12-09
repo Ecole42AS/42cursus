@@ -8,7 +8,7 @@ from PIL import Image
 from django.contrib.auth import get_user_model
 import io
 
-CustomUser = get_user_model()
+CustomUser = get_user_model() # reconnait customuser comme le modèle d'utilisateur personnalisé grâce à AUTH_USER_MODEL dans settings.py
 
 def create_user(username, email, password='password123', display_name=None):
     user = CustomUser.objects.create_user(username=username, password=password, email=email)

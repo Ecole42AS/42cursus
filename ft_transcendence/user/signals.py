@@ -19,7 +19,7 @@ def save_user_profile(sender, instance, **kwargs):
     if hasattr(instance, 'profile'):
         instance.profile.save()
     else:
-        Profile.objects.create(user=instance, display_name=instance.username)
+        Profile.objects.create(user=instance, display_name=instance.username) # la méthode save() est appelée pour sauvegarder le profil utilisateur
 
 @receiver(pre_save, sender=Profile)
 def delete_old_avatar_on_update(sender, instance, **kwargs):
@@ -36,4 +36,4 @@ def delete_old_avatar_on_update(sender, instance, **kwargs):
             if os.path.isfile(old_avatar.path):  # Vérifie si le fichier existe avant de le supprimer
                 os.remove(old_avatar.path)
 
-        transaction.on_commit(delete_old_file) # Supprime le fichieruniquement après que les modifications de la base de données ont été validées (commit).
+        transaction.on_commit(delete_old_file) # Supprime le fichier uniquement après que les modifications de la base de données ont été validées (commit).

@@ -13,12 +13,12 @@ class GameSession(models.Model):
     ended_at = models.DateTimeField(null=True, blank=True)
 
 
-    def __str__(self):
+    def __str__(self): # permet de print l'objet exemple : print(GameSession.objects.first())
             return f"GameSession {self.id} between {self.player1.username} and {self.player2.username}"
 
 
 class Tournament(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255, unique=True) # par défaut blank=False et null=False pour charfield
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_tournaments', on_delete=models.CASCADE)
     players = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='tournaments')
     created_at = models.DateTimeField(auto_now_add=True)

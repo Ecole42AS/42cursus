@@ -27,7 +27,7 @@ def update_player_stats(winner, loser):
     winner_profile.save()
     loser_profile.save()
 
-class GameViewSet(viewsets.ModelViewSet):
+class GameViewSet(viewsets.ModelViewSet): # ModelViewSet : Vue générique pour effectuer des opérations CRUD sur un modèle
     """
     ViewSet pour gérer les actions CRUD des sessions de jeu.
     """

@@ -27,8 +27,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'password', 'email', 'display_name', 'avatar']
         extra_kwargs = {'password': {'write_only': True}} # Le mot de passe ne sera pas renvoyé dans la réponse
 
-    def validate_display_name(self, value): # méthode appelée automatiquement lors de la validation des données (nomenclature validate_<champ>)
-        if Profile.objects.filter(display_name=value).exists():
+    def validate_display_name(self, value): # méthode appelée automatiquement lors de la validation des données (nomenclature validate_<champ>).
+        if Profile.objects.filter(display_name=value).exists(): # si la value de la requête front-end existe déjà dans la base de données
             raise serializers.ValidationError('user with this display name already exists.')
         return value
 
@@ -61,7 +61,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         # Mise à jour du profil utilisateur
         profile = instance.profile
-        for attr, value in profile_data.items(): # profile_data est un dictionnaire contenant les données du profil (nomenclature <relation>_data, par défaut prend le nom du modèle en minuscule)
+        for attr, value in profile_data.items(): # profile_data est un dictionnaire contenant les données du profil (nomenclature <relation>_data, par défaut prend le nom du modèle en minuscule) et les items sont les clés et valeurs du dictionnaire
             setattr(profile, attr, value)
         if avatar:
             profile.avatar = avatar

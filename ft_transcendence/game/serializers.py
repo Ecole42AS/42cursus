@@ -7,8 +7,8 @@ CustomUser = get_user_model()
 
 class GameSerializer(serializers.ModelSerializer):
     player1 = serializers.HiddenField(default=serializers.CurrentUserDefault()) # Le joueur 1 est l'utilisateur connecté (hiddenfield pour ne pas être modifié)
-    player2 = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
-    winner = serializers.CharField(source='winner.username', read_only=True)
+    player2 = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all()) # voir pour pouvoir jouer uniqument avec ses amis 
+    winner = serializers.CharField(source='winner.username', read_only=True) # source permet de spécifier le champ à utiliser pour la sérialisation et accède à l'objet lié winner sur GameSession
     is_active = serializers.BooleanField(required=False)
 
     class Meta:
@@ -16,20 +16,20 @@ class GameSerializer(serializers.ModelSerializer):
         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
 
     def to_representation(self, instance): # Surcharge de la méthode to_representation pour afficher les noms des joueurs au lieu des ids
-        ret = super().to_representation(instance)
-        ret['player1'] = instance.player1.username
-        ret['player2'] = instance.player2.username
-        ret['score_player1'] = instance.score_player1
-        ret['score_player2'] = instance.score_player2
-        ret['is_active'] = instance.is_active
+        data = super().to_representation(instance) # Appel de la méthode to_representation de la classe parente, qui retournait un dictionnaire avec les données sérialisées
+        data['player1'] = instance.player1.username
+        data['player2'] = instance.player2.username
+        data['score_player1'] = instance.score_player1
+        data['score_player2'] = instance.score_player2
+        data['is_active'] = instance.is_active
         if instance.winner:
-            ret['winner'] = instance.winner.username
+            data['winner'] = instance.winner.username
         else:
-            ret['winner'] = None
-        return ret
+            data['winner'] = None
+        return data
 
 class TournamentSerializer(serializers.ModelSerializer):
-    players_display_names = serializers.SerializerMethodField()
+    players_display_names = serializers.SerializerMethodField() # SerializerMethodField pour ajouter un champ personnalisé
     all_players = serializers.SerializerMethodField()
     creator = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
@@ -72,8 +72,8 @@ class TournamentSerializer(serializers.ModelSerializer):
         players = validated_data.pop('players', None)
         if players is not None:
             # Inclure le créateur dans les joueurs
-            instance.players.set([instance.creator] + list(players))
-        return super().update(instance, validated_data)
+            instance.players.set([instance.creator] + list(players)) # inclus le créateur dans la liste des joueurs modifiée ou non
+        return super().update(instance, validated_data) # données restantes de la requête mise à jour
 
 
 
