@@ -13,12 +13,12 @@ class GameSession(models.Model):
     ended_at = models.DateTimeField(null=True, blank=True)
 
 
-    def __str__(self): # permet de print l'objet exemple : print(GameSession.objects.first())
+    def __str__(self):
             return f"GameSession {self.id} between {self.player1.username} and {self.player2.username}"
 
 
 class Tournament(models.Model):
-    name = models.CharField(max_length=255, unique=True) # par défaut blank=False et null=False pour charfield
+    name = models.CharField(max_length=255, unique=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='created_tournaments', on_delete=models.CASCADE)
     players = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='tournaments')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -27,13 +27,12 @@ class Tournament(models.Model):
         return self.name
 
 class TournamentMatch(models.Model):
-    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE) # many to one relationship with the Tournament model ( automatically sets up a reverse relationship ) add a column which stock id from the tournament
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     player1 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tournament_matches_as_player1', on_delete=models.CASCADE)
     player2 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tournament_matches_as_player2', on_delete=models.CASCADE)
     winner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='won_matches', on_delete=models.SET_NULL, null=True, blank=True)
     scheduled_at = models.DateTimeField()
     is_completed = models.BooleanField(default=False)
-    # round_number = models.IntegerField(default=1) # used for elimination tournaments
 
 
     def __str__(self):

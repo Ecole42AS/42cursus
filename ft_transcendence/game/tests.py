@@ -11,16 +11,12 @@ from user.models import Friendship
 
 CustomUser = get_user_model()
 
-# Fonction utilitaire pour créer des utilisateurs
 def create_user(username, email, password='password123'):
     user = CustomUser.objects.create_user(username=username, email=email)
     user.set_password(password)
     user.save()
     return user
 
-# -------------------------------
-# Tests pour le modèle GameSession
-# -------------------------------
 class GameSessionModelTests(TestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com')
@@ -47,9 +43,6 @@ class GameSessionModelTests(TestCase):
         self.assertEqual(self.player1.profile.wins, 1)
         self.assertEqual(self.player2.profile.losses, 1)
 
-# -------------------------------
-# Tests pour l'API GameSession
-# -------------------------------
 class GameSessionAPITests(APITestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com', password='password123')
@@ -160,9 +153,6 @@ class GameSessionAPITests(APITestCase):
         self.assertIn(game1.id, game_ids)
         self.assertIn(game2.id, game_ids)
 
-# -------------------------------
-# Tests pour le modèle Tournament
-# -------------------------------
 class TournamentModelTests(TestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com')
@@ -183,9 +173,6 @@ class TournamentModelTests(TestCase):
     def test_tournament_str(self):
         self.assertEqual(str(self.tournament), 'Test Tournament')
 
-# -------------------------------
-# Tests pour l'API Tournament
-# -------------------------------
 class TournamentAPITests(APITestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com', password='password123')
@@ -194,7 +181,6 @@ class TournamentAPITests(APITestCase):
         self.client.login(username='player1', password='password123')
 
 
-        # Créer des amitiés
         Friendship.objects.create(from_user=self.player1, to_user=self.player2)
         Friendship.objects.create(from_user=self.player2, to_user=self.player1)
         Friendship.objects.create(from_user=self.player1, to_user=self.player3)
@@ -276,9 +262,6 @@ class TournamentAPITests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-# -------------------------------
-# Tests pour le modèle TournamentMatch
-# -------------------------------
 class TournamentMatchModelTests(TestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com')
@@ -312,11 +295,8 @@ class TournamentMatchModelTests(TestCase):
     def test_generate_matches(self):
         generate_tournament_matches(self.tournament)
         matches = TournamentMatch.objects.filter(tournament=self.tournament)
-        self.assertEqual(matches.count(), 3)  # Pour 3 joueurs, il y a 3 matchs dans un tournoi en round-robin
+        self.assertEqual(matches.count(), 3) 
 
-# -------------------------------
-# Tests pour les utilisateurs non authentifiés
-# -------------------------------
 class NonAuthenticatedUserTests(APITestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com', password='password123')
@@ -329,9 +309,6 @@ class NonAuthenticatedUserTests(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-# -------------------------------
-# Tests pour les permissions de GameSession
-# -------------------------------
 class GameSessionPermissionsTestCase(APITestCase):
     def setUp(self):
         self.player1 = create_user('player1', 'player1@example.com', password='password123')
@@ -361,11 +338,8 @@ class GameSessionPermissionsTestCase(APITestCase):
     def test_create_game_session_with_missing_player(self):
         self.client.login(username='player1', password='password123')
         url = reverse('game-list')
-        data = {'player1': self.player1.id}  # player2 manquant
+        data = {'player1': self.player1.id} 
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 
-# -------------------------------
-# Fin du fichier tests.py
-# -------------------------------

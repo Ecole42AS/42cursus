@@ -27,7 +27,7 @@ def update_player_stats(winner, loser):
     winner_profile.save()
     loser_profile.save()
 
-class GameViewSet(viewsets.ModelViewSet): # ModelViewSet : Vue générique pour effectuer des opérations CRUD sur un modèle
+class GameViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour gérer les actions CRUD des sessions de jeu.
     """
@@ -54,7 +54,6 @@ class CreateGameSessionView(APIView):
             if request.user == opponent:
                 return Response({'error': 'Vous ne pouvez pas jouer contre vous-même.'}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Vérifiez si un match actif existe déjà entre ces deux joueurs
             existing_game = GameSession.objects.filter(
                 player1__in=[request.user, opponent],
                 player2__in=[request.user, opponent],

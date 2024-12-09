@@ -14,22 +14,15 @@ import os
 import sys
 from pathlib import Path
 
-# Base Directory
-# ------------------------------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Security Settings
-# ------------------------------------------------------------------------------
 SECRET_KEY = 'django-insecure-^96ocy_do_=)*km4l9-m%n1hk&^b-ous4gxw8%09+f9dos010q'
 DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
-# Installed Applications
-# ------------------------------------------------------------------------------
 INSTALLED_APPS = [
-    # Default Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,18 +30,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Third-party apps
     'rest_framework',
     'corsheaders',
 
-    # Local apps
     'user',
     'game',
 ]
 
 
-# Middleware
-# ------------------------------------------------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,21 +51,15 @@ MIDDLEWARE = [
 ]
 
 
-# CORS Configuration
-# ------------------------------------------------------------------------------
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
 
 
-# URL Configuration
-# ------------------------------------------------------------------------------
 ROOT_URLCONF = 'ft_transcendence.urls'
 
 
-# Templates
-# ------------------------------------------------------------------------------
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -94,14 +77,10 @@ TEMPLATES = [
 ]
 
 
-# WSGI Application
-# ------------------------------------------------------------------------------
 WSGI_APPLICATION = 'ft_transcendence.wsgi.application'
 
 
-# Database
-# ------------------------------------------------------------------------------
-if 'test' in sys.argv:  # Use SQLite for tests
+if 'test' in sys.argv: 
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -121,13 +100,9 @@ else:
     }
 
 
-# Authentication Settings
-# ------------------------------------------------------------------------------
 AUTH_USER_MODEL = 'user.CustomUser'
 
 
-# Password Validation
-# ------------------------------------------------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -144,30 +119,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# ------------------------------------------------------------------------------
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Europe/Zurich'
-USE_I18N = True # internationalisation (traduction, format de date, etc.)
-USE_TZ = True # convertit dans le fuseau horaire UTC local
+USE_I18N = True
+USE_TZ = True
 
 
-# Static and Media Files
-# ------------------------------------------------------------------------------
 STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-# Default Primary Key Field Type
-# ------------------------------------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Test Settings
-# ------------------------------------------------------------------------------
-# Temporary storage for test cases
 if 'test' in sys.argv:
     import tempfile
     from django.core.files.storage import FileSystemStorage
@@ -178,8 +144,6 @@ if 'test' in sys.argv:
 
     DEFAULT_FILE_STORAGE = 'ft_transcendence.settings.TemporaryTestStorage'
 
-# Logging Configuration
-# ------------------------------------------------------------------------------
 
 LOGGING = {
     'version': 1,
@@ -198,29 +162,29 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/alex/Ecole42/42cursus/ft_transcendence/logs/debug.log',  # Update this path
+            'filename': '/home/alex/Ecole42/42cursus/ft_transcendence/logs/debug.log', 
             'formatter': 'verbose',
         },
     },
     'loggers': {
         'django': {
             'handlers': ['file'],
-            'level': 'INFO',  # Change to INFO to reduce verbosity
+            'level': 'INFO', 
             'propagate': True,
         },
         'django.request': {
             'handlers': ['file'],
-            'level': 'ERROR',  # Log only errors for requests
+            'level': 'ERROR', 
             'propagate': False,
         },
         'django.db.backends': {
             'handlers': ['file'],
-            'level': 'ERROR',  # Log only errors for database operations
+            'level': 'ERROR', 
             'propagate': False,
         },
         'myapp': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Keep debug level for your app (capture all messages)
+            'level': 'DEBUG', 
             'propagate': False,
         },
     },

@@ -8,7 +8,7 @@ from PIL import Image
 from django.contrib.auth import get_user_model
 import io
 
-CustomUser = get_user_model() # reconnait customuser comme le modèle d'utilisateur personnalisé grâce à AUTH_USER_MODEL dans settings.py
+CustomUser = get_user_model()
 
 def create_user(username, email, password='password123', display_name=None):
     user = CustomUser.objects.create_user(username=username, password=password, email=email)
@@ -88,15 +88,15 @@ class UserLoginTests(APITestCase):
         url = '/api-auth/login/'
         data = {'username': 'loginuser', 'password': 'password123'}
         response = self.client.post(url, data)
-        self.assertEqual(response.status_code, 302)  # DRF redirige vers la page register si les informations sont valides
-        self.assertIn('sessionid', response.cookies)  # Vérifiez les cookies si applicable
+        self.assertEqual(response.status_code, 302) 
+        self.assertIn('sessionid', response.cookies) 
 
     def test_user_login_with_invalid_credentials(self):
         url = '/api-auth/login/'
         data = {'username': 'loginuser', 'password': 'wrongpassword'}
         response = self.client.post(url, data)
-        self.assertEqual(response.status_code, 200)  # DRF retourne un 200 avec une erreur de formulaire
-        self.assertContains(response, 'Please enter a correct username and password.')  # Vérifiez le message d'erreur
+        self.assertEqual(response.status_code, 200) 
+        self.assertContains(response, 'Please enter a correct username and password.') 
 
 class UserProfileUpdateTests(APITestCase):
     def setUp(self):
@@ -184,7 +184,6 @@ class FriendsListTests(APITestCase):
         self.client.login(username='user1', password='password123')
 
     def test_get_friends_list(self):
-        # user1 a un ami user2
         expected_friend_count = Friendship.objects.filter(from_user=self.user1).count()
         url = reverse('friends_list')
         response = self.client.get(url)
