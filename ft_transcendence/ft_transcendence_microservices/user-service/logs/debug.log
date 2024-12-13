@@ -137,3 +137,9 @@ INFO 2024-12-13 11:59:54,323 basehttp "GET /static/rest_framework/js/prettify-mi
 INFO 2024-12-13 11:59:54,324 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
 INFO 2024-12-13 11:59:54,324 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
 INFO 2024-12-13 11:59:54,324 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2024-12-13 12:33:00,081 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-13 12:33:03,244 basehttp "GET / HTTP/1.1" 404 2636
+INFO 2024-12-13 12:33:16,288 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9616
+INFO 2024-12-13 12:33:20,986 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9616
+WARNING 2024-12-13 12:33:56,606 basehttp "GET /api/user/profile/1 HTTP/1.1" 404 4806
+INFO 2024-12-13 12:34:04,324 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9616

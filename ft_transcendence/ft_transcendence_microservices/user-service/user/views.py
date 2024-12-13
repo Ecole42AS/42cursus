@@ -58,3 +58,38 @@ class FriendsListView(APIView):
         friendships = request.user.friendships.all()
         serializer = UserSerializer([f.to_user for f in friendships], many=True)
         return Response(serializer.data)
+
+class UserDetailView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, user_id):
+        try:
+            user = CustomUser.objects.get(pk=user_id)
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+
+class FriendshipStatusView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, user1_id, user2_id):
+        try:
+            user1 = CustomUser.objects.get(pk=user1_id)
+            user2 = CustomUser.objects.get(pk=user2_id)
+            is_friend = Friendship.objects.filter(from_user=user1, to_user=user2).exists()
+            return Response({'is_friend': is_friend}, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'Un ou plusieurs utilisateurs non trouvés'}, status=status.HTTP_404_NOT_FOUND)
+
+class SearchUserView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        query = request.query_params.get('q', '')
+        if not query:
+            return Response({'error': 'Veuillez fournir une requête de recherche.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        users = CustomUser.objects.filter(username__icontains=query)[:10]
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
