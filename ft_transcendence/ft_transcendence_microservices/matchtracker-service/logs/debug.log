@@ -63,3 +63,6 @@ WARNING 2024-12-13 10:31:01,859 base Session data corrupted
 WARNING 2024-12-13 10:31:04,404 base Session data corrupted
 WARNING 2024-12-13 10:34:59,453 base Session data corrupted
 WARNING 2024-12-13 10:35:01,934 base Session data corrupted
+INFO 2024-12-13 15:59:32,414 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 16:07:27,947 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-13 16:07:28,128 autoreload Watching for file changes with StatReloader

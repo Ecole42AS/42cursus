@@ -9,7 +9,6 @@ from django.db.models import Q
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.utils import timezone
-from .models import Profile
 
 logger = logging.getLogger(__name__)
 
@@ -122,7 +121,6 @@ class UpdateGameScoreView(APIView):
         except GameSession.DoesNotExist:
             logger.error(f"GameSession with id {game_id} not found.")
             return Response({'error': 'Match non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
-
 
 
 class TournamentViewSet(viewsets.ModelViewSet):
