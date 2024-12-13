@@ -46,6 +46,8 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://matchtracker-service:8000",  # Autoriser le microservice `matchtracker-service`
+    "http://localhost:8000",  # Autoriser localhost pour les tests
 ]
 
 # Configuration des URL racines
@@ -82,8 +84,8 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mydb',
-            'USER': 'alex',
+            'NAME': 'user_service_db',
+            'USER': 'shared_db_user',
             'PASSWORD': 'deplanta1',
             'HOST': 'localhost',
             'PORT': '5432',

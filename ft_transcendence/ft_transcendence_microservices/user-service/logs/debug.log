@@ -49,3 +49,91 @@ INFO 2024-12-09 13:14:10,222 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
 INFO 2024-12-09 13:14:10,235 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9652
 WARNING 2024-12-09 13:20:26,064 basehttp "GET /media/user_1/IMG-20211118-WA0004.jpg HTTP/1.1" 404 3049
 INFO 2024-12-09 13:20:36,479 basehttp "PUT /api/user/profile/ HTTP/1.1" 200 9640
+INFO 2024-12-13 10:27:43,209 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 10:57:15,045 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9640
+INFO 2024-12-13 10:57:15,069 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-12-13 10:57:15,130 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-12-13 10:57:15,180 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-12-13 10:57:15,229 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-12-13 10:57:15,268 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-12-13 10:57:15,269 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-13 10:57:15,279 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-13 10:57:15,330 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-13 10:57:15,330 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-12-13 10:57:15,380 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-12-13 10:57:15,383 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-13 10:57:15,383 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+WARNING 2024-12-13 10:57:15,460 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+WARNING 2024-12-13 10:57:24,708 basehttp "GET /api/user/friends/1 HTTP/1.1" 404 3927
+WARNING 2024-12-13 10:57:30,440 basehttp "GET /api/user/friends/2 HTTP/1.1" 404 3927
+INFO 2024-12-13 10:57:32,637 basehttp "GET /api/user/friends HTTP/1.1" 301 0
+INFO 2024-12-13 10:57:32,652 basehttp "GET /api/user/friends/ HTTP/1.1" 200 6159
+WARNING 2024-12-13 10:57:43,609 basehttp "GET /api/user/friendships/1 HTTP/1.1" 404 3939
+INFO 2024-12-13 11:45:45,785 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-13 11:45:46,154 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 11:45:47,446 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-13 11:45:47,620 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 11:45:48,740 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-13 11:45:48,912 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 11:45:55,185 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-13 11:45:55,359 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 11:45:57,472 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-13 11:45:57,641 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 11:56:57,364 basehttp "GET /admin HTTP/1.1" 301 0
+INFO 2024-12-13 11:56:57,614 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2024-12-13 11:56:57,626 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4163
+INFO 2024-12-13 11:56:57,700 basehttp "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2024-12-13 11:56:57,700 basehttp "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2024-12-13 11:56:57,701 basehttp "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2024-12-13 11:56:57,781 basehttp "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2024-12-13 11:56:57,781 basehttp "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2024-12-13 11:56:57,826 basehttp "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2024-12-13 11:56:57,874 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2024-12-13 11:57:03,256 basehttp "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2024-12-13 11:57:03,271 basehttp "GET /admin/ HTTP/1.1" 200 6116
+INFO 2024-12-13 11:57:03,341 basehttp "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2024-12-13 11:57:03,434 basehttp "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2024-12-13 11:57:03,434 basehttp "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2024-12-13 11:57:14,157 basehttp "GET /admin/auth/group/ HTTP/1.1" 200 7738
+INFO 2024-12-13 11:57:14,175 basehttp "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2024-12-13 11:57:14,177 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9097
+INFO 2024-12-13 11:57:14,177 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2024-12-13 11:57:14,179 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2024-12-13 11:57:14,181 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2024-12-13 11:57:14,182 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2024-12-13 11:57:14,183 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2024-12-13 11:57:14,185 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2024-12-13 11:57:14,187 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2024-12-13 11:57:14,188 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2024-12-13 11:57:14,200 basehttp "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2024-12-13 11:57:14,275 basehttp "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2024-12-13 11:57:14,282 basehttp "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2024-12-13 11:57:15,327 basehttp "GET /admin/ HTTP/1.1" 200 6116
+INFO 2024-12-13 11:57:16,222 basehttp "GET /admin/user/customuser/ HTTP/1.1" 200 11494
+INFO 2024-12-13 11:57:16,241 basehttp "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2024-12-13 11:57:16,248 basehttp "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2024-12-13 11:57:16,351 basehttp "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2024-12-13 11:57:16,351 basehttp "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2024-12-13 11:58:48,713 basehttp "GET /api-auth/login HTTP/1.1" 301 0
+INFO 2024-12-13 11:58:48,727 basehttp "GET /api-auth/login/ HTTP/1.1" 200 2700
+INFO 2024-12-13 11:58:52,840 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+WARNING 2024-12-13 11:58:52,853 basehttp "GET /accounts/profile/ HTTP/1.1" 404 2705
+INFO 2024-12-13 11:59:29,820 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-13 11:59:35,235 basehttp "GET / HTTP/1.1" 404 2636
+WARNING 2024-12-13 11:59:35,380 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-13 11:59:39,881 basehttp "GET /api-auth/login/ HTTP/1.1" 200 2700
+INFO 2024-12-13 11:59:39,893 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:39,896 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:39,897 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:39,897 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:39,926 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:44,672 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+WARNING 2024-12-13 11:59:44,683 basehttp "GET /accounts/profile/ HTTP/1.1" 404 2705
+INFO 2024-12-13 11:59:54,304 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9616
+INFO 2024-12-13 11:59:54,319 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:54,322 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:54,322 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:54,323 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:54,324 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:54,324 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2024-12-13 11:59:54,324 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
