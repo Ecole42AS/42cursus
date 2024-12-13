@@ -143,3 +143,45 @@ INFO 2024-12-13 12:33:16,288 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9616
 INFO 2024-12-13 12:33:20,986 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9616
 WARNING 2024-12-13 12:33:56,606 basehttp "GET /api/user/profile/1 HTTP/1.1" 404 4806
 INFO 2024-12-13 12:34:04,324 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9616
+INFO 2024-12-13 19:25:16,800 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:25:17,161 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:25:26,379 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:25:26,551 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:25:49,177 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:25:49,340 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:25:54,469 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:25:54,646 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:26:06,066 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:26:06,227 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:26:12,461 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:26:12,630 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:31:59,630 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:31:59,808 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:32:01,923 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:32:02,098 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:32:37,418 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:32:37,590 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:32:39,688 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:32:39,853 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:32:47,971 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:32:48,134 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:32:54,288 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:32:54,460 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:33:08,655 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:33:08,828 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:33:13,962 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:33:14,131 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:35:05,095 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:35:05,268 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:35:06,386 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:35:06,559 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:35:11,683 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-13 19:35:11,848 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:35:52,218 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:35:52,389 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:35:55,507 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:35:55,678 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:35:56,757 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:35:56,919 autoreload Watching for file changes with StatReloader
+INFO 2024-12-13 19:36:00,011 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-13 19:36:00,183 autoreload Watching for file changes with StatReloader

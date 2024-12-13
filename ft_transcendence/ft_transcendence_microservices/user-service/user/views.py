@@ -1,12 +1,14 @@
 from django.shortcuts import render
-from rest_framework import generics, permissions, status
 from .serializers import UserSerializer, ProfileSerializer
+from rest_framework import generics, permissions, status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.db import IntegrityError
 from .models import Friendship
 from django.contrib.auth import get_user_model
+from .models import Profile
 
 
 CustomUser = get_user_model()
@@ -69,6 +71,42 @@ class UserDetailView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except CustomUser.DoesNotExist:
             return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+
+class UpdateUserStatsView(APIView):
+    """
+    Vue pour mettre à jour les statistiques d'un utilisateur (victoires et défaites).
+    """
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, user_id):
+        try:
+            profile = Profile.objects.get(user_id=user_id)
+            wins = request.data.get('wins', 0)
+            losses = request.data.get('losses', 0)
+
+            profile.wins += int(wins)
+            profile.losses += int(losses)
+            profile.save()
+
+            serializer = ProfileSerializer(profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Profile.DoesNotExist:
+            return Response({'error': 'Profil non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class UserProfileDetailView(APIView):
+    """
+    Vue pour récupérer les informations de profil d'un utilisateur spécifique.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, user_id):
+        try:
+            profile = Profile.objects.get(user_id=user_id)
+            serializer = ProfileSerializer(profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Profile.DoesNotExist:
+            return Response({'error': 'Profil non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
 
 class FriendshipStatusView(APIView):
     permission_classes = [permissions.AllowAny]
