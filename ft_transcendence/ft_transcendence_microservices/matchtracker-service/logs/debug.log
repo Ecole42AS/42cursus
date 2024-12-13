@@ -49,3 +49,17 @@ INFO 2024-12-09 13:14:10,222 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
 INFO 2024-12-09 13:14:10,235 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9652
 WARNING 2024-12-09 13:20:26,064 basehttp "GET /media/user_1/IMG-20211118-WA0004.jpg HTTP/1.1" 404 3049
 INFO 2024-12-09 13:20:36,479 basehttp "PUT /api/user/profile/ HTTP/1.1" 200 9640
+WARNING 2024-12-13 09:57:37,657 base Session data corrupted
+WARNING 2024-12-13 09:57:39,501 base Session data corrupted
+WARNING 2024-12-13 09:57:52,175 base Session data corrupted
+WARNING 2024-12-13 09:57:54,648 base Session data corrupted
+WARNING 2024-12-13 09:58:03,227 base Session data corrupted
+WARNING 2024-12-13 09:58:05,776 base Session data corrupted
+WARNING 2024-12-13 09:58:11,529 base Session data corrupted
+WARNING 2024-12-13 09:58:13,900 base Session data corrupted
+WARNING 2024-12-13 09:59:26,331 base Session data corrupted
+WARNING 2024-12-13 09:59:28,919 base Session data corrupted
+WARNING 2024-12-13 10:31:01,859 base Session data corrupted
+WARNING 2024-12-13 10:31:04,404 base Session data corrupted
+WARNING 2024-12-13 10:34:59,453 base Session data corrupted
+WARNING 2024-12-13 10:35:01,934 base Session data corrupted

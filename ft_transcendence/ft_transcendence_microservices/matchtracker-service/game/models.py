@@ -3,8 +3,8 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 
 class GameSession(models.Model):
-    player1_id = models.IntegerField()
-    player2_id = models.IntegerField()
+    player1_id = models.IntegerField
+    player2_id = models.IntegerField
     score_player1 = models.IntegerField(default=0)
     score_player2 = models.IntegerField(default=0)
     winner_id = models.IntegerField(null=True, blank=True)

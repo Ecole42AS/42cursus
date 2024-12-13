@@ -2,15 +2,14 @@ import logging
 from rest_framework import viewsets, permissions
 from .models import GameSession, Tournament, TournamentMatch
 from .serializers import GameSerializer, TournamentSerializer, TournamentMatchSerializer
-from user.models import Profile
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
-from user.models import Profile
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.utils import timezone
+from .models import Profile
 
 logger = logging.getLogger(__name__)
 

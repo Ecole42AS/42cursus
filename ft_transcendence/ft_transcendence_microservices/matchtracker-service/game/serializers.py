@@ -1,9 +1,19 @@
 from rest_framework import serializers
 from .models import GameSession, Tournament, TournamentMatch
-from user.models import Friendship
 from django.contrib.auth import get_user_model
+from .utils import get_friendship
 
 CustomUser = get_user_model()
+
+class FriendshipSerializer(serializers.Serializer):
+    """
+    Sérialiseur pour formater les données d'amitié récupérées depuis user-service.
+    """
+    user = serializers.IntegerField()
+    friend = serializers.IntegerField()
+    created_at = serializers.DateTimeField()
+
+
 
 class GameSerializer(serializers.ModelSerializer):
     player1 = serializers.HiddenField(default=serializers.CurrentUserDefault())
@@ -45,18 +55,26 @@ class TournamentSerializer(serializers.ModelSerializer):
         return [player.id for player in obj.players.all()]
 
     def validate_players(self, players):
+        """
+        Valide que tous les joueurs sont des amis de l'utilisateur actuel.
+        """
         user = self.context['request'].user
-        friends_ids = Friendship.objects.filter(from_user=user).values_list('to_user_id', flat=True)
+        friends_data = get_friendship(user.id)  # Appel à l'API du microservice user
+        if not friends_data:
+            raise serializers.ValidationError("Impossible de valider les amis. Service indisponible.")
+
+        friends_ids = {friend['friend'] for friend in friends_data}
         invalid_players = [player for player in players if player.id not in friends_ids]
+
         if invalid_players:
             invalid_usernames = ', '.join([player.username for player in invalid_players])
-            raise serializers.ValidationError(f"The following users are not your friends: {invalid_usernames}.")
+            raise serializers.ValidationError(f"Les utilisateurs suivants ne sont pas vos amis : {invalid_usernames}.")
         return players
 
     def validate(self, data):
         players = data.get('players', [])
         if len(players) < 2:
-            raise serializers.ValidationError("You must select at least two friends to create a tournament.")
+            raise serializers.ValidationError("Vous devez sélectionner au moins deux amis pour créer un tournoi.")
         return data
 
     def create(self, validated_data):

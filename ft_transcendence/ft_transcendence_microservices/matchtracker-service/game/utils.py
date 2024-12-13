@@ -1,7 +1,33 @@
 import logging
 from django.utils import timezone
 from .models import TournamentMatch
+import requests
 
+USER_SERVICE_URL = "http://user-service:8000/api/user"
+
+def get_user_profile(user_id):
+    """
+    Récupère les informations du profil utilisateur à partir du microservice `user-service`.
+    """
+    try:
+        response = requests.get(f"{USER_SERVICE_URL}/profile/{user_id}/")
+        response.raise_for_status()
+        return response.json()  # Retourne le JSON contenant les données du profil
+    except requests.RequestException as e:
+        print(f"Erreur lors de la récupération du profil utilisateur : {e}")
+        return None
+
+def get_friendship(user_id):
+    """
+    Récupère les amitiés pour un utilisateur donné depuis le microservice `user`.
+    """
+    try:
+        response = requests.get(f"{USER_SERVICE_URL}/friendships/{user_id}/")
+        response.raise_for_status()  # Vérifie si le statut HTTP est 200
+        return response.json()
+    except requests.RequestException as e:
+        print(f"Erreur lors de la communication avec user-service : {e}")
+        return None
 # logger = logging.getLogger(__name__)
 
 # def generate_tournament_matches(tournament):

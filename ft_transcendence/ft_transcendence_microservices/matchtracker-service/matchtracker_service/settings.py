@@ -55,7 +55,7 @@ TEMPLATES = [
     },
 ]
 
-ASGI_APPLICATION = 'matchtracker_service.asgi.application'
+ASGI_APPLICATION = "matchtracker_service.asgi.application"
 WSGI_APPLICATION = 'matchtracker_service.wsgi.application'
 
 if 'test' in sys.argv:
@@ -69,13 +69,13 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mydb',
-            'USER': 'alex',
+            'NAME': 'user_service_db',
+            'USER': 'shared_db_user',
             'PASSWORD': 'deplanta1',
             'HOST': 'localhost',
             'PORT': '5432',
         }
-   }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
@@ -153,7 +153,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('redis', 6379)],
+            "hosts": [("127.0.0.1", 6379)],
         },
     },
 }
