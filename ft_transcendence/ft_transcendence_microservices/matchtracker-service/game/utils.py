@@ -1,29 +1,21 @@
-import logging
-from django.utils import timezone
-from .models import TournamentMatch
 import requests
 from django.conf import settings
+import logging
+from django.utils import timezone
 
-def update_player_stats(winner, loser):
+logger = logging.getLogger(__name__)
+
+def get_user_data(user_id):
     """
-    Notifie le User Service pour mettre à jour les statistiques des joueurs.
+    Récupère les informations de l'utilisateur à partir du microservice `user-service`.
     """
-    user_service_url = settings.USER_SERVICE_URL + "/internal/update-stats/"
-
-    payload = {
-        "winner_id": winner.id,
-        "loser_id": loser.id
-    }
-    headers = {"Authorization": f"Bearer {settings.INTERNAL_API_KEY}"}
-
     try:
-        response = requests.post(user_service_url, json=payload, headers=headers)
-        if response.status_code == 200:
-            print("Statistiques mises à jour avec succès dans le User Service.")
-        else:
-            print(f"Erreur lors de la mise à jour des stats : {response.status_code}, {response.json()}")
-    except Exception as e:
-        print(f"Échec de la communication avec le User Service : {e}")
+        response = requests.get(f"{settings.USER_SERVICE_URL}/{user_id}/")
+        response.raise_for_status()
+        return response.json()
+    except requests.RequestException as e:
+        print(f"Erreur lors de la récupération des données de l'utilisateur : {e}")
+        return None
 
 def get_user_profile(user_id):
     """
@@ -48,32 +40,36 @@ def get_friendship(user_id):
     except requests.RequestException as e:
         print(f"Erreur lors de la communication avec user-service : {e}")
         return None
-# logger = logging.getLogger(__name__)
 
-# def generate_tournament_matches(tournament):
-#     """
-#     Génère les matchs pour un tournoi donné (chaque joueur affronte tous les autres une fois).
-#     """
-#     players = list(tournament.players.all())
-#     matches = []
-#     for i in range(len(players)):
-#         for j in range(i + 1, len(players)):
-#             match = TournamentMatch.objects.create(
-#                 tournament=tournament,
-#                 player1=players[i],
-#                 player2=players[j],
-#                 scheduled_at=timezone.now()
-#             )
-#             matches.append(match)
-#     logger.info(f"Generated {len(matches)} matches for tournament {tournament.name}.")
-#     return matches
 
-logger = logging.getLogger(__name__)
+def update_player_stats(winner, loser):
+    """
+    Notifie le User Service pour mettre à jour les statistiques des joueurs.
+    """
+    user_service_url = settings.USER_SERVICE_URL + "/internal/update-stats/"
+
+    payload = {
+        "winner_id": winner.id,
+        "loser_id": loser.id
+    }
+    headers = {"Authorization": f"Bearer {settings.INTERNAL_API_KEY}"}
+
+    try:
+        response = requests.post(user_service_url, json=payload, headers=headers)
+        if response.status_code == 200:
+            print("Statistiques mises à jour avec succès dans le User Service.")
+        else:
+            print(f"Erreur lors de la mise à jour des stats : {response.status_code}, {response.json()}")
+    except Exception as e:
+        print(f"Échec de la communication avec le User Service : {e}")
 
 def generate_elimination_matches(tournament):
     """
     Génère les matchs pour un tournoi à élimination directe.
     """
+
+    from .models import TournamentMatch
+
     players = list(tournament.players.all())
     if len(players) < 3:
         raise ValueError("Le tournoi doit avoir au moins trois joueurs.")
@@ -105,7 +101,3 @@ def generate_elimination_matches(tournament):
 
     logger.info(f"Generated {len(matches)} elimination matches for tournament {tournament.name}.")
     return matches
-
-
-
-
