@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import GameViewSet, TournamentViewSet, TournamentMatchViewSet, MatchHistoryView, CreateGameSessionView, UpdateGameScoreView
+from .views import GameViewSet, TournamentViewSet, TournamentMatchViewSet, MatchHistoryView,\
+    CreateGameSessionView, UpdateGameScoreView, test_redis_session
 
 router = DefaultRouter()
 router.register(r'games', GameViewSet, basename='game')
@@ -12,4 +13,6 @@ urlpatterns = [
     path('match-history/', MatchHistoryView.as_view(), name='match_history'),
     path('create-game/<int:user_id>/', CreateGameSessionView.as_view(), name='create_game'),
     path('update-game-score/<int:game_id>/', UpdateGameScoreView.as_view(), name='update_game_score'),
+    path('test-redis-session/', test_redis_session, name='test_redis_session'),
+
 ]

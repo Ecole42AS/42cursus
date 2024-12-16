@@ -6,7 +6,9 @@ import sys
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Clé secrète - à sécuriser en production
-SECRET_KEY = 'django-insecure-^96ocy_do_=)*km4l9-m%n1hk&^b-ous4gxw8%09+f9dos010q'
+# SECRET_KEY = 'django-insecure-^96ocy_do_=)*km4l9-m%n1hk&^b-ous4gxw8%09+f9dos010q'
+# SECRET_KEY = 'akn1%#!+sh*gzpb#ek_30a=3qag!14&%rj1mz%!uaj3*a1-i*n'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 # Mode Debug - Désactiver en production
 DEBUG = True
@@ -105,6 +107,15 @@ CACHES = {
         }
     }
 }
+
+SESSION_COOKIE_DOMAIN = "localhost"
+SESSION_COOKIE_NAME = "sessionid"  # Nom du cookie de session
+SESSION_COOKIE_SAMESITE = "Lax"  # Permet les sous-domaines
+SESSION_COOKIE_SECURE = False  # Doit être True en production si HTTPS est utilisé
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"  # Redis pour stocker les sessions
+SESSION_CACHE_ALIAS = "default"  # Utilisation de la configuration cache 'default'
+
+
 
 # Modèle utilisateur personnalisé
 AUTH_USER_MODEL = 'user.CustomUser'

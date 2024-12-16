@@ -159,3 +159,13 @@ class MatchHistoryView(APIView):
         ).order_by('-ended_at')
         serializer = GameSerializer(game_sessions, many=True)
         return Response(serializer.data)
+
+from django.http import HttpResponse
+from uuid import uuid4
+
+def test_redis_session(request):
+    session_key = str(uuid4())  # Créer une clé unique pour chaque session
+    request.session['unique_key'] = session_key  # Ajouter une valeur unique dans la session
+    request.session.save()  # Forcer la sauvegarde de la session
+    return HttpResponse(f"Session unique_key is: {request.session['unique_key']}")
+

@@ -5,7 +5,8 @@ import sys
 BASE_DIR = Path(__file__).resolve().parent.parent
 USER_SERVICE_URL = "http://user-service:8080/api/user"
 
-SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
+# SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service']
@@ -175,3 +176,10 @@ CACHES = {
         }
     }
 }
+
+SESSION_COOKIE_DOMAIN = "localhost"
+SESSION_COOKIE_NAME = "sessionid"  # Nom du cookie de session
+SESSION_COOKIE_SAMESITE = "Lax"  # Permet les sous-domaines
+SESSION_COOKIE_SECURE = False  # Doit être True en production si HTTPS est utilisé
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"  # Redis pour stocker les sessions
+SESSION_CACHE_ALIAS = "default"  # Utilisation de la configuration cache 'default'
