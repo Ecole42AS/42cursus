@@ -8,22 +8,24 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from django.utils import timezone
-
+from .utils import update_player_stats
+from django.utils.timezone import now
+ 
 logger = logging.getLogger(__name__)
 
 CustomUser = get_user_model()
 
-def update_player_stats(winner, loser):
-    """
-    Met à jour les statistiques des joueurs après chaque partie.
-    """
-    winner_profile = Profile.objects.get(user=winner)
-    loser_profile = Profile.objects.get(user=loser)
-    winner_profile.wins += 1
-    loser_profile.losses += 1
-    winner_profile.save()
-    loser_profile.save()
+# def update_player_stats(winner, loser):
+#     """
+#     Met à jour les statistiques des joueurs après chaque partie.
+#     """
+#     winner_profile = Profile.objects.get(user=winner)
+#     loser_profile = Profile.objects.get(user=loser)
+#     winner_profile.wins += 1
+#     loser_profile.losses += 1
+#     winner_profile.save()
+#     loser_profile.save()
+
 
 class GameViewSet(viewsets.ModelViewSet):
     """
@@ -97,21 +99,24 @@ class UpdateGameScoreView(APIView):
             else:
                 game.score_player2 = player_score
 
-            if game.score_player1 >= 5 or game.score_player2 >= 5:
+            if (now() - game.start_time).total_seconds() >= 60:  # Vérifie si 60 secondes sont passées
                 game.is_active = False
-                game.ended_at = timezone.now()
+                game.ended_at = now()
 
                 if game.score_player1 > game.score_player2:
                     game.winner = game.player1
-                    winner = game.player1
-                    loser = game.player2
-                else:
+                    winner, loser = game.player1, game.player2
+                elif game.score_player2 > game.score_player1:
                     game.winner = game.player2
-                    winner = game.player2
-                    loser = game.player1
+                    winner, loser = game.player2, game.player1
+                else:
+                    game.winner = None  # Cas d'égalité
+                    winner, loser = None, None  # Pas de gagnant ni de perdant
 
                 game.save()
-                update_player_stats(winner, loser)
+
+                if winner and loser:  # Notifier uniquement si gagnant et perdant existent
+                    update_player_stats(winner, loser)
 
                 serializer = GameSerializer(game)
                 return Response(serializer.data)

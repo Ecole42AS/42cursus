@@ -3,9 +3,10 @@ import os
 import sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+USER_SERVICE_URL = "http://user-service:8000/api/user"
 
 SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
+INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service']
 

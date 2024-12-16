@@ -2,15 +2,35 @@ import logging
 from django.utils import timezone
 from .models import TournamentMatch
 import requests
+from django.conf import settings
 
-USER_SERVICE_URL = "http://user-service:8000/api/user"
+def update_player_stats(winner, loser):
+    """
+    Notifie le User Service pour mettre à jour les statistiques des joueurs.
+    """
+    user_service_url = settings.USER_SERVICE_URL + "/internal/update-stats/"
+
+    payload = {
+        "winner_id": winner.id,
+        "loser_id": loser.id
+    }
+    headers = {"Authorization": f"Bearer {settings.INTERNAL_API_KEY}"}
+
+    try:
+        response = requests.post(user_service_url, json=payload, headers=headers)
+        if response.status_code == 200:
+            print("Statistiques mises à jour avec succès dans le User Service.")
+        else:
+            print(f"Erreur lors de la mise à jour des stats : {response.status_code}, {response.json()}")
+    except Exception as e:
+        print(f"Échec de la communication avec le User Service : {e}")
 
 def get_user_profile(user_id):
     """
     Récupère les informations du profil utilisateur à partir du microservice `user-service`.
     """
     try:
-        response = requests.get(f"{USER_SERVICE_URL}/profile/{user_id}/")
+        response = requests.get(f"{settings.USER_SERVICE_URL}/profile/{user_id}/")
         response.raise_for_status()
         return response.json()  # Retourne le JSON contenant les données du profil
     except requests.RequestException as e:
@@ -22,7 +42,7 @@ def get_friendship(user_id):
     Récupère les amitiés pour un utilisateur donné depuis le microservice `user`.
     """
     try:
-        response = requests.get(f"{USER_SERVICE_URL}/friendships/{user_id}/")
+        response = requests.get(f"{settings.USER_SERVICE_URL}/friendships/{user_id}/")
         response.raise_for_status()  # Vérifie si le statut HTTP est 200
         return response.json()
     except requests.RequestException as e:
