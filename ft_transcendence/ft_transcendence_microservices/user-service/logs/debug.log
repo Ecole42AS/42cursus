@@ -531,3 +531,95 @@ INFO 2024-12-16 10:34:16,511 autoreload Watching for file changes with StatReloa
 INFO 2024-12-16 10:34:22,203 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
 INFO 2024-12-16 10:34:22,336 autoreload Watching for file changes with StatReloader
 INFO 2024-12-16 10:38:50,301 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 12:32:42,236 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 12:32:42,985 basehttp "GET /api/user/profile HTTP/1.1" 301 0
+INFO 2024-12-16 12:32:43,007 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-16 12:32:43,032 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,035 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,037 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,038 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,038 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,038 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,038 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,039 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,039 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,074 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,084 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-16 12:32:43,095 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+WARNING 2024-12-16 14:59:36,121 basehttp "GET /media/default_avatar.png HTTP/1.1" 404 3001
+WARNING 2024-12-16 14:59:41,004 basehttp "GET /media/default_avatar.png HTTP/1.1" 404 3001
+INFO 2024-12-16 15:02:16,395 basehttp "GET /api/user/2 HTTP/1.1" 301 0
+INFO 2024-12-16 15:02:16,409 basehttp "GET /api/user/2/ HTTP/1.1" 200 5896
+INFO 2024-12-16 15:02:16,424 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,427 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,429 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,429 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,431 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,431 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,432 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,432 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,432 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,433 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,434 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-16 15:02:16,543 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+INFO 2024-12-16 15:27:41,331 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-16 15:27:41,331 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-16 15:27:41,332 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-16 15:27:41,332 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-12-16 15:27:41,334 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-12-16 15:27:41,334 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-16 15:27:41,334 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+WARNING 2024-12-16 15:27:45,091 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-16 15:37:18,603 basehttp "GET /api/user/profile/2/ HTTP/1.1" 200 6221
+INFO 2024-12-16 19:56:49,116 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:16:15,533 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:16:15,658 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:16:17,775 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:16:17,898 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:16:32,612 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:16:32,740 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:16:35,866 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:16:35,995 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:16:38,086 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:16:38,208 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:17:10,127 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:17:10,249 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:17:21,374 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:17:21,495 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:17:25,583 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:17:25,706 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:17:28,202 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:17:28,325 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:24:00,244 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:24:25,290 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:25:35,599 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:25:35,720 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:25:36,825 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:25:36,951 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:26:11,883 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:26:12,009 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:26:17,145 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:26:17,267 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:26:18,381 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-16 20:26:18,509 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:29:24,404 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 20:35:25,031 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-16 20:40:28,877 basehttp "GET / HTTP/1.1" 404 2636
+WARNING 2024-12-16 20:40:29,019 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+WARNING 2024-12-16 20:40:43,337 basehttp "GET /api/user HTTP/1.1" 404 2678
+INFO 2024-12-16 20:40:48,912 basehttp "GET /api/user/1 HTTP/1.1" 301 0
+INFO 2024-12-16 20:40:48,928 basehttp "GET /api/user/1/ HTTP/1.1" 200 5389
+INFO 2024-12-16 20:40:48,947 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-12-16 20:40:48,950 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-12-16 20:40:48,951 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-12-16 20:40:48,953 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-16 20:40:48,954 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-16 20:40:48,956 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-16 20:40:48,956 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-12-16 20:40:48,957 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-12-16 20:40:48,957 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-12-16 20:40:48,957 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-12-16 20:40:48,958 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-16 20:40:49,049 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2024-12-16 20:41:20,484 basehttp "GET /api/user/2 HTTP/1.1" 301 0
+INFO 2024-12-16 20:41:20,494 basehttp "GET /api/user/2/ HTTP/1.1" 200 5364

@@ -92,6 +92,20 @@ else:
         }
    }
 
+# filepath:  /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",  # Adresse de votre serveur Redis
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
 # Modèle utilisateur personnalisé
 AUTH_USER_MODEL = 'user.CustomUser'
 
@@ -183,3 +197,4 @@ LOGGING = {
         },
     },
 }
+
