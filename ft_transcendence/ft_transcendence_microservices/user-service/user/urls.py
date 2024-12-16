@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import RegisterView, UserProfileView, AddFriendView, FriendsListView, UserUpdateView, UserDetailView, FriendshipStatusView, SearchUserView, UserProfileDetailView, UpdateUserStatsView
+from .views import RegisterView, UserProfileView, AddFriendView, FriendsListView, UserUpdateView, UserDetailView, FriendshipStatusView, SearchUserView, UserProfileDetailView, InternalUpdateStatsView
 
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/', UserProfileView.as_view(), name='profile'),
     path('profile/<int:user_id>/', UserProfileDetailView.as_view(), name='profile_detail'),
-    path('profile/<int:user_id>/update-stats/', UpdateUserStatsView.as_view(), name='update_stats'),
+    path('internal/update-stats/', InternalUpdateStatsView.as_view(), name='internal_update_stats'),
     path('update_user/', UserUpdateView.as_view(), name='update_user'),
     path('<int:user_id>/', UserDetailView.as_view(), name='user_detail'),
     path('friends/', FriendsListView.as_view(), name='friends_list'),

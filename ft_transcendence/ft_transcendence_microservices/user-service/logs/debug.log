@@ -446,3 +446,88 @@ WARNING 2024-12-16 09:43:06,665 basehttp "GET /api/user/add_friend/4/ HTTP/1.1" 
 WARNING 2024-12-16 09:43:08,279 basehttp "POST /api/user/add_friend/4/ HTTP/1.1" 404 6197
 INFO 2024-12-16 09:43:08,327 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
 INFO 2024-12-16 09:43:18,634 basehttp "GET /api/user/friends/ HTTP/1.1" 200 6152
+INFO 2024-12-16 09:45:19,378 basehttp "GET /api/user/search HTTP/1.1" 301 0
+WARNING 2024-12-16 09:45:19,390 basehttp "GET /api/user/search/ HTTP/1.1" 400 5865
+WARNING 2024-12-16 09:45:26,069 basehttp "GET /api/user/search/Ren%C3%A9 HTTP/1.1" 404 5416
+WARNING 2024-12-16 09:45:36,257 basehttp "GET /api/user/search/Rene HTTP/1.1" 404 5409
+WARNING 2024-12-16 09:45:47,878 basehttp "GET /api/user/search/q HTTP/1.1" 404 5400
+WARNING 2024-12-16 09:46:08,533 basehttp "GET /api/user/search/alex HTTP/1.1" 404 5409
+INFO 2024-12-16 09:46:56,959 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-16 09:46:57,101 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 09:46:59,217 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-16 09:46:59,352 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 09:47:04,810 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-16 09:47:04,949 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-16 09:47:31,762 basehttp "GET /api/user/search/q=alex HTTP/1.1" 404 5417
+WARNING 2024-12-16 09:47:42,584 basehttp "GET /api/user/search/q=Ren%C3%A9 HTTP/1.1" 404 5424
+WARNING 2024-12-16 09:47:46,654 basehttp "GET /api/user/search/q=Alex HTTP/1.1" 404 5417
+INFO 2024-12-16 09:48:14,437 basehttp "GET /api/user/search?q=alex HTTP/1.1" 301 0
+INFO 2024-12-16 09:48:14,457 basehttp "GET /api/user/search/?q=alex HTTP/1.1" 200 6023
+INFO 2024-12-16 09:48:14,472 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,477 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,477 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,479 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,479 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,480 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,481 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,481 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,481 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,481 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,482 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:14,578 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+INFO 2024-12-16 09:48:27,466 basehttp "GET /api/user/search/?q=al HTTP/1.1" 200 6013
+INFO 2024-12-16 09:48:34,669 basehttp "GET /api/user/search/?q=ex HTTP/1.1" 200 6013
+INFO 2024-12-16 09:48:36,642 basehttp "GET /api/user/search/?q=ex HTTP/1.1" 200 6013
+INFO 2024-12-16 09:48:39,639 basehttp "GET /api/user/search/?q=re HTTP/1.1" 200 5992
+WARNING 2024-12-16 09:51:12,153 basehttp "GET /api/user/search/?q= HTTP/1.1" 400 5888
+INFO 2024-12-16 09:52:56,006 basehttp "GET /api/user/friendship-status/1/2/ HTTP/1.1" 200 5956
+INFO 2024-12-16 09:52:56,030 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,030 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,031 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,031 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,031 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,033 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,033 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,034 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,034 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,035 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,035 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-16 09:52:56,143 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+INFO 2024-12-16 09:53:19,914 basehttp "GET /api/user/1 HTTP/1.1" 301 0
+INFO 2024-12-16 09:53:19,926 basehttp "GET /api/user/1/ HTTP/1.1" 200 5921
+INFO 2024-12-16 09:53:39,312 basehttp "GET /api/user/profile/1 HTTP/1.1" 301 0
+INFO 2024-12-16 09:53:39,324 basehttp "GET /api/user/profile/1/ HTTP/1.1" 200 6212
+INFO 2024-12-16 09:53:58,132 basehttp "GET /api/user/profile/1/update-stats HTTP/1.1" 301 0
+WARNING 2024-12-16 09:53:58,149 basehttp "GET /api/user/profile/1/update-stats/ HTTP/1.1" 405 6751
+INFO 2024-12-16 09:54:18,757 basehttp "OPTIONS /api/user/profile/1/update-stats/ HTTP/1.1" 200 7116
+INFO 2024-12-16 09:55:58,771 basehttp "PATCH /api/user/profile/1/update-stats/ HTTP/1.1" 200 6825
+INFO 2024-12-16 09:56:53,425 basehttp "PATCH /api/user/profile/1/update-stats/ HTTP/1.1" 200 6826
+INFO 2024-12-16 10:00:21,255 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-16 10:00:21,393 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:00:24,561 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-16 10:00:24,687 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:33:09,739 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-16 10:33:09,870 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:33:50,410 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:33:50,540 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:33:51,623 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:33:51,762 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:33:52,866 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:33:52,997 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:33:58,768 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:33:58,902 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:34:02,075 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:34:02,204 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:34:04,272 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:34:04,401 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:34:08,560 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:34:08,689 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:34:11,848 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:34:11,979 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:34:15,182 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:34:15,313 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:34:16,383 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:34:16,511 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:34:22,203 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-16 10:34:22,336 autoreload Watching for file changes with StatReloader
+INFO 2024-12-16 10:38:50,301 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
