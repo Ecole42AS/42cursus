@@ -32,6 +32,9 @@ class Friendship(models.Model):
     class Meta:
         unique_together = ('from_user', 'to_user')
 
+    def __str__(self):
+        return f"{self.from_user} is friends with {self.to_user}"
+
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True)

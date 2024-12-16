@@ -36,6 +36,23 @@ class UserProfileView(generics.RetrieveUpdateAPIView):# méthode GET et PUT
     def get_object(self):
         return self.request.user.profile
 
+# class AddFriendView(APIView):
+#     permission_classes = [permissions.IsAuthenticated]
+
+#     def post(self, request, user_id):
+#         try:
+#             to_user = CustomUser.objects.get(pk=user_id)
+            
+#             if request.user == to_user:
+#                 return Response({'error': 'Vous ne pouvez pas vous ajouter en tant qu’ami.'}, status=status.HTTP_400_BAD_REQUEST)
+            
+#             Friendship.objects.create(from_user=request.user, to_user=to_user)
+#             return Response({'status': 'Ami ajouté avec succès'}, status=status.HTTP_201_CREATED)
+#         except CustomUser.DoesNotExist:
+#             return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+#         except IntegrityError:
+#             return Response({'error': 'Vous êtes déjà ami avec cet utilisateur.'}, status=status.HTTP_400_BAD_REQUEST)
+
 class AddFriendView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -44,14 +61,29 @@ class AddFriendView(APIView):
             to_user = CustomUser.objects.get(pk=user_id)
             
             if request.user == to_user:
-                return Response({'error': 'Vous ne pouvez pas vous ajouter en tant qu’ami.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {'error': 'Vous ne pouvez pas vous ajouter en tant qu’ami.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            if Friendship.objects.filter(
+                from_user=request.user, to_user=to_user
+            ).exists() or Friendship.objects.filter(
+                from_user=to_user, to_user=request.user
+            ).exists():
+                return Response(
+                    {'error': 'Vous êtes déjà ami avec cet utilisateur.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
             
             Friendship.objects.create(from_user=request.user, to_user=to_user)
             return Response({'status': 'Ami ajouté avec succès'}, status=status.HTTP_201_CREATED)
+        
         except CustomUser.DoesNotExist:
-            return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
-        except IntegrityError:
-            return Response({'error': 'Vous êtes déjà ami avec cet utilisateur.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'error': 'Utilisateur non trouvé'},
+                status=status.HTTP_404_NOT_FOUND
+            )
 
 class FriendsListView(APIView):
     permission_classes = [permissions.IsAuthenticated]
