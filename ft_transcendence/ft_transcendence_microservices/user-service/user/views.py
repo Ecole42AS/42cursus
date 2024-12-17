@@ -9,6 +9,8 @@ from django.db import IntegrityError
 from .models import Friendship
 from django.contrib.auth import get_user_model
 from .models import Profile
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 CustomUser = get_user_model()
@@ -192,7 +194,28 @@ class SearchUserView(APIView):
         users = CustomUser.objects.filter(username__icontains=query)[:10]
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
+    
+class ValidateTokenView(APIView):
+    """
+    Vue pour valider un JWT et retourner les informations utilisateur.
+    """
+    permission_classes = [AllowAny]
 
+    def get(self, request):
+        auth = JWTAuthentication()
+        try:
+            # Authentifier le token
+            header = request.META.get('HTTP_AUTHORIZATION')
+            if not header:
+                return Response({"error": "No token provided"}, status=400)
+            
+            raw_token = header.split(' ')[1]
+            validated_token = auth.get_validated_token(raw_token)
+            user = auth.get_user(validated_token)
+
+            return Response({"user_id": user.id, "username": user.username})
+        except Exception as e:
+            return Response({"error": str(e)}, status=401)
 
 from django.http import HttpResponse
 

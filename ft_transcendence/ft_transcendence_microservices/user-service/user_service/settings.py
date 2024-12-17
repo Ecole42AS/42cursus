@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 import sys
+from dotenv import load_dotenv
+from datetime import timedelta
+
 
 # Définir le répertoire de base du service utilisateur
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,6 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-^96ocy_do_=)*km4l9-m%n1hk&^b-ous4gxw8%09+f9dos010q'
 # SECRET_KEY = 'akn1%#!+sh*gzpb#ek_30a=3qag!14&%rj1mz%!uaj3*a1-i*n'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "my-default-unique-key")
+print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 # Mode Debug - Désactiver en production
 DEBUG = True
@@ -24,10 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
-
     'user',  # App du service utilisateur
 ]
 
@@ -51,6 +55,24 @@ CORS_ALLOWED_ORIGINS = [
     "http://matchtracker-service:8000",  # Autoriser le microservice `matchtracker-service`
     "http://localhost:8000",  # Autoriser localhost pour les tests
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Requiert JWT pour accéder aux endpoints protégés
+    ],
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'SIGNING_KEY': JWT_SECRET_KEY,  # Chargée depuis .env
+    'ALGORITHM': 'HS256',
+}
 
 # Configuration des URL racines
 ROOT_URLCONF = 'user_service.urls'
@@ -201,10 +223,10 @@ LOGGING = {
             'level': 'ERROR', 
             'propagate': False,
         },
-        'myapp': {
+        'matchtracker-service': {
             'handlers': ['file'],
             'level': 'DEBUG', 
-           'propagate': False,
+           'propagate': True,
         },
     },
 }

@@ -783,3 +783,185 @@ INFO 2024-12-17 09:26:46,688 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
 INFO 2024-12-17 09:26:46,705 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
 INFO 2024-12-17 09:55:51,179 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
 INFO 2024-12-17 09:56:06,118 basehttp "GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434
+INFO 2024-12-17 11:55:46,973 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:58:30,383 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 12:14:15,813 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 12:14:29,623 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 14:02:41,734 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 14:02:55,656 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 14:04:14,500 basehttp "POST /api/token/refresh/ HTTP/1.1" 200 241
+INFO 2024-12-17 14:26:00,625 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 14:26:24,492 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 14:27:17,280 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 14:29:55,647 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 14:29:55,666 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-12-17 14:29:55,718 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-12-17 14:29:55,777 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-12-17 14:29:55,838 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-12-17 14:29:55,888 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+WARNING 2024-12-17 14:30:04,882 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+INFO 2024-12-17 14:30:04,907 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-17 14:30:04,907 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-17 14:30:04,909 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-17 14:30:04,909 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-12-17 14:30:04,911 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-12-17 14:30:04,911 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-17 14:30:04,911 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-12-17 14:30:18,615 basehttp "GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434
+INFO 2024-12-17 14:30:28,729 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+WARNING 2024-12-17 14:30:28,745 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+WARNING 2024-12-17 14:30:47,122 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+WARNING 2024-12-17 14:30:49,037 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+WARNING 2024-12-17 14:30:49,425 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+WARNING 2024-12-17 14:30:50,033 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+WARNING 2024-12-17 14:30:53,092 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+WARNING 2024-12-17 14:30:53,518 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+WARNING 2024-12-17 14:30:53,888 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+WARNING 2024-12-17 14:30:54,150 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+INFO 2024-12-17 18:59:37,581 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 18:59:37,954 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 18:59:44,137 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 18:59:44,277 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:00:31,790 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:00:31,929 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:00:34,081 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:00:34,221 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:00:37,285 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:00:37,422 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:00:47,536 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:00:47,675 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:00:48,731 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:00:48,866 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:00:50,929 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:00:51,060 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:00:53,126 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:00:53,261 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:00:56,331 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:00:56,465 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:13:58,553 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:14:17,140 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 19:20:56,884 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 19:20:57,034 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:21:07,134 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 19:21:07,270 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:21:08,324 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 19:21:08,462 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:21:09,520 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 19:21:09,653 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:21:10,721 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 19:21:10,855 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:21:14,945 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 19:21:15,077 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:21:18,153 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 19:21:18,288 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:21:31,420 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 19:21:31,556 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:21:57,702 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:22:36,969 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:22:37,105 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:22:40,164 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:22:40,297 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:22:43,358 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:22:43,497 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:22:52,619 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:22:52,752 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:22:54,818 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:22:54,977 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:22:58,393 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:23:28,853 basehttp "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2024-12-17 19:23:56,566 basehttp "GET /validate/ HTTP/1.1" 404 3043
+INFO 2024-12-17 19:25:49,717 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:25:49,865 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:25:53,011 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:25:53,152 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:25:59,229 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/urls.py changed, reloading.
+INFO 2024-12-17 19:25:59,368 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:26:11,613 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/urls.py changed, reloading.
+INFO 2024-12-17 19:26:11,752 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:26:14,807 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/urls.py changed, reloading.
+INFO 2024-12-17 19:26:14,946 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:26:24,034 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/urls.py changed, reloading.
+INFO 2024-12-17 19:26:24,172 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:26:26,227 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/urls.py changed, reloading.
+INFO 2024-12-17 19:26:26,362 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:26:28,408 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/urls.py changed, reloading.
+INFO 2024-12-17 19:26:28,538 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:26:42,631 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 19:27:07,812 basehttp "GET /validate/ HTTP/1.1" 200 31
+INFO 2024-12-17 19:28:30,774 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 19:30:48,831 basehttp "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2024-12-17 19:32:09,990 basehttp "GET /validate/ HTTP/1.1" 401 183
+INFO 2024-12-17 19:32:36,016 basehttp "GET /validate/ HTTP/1.1" 200 31
+INFO 2024-12-17 19:34:07,533 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 19:36:52,784 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:37:09,734 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 19:40:15,480 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:40:32,807 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 19:44:47,670 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 19:44:47,822 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:46:08,742 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 19:48:49,023 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 19:48:49,159 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:52:52,063 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:00:03,387 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 20:00:07,013 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 20:00:07,038 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-12-17 20:00:07,038 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-12-17 20:00:07,038 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-12-17 20:00:07,039 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-12-17 20:00:07,061 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2024-12-17 20:00:08,852 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 20:00:15,240 basehttp "GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434
+INFO 2024-12-17 20:00:34,592 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+WARNING 2024-12-17 20:00:34,598 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+INFO 2024-12-17 20:00:34,671 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-17 20:00:34,671 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-17 20:00:34,674 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-12-17 20:00:34,674 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-17 20:00:34,674 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-12-17 20:00:34,674 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-17 20:00:34,675 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-12-17 20:00:45,594 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 20:00:52,313 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+WARNING 2024-12-17 20:00:52,318 basehttp "GET /api/user/profile/ HTTP/1.1" 401 5180
+INFO 2024-12-17 20:01:33,966 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 20:32:26,640 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 20:36:32,459 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:36:38,697 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 20:36:47,531 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:37:06,333 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:58:38,558 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 21:12:44,464 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:15:17,676 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 21:22:42,308 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 21:29:59,926 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:30:00,091 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:31:10,836 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:31:33,096 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 21:35:23,580 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:35:23,741 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:35:25,943 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:35:26,113 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:38:54,463 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:38:54,618 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:39:51,835 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:39:51,980 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:39:53,278 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:39:53,426 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:40:14,911 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:40:15,059 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:40:17,210 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:40:17,372 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:40:38,149 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:40:38,305 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:42:06,397 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/manage.py changed, reloading.
+INFO 2024-12-17 21:42:06,545 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:42:31,518 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:43:09,227 basehttp "POST /api/token/ HTTP/1.1" 200 483
+INFO 2024-12-17 21:45:39,171 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:49:34,584 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:49:34,734 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:49:37,922 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 21:49:38,065 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:49:42,006 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:50:23,007 basehttp "POST /api/token/ HTTP/1.1" 200 483
