@@ -783,3 +783,180 @@ INFO 2024-12-17 09:26:46,688 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
 INFO 2024-12-17 09:26:46,705 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
 INFO 2024-12-17 09:55:51,179 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
 INFO 2024-12-17 09:56:06,118 basehttp "GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434
+INFO 2024-12-17 10:00:10,683 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 10:10:04,506 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 10:10:04,638 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 10:11:11,011 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 10:13:30,354 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 10:13:30,377 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-12-17 10:13:30,419 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-12-17 10:13:30,488 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-12-17 10:13:30,557 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-12-17 10:13:30,600 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-12-17 10:13:30,649 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-17 10:13:30,706 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2024-12-17 10:13:30,706 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-17 10:13:30,708 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-17 10:13:30,708 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-17 10:13:30,708 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-12-17 10:13:30,708 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+WARNING 2024-12-17 10:13:30,866 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 10:13:34,479 basehttp "POST /api-auth/logout/?next=/api/user/profile/ HTTP/1.1" 302 0
+WARNING 2024-12-17 10:13:34,484 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 10:13:37,041 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 10:13:44,901 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 10:13:44,913 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 10:16:06,882 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 10:16:07,025 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 10:16:10,382 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 10:18:12,222 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 10:18:26,239 basehttp "POST /api-auth/logout/?next=/api/user/profile/ HTTP/1.1" 302 0
+WARNING 2024-12-17 10:18:26,250 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 10:18:28,008 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 10:18:37,090 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 10:18:37,105 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 10:19:58,180 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 10:22:03,941 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 10:22:04,078 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 10:25:12,945 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 10:25:48,758 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+WARNING 2024-12-17 10:25:49,830 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+WARNING 2024-12-17 10:26:40,449 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+WARNING 2024-12-17 10:30:51,192 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+WARNING 2024-12-17 10:30:51,324 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 10:32:46,335 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 10:32:53,030 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 10:32:53,045 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 10:49:26,111 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 10:49:26,246 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 10:49:55,645 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 10:50:25,912 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+WARNING 2024-12-17 10:50:26,083 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 10:52:23,308 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 10:52:23,335 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-12-17 10:52:23,380 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-12-17 10:52:23,451 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-12-17 10:52:23,529 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-12-17 10:52:23,580 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-12-17 10:52:23,630 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-17 10:52:23,686 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-17 10:52:23,686 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2024-12-17 10:52:23,687 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-12-17 10:52:23,688 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-17 10:52:23,689 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-17 10:52:23,689 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+WARNING 2024-12-17 10:52:23,843 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 10:52:25,975 basehttp "POST /api-auth/logout/?next=/api/user/profile/ HTTP/1.1" 302 0
+WARNING 2024-12-17 10:52:25,979 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 10:52:27,524 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 10:52:40,233 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 10:52:40,246 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9633
+WARNING 2024-12-17 10:55:47,999 basehttp "POST /login/ HTTP/1.1" 404 2673
+INFO 2024-12-17 10:56:06,686 basehttp "POST /api-auth/logout/?next=/api/user/profile/ HTTP/1.1" 302 0
+WARNING 2024-12-17 10:56:06,694 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 10:56:07,489 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+WARNING 2024-12-17 10:56:32,913 log Forbidden (CSRF cookie not set.): /api-auth/login/
+WARNING 2024-12-17 10:56:32,913 basehttp "POST /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 403 2855
+WARNING 2024-12-17 10:56:52,102 log Forbidden (CSRF cookie not set.): /api-auth/login/
+WARNING 2024-12-17 10:56:52,102 basehttp "POST /api-auth/login/ HTTP/1.1" 403 2855
+INFO 2024-12-17 10:58:50,314 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 10:58:50,326 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 11:00:30,239 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:00:30,381 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:00:32,563 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:00:32,700 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:03:03,668 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:03:03,804 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:03:35,055 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:04:53,972 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:04:54,112 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:04:56,270 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:04:56,418 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:05:10,637 basehttp "POST /api-auth/logout/?next=/api/user/profile/ HTTP/1.1" 302 0
+WARNING 2024-12-17 11:05:10,648 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 11:05:11,382 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 11:05:19,737 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 11:05:19,753 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9633
+INFO 2024-12-17 11:10:09,447 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:11:51,396 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:11:51,524 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:11:54,819 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:11:54,917 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:14:33,832 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:14:33,959 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:14:51,396 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:15:53,002 basehttp "POST /api-auth/logout/?next=/api/user/profile/ HTTP/1.1" 302 0
+WARNING 2024-12-17 11:15:53,014 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 11:15:53,647 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 11:16:01,787 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 11:16:01,804 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9633
+WARNING 2024-12-17 11:18:36,252 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 11:21:21,150 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:21:21,295 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:25:25,398 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:25:37,410 basehttp "POST /api-auth/logout/?next=/api/user/profile/ HTTP/1.1" 302 0
+WARNING 2024-12-17 11:25:37,423 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 11:25:38,002 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 11:25:43,771 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 11:25:43,787 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 11:26:56,926 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 44
+INFO 2024-12-17 11:27:07,936 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 44
+INFO 2024-12-17 11:30:40,229 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:30:40,371 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:30:47,704 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:30:47,844 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:30:53,609 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 11:31:17,456 basehttp "GET /api/user/login HTTP/1.1" 404 5669
+INFO 2024-12-17 11:31:23,727 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 11:31:26,443 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 11:31:26,459 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 11:32:13,866 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 44
+INFO 2024-12-17 11:32:14,037 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 44
+WARNING 2024-12-17 11:32:14,040 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+WARNING 2024-12-17 11:32:14,361 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 11:32:14,798 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 44
+WARNING 2024-12-17 11:32:14,938 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 11:32:15,612 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 44
+WARNING 2024-12-17 11:32:15,748 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 11:34:26,804 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 11:34:57,509 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+WARNING 2024-12-17 11:34:57,654 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 11:34:59,959 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 11:35:04,953 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 11:35:04,968 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 11:40:52,417 basehttp "POST /api-auth/logout/?next=/api/user/profile/ HTTP/1.1" 302 0
+WARNING 2024-12-17 11:40:52,421 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+WARNING 2024-12-17 11:41:25,950 log Forbidden (CSRF cookie not set.): /api-auth/login/
+WARNING 2024-12-17 11:41:25,950 basehttp "POST /api-auth/login/ HTTP/1.1" 403 2855
+INFO 2024-12-17 11:43:22,393 basehttp "GET /api-auth/login/ HTTP/1.1" 200 2700
+INFO 2024-12-17 11:43:58,823 basehttp "GET /api-auth/login/ HTTP/1.1" 200 2700
+INFO 2024-12-17 11:44:51,764 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+WARNING 2024-12-17 11:44:57,607 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+WARNING 2024-12-17 11:45:00,573 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 11:45:03,558 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+WARNING 2024-12-17 11:45:23,762 log Forbidden (CSRF cookie not set.): /api-auth/login/
+WARNING 2024-12-17 11:45:23,762 basehttp "POST /api-auth/login/ HTTP/1.1" 403 2855
+WARNING 2024-12-17 11:46:04,244 basehttp "GET / HTTP/1.1" 404 2636
+WARNING 2024-12-17 11:46:04,403 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 11:46:09,458 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 44
+INFO 2024-12-17 11:46:19,129 basehttp "GET /api/user/profile HTTP/1.1" 301 0
+WARNING 2024-12-17 11:46:19,135 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 11:46:19,155 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,157 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,158 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,159 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,160 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,160 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,161 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,161 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,161 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,162 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,163 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-17 11:46:19,250 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+WARNING 2024-12-17 11:46:28,145 log Forbidden (CSRF cookie not set.): /api-auth/login/
+WARNING 2024-12-17 11:46:28,145 basehttp "POST /api-auth/login/ HTTP/1.1" 403 2855
+INFO 2024-12-17 11:46:36,922 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 11:47:26,450 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:47:26,588 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:49:16,310 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py changed, reloading.
+INFO 2024-12-17 11:49:16,449 autoreload Watching for file changes with StatReloader
