@@ -169,3 +169,11 @@ def test_redis_session(request):
 
     value = request.session.get('unique_key', 'default')
     return HttpResponse(f"Session unique_key is: {value}")
+
+from django.http import JsonResponse
+
+def check_session(request):
+    if request.user.is_authenticated:
+        return JsonResponse({"status": "success", "user": request.user.username})
+    else:
+        return JsonResponse({"status": "error", "detail": "User not authenticated"}, status=403)

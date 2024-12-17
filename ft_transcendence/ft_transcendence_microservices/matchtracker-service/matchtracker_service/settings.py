@@ -6,10 +6,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 USER_SERVICE_URL = "http://user-service:8080/api/user"
 
 # SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
+SECRET_KEY = '4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
+# SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service']
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8080", "http://localhost:8080", "http://localhost:8000", "http://127.0.0.1:8000"]
+
+CSRF_COOKIE_DOMAIN = "localhost"
+CSRF_COOKIE_SAMESITE = "Lax"
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -24,6 +29,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'game.middleware.debug_session_middleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -36,11 +42,12 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://localhost:8000",
     "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000",
-
+    "http://127.0.0.1:8080",
+    "http://localhost:8000",
+    "http://localhost:8080"
 ]
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'matchtracker_service.urls'
 
@@ -82,6 +89,15 @@ else:
         }
     }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
@@ -121,6 +137,10 @@ LOGGING = {
             'format': '{levelname} {message}',
             'style': '{',
         },
+        'session_debug': {
+            'format': '{levelname} {asctime} {module} [SESSION] {message}',
+            'style': '{',
+        },
     },
     'handlers': {
         'file': {
@@ -129,15 +149,26 @@ LOGGING = {
             'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
             'formatter': 'verbose',
         },
+        'session_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/session_debug.log'),
+            'formatter': 'session_debug',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
+            'handlers': ['file', 'console'],
             'level': 'INFO',
             'propagate': True,
         },
         'django.request': {
-            'handlers': ['file'],
+            'handlers': ['file', 'console'],
             'level': 'ERROR',
             'propagate': False,
         },
@@ -146,13 +177,14 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'myapp': {
-            'handlers': ['file'],
+        'session_debug': {  # Nouveau logger pour les sessions
+            'handlers': ['session_file', 'console'],
             'level': 'DEBUG',
             'propagate': False,
         },
     },
 }
+
 
 CHANNEL_LAYERS = {
     'default': {
@@ -163,23 +195,21 @@ CHANNEL_LAYERS = {
     },
 }
 
-# filepath: /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",  # Adresse de votre serveur Redis
+        "LOCATION": "redis://127.0.0.1:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "KEY_PREFIX": "session",  # Assure-toi que le préfixe est vide
         }
     }
 }
 
-SESSION_COOKIE_DOMAIN = "localhost"
-SESSION_COOKIE_NAME = "sessionid"  # Nom du cookie de session
-SESSION_COOKIE_SAMESITE = "Lax"  # Permet les sous-domaines
-SESSION_COOKIE_SECURE = False  # Doit être True en production si HTTPS est utilisé
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"  # Redis pour stocker les sessions
-SESSION_CACHE_ALIAS = "default"  # Utilisation de la configuration cache 'default'
+SESSION_COOKIE_DOMAIN = "localhost"  # Domaine identique
+SESSION_COOKIE_NAME = "sessionid"    # Nom du cookie de session
+SESSION_COOKIE_SAMESITE = "Lax"      # Pour sous-domaines
+SESSION_COOKIE_SECURE = False        # HTTPS seulement en production
