@@ -1,12 +1,16 @@
 from pathlib import Path
 import os
 import sys
+from dotenv import load_dotenv
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 USER_SERVICE_URL = "http://user-service:8080/api/user"
 
 # SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "my-default-unique-key")
+print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service']
@@ -18,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
     'channels',
     'game',
@@ -41,6 +46,24 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
 
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'game.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Requiert JWT pour accéder aux endpoints protégés
+    ],
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'SIGNING_KEY': os.getenv("JWT_SECRET_KEY", "a33d83c0f3be73db53d15b0a71c3e12b521b03ca0d300767b79722cd1c11940d"),
+    'ALGORITHM': 'HS256',
+}
+
 
 ROOT_URLCONF = 'matchtracker_service.urls'
 
@@ -136,23 +159,14 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
-        'django.request': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
-        'django.db.backends': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
-        'myapp': {
+        'matchtracker-service': {  # Votre logger personnalisé
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': False,
         },
     },
 }
+
 
 CHANNEL_LAYERS = {
     'default': {

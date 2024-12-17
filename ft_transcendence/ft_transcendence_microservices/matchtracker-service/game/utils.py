@@ -2,8 +2,18 @@ import requests
 from django.conf import settings
 import logging
 from django.utils import timezone
+from django.http import HttpResponse
 
-logger = logging.getLogger(__name__)
+
+logger = logging.getLogger('matchtracker-service')
+
+
+def test_logs(request):
+    logger.debug("Test DEBUG log")
+    logger.info("Test INFO log")
+    logger.warning("Test WARNING log")
+    logger.error("Test ERROR log")
+    return HttpResponse("Logs testés, vérifiez le fichier de log.")
 
 def get_user_data(user_id):
     """
@@ -39,6 +49,35 @@ def get_friendship(user_id):
         return response.json()
     except requests.RequestException as e:
         print(f"Erreur lors de la communication avec user-service : {e}")
+        return None
+
+
+import requests
+import logging
+from django.conf import settings
+
+logger = logging.getLogger('myapp')
+
+def validate_user_token(token):
+    """
+    Valide le token JWT auprès du User Service et récupère les informations utilisateur.
+    """
+    headers = {"Authorization": f"Bearer {token}"}
+    user_service_url = f"{settings.USER_SERVICE_URL}/validate/"
+
+    try:
+        logger.debug(f"Sending token validation request to: {user_service_url}")
+        response = requests.get(user_service_url, headers=headers)
+        logger.debug(f"Response status code: {response.status_code}")
+        logger.debug(f"Response content: {response.content}")
+
+        response.raise_for_status()
+        data = response.json()
+        logger.debug(f"Decoded user data: {data}")
+        return data
+
+    except requests.RequestException as e:
+        logger.error(f"Error while validating token: {e}")
         return None
 
 

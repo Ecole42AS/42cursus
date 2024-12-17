@@ -7,11 +7,26 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from rest_framework import status
-from .utils import update_player_stats, get_user_profile
+from .utils import update_player_stats, get_user_profile, validate_user_token
 from django.utils.timezone import now
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.exceptions import AuthenticationFailed
  
-logger = logging.getLogger(__name__)
+
+import logging
+
+
+logger = logging.getLogger('matchtracker-service')
+
+def example_function():
+    logger.debug("Ceci est un message DEBUG.")
+    logger.info("Ceci est un message INFO.")
+    logger.warning("Ceci est un message WARNING.")
+    logger.error("Ceci est un message ERROR.")
+
+
+
+# logger = logging.getLogger(__name__)
 
 # def update_player_stats(winner, loser):
 #     """
@@ -25,9 +40,12 @@ logger = logging.getLogger(__name__)
 #     loser_profile.save()
 
 
+from rest_framework.exceptions import AuthenticationFailed
+from .utils import validate_user_token
+
 class GameViewSet(viewsets.ModelViewSet):
     """
-    ViewSet pour gérer les actions CRUD des sessions de jeu.
+    ViewSet pour gérer les sessions de jeu.
     """
     queryset = GameSession.objects.all()
     serializer_class = GameSerializer
@@ -35,39 +53,61 @@ class GameViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Surcharge de la méthode get_queryset pour filtrer les parties en fonction de l'utilisateur connecté et impliqué (soit user1, soit user2).
+        Filtre les parties pour l'utilisateur authentifié.
         """
-        user_id = self.request.user.id
+        jwt_token = self.request.headers.get("Authorization").split(" ")[1]
+        logger.debug(f"JWT Token received in request: {jwt_token}")
+
+        if not jwt_token:
+            raise AuthenticationFailed("No token provided")
+
+        # Valider le token auprès du User Service
+        user_data = validate_user_token(jwt_token)
+        logger.debug(f"User data received after token validation: {user_data}")
+
+        if not user_data or 'user_id' not in user_data:
+            raise AuthenticationFailed("Invalid token or user not found")
+
+        user_id = user_data["user_id"]
+        logger.debug(f"Filtering games for user_id: {user_id}")
 
         return GameSession.objects.filter(
             Q(player1_id=user_id) | Q(player2_id=user_id)
         )
+
+
 
 class CreateGameSessionView(APIView):
     """
     Vue pour créer une nouvelle session de jeu.
     """
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
 
     def post(self, request, user_id):
         try:
-            opponent_data = get_user_profile(user_id)  # Récupérer les données utilisateur via le microservice
+            user = request.user  # Utilisateur extrait depuis le token JWT
+            if not user:
+                raise AuthenticationFailed("User not authenticated")
+
+            opponent_data = get_user_profile(user_id)  # Appel au microservice User
             if not opponent_data:
                 return Response({'error': 'Utilisateur non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
 
-            if request.user.id == user_id:
+            if user.id == user_id:
                 return Response({'error': 'Vous ne pouvez pas jouer contre vous-même.'}, status=status.HTTP_400_BAD_REQUEST)
 
             existing_game = GameSession.objects.filter(
-                Q(player1_id=request.user.id, player2_id=user_id) |
-                Q(player1_id=user_id, player2_id=request.user.id),
+                Q(player1_id=user.id, player2_id=user_id) |
+                Q(player1_id=user_id, player2_id=user.id),
                 is_active=True
             ).first()
 
             if existing_game:
                 return Response({'error': 'Un match est déjà en cours entre ces deux joueurs.'}, status=status.HTTP_400_BAD_REQUEST)
 
-            game_session = GameSession.objects.create(player1_id=request.user.id, player2_id=user_id)
+            game_session = GameSession.objects.create(player1_id=user.id, player2_id=user_id)
             serializer = GameSerializer(game_session)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Exception as e:
@@ -79,28 +119,42 @@ class UpdateGameScoreView(APIView):
     Vue pour mettre à jour le score d'une session de jeu.
     """
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def post(self, request, game_id):
         try:
+            # Assurez-vous que l'utilisateur est authentifié via JWT
+            user = request.user
+            if not user:
+                raise AuthenticationFailed("User authentication failed")
+
+            # Récupérer la session de jeu
             game = GameSession.objects.get(pk=game_id)
 
             if not game.is_active:
-                return Response({'error': 'Ce match est terminé. Les scores ne peuvent pas être modifiés.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {'error': 'Ce match est terminé. Les scores ne peuvent pas être modifiés.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
 
-            if request.user.id not in [game.player1_id, game.player2_id]:
-                return Response({'error': 'Vous ne participez pas à ce match.'}, status=status.HTTP_403_FORBIDDEN)
+            # Vérifier si l'utilisateur participe à ce match
+            if user.id not in [game.player1_id, game.player2_id]:
+                return Response(
+                    {'error': 'Vous ne participez pas à ce match.'},
+                    status=status.HTTP_403_FORBIDDEN
+                )
 
+            # Mise à jour du score
             player_score = request.data.get('score')
             if player_score is None:
                 return Response({'error': 'Score non fourni.'}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Mise à jour du score
-            if request.user.id == game.player1_id:
+            if user.id == game.player1_id:
                 game.score_player1 = player_score
             else:
                 game.score_player2 = player_score
 
-            # Vérification du temps écoulé
+            # Vérifier le temps écoulé
             if (now() - game.start_time).total_seconds() >= 60:
                 game.is_active = False
                 game.ended_at = now()
@@ -114,9 +168,11 @@ class UpdateGameScoreView(APIView):
 
                 game.save()
 
-                # Mettre à jour les stats si un gagnant est défini
                 if game.winner_id:
-                    update_player_stats(game.winner_id, game.player1_id if game.winner_id == game.player2_id else game.player2_id)
+                    update_player_stats(
+                        game.winner_id,
+                        game.player1_id if game.winner_id == game.player2_id else game.player2_id
+                    )
 
             game.save()
             return Response({'detail': 'Score mis à jour.'})
@@ -131,9 +187,10 @@ class TournamentViewSet(viewsets.ModelViewSet):
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def perform_create(self, serializer):
-        creator_id = self.request.user.id
+        creator_id = self.request.user.id  # Récupération depuis JWT
         serializer.save(creator_id=creator_id)
 
 
@@ -144,15 +201,25 @@ class TournamentMatchViewSet(viewsets.ModelViewSet):
     queryset = TournamentMatch.objects.all()
     serializer_class = TournamentMatchSerializer
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    def perform_create(self, serializer):
+        """
+        Si nécessaire, ajoutez la logique pour enregistrer l'utilisateur créateur.
+        """
+        creator_id = self.request.user.id  # Récupère l'ID depuis le token JWT
+        serializer.save(creator_id=creator_id)
+
 
 class MatchHistoryView(APIView):
     """
     Vue pour récupérer l'historique des matchs d'un utilisateur.
     """
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
     def get(self, request):
-        user_id = request.user.id
+        user_id = request.user.id  # Extrait depuis le JWT
         game_sessions = GameSession.objects.filter(
             Q(player1_id=user_id) | Q(player2_id=user_id),
             is_active=False

@@ -709,3 +709,297 @@ INFO 2024-12-17 09:35:48,483 autoreload Watching for file changes with StatReloa
 INFO 2024-12-17 09:55:45,831 basehttp "GET / HTTP/1.1" 200 5529
 WARNING 2024-12-17 09:55:57,169 basehttp "GET /games/ HTTP/1.1" 403 4998
 INFO 2024-12-17 09:56:16,556 basehttp "GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434
+INFO 2024-12-17 11:57:33,866 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:57:52,335 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:59:20,931 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 11:59:21,158 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:59:25,346 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 11:59:25,571 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 11:59:28,756 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 12:14:22,350 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 12:15:15,167 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 14:07:13,475 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 14:07:58,930 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 14:15:42,934 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 14:25:52,274 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 14:28:14,452 basehttp "GET /games HTTP/1.1" 301 0
+WARNING 2024-12-17 14:29:42,473 basehttp "GET /game HTTP/1.1" 404 6928
+INFO 2024-12-17 14:29:45,081 basehttp "GET /games HTTP/1.1" 301 0
+WARNING 2024-12-17 14:29:45,093 basehttp "GET /games/ HTTP/1.1" 401 5124
+INFO 2024-12-17 14:32:14,928 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 14:32:15,185 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:04:30,238 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:04:30,675 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:04:56,929 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:04:57,141 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:05:45,502 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:05:45,735 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:05:49,814 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:05:50,019 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:05:52,080 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:05:52,292 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:05:56,371 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:05:56,584 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:06:46,919 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:06:47,135 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:19,414 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:19,627 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:26,722 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:26,940 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:28,000 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:28,206 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:38,309 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:38,526 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:39,585 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:39,798 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:41,864 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:42,073 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:43,134 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:43,348 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:50,443 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:50,661 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:07:58,765 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:07:58,974 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:03,047 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:03,259 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:08,339 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:08,552 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:12,631 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:12,844 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:15,917 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:16,129 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:29,263 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:29,474 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:31,537 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:31,763 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:32,826 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:33,038 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:43,144 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:43,352 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:45,421 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:45,634 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:08:47,701 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:08:47,909 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:09:07,082 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:09:07,293 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:09:16,492 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:09:16,719 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:09:21,907 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:09:22,147 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:11:24,909 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:11:25,127 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:11:26,202 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:11:26,424 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:11:29,501 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:11:29,717 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:11:52,897 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:11:53,117 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:11:56,192 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:11:56,372 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:12:04,593 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:12:04,811 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:12:10,930 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:12:11,143 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:12:41,403 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:12:41,619 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:12:50,741 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:12:50,954 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:12:52,103 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:12:52,326 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:13:01,529 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:13:01,753 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:13:03,905 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:13:04,128 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:14:02,828 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 19:14:40,812 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 19:18:28,936 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:18:29,166 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:19:32,716 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:19:32,955 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:23:01,554 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 19:28:56,548 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 19:30:07,870 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:30:08,107 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:30:32,493 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:30:32,710 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 19:31:10,007 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 19:33:26,426 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:33:26,648 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:34:00,029 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:34:00,252 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:34:01,399 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:34:01,623 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 19:34:34,285 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 19:36:56,107 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 19:37:36,440 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 19:39:21,489 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:39:21,735 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:39:57,150 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:39:57,370 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:40:06,488 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:40:06,700 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:40:19,279 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 19:40:55,705 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 19:45:24,527 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:45:24,761 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:45:26,929 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:45:27,156 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:45:28,314 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:45:28,541 autoreload Watching for file changes with StatReloader
+DEBUG 2024-12-17 19:45:28,561 views Ceci est un test de log DEBUG.
+INFO 2024-12-17 19:45:28,561 views Ceci est un test de log INFO.
+WARNING 2024-12-17 19:45:28,561 views Ceci est un test de log WARNING.
+ERROR 2024-12-17 19:45:28,561 views Ceci est un test de log ERROR.
+WARNING 2024-12-17 19:46:05,112 basehttp "GET /games/ HTTP/1.1" 401 51
+WARNING 2024-12-17 19:46:36,129 basehttp "GET /games/ HTTP/1.1" 401 51
+INFO 2024-12-17 19:48:23,015 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:48:23,240 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:48:31,437 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:48:31,663 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:49:21,219 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:49:21,437 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:49:26,605 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:49:26,856 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:50:04,291 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:50:04,527 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:50:05,679 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:50:05,897 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:51:58,876 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:51:59,154 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:52:07,378 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 19:52:07,636 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:52:33,953 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 19:52:34,194 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 19:52:55,358 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 20:01:10,371 basehttp "GET / HTTP/1.1" 403 4863
+INFO 2024-12-17 20:01:17,670 basehttp "GET /games HTTP/1.1" 301 0
+WARNING 2024-12-17 20:01:17,676 basehttp "GET /games/ HTTP/1.1" 403 4998
+INFO 2024-12-17 20:01:17,692 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,694 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,695 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,696 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,697 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,698 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,698 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,698 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,699 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,699 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+INFO 2024-12-17 20:01:17,701 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+ERROR 2024-12-17 20:02:27,505 log Internal Server Error: /games/
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 415, in initial
+    self.check_permissions(request)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/permissions.py", line 151, in has_permission
+    return bool(request.user and request.user.is_authenticated)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'is_authenticated'
+ERROR 2024-12-17 20:02:27,507 basehttp "GET /games/ HTTP/1.1" 500 105982
+INFO 2024-12-17 20:33:17,238 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 20:33:17,481 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:33:23,721 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 20:33:23,943 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:34:17,538 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 20:34:17,762 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:34:24,996 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 20:34:25,223 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:34:36,032 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 20:34:36,264 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:34:41,446 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/utils.py changed, reloading.
+INFO 2024-12-17 20:34:41,668 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:35:54,557 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 20:37:03,153 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 20:58:27,904 autoreload Watching for file changes with StatReloader
+ERROR 2024-12-17 21:00:07,738 log Internal Server Error: /games/
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 415, in initial
+    self.check_permissions(request)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/permissions.py", line 151, in has_permission
+    return bool(request.user and request.user.is_authenticated)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'is_authenticated'
+ERROR 2024-12-17 21:00:07,739 basehttp "GET /games/ HTTP/1.1" 500 105581
+INFO 2024-12-17 21:12:10,618 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/authentication.py changed, reloading.
+INFO 2024-12-17 21:12:10,880 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:12:47,878 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 21:15:54,796 log Forbidden: /games/
+WARNING 2024-12-17 21:15:54,796 basehttp "GET /games/ HTTP/1.1" 403 37
+INFO 2024-12-17 21:22:19,727 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 21:22:19,973 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:22:23,075 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 21:22:23,296 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 21:23:06,218 log Forbidden: /games/
+WARNING 2024-12-17 21:23:06,218 basehttp "GET /games/ HTTP/1.1" 403 37
+INFO 2024-12-17 21:29:55,516 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 21:29:55,760 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:31:13,642 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 21:32:16,618 log Forbidden: /games/
+WARNING 2024-12-17 21:32:16,618 basehttp "GET /games/ HTTP/1.1" 403 37
+INFO 2024-12-17 21:35:33,245 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 21:35:33,532 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:38:59,517 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 21:38:59,753 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:39:43,878 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 21:39:44,106 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:39:45,264 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 21:39:45,510 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:41:44,493 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/manage.py changed, reloading.
+INFO 2024-12-17 21:41:44,725 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:42:39,349 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 21:43:36,975 log Forbidden: /games/
+WARNING 2024-12-17 21:43:36,975 basehttp "GET /games/ HTTP/1.1" 403 37
+INFO 2024-12-17 21:45:42,872 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:49:18,037 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 21:49:18,274 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:49:19,440 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 21:49:19,663 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:49:21,868 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 21:49:22,102 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 21:49:47,763 autoreload Watching for file changes with StatReloader
+WARNING 2024-12-17 21:50:57,328 log Forbidden: /games/
+WARNING 2024-12-17 21:50:57,328 basehttp "GET /games/ HTTP/1.1" 403 37
