@@ -245,3 +245,467 @@ INFO 2024-12-16 22:23:14,545 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
 INFO 2024-12-16 22:24:43,120 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
 INFO 2024-12-16 22:24:44,224 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
 INFO 2024-12-16 22:25:37,779 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:00:41,191 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:01:39,530 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+WARNING 2024-12-17 09:01:39,595 basehttp "GET /favicon.ico HTTP/1.1" 404 6949
+INFO 2024-12-17 09:02:50,589 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:05,567 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:09,597 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:10,143 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:10,520 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:10,833 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:11,153 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:11,440 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:11,719 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:12,014 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:12,294 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:12,596 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:12,867 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:13,134 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:13,409 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:13,649 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:13,924 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:07:00,032 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/game/views.py changed, reloading.
+INFO 2024-12-17 09:07:00,249 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:07:04,899 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:07:15,783 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:10:46,491 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:11:32,376 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:11:33,722 basehttp "GET /test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:26:16,652 basehttp "GET / HTTP/1.1" 200 5529
+INFO 2024-12-17 09:26:16,676 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-12-17 09:26:16,725 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-12-17 09:26:16,789 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-12-17 09:26:16,861 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-12-17 09:26:16,906 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-12-17 09:26:16,914 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-17 09:26:16,915 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-17 09:26:16,965 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-17 09:26:16,965 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-12-17 09:26:17,004 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-12-17 09:26:17,004 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-17 09:26:17,005 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+WARNING 2024-12-17 09:26:21,848 basehttp "GET /games/ HTTP/1.1" 403 4998
+ERROR 2024-12-17 09:26:54,115 log Internal Server Error: /games/
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/request.py", line 231, in user
+    self._authenticate()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/request.py", line 384, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+           ^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 216, in get_user
+    user = backend.get_user(user_id)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/backends.py", line 157, in get_user
+    user = UserModel._default_manager.get(pk=user_id)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+ERROR 2024-12-17 09:26:54,118 basehttp "GET /games/ HTTP/1.1" 500 210413
+ERROR 2024-12-17 09:27:01,512 log Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/request.py", line 231, in user
+    self._authenticate()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/request.py", line 384, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+           ^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 216, in get_user
+    user = backend.get_user(user_id)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/backends.py", line 157, in get_user
+    user = UserModel._default_manager.get(pk=user_id)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+ERROR 2024-12-17 09:27:01,514 basehttp "GET / HTTP/1.1" 500 209816
+ERROR 2024-12-17 09:27:41,591 log Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/request.py", line 231, in user
+    self._authenticate()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/request.py", line 384, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+           ^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 216, in get_user
+    user = backend.get_user(user_id)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/backends.py", line 157, in get_user
+    user = UserModel._default_manager.get(pk=user_id)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+ERROR 2024-12-17 09:27:41,593 basehttp "GET / HTTP/1.1" 500 209816
+ERROR 2024-12-17 09:28:00,776 log Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 414, in initial
+    self.perform_authentication(request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/views.py", line 324, in perform_authentication
+    request.user
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/request.py", line 231, in user
+    self._authenticate()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/request.py", line 384, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/rest_framework/authentication.py", line 127, in authenticate
+    if not user or not user.is_active:
+           ^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 216, in get_user
+    user = backend.get_user(user_id)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/contrib/auth/backends.py", line 157, in get_user
+    user = UserModel._default_manager.get(pk=user_id)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+ERROR 2024-12-17 09:28:00,778 basehttp "GET / HTTP/1.1" 500 209953
+INFO 2024-12-17 09:35:45,870 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 09:35:46,100 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:35:48,268 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py changed, reloading.
+INFO 2024-12-17 09:35:48,483 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:55:45,831 basehttp "GET / HTTP/1.1" 200 5529
+WARNING 2024-12-17 09:55:57,169 basehttp "GET /games/ HTTP/1.1" 403 4998
+INFO 2024-12-17 09:56:16,556 basehttp "GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434

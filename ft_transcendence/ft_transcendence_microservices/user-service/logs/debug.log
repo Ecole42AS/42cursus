@@ -746,3 +746,40 @@ WARNING 2024-12-16 22:24:46,879 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
 INFO 2024-12-16 22:24:47,662 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
 INFO 2024-12-16 22:24:50,708 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
 INFO 2024-12-16 22:25:32,409 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:00:48,311 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:02:04,478 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:16,480 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+WARNING 2024-12-17 09:03:16,609 basehttp "GET /favicon.ico HTTP/1.1" 404 2687
+INFO 2024-12-17 09:03:16,976 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:18,098 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:18,846 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:19,471 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:20,073 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:20,796 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:03:21,608 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:06:35,297 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 09:06:35,429 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:06:38,638 autoreload /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user/views.py changed, reloading.
+INFO 2024-12-17 09:06:38,766 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:07:09,374 autoreload Watching for file changes with StatReloader
+INFO 2024-12-17 09:07:14,274 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:11:29,911 basehttp "GET /api/user/test-redis-session/ HTTP/1.1" 200 59
+INFO 2024-12-17 09:26:40,406 basehttp "GET /api/user/profile HTTP/1.1" 301 0
+WARNING 2024-12-17 09:26:40,673 basehttp "GET /api/user/profile/ HTTP/1.1" 403 5054
+INFO 2024-12-17 09:26:40,689 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-12-17 09:26:40,731 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2024-12-17 09:26:40,733 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-12-17 09:26:40,768 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-12-17 09:26:40,779 basehttp "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2024-12-17 09:26:40,780 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2024-12-17 09:26:40,794 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2024-12-17 09:26:40,835 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-12-17 09:26:40,855 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-12-17 09:26:40,885 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-12-17 09:26:40,914 basehttp "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2024-12-17 09:26:40,944 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2024-12-17 09:26:42,732 basehttp "GET /api-auth/login/?next=/api/user/profile/ HTTP/1.1" 200 2718
+INFO 2024-12-17 09:26:46,688 basehttp "POST /api-auth/login/ HTTP/1.1" 302 0
+INFO 2024-12-17 09:26:46,705 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 09:55:51,179 basehttp "GET /api/user/profile/ HTTP/1.1" 200 9617
+INFO 2024-12-17 09:56:06,118 basehttp "GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434

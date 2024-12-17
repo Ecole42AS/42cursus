@@ -74,7 +74,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'user_service_db',
+            'NAME': 'matchtracker_service_db',
             'USER': 'shared_db_user',
             'PASSWORD': 'deplanta1',
             'HOST': 'localhost',

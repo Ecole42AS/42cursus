@@ -161,11 +161,11 @@ class MatchHistoryView(APIView):
         return Response(serializer.data)
 
 from django.http import HttpResponse
-from uuid import uuid4
 
 def test_redis_session(request):
-    session_key = str(uuid4())  # Créer une clé unique pour chaque session
-    request.session['unique_key'] = session_key  # Ajouter une valeur unique dans la session
-    request.session.save()  # Forcer la sauvegarde de la session
-    return HttpResponse(f"Session unique_key is: {request.session['unique_key']}")
+    # Lire la clé existante ou la définir si elle n'existe pas
+    if 'unique_key' not in request.session:
+        request.session['unique_key'] = "my-default-unique-key"
 
+    value = request.session.get('unique_key', 'default')
+    return HttpResponse(f"Session unique_key is: {value}")
