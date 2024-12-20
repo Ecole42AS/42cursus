@@ -15,18 +15,22 @@ def test_logs(request):
     logger.error("Test ERROR log")
     return HttpResponse("Logs testés, vérifiez le fichier de log.")
 
-def get_user_data(user_id):
+def get_user_data(user_id, token):
     """
     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
     """
     try:
-        response = requests.get(f"{settings.USER_SERVICE_URL}/{user_id}/")
+        headers = {"Authorization": f"Bearer {token}"}
+        user_service_url = f"{settings.USER_SERVICE_URL}/{user_id}/"
+        logger.debug(f"Attempting to fetch user data from {user_service_url} with token: {token}")
+
+        response = requests.get(user_service_url, headers=headers, timeout=5)
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:
-        print(f"Erreur lors de la récupération des données de l'utilisateur : {e}")
+        logger.error(f"Failed to fetch user data: {e}")
         return None
-
+    
 def get_user_profile(user_id):
     """
     Récupère les informations du profil utilisateur à partir du microservice `user-service`.
@@ -79,6 +83,14 @@ def validate_user_token(token):
     except requests.RequestException as e:
         logger.error(f"Error while validating token: {e}")
         return None
+
+def is_token_revoked(token):
+    """
+    Vérifie si un token est révoqué.
+    """
+    # Implémentez une vérification dans votre base de données ou cache pour les tokens révoqués.
+    revoked_tokens = ["list", "of", "revoked", "tokens"]  # Exemple simple
+    return token in revoked_tokens
 
 
 def update_player_stats(winner, loser):

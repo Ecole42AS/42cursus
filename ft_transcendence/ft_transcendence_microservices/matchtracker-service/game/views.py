@@ -49,33 +49,21 @@ class GameViewSet(viewsets.ModelViewSet):
     """
     queryset = GameSession.objects.all()
     serializer_class = GameSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]  # JWTAuthentication s'exécute automatiquement
 
     def get_queryset(self):
         """
         Filtre les parties pour l'utilisateur authentifié.
         """
-        jwt_token = self.request.headers.get("Authorization").split(" ")[1]
-        logger.debug(f"JWT Token received in request: {jwt_token}")
+        user = self.request.user
+        if not user or not user.is_authenticated:
+            raise AuthenticationFailed("User not authenticated")
 
-        if not jwt_token:
-            raise AuthenticationFailed("No token provided")
-
-        # Valider le token auprès du User Service
-        user_data = validate_user_token(jwt_token)
-        logger.debug(f"User data received after token validation: {user_data}")
-
-        if not user_data or 'user_id' not in user_data:
-            raise AuthenticationFailed("Invalid token or user not found")
-
-        user_id = user_data["user_id"]
-        logger.debug(f"Filtering games for user_id: {user_id}")
+        logger.debug(f"Filtering games for user_id: {user.id}")
 
         return GameSession.objects.filter(
-            Q(player1_id=user_id) | Q(player2_id=user_id)
+            Q(player1_id=user.id) | Q(player2_id=user.id)
         )
-
-
 
 class CreateGameSessionView(APIView):
     """

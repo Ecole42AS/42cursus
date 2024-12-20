@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-USER_SERVICE_URL = "http://user-service:8080/api/user"
+USER_SERVICE_URL = "http://localhost:8080/api/user"
 
 # SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
@@ -37,6 +37,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'game.middleware.JWTMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -147,25 +148,58 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': 'DEBUG',  # Niveau minimum des logs
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
+            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),  # Chemin du fichier de log
             'formatter': 'verbose',
         },
     },
     'loggers': {
+        # Logger principal pour Django
         'django': {
             'handlers': ['file'],
-            'level': 'INFO',
+            'level': 'DEBUG',  # Capturer davantage d'informations
             'propagate': True,
         },
-        'matchtracker-service': {  # Votre logger personnalisé
+        # Logger pour les erreurs HTTP de Django
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        # Logger pour les requêtes à la base de données
+        'django.db.backends': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        # Logger personnalisé pour `Matchtracker`
+        'matchtracker-service': {
+            'handlers': ['file'],
+            'level': 'DEBUG',  # Capturer tous les détails
+            'propagate': True,
+        },
+        # Logger pour les bibliothèques réseau (comme `urllib3`)
+        'urllib3': {
+            'handlers': ['file'],
+            'level': 'DEBUG',  # Capturer les interactions réseau
+            'propagate': False,
+        },
+        # Logger pour la bibliothèque `requests`
+        'requests': {
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': False,
         },
+        # Logger pour Django REST Framework
+        'rest_framework': {
+            'handlers': ['file'],
+            'level': 'DEBUG',  # Capturer les détails REST
+            'propagate': True,
+        },
     },
 }
+
 
 
 CHANNEL_LAYERS = {
