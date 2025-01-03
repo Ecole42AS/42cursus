@@ -2,23 +2,25 @@ services:
   postgres:
     image: postgres:14
     container_name: postgres_db
-    restart: always
+    user: postgres  # Ajoutez cette ligne
     environment:
+      POSTGRES_DB: user_service_db
       POSTGRES_USER: shared_db_user
       POSTGRES_PASSWORD: deplanta1
-      POSTGRES_DB: user_service_db  # La base de données par défaut, d'autres peuvent être créées
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U shared_db_user"]
+      test: ["CMD-SHELL", "pg_isready -U shared_db_user -d user_service_db"]
       interval: 5s
       retries: 5
 
   user_service:
     build:
       context: ./user-service
+    ports:
+      - "8000:8000"  # Mappage du port local 8000 vers le port 8000 du conteneur
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_DB: user_service_db
@@ -31,13 +33,15 @@ services:
   matchtracker_service:
     build:
       context: ./matchtracker-service
+    ports:
+      - "8080:8080"  # Mappage du port local 8080 vers le port 8080 du conteneur
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_DB: matchtracker_service_db
       POSTGRES_USER: shared_db_user
       POSTGRES_PASSWORD: deplanta1
     depends_on:
-      - postgres
-
+      postgres:
+        condition: service_healthy
 volumes:
   postgres_data:

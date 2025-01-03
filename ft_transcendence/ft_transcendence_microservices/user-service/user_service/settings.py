@@ -138,26 +138,28 @@ else:
             'PORT': os.getenv('POSTGRES_PORT', '5432'),
         }
     }
-    
-# filepath:  /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_CACHE_ALIAS = "default"
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",  # Adresse de votre serveur Redis
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
+# filepath:  /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Sessions dans la base de données
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_CACHE_ALIAS = "default"
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",  # Adresse de votre serveur Redis
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
 
 SESSION_COOKIE_DOMAIN = "localhost"
 SESSION_COOKIE_NAME = "sessionid"  # Nom du cookie de session
 SESSION_COOKIE_SAMESITE = "Lax"  # Permet les sous-domaines
 SESSION_COOKIE_SECURE = False  # Doit être True en production si HTTPS est utilisé
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"  # Redis pour stocker les sessions
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"  # Redis pour stocker les sessions
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Sessions dans la base de données
 SESSION_CACHE_ALIAS = "default"  # Utilisation de la configuration cache 'default'
 
 
