@@ -14,7 +14,7 @@ def test_logs(request):
     logger.warning("Test WARNING log")
     logger.error("Test ERROR log")
     return HttpResponse("Logs testés, vérifiez le fichier de log.")
-
+    
 def get_user_data(user_id, token):
     """
     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
@@ -30,6 +30,7 @@ def get_user_data(user_id, token):
     except requests.RequestException as e:
         logger.error(f"Failed to fetch user data: {e}")
         return None
+
     
 def get_user_profile(user_id):
     """

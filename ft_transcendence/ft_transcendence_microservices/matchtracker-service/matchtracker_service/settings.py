@@ -95,14 +95,24 @@ if 'test' in sys.argv:
         }
     }
 else:
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'matchtracker_service_db',
+    #         'USER': 'shared_db_user',
+    #         'PASSWORD': 'deplanta1',
+    #         'HOST': 'localhost',
+    #         'PORT': '5432',
+    #     }
+    # }
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'matchtracker_service_db',
-            'USER': 'shared_db_user',
-            'PASSWORD': 'deplanta1',
-            'HOST': 'localhost',
-            'PORT': '5432',
+            'NAME': os.getenv('POSTGRES_DB', 'matchtracker_service_db'),
+            'USER': os.getenv('POSTGRES_USER', 'shared_db_user'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'deplanta1'),
+            'HOST': os.getenv('POSTGRES_HOST', 'postgres'),
+            'PORT': os.getenv('POSTGRES_PORT', '5432'),
         }
     }
 

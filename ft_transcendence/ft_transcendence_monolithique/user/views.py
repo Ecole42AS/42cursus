@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from django.db import IntegrityError
 from .models import Friendship
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+from rest_framework.exceptions import NotFound
 
 
 CustomUser = get_user_model()
@@ -26,13 +28,17 @@ class UserUpdateView(generics.UpdateAPIView):
         return self.request.user
 
 
-class UserProfileView(generics.RetrieveUpdateAPIView):# méthode GET et PUT
+class UserProfileView(generics.RetrieveUpdateAPIView):  # méthode GET et PUT
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get_object(self):
-        return self.request.user.profile
+        try:
+            # Vérifiez si l'utilisateur a un profil associé
+            return self.request.user.profile
+        except AttributeError:
+            raise NotFound("Profile not found for the authenticated user.")
 
 class AddFriendView(APIView):
     permission_classes = [permissions.IsAuthenticated]

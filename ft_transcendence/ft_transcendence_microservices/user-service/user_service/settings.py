@@ -59,12 +59,24 @@ CORS_ALLOWED_ORIGINS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'user.authentication.EnhancedJWTAuthentication',
+        'user.authentication.EnhancedJWTAuthentication',  # Authentification JWT pour l'API
+        'rest_framework.authentication.SessionAuthentication',  # Authentification via sessions (pour l'interface API web)
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Requiert JWT pour accéder aux endpoints protégés
+        'rest_framework.permissions.IsAuthenticated',  # Requiert une authentification pour les endpoints protégés
     ],
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',  # Parser pour JSON (principalement utilisé)
+        'rest_framework.parsers.FormParser',  # Supporte les formulaires
+        'rest_framework.parsers.MultiPartParser',  # Supporte les fichiers
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',  # Retourne JSON par défaut
+        'rest_framework.renderers.BrowsableAPIRenderer',  # Interface web navigable (utile pour le développement)
+    ),
 }
+
+
 
 from datetime import timedelta
 
@@ -106,17 +118,27 @@ if 'test' in sys.argv:
         }
     }
 else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'user_service_db',
+#             'USER': 'shared_db_user',
+#             'PASSWORD': 'deplanta1',
+#             'HOST': 'localhost',
+#             'PORT': '5432',
+#         }
+#    }
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'user_service_db',
-            'USER': 'shared_db_user',
-            'PASSWORD': 'deplanta1',
-            'HOST': 'localhost',
-            'PORT': '5432',
+            'NAME': os.getenv('POSTGRES_DB', 'user_service_db'),
+            'USER': os.getenv('POSTGRES_USER', 'shared_db_user'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'deplanta1'),
+            'HOST': os.getenv('POSTGRES_HOST', 'postgres'),
+            'PORT': os.getenv('POSTGRES_PORT', '5432'),
         }
-   }
-
+    }
+    
 # filepath:  /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
