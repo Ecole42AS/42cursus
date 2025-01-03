@@ -20,7 +20,7 @@ services:
     build:
       context: ./user-service
     ports:
-      - "8000:8000"  # Mappage du port local 8000 vers le port 8000 du conteneur
+      - "8080:8080"  # Mappage du port local 8000 vers le port 8000 du conteneur
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_DB: user_service_db
@@ -34,7 +34,7 @@ services:
     build:
       context: ./matchtracker-service
     ports:
-      - "8080:8080"  # Mappage du port local 8080 vers le port 8080 du conteneur
+      - "8000:8000"  # Mappage du port local 8080 vers le port 8080 du conteneur
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_DB: matchtracker_service_db
