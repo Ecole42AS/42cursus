@@ -16,14 +16,14 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # SECRET_KEY = 'akn1%#!+sh*gzpb#ek_30a=3qag!14&%rj1mz%!uaj3*a1-i*n'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "my-default-unique-key")
-# print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
+print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
 # print("DJANGO_SECRET_KEY:", os.getenv("DJANGO_SECRET_KEY"))
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 # Mode Debug - Désactiver en production
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
 # Hôtes autorisés
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'user_service']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'user_service', '172.19.0.4']
 
 # Applications installées
 INSTALLED_APPS = [

@@ -15,11 +15,11 @@ USER_SERVICE_URL = os.getenv("USER_SERVICE_URL", "http://localhost:8080/api/user
 # SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "my-default-unique-key")
-# print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
+print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 # DEBUG = True
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service', '172.19.0.4']
 
 INSTALLED_APPS = [
     'django.contrib.auth',
