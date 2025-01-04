@@ -11,9 +11,13 @@ from django.contrib.auth import get_user_model
 from .models import Profile
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
+import logging
 
 
 CustomUser = get_user_model()
+
+logger = logging.getLogger(__name__)
+
 
 
 class RegisterView(generics.CreateAPIView):
@@ -94,17 +98,44 @@ class FriendsListView(APIView):
         friendships = request.user.friendships.all()
         serializer = UserSerializer([f.to_user for f in friendships], many=True)
         return Response(serializer.data)
-
+    
 class UserDetailView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def get(self, request, user_id):
+        logger.debug(f"Received request for user_id: {user_id}")
         try:
+            # Valider si `user_id` est un entier
+            if not str(user_id).isdigit():
+                logger.error(f"Invalid user_id format: {user_id}")
+                return Response({'error': 'ID utilisateur invalide'}, status=status.HTTP_400_BAD_REQUEST)
+            
             user = CustomUser.objects.get(pk=user_id)
+            logger.debug(f"User found: {user}")
+            
             serializer = UserSerializer(user)
+            logger.debug(f"Serialized data: {serializer.data}")
+            
             return Response(serializer.data, status=status.HTTP_200_OK)
         except CustomUser.DoesNotExist:
+            logger.warning(f"User with id {user_id} does not exist.")
             return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+        except ValidationError as e:
+            logger.error(f"Validation error for user_id {user_id}: {e}")
+            return Response({'error': 'Erreur de validation'}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            logger.error(f"Unexpected error: {e}")
+            return Response({'error': 'Erreur interne du serveur'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+# class UserDetailView(APIView):
+#     permission_classes = [permissions.AllowAny]
+
+#     def get(self, request, user_id):
+#         try:
+#             user = CustomUser.objects.get(pk=user_id)
+#             serializer = UserSerializer(user)
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         except CustomUser.DoesNotExist:
+#             return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
 
 # class UpdateUserStatsView(APIView):
 #     """
