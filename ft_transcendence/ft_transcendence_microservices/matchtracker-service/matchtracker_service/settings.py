@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-USER_SERVICE_URL = "http://localhost:8080/api/user"
+# USER_SERVICE_URL = "http://localhost:8080/api/user"
+# USER_SERVICE_URL = "http://user_service:8000/api/user"
+USER_SERVICE_URL = os.getenv("USER_SERVICE_URL", "http://localhost:8080/api/user")
+
 
 # SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")

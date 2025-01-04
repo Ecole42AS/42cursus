@@ -1,8 +1,9 @@
+version: '3.8'
+
 services:
   postgres:
     image: postgres:14
     container_name: postgres_db
-    user: postgres  # Ajoutez cette ligne
     environment:
       POSTGRES_DB: user_service_db
       POSTGRES_USER: shared_db_user
@@ -15,12 +16,14 @@ services:
       test: ["CMD-SHELL", "pg_isready -U shared_db_user -d user_service_db"]
       interval: 5s
       retries: 5
+    networks:
+      - app_network
 
   user_service:
     build:
       context: ./user-service
     ports:
-      - "8080:8080"  # Mappage du port local 8000 vers le port 8000 du conteneur
+      - "8080:8080" # Mappage du port local 8081 vers le port 8000 du conteneur
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_DB: user_service_db
@@ -29,12 +32,14 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - app_network
 
   matchtracker_service:
     build:
       context: ./matchtracker-service
     ports:
-      - "8000:8000"  # Mappage du port local 8080 vers le port 8080 du conteneur
+      - "8000:8000"  # Mappage du port local 8082 vers le port 8000 du conteneur
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_DB: matchtracker_service_db
@@ -43,5 +48,12 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - app_network
+
 volumes:
   postgres_data:
+
+networks:
+  app_network:
+    driver: bridge

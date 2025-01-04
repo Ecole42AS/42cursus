@@ -1,0 +1,20 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Django specific
+db.sqlite3
+*.log
+migrations/
+
+# Docker related
+*.pid
+*.sock
