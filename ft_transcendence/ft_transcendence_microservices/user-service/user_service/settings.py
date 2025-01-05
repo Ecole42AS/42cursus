@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'user',  # App du service utilisateur
 ]
@@ -100,6 +101,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'SIGNING_KEY': JWT_SECRET_KEY,  # Chargée depuis .env
     'ALGORITHM': 'HS256',
+    'BLACKLIST_AFTER_ROTATION': True,  # Activer la blacklist
+
 }
 
 # Configuration des URL racines

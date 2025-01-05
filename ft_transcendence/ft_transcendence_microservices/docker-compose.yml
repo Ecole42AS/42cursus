@@ -34,6 +34,8 @@ services:
         condition: service_healthy
     networks:
       - app_network
+    volumes:
+      - ./user-service/logs:/usr/src/app/logs
 
   matchtracker_service:
     build:
@@ -45,11 +47,16 @@ services:
       POSTGRES_DB: matchtracker_service_db
       POSTGRES_USER: shared_db_user
       POSTGRES_PASSWORD: deplanta1
+      USER_SERVICE_URL: http://user_service:8080/api/user
     depends_on:
       postgres:
         condition: service_healthy
+      user_service:
+        condition: service_started
     networks:
       - app_network
+    volumes:
+      - ./matchtracker-service/logs:/usr/src/app/logs
 
 volumes:
   postgres_data:

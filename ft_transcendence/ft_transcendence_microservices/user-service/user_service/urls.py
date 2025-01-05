@@ -5,15 +5,16 @@ from django.conf.urls.static import static
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
+    TokenBlacklistView,
 )
 from user.views import ValidateTokenView
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Interface d'administration
-    path('api-auth/', include('rest_framework.urls')),  # Ajoutez cette ligne
     path('api/user/', include('user.urls')),  # Routes spécifiques à l'app 'user'
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/logout/', TokenBlacklistView.as_view(), name='token_blacklist'),
     path('validate/', ValidateTokenView.as_view(), name='validate_user'),
 ]
 

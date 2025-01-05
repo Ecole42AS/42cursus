@@ -15,20 +15,45 @@ def test_logs(request):
     logger.error("Test ERROR log")
     return HttpResponse("Logs testés, vérifiez le fichier de log.")
     
+# def get_user_data(user_id, token):
+#     """
+#     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
+#     """
+#     try:
+#         headers = {"Authorization": f"Bearer {token}"}
+#         user_service_url = f"{settings.USER_SERVICE_URL}/{user_id}/"
+#         logger.debug(f"Attempting to fetch user data from {user_service_url} with token: {token}")
+
+#         response = requests.get(user_service_url, headers=headers, timeout=5)
+#         response.raise_for_status()
+#         return response.json()
+#     except requests.RequestException as e:
+#         logger.error(f"Failed to fetch user data: {e}")
+#         return None
+
 def get_user_data(user_id, token):
     """
     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
     """
+    user_service_url = settings.USER_SERVICE_URL
+    url = f"{user_service_url}/{user_id}/"  # Crée l'URL complète
+
     try:
         headers = {"Authorization": f"Bearer {token}"}
-        user_service_url = f"{settings.USER_SERVICE_URL}/{user_id}/"
-        logger.debug(f"Attempting to fetch user data from {user_service_url} with token: {token}")
+        logger.debug(f"Fetching user data from {url} with token: {token}")
 
-        response = requests.get(user_service_url, headers=headers, timeout=5)
-        response.raise_for_status()
+        response = requests.get(url, headers=headers, timeout=5)
+        response.raise_for_status()  # Lève une exception si le statut HTTP n'est pas 2xx
+
+        logger.info(f"User data retrieved successfully for user_id {user_id}")
         return response.json()
-    except requests.RequestException as e:
-        logger.error(f"Failed to fetch user data: {e}")
+
+    except requests.exceptions.HTTPError as e:
+        logger.error(f"HTTP error while fetching user data for user_id {user_id}: {e}")
+        return None
+
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Error while fetching user data for user_id {user_id}: {e}")
         return None
 
     

@@ -51,14 +51,20 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import AccessToken
 from collections import namedtuple
 from .utils import get_user_data
+import logging
+
+logger = logging.getLogger("matchtracker-service")
 
 class JWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
+        logger.info("Authenticating request...")
         auth_header = request.headers.get("Authorization")
         if not auth_header or not auth_header.startswith("Bearer "):
+            logger.warning("No token provided or invalid format")
             raise AuthenticationFailed("No token provided or invalid format")
 
         token = auth_header.split(" ")[1]
+        logger.debug(f"Token received: {token}")
         if not token:
             raise AuthenticationFailed("Token is missing or empty")
 
@@ -84,4 +90,5 @@ class JWTAuthentication(BaseAuthentication):
 
             return user, None
         except Exception as e:
+            logger.error(f"Token validation failed: {str(e)}")
             raise AuthenticationFailed(f"Invalid or expired token: {str(e)}")
