@@ -12,6 +12,8 @@ from .models import Profile
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
 import logging
+from django.core.exceptions import ValidationError
+
 
 
 CustomUser = get_user_model()
@@ -99,33 +101,54 @@ class FriendsListView(APIView):
         serializer = UserSerializer([f.to_user for f in friendships], many=True)
         return Response(serializer.data)
     
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, permissions
+from user.models import CustomUser
+from user.serializers import UserSerializer
+
 class UserDetailView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def get(self, request, user_id):
-        logger.debug(f"Received request for user_id: {user_id}")
+        print("Request received")
+        print("Headers:", request.headers)
+        print("User ID:", user_id)
         try:
-            # Valider si `user_id` est un entier
-            if not str(user_id).isdigit():
-                logger.error(f"Invalid user_id format: {user_id}")
-                return Response({'error': 'ID utilisateur invalide'}, status=status.HTTP_400_BAD_REQUEST)
-            
             user = CustomUser.objects.get(pk=user_id)
-            logger.debug(f"User found: {user}")
-            
             serializer = UserSerializer(user)
-            logger.debug(f"Serialized data: {serializer.data}")
-            
             return Response(serializer.data, status=status.HTTP_200_OK)
         except CustomUser.DoesNotExist:
-            logger.warning(f"User with id {user_id} does not exist.")
             return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
-        except ValidationError as e:
-            logger.error(f"Validation error for user_id {user_id}: {e}")
-            return Response({'error': 'Erreur de validation'}, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            logger.error(f"Unexpected error: {e}")
-            return Response({'error': 'Erreur interne du serveur'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# class UserDetailView(APIView):
+#     permission_classes = [permissions.AllowAny]
+
+#     def get(self, request, user_id):
+#         logger.debug(f"Received request for user_id: {user_id}")
+#         try:
+#             # Valider si `user_id` est un entier
+#             if not str(user_id).isdigit():
+#                 logger.error(f"Invalid user_id format: {user_id}")
+#                 return Response({'error': 'ID utilisateur invalide'}, status=status.HTTP_400_BAD_REQUEST)
+            
+#             user = CustomUser.objects.get(pk=user_id)
+#             logger.debug(f"User found: {user}")
+            
+#             serializer = UserSerializer(user)
+#             logger.debug(f"Serialized data: {serializer.data}")
+            
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         except CustomUser.DoesNotExist:
+#             logger.warning(f"User with id {user_id} does not exist.")
+#             return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+#         except ValidationError as e:
+#             logger.error(f"Validation error for user_id {user_id}: {e}")
+#             return Response({'error': 'Erreur de validation'}, status=status.HTTP_400_BAD_REQUEST)
+#         except Exception as e:
+#             logger.error(f"Unexpected error: {e}")
+#             return Response({'error': 'Erreur interne du serveur'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 # class UserDetailView(APIView):
 #     permission_classes = [permissions.AllowAny]
 

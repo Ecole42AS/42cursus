@@ -23,8 +23,16 @@ INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
 # Hôtes autorisés
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'user_service', '172.19.0.4']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'user_service', '172.19.0.4', '172.19.0.3']
+# ALLOWED_HOSTS = ['*']
+# CORS_ALLOW_HEADERS = [
+#     'content-type',
+#     'authorization',
+#     'x-requested-with',
+# ]
 
+
+# CORS_ALLOW_ALL_ORIGINS = True
 # Applications installées
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,12 +47,14 @@ INSTALLED_APPS = [
     'user',  # App du service utilisateur
 ]
 
+
+
 # Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -52,6 +62,7 @@ MIDDLEWARE = [
     'user.middleware.UpdateLastActivityMiddleware',  # Middleware spécifique à l'utilisateur
     'user.middleware.JWTValidationMiddleware',
 ]
+MIDDLEWARE.insert(0, 'user.middleware.LogRequestMiddleware')
 
 # Configuration CORS
 CORS_ALLOWED_ORIGINS = [

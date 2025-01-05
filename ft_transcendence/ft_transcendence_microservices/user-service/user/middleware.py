@@ -32,3 +32,11 @@ class JWTValidationMiddleware(MiddlewareMixin):
             request.user = auth.get_user(validated_token)
         except AuthenticationFailed:
             request.user = None
+
+class LogRequestMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        print(f"Host: {request.headers.get('Host')}")
+        return self.get_response(request)

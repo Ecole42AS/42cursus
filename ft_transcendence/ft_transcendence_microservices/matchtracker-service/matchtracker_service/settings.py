@@ -19,7 +19,15 @@ print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 # DEBUG = True
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service', '172.19.0.4']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service', '172.19.0.4', '172.19.0.3']
+#allow all hosts
+# ALLOWED_HOSTS = ['*']
+# CORS_ALLOW_HEADERS = [
+#     'content-type',
+#     'authorization',
+#     'x-requested-with',
+# ]
+
 
 INSTALLED_APPS = [
     'django.contrib.auth',
@@ -34,11 +42,12 @@ INSTALLED_APPS = [
     'game',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -46,12 +55,15 @@ MIDDLEWARE = [
     'game.middleware.JWTMiddleware',
 ]
 
+# allow all origins
+# CORS_ALLOW_ALL_ORIGINS = True
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:8000",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
-
+    "http://matchtracker-service:8000",
 ]
 
 REST_FRAMEWORK = {
