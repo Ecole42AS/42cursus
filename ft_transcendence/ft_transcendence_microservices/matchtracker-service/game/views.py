@@ -72,14 +72,14 @@ class CreateGameSessionView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
-
     def post(self, request, user_id):
         try:
             user = request.user  # Utilisateur extrait depuis le token JWT
             if not user:
                 raise AuthenticationFailed("User not authenticated")
 
-            opponent_data = get_user_profile(user_id)  # Appel au microservice User
+            # Passez le token JWT au User Service
+            opponent_data = get_user_profile(user_id, request.auth)
             if not opponent_data:
                 return Response({'error': 'Utilisateur non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
 

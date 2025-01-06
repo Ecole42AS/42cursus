@@ -57,23 +57,26 @@ def get_user_data(user_id, token):
         return None
 
     
-def get_user_profile(user_id):
+def get_user_profile(user_id, token):
     """
     Récupère les informations du profil utilisateur à partir du microservice `user-service`.
     """
     try:
-        response = requests.get(f"{settings.USER_SERVICE_URL}/profile/{user_id}/")
+        headers = {"Authorization": f"Bearer {token}"}
+        response = requests.get(f"{settings.USER_SERVICE_URL}/profile/{user_id}/", headers=headers)
         response.raise_for_status()
         return response.json()  # Retourne le JSON contenant les données du profil
     except requests.RequestException as e:
         print(f"Erreur lors de la récupération du profil utilisateur : {e}")
         return None
 
-def get_friendship(user_id):
+
+def get_friendship(user_id, token):
     """
     Récupère les amitiés pour un utilisateur donné depuis le microservice `user`.
     """
     try:
+        headers = {"Authorization": f"Bearer {token}"}
         response = requests.get(f"{settings.USER_SERVICE_URL}/friendships/{user_id}/")
         response.raise_for_status()  # Vérifie si le statut HTTP est 200
         return response.json()
