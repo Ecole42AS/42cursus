@@ -3,10 +3,9 @@ from django.conf import settings
 import logging
 from django.utils import timezone
 from django.http import HttpResponse
-
+from django.conf import settings
 
 logger = logging.getLogger('matchtracker-service')
-
 
 def test_logs(request):
     logger.debug("Test DEBUG log")
@@ -77,19 +76,13 @@ def get_friendship(user_id, token):
     """
     try:
         headers = {"Authorization": f"Bearer {token}"}
-        response = requests.get(f"{settings.USER_SERVICE_URL}/friendships/{user_id}/")
+        url = f"{settings.USER_SERVICE_URL}/friendships/{user_id}/"
+        response = requests.get(url, headers=headers) 
         response.raise_for_status()  # Vérifie si le statut HTTP est 200
         return response.json()
     except requests.RequestException as e:
         print(f"Erreur lors de la communication avec user-service : {e}")
         return None
-
-
-import requests
-import logging
-from django.conf import settings
-
-logger = logging.getLogger('myapp')
 
 def validate_user_token(token):
     """
