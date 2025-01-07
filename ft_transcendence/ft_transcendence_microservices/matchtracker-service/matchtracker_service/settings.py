@@ -73,9 +73,9 @@ REST_FRAMEWORK = {
         # 'rest_framework_simplejwt.authentication.JWTAuthentication',
         'game.authentication.JWTAuthentication',
     ),
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',  # Requiert JWT pour accéder aux endpoints protégés
-    # ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Requiert JWT pour accéder aux endpoints protégés
+    ],
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -203,7 +203,7 @@ LOGGING = {
         # Logger principal pour Django
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Capturer davantage d'informations
+            'level': 'INFO',  # Réduire le niveau global des logs Django
             'propagate': True,
         },
         # Logger pour les erreurs HTTP de Django
@@ -227,20 +227,26 @@ LOGGING = {
         # Logger pour les bibliothèques réseau (comme `urllib3`)
         'urllib3': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Capturer les interactions réseau
+            'level': 'INFO',  # Réduire les logs réseau
             'propagate': False,
         },
         # Logger pour la bibliothèque `requests`
         'requests': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': False,
         },
         # Logger pour Django REST Framework
         'rest_framework': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Capturer les détails REST
+            'level': 'INFO',  # Réduire les logs REST Framework
             'propagate': True,
+        },
+        # Logger pour `django.utils.autoreload` (masquer les messages DEBUG inutiles)
+        'django.utils.autoreload': {
+            'handlers': ['file'],
+            'level': 'WARNING',  # Ignorer les logs DEBUG
+            'propagate': False,
         },
     },
 }

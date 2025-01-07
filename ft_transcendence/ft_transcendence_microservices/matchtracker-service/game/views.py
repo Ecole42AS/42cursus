@@ -54,25 +54,38 @@ from rest_framework.exceptions import AuthenticationFailed
 from .utils import validate_user_token
 
 class GameViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet pour gérer les sessions de jeu.
-    """
     queryset = GameSession.objects.all()
     serializer_class = GameSerializer
     authentication_classes = [JWTAuthentication]
 
-    @action(detail=True, methods=['patch'], url_path='end')
-    def end_game(self, request, pk=None):
-        game = self.get_object()
+    def get_queryset(self):
+        user = self.request.user
+        if not user or not user.is_authenticated:
+            raise AuthenticationFailed("User not authenticated")
+        return GameSession.objects.filter(
+            Q(player1_id=user.id) | Q(player2_id=user.id)
+        )
 
-        if not game.is_active:
-            return Response({'error': 'Le match est déjà terminé.'}, status=status.HTTP_400_BAD_REQUEST)
+# class GameViewSet(viewsets.ModelViewSet):
+#     """
+#     ViewSet pour gérer les sessions de jeu.
+#     """
+#     queryset = GameSession.objects.all()
+#     serializer_class = GameSerializer
+#     authentication_classes = [JWTAuthentication]
 
-        game.is_active = False
-        game.ended_at = now()
-        game.save()
+    # @action(detail=True, methods=['patch'], url_path='end')
+    # def end_game(self, request, pk=None):
+    #     game = self.get_object()
 
-        return Response({'message': 'Le match a été terminé avec succès.'})
+    #     if not game.is_active:
+    #         return Response({'error': 'Le match est déjà terminé.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    #     game.is_active = False
+    #     game.ended_at = now()
+    #     game.save()
+
+    #     return Response({'message': 'Le match a été terminé avec succès.'})
 
     def get_queryset(self):
         """
@@ -93,7 +106,7 @@ class CreateGameSessionView(APIView):
     Vue pour créer une nouvelle session de jeu.
     """
 
-    authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
 
     def post(self, request, user_id):
         """
