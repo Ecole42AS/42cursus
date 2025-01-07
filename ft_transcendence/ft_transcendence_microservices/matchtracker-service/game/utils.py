@@ -33,36 +33,85 @@ def test_logs(request):
 
 
 
+# def get_user_data(user_id, token):
+#     """
+#     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
+#     """
+#     try:
+#         headers = {"Authorization": f"Bearer {token}"}
+#         response = requests.get(f"{settings.USER_SERVICE_URL}/{user_id}/", headers=headers, timeout=5)
+#         response.raise_for_status()
+
+#         data = response.json()
+#         if not data or 'username' not in data:
+#             logger.error(f"Invalid data for user_id {user_id}: {data}")
+#             return None
+
+#         return data
+#     except requests.RequestException as e:
+#         logger.error(f"Error fetching user data for user_id {user_id}: {e}")
+#         return None
+
 def get_user_data(user_id, token):
     """
     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
     """
     try:
         headers = {"Authorization": f"Bearer {token}"}
-        response = requests.get(f"{settings.USER_SERVICE_URL}/{user_id}/", headers=headers, timeout=5)
+        url = f"{settings.USER_SERVICE_URL}/{user_id}/"
+        logger.debug(f"Fetching user data from {url} with headers {headers}")
+        
+        response = requests.get(url, headers=headers, timeout=5)
+        logger.debug(f"Response received: {response.status_code} - {response.text}")
+        
         response.raise_for_status()
-
         data = response.json()
+        
         if not data or 'username' not in data:
-            logger.error(f"Invalid data for user_id {user_id}: {data}")
+            logger.error(f"Invalid data received for user_id {user_id}: {data}")
             return None
 
+        logger.info(f"Successfully fetched user data for user_id {user_id}: {data}")
         return data
     except requests.RequestException as e:
-        logger.error(f"Error fetching user data for user_id {user_id}: {e}")
+        logger.error(f"Error fetching user data for user_id {user_id} from {url}: {e}")
         return None
-
     
+# @staticmethod
+# # @lru_cache(maxsize=128)
+# def get_user(user_id, token=None):
+#     """
+#     Récupère les données utilisateur. Retourne None si l'utilisateur est introuvable ou en cas d'erreur.
+#     """
+#     if not user_id:
+#         return None
+#     try:
+#         return get_user_data(user_id, token)
+#     except KeyError as e:
+#         logger.error(f"KeyError while fetching user data for user_id {user_id}: {e}")
+#         return {"username": "Unknown"}
+#     except requests.RequestException as e:
+#         logger.error(f"RequestException while fetching user data for user_id {user_id}: {e}")
+#         return {"username": "Unknown"}
+
 @staticmethod
-# @lru_cache(maxsize=128)
 def get_user(user_id, token=None):
     """
     Récupère les données utilisateur. Retourne None si l'utilisateur est introuvable ou en cas d'erreur.
     """
+    logger.debug(f"get_user called with user_id: {user_id} and token: {token}")
+    
     if not user_id:
+        logger.warning("get_user called with an invalid user_id: None")
         return None
+    
     try:
-        return get_user_data(user_id, token)
+        user_data = get_user_data(user_id, token)
+        if user_data:
+            logger.info(f"User data retrieved: {user_data}")
+        else:
+            logger.warning(f"No user data found for user_id {user_id}")
+        return user_data
     except KeyError as e:
         logger.error(f"KeyError while fetching user data for user_id {user_id}: {e}")
         return {"username": "Unknown"}
@@ -70,20 +119,41 @@ def get_user(user_id, token=None):
         logger.error(f"RequestException while fetching user data for user_id {user_id}: {e}")
         return {"username": "Unknown"}
 
-
     
+# def get_user_profile(user_id, token):
+#     """
+#     Récupère les informations du profil utilisateur à partir du microservice `user-service`.
+#     """
+#     try:
+#         headers = {"Authorization": f"Bearer {token}"}
+#         response = requests.get(f"{settings.USER_SERVICE_URL}/profile/{user_id}/", headers=headers)
+#         response.raise_for_status()
+#         return response.json()  # Retourne le JSON contenant les données du profil
+#     except requests.RequestException as e:
+#         print(f"Erreur lors de la récupération du profil utilisateur : {e}")
+#         return None
+
 def get_user_profile(user_id, token):
     """
     Récupère les informations du profil utilisateur à partir du microservice `user-service`.
     """
+    logger.debug(f"Fetching profile for user_id={user_id} using token={token}")
     try:
         headers = {"Authorization": f"Bearer {token}"}
-        response = requests.get(f"{settings.USER_SERVICE_URL}/profile/{user_id}/", headers=headers)
+        url = f"{settings.USER_SERVICE_URL}/profile/{user_id}/"
+        logger.debug(f"Making GET request to {url} with headers={headers}")
+        response = requests.get(url, headers=headers, timeout=5)
         response.raise_for_status()
-        return response.json()  # Retourne le JSON contenant les données du profil
-    except requests.RequestException as e:
-        print(f"Erreur lors de la récupération du profil utilisateur : {e}")
+
+        logger.debug(f"Profile fetched successfully for user_id={user_id}: {response.json()}")
+        return response.json()
+    except requests.HTTPError as e:
+        logger.error(f"HTTP error while fetching profile for user_id={user_id}: {e}")
         return None
+    except requests.RequestException as e:
+        logger.error(f"Request exception while fetching profile for user_id={user_id}: {e}")
+        return None
+
 
 
 def get_friendship(user_id, token):

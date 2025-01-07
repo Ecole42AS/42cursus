@@ -35,6 +35,7 @@ services:
     networks:
       - app_network
     volumes:
+      - ./user-service:/usr/src/app/user-service
       - ./user-service/logs:/usr/src/app/logs
 
   matchtracker_service:
@@ -56,6 +57,7 @@ services:
     networks:
       - app_network
     volumes:
+      - ./matchtracker-service:/usr/src/app/matchtracker-service
       - ./matchtracker-service/logs:/usr/src/app/logs
 
 volumes:
