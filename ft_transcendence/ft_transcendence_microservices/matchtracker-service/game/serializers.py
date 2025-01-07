@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from .models import GameSession, Tournament, TournamentMatch
 from .utils import get_friendship, get_user_data, get_user_profile
+import logging
+
+logger = logging.getLogger(__name__)
 
 class FriendshipSerializer(serializers.Serializer):
     """
@@ -13,32 +16,44 @@ class FriendshipSerializer(serializers.Serializer):
 
 
 class GameSerializer(serializers.ModelSerializer):
-    player1 = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    player2 = serializers.IntegerField()
-    winner = serializers.IntegerField(read_only=True)
-    is_active = serializers.BooleanField(required=False)
+    player1 = serializers.SerializerMethodField()
+    player2 = serializers.SerializerMethodField()
+    winner = serializers.SerializerMethodField()
 
     class Meta:
         model = GameSession
         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
 
-    def to_representation(self, instance):
+    def fetch_user_data(self, user_id, token):
         """
-        Représentation des données avec des informations utilisateur récupérées dynamiquement.
+        Récupère les informations de l'utilisateur avec gestion des erreurs.
         """
-        data = super().to_representation(instance)
+        try:
+            if not token:
+                logger.warning(f"No token provided for fetching user_id {user_id}")
+                return 'Unknown'
 
-        # Récupérez les données des utilisateurs via le microservice
-        player1_data = get_user_data(instance.player1_id)
-        player2_data = get_user_data(instance.player2_id)
+            user_data = get_user_data(user_id, token)
+            if user_data:
+                return user_data.get('username', 'Unknown')
+            logger.warning(f"No data found for user_id {user_id}")
+            return 'Unknown'
+        except Exception as e:
+            logger.error(f"Error fetching user data for user_id {user_id}: {e}")
+            return 'Unknown'
 
-        data['player1'] = player1_data['username'] if player1_data else "Unknown"
-        data['player2'] = player2_data['username'] if player2_data else "Unknown"
-        data['winner'] = (
-            get_user_data(instance.winner_id)['username']
-            if instance.winner_id else None
-        )
-        return data
+
+    def get_player1(self, obj):
+        token = self.context['request'].auth if self.context.get('request') else None
+        return self.fetch_user_data(obj.player1_id, token)
+
+    def get_player2(self, obj):
+        token = self.context['request'].auth if self.context.get('request') else None
+        return self.fetch_user_data(obj.player2_id, token)
+
+    def get_winner(self, obj):
+        token = self.context['request'].auth if self.context.get('request') else None
+        return self.fetch_user_data(obj.winner_id, token) if obj.winner_id else None
 
 class TournamentSerializer(serializers.ModelSerializer):
     players_display_names = serializers.SerializerMethodField()

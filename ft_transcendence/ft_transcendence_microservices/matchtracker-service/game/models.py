@@ -1,6 +1,5 @@
 from django.db import models
-from django.conf import settings
-from .utils import get_user_data
+from .utils import get_user, TokenManager
 
 class GameSession(models.Model):
     player1_id = models.IntegerField(null=True, blank=True)
@@ -15,10 +14,10 @@ class GameSession(models.Model):
     duration = models.IntegerField(default=60)
     ended_at = models.DateTimeField(null=True, blank=True)
 
-
-def __str__(self):
-        player1 = get_user_data(self.player1_id)
-        player2 = get_user_data(self.player2_id)
+    def __str__(self):
+        token = TokenManager.get_jwt_token()  # Utilisez la méthode utilitaire
+        player1 = get_user(self.player1_id, token)
+        player2 = get_user(self.player2_id, token)
 
         if player1 and player2:
             return f"GameSession {self.id} between {player1['username']} and {player2['username']}"
@@ -49,5 +48,21 @@ class TournamentMatch(models.Model):
 
 
     def __str__(self):
-        return f"Match in {self.tournament.name} between {self.player1.username} and {self.player2.username}"
+        return self.format_match_str()
 
+    def format_match_str(self):
+        """
+        Génère une chaîne de caractères pour représenter un match de tournoi.
+        """
+        token = TokenManager.get_jwt_token()  # Utilise la méthode statique du modèle GameSession
+        player1 = get_user(self.player1_id, token)
+        player2 = get_user(self.player2_id, token)
+
+        if player1 and player2:
+            return f"Match in {self.tournament.name} between {player1['username']} and {player2['username']}"
+        elif player1:
+            return f"Match in {self.tournament.name} with {player1['username']} (player2 unknown)"
+        elif player2:
+            return f"Match in {self.tournament.name} with {player2['username']} (player1 unknown)"
+        else:
+            return f"Match in {self.tournament.name} with unknown players"

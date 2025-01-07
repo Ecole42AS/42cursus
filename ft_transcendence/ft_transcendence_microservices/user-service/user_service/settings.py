@@ -99,7 +99,7 @@ from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=40),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'SIGNING_KEY': JWT_SECRET_KEY,  # Chargée depuis .env
+    'SIGNING_KEY': os.getenv("JWT_SECRET_KEY", "a33d83c0f3be73db53d15b0a71c3e12b521b03ca0d300767b79722cd1c11940d"),
     'ALGORITHM': 'HS256',
     'BLACKLIST_AFTER_ROTATION': True,  # Activer la blacklist
 

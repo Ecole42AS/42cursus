@@ -4,6 +4,7 @@ import logging
 from django.utils import timezone
 from django.http import HttpResponse
 from django.conf import settings
+from functools import lru_cache
 
 logger = logging.getLogger('matchtracker-service')
 
@@ -30,30 +31,45 @@ def test_logs(request):
 #         logger.error(f"Failed to fetch user data: {e}")
 #         return None
 
+
+
 def get_user_data(user_id, token):
     """
     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
     """
-    user_service_url = settings.USER_SERVICE_URL
-    url = f"{user_service_url}/{user_id}/"  # Crée l'URL complète
-
     try:
         headers = {"Authorization": f"Bearer {token}"}
-        logger.debug(f"Fetching user data from {url} with token: {token}")
+        response = requests.get(f"{settings.USER_SERVICE_URL}/{user_id}/", headers=headers, timeout=5)
+        response.raise_for_status()
 
-        response = requests.get(url, headers=headers, timeout=5)
-        response.raise_for_status()  # Lève une exception si le statut HTTP n'est pas 2xx
+        data = response.json()
+        if not data or 'username' not in data:
+            logger.error(f"Invalid data for user_id {user_id}: {data}")
+            return None
 
-        logger.info(f"User data retrieved successfully for user_id {user_id}")
-        return response.json()
-
-    except requests.exceptions.HTTPError as e:
-        logger.error(f"HTTP error while fetching user data for user_id {user_id}: {e}")
+        return data
+    except requests.RequestException as e:
+        logger.error(f"Error fetching user data for user_id {user_id}: {e}")
         return None
 
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error while fetching user data for user_id {user_id}: {e}")
+    
+@staticmethod
+# @lru_cache(maxsize=128)
+def get_user(user_id, token=None):
+    """
+    Récupère les données utilisateur. Retourne None si l'utilisateur est introuvable ou en cas d'erreur.
+    """
+    if not user_id:
         return None
+    try:
+        return get_user_data(user_id, token)
+    except KeyError as e:
+        logger.error(f"KeyError while fetching user data for user_id {user_id}: {e}")
+        return {"username": "Unknown"}
+    except requests.RequestException as e:
+        logger.error(f"RequestException while fetching user data for user_id {user_id}: {e}")
+        return {"username": "Unknown"}
+
 
     
 def get_user_profile(user_id, token):
@@ -77,19 +93,52 @@ def get_friendship(user_id, token):
     try:
         headers = {"Authorization": f"Bearer {token}"}
         url = f"{settings.USER_SERVICE_URL}/friendships/{user_id}/"
-        response = requests.get(url, headers=headers) 
-        response.raise_for_status()  # Vérifie si le statut HTTP est 200
-        return response.json()
-    except requests.RequestException as e:
-        print(f"Erreur lors de la communication avec user-service : {e}")
+        response = requests.get(url, headers=headers, timeout=5)
+        response.raise_for_status()
+        return response.json() 
+    except requests.exceptions.HTTPError as http_err:
+        logger.error(f"HTTP error while fetching friendships for user_id {user_id}: {http_err}")
         return None
+    except requests.RequestException as e:
+        logger.error(f"Erreur lors de la communication avec user-service : {e}")
+        return None
+
+class TokenManager:
+    _cached_token = None
+
+    @staticmethod
+    def get_jwt_token():
+        """
+        Retourne un token JWT valide. Génère un nouveau token si le cache est vide ou expiré.
+        """
+        if TokenManager._cached_token:
+            return TokenManager._cached_token
+
+        # Endpoint pour obtenir un nouveau token
+        url = f"{settings.BASE_USER_SERVICE_URL}/api/token/"
+        payload = {
+            "username": settings.SERVICE_USERNAME,
+            "password": settings.SERVICE_PASSWORD
+        }
+
+        try:
+            response = requests.post(url, json=payload, timeout=5)
+            response.raise_for_status()
+            data = response.json()
+
+            # Cachez le token
+            TokenManager._cached_token = data['access']
+            return TokenManager._cached_token
+        except requests.RequestException as e:
+            logger.error(f"Failed to fetch JWT token: {e}")
+            return None
 
 def validate_user_token(token):
     """
     Valide le token JWT auprès du User Service et récupère les informations utilisateur.
     """
     headers = {"Authorization": f"Bearer {token}"}
-    user_service_url = f"{settings.USER_SERVICE_URL}/validate/"
+    user_service_url = f"{settings.BASE_USER_SERVICE_URL}/validate/"
 
     try:
         logger.debug(f"Sending token validation request to: {user_service_url}")

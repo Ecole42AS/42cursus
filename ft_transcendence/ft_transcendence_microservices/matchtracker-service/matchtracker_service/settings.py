@@ -10,7 +10,9 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # USER_SERVICE_URL = "http://localhost:8080/api/user"
 # USER_SERVICE_URL = "http://user_service:8000/api/user"
 USER_SERVICE_URL = os.getenv("USER_SERVICE_URL", "http://localhost:8080/api/user")
-
+BASE_USER_SERVICE_URL = os.getenv("BASE_USER_SERVICE_URL", "http://localhost:8080")
+SERVICE_USERNAME = os.getenv("SERVICE_USERNAME", "default_user")
+SERVICE_PASSWORD = os.getenv("SERVICE_PASSWORD", "default_password")
 
 # SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")

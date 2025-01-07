@@ -2,13 +2,37 @@ from rest_framework import serializers
 from .models import GameSession, Tournament, TournamentMatch
 from user.models import Friendship
 from django.contrib.auth import get_user_model
+from utils import get_user_data
 
 CustomUser = get_user_model()
 
+# class GameSerializer(serializers.ModelSerializer):
+#     player1 = serializers.HiddenField(default=serializers.CurrentUserDefault())
+#     player2 = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
+#     winner = serializers.CharField(source='winner.username', read_only=True)
+#     is_active = serializers.BooleanField(required=False)
+
+#     class Meta:
+#         model = GameSession
+#         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
+
+#     def to_representation(self, instance):
+#         data = super().to_representation(instance)
+#         data['player1'] = instance.player1.username
+#         data['player2'] = instance.player2.username
+#         data['score_player1'] = instance.score_player1
+#         data['score_player2'] = instance.score_player2
+#         data['is_active'] = instance.is_active
+#         if instance.winner:
+#             data['winner'] = instance.winner.username
+#         else:
+#             data['winner'] = None
+#         return data
+
 class GameSerializer(serializers.ModelSerializer):
     player1 = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    player2 = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
-    winner = serializers.CharField(source='winner.username', read_only=True)
+    player2 = serializers.IntegerField()
+    winner = serializers.IntegerField(read_only=True)
     is_active = serializers.BooleanField(required=False)
 
     class Meta:
@@ -16,17 +40,26 @@ class GameSerializer(serializers.ModelSerializer):
         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
 
     def to_representation(self, instance):
+        """
+        Représentation des données avec des informations utilisateur récupérées dynamiquement.
+        """
         data = super().to_representation(instance)
-        data['player1'] = instance.player1.username
-        data['player2'] = instance.player2.username
-        data['score_player1'] = instance.score_player1
-        data['score_player2'] = instance.score_player2
-        data['is_active'] = instance.is_active
-        if instance.winner:
-            data['winner'] = instance.winner.username
-        else:
-            data['winner'] = None
+
+        # Récupérez le token depuis le contexte
+        token = self.context['request'].auth
+
+        # Récupérez les données des utilisateurs via le microservice
+        player1_data = get_user_data(instance.player1_id, token)
+        player2_data = get_user_data(instance.player2_id, token)
+
+        data['player1'] = player1_data['username'] if player1_data else "Unknown"
+        data['player2'] = player2_data['username'] if player2_data else "Unknown"
+        data['winner'] = (
+            get_user_data(instance.winner_id, token)['username']
+            if instance.winner_id else None
+        )
         return data
+
 
 class TournamentSerializer(serializers.ModelSerializer):
     players_display_names = serializers.SerializerMethodField()
