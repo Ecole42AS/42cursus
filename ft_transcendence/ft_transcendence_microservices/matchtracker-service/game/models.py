@@ -15,7 +15,7 @@ class GameSession(models.Model):
     ended_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        token = TokenManager.get_jwt_token()  # Utilisez la méthode utilitaire
+        token = TokenManager.get_jwt_token()  
         player1 = get_user(self.player1_id, token)
         player2 = get_user(self.player2_id, token)
 
@@ -54,7 +54,7 @@ class TournamentMatch(models.Model):
         """
         Génère une chaîne de caractères pour représenter un match de tournoi.
         """
-        token = TokenManager.get_jwt_token()  # Utilise la méthode statique du modèle GameSession
+        token = TokenManager.get_jwt_token()  
         player1 = get_user(self.player1_id, token)
         player2 = get_user(self.player2_id, token)
 

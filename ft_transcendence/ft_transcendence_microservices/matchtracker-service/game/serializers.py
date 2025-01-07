@@ -83,7 +83,7 @@ class TournamentSerializer(serializers.ModelSerializer):
         Valide que tous les joueurs sont des amis de l'utilisateur actuel.
         """
         user = self.context['request'].user
-        friends_data = get_friendship(user.id)  # Appel à l'API du microservice utilisateur
+        friends_data = get_friendship(user.id)  
 
         if not friends_data:
             raise serializers.ValidationError("Impossible de valider les amis. Service indisponible.")
@@ -107,7 +107,7 @@ class TournamentSerializer(serializers.ModelSerializer):
         players = validated_data.pop('all_players', [])
         creator = validated_data.pop('creator')
 
-        # Créez le tournoi
+        
         tournament = Tournament.objects.create(creator=creator, **validated_data)
         tournament.players = players
         return tournament

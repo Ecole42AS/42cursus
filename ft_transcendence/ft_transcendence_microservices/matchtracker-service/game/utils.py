@@ -15,42 +15,42 @@ def test_logs(request):
     logger.error("Test ERROR log")
     return HttpResponse("Logs testés, vérifiez le fichier de log.")
     
-# def get_user_data(user_id, token):
-#     """
-#     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
-#     """
-#     try:
-#         headers = {"Authorization": f"Bearer {token}"}
-#         user_service_url = f"{settings.USER_SERVICE_URL}/{user_id}/"
-#         logger.debug(f"Attempting to fetch user data from {user_service_url} with token: {token}")
-
-#         response = requests.get(user_service_url, headers=headers, timeout=5)
-#         response.raise_for_status()
-#         return response.json()
-#     except requests.RequestException as e:
-#         logger.error(f"Failed to fetch user data: {e}")
-#         return None
 
 
 
-# def get_user_data(user_id, token):
-#     """
-#     Récupère les informations de l'utilisateur à partir du microservice `user-service`.
-#     """
-#     try:
-#         headers = {"Authorization": f"Bearer {token}"}
-#         response = requests.get(f"{settings.USER_SERVICE_URL}/{user_id}/", headers=headers, timeout=5)
-#         response.raise_for_status()
 
-#         data = response.json()
-#         if not data or 'username' not in data:
-#             logger.error(f"Invalid data for user_id {user_id}: {data}")
-#             return None
 
-#         return data
-#     except requests.RequestException as e:
-#         logger.error(f"Error fetching user data for user_id {user_id}: {e}")
-#         return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def get_user_data(user_id, token):
     """
@@ -77,22 +77,22 @@ def get_user_data(user_id, token):
         logger.error(f"Error fetching user data for user_id {user_id} from {url}: {e}")
         return None
     
-# @staticmethod
-# # @lru_cache(maxsize=128)
-# def get_user(user_id, token=None):
-#     """
-#     Récupère les données utilisateur. Retourne None si l'utilisateur est introuvable ou en cas d'erreur.
-#     """
-#     if not user_id:
-#         return None
-#     try:
-#         return get_user_data(user_id, token)
-#     except KeyError as e:
-#         logger.error(f"KeyError while fetching user data for user_id {user_id}: {e}")
-#         return {"username": "Unknown"}
-#     except requests.RequestException as e:
-#         logger.error(f"RequestException while fetching user data for user_id {user_id}: {e}")
-#         return {"username": "Unknown"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @staticmethod
 def get_user(user_id, token=None):
@@ -120,18 +120,18 @@ def get_user(user_id, token=None):
         return {"username": "Unknown"}
 
     
-# def get_user_profile(user_id, token):
-#     """
-#     Récupère les informations du profil utilisateur à partir du microservice `user-service`.
-#     """
-#     try:
-#         headers = {"Authorization": f"Bearer {token}"}
-#         response = requests.get(f"{settings.USER_SERVICE_URL}/profile/{user_id}/", headers=headers)
-#         response.raise_for_status()
-#         return response.json()  # Retourne le JSON contenant les données du profil
-#     except requests.RequestException as e:
-#         print(f"Erreur lors de la récupération du profil utilisateur : {e}")
-#         return None
+
+
+
+
+
+
+
+
+
+
+
+
 
 def get_user_profile(user_id, token):
     """
@@ -184,7 +184,7 @@ class TokenManager:
         if TokenManager._cached_token:
             return TokenManager._cached_token
 
-        # Endpoint pour obtenir un nouveau token
+        
         url = f"{settings.BASE_USER_SERVICE_URL}/api/token/"
         payload = {
             "username": settings.SERVICE_USERNAME,
@@ -196,7 +196,7 @@ class TokenManager:
             response.raise_for_status()
             data = response.json()
 
-            # Cachez le token
+            
             TokenManager._cached_token = data['access']
             return TokenManager._cached_token
         except requests.RequestException as e:
@@ -229,8 +229,8 @@ def is_token_revoked(token):
     """
     Vérifie si un token est révoqué.
     """
-    # Implémentez une vérification dans votre base de données ou cache pour les tokens révoqués.
-    revoked_tokens = ["list", "of", "revoked", "tokens"]  # Exemple simple
+    
+    revoked_tokens = ["list", "of", "revoked", "tokens"]  
     return token in revoked_tokens
 
 
@@ -283,11 +283,11 @@ def generate_elimination_matches(tournament):
                 round_matches.append(match)
                 matches.append(match)
             else:
-                # Si le nombre de joueurs est impair, le dernier joueur avance automatiquement
+                
                 players[i].advance_to_next_round = True
                 players[i].save()
 
-        # Préparer les joueurs pour le prochain tour
+        
         players = [match.winner for match in round_matches if match.winner]
         round_number += 1
 

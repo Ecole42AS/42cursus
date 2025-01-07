@@ -36,18 +36,18 @@ class TestUserView(APIView):
         return Response({"error": "User not authenticated"}, status=401)
 
 
-# logger = logging.getLogger(__name__)
 
-# def update_player_stats(winner, loser):
-#     """
-#     Met à jour les statistiques des joueurs après chaque partie.
-#     """
-#     winner_profile = Profile.objects.get(user=winner)
-#     loser_profile = Profile.objects.get(user=loser)
-#     winner_profile.wins += 1
-#     loser_profile.losses += 1
-#     winner_profile.save()
-#     loser_profile.save()
+
+
+
+
+
+
+
+
+
+
+
 
 
 from rest_framework.exceptions import AuthenticationFailed
@@ -101,13 +101,13 @@ class CreateGameSessionView(APIView):
         """
         logger.info(f"CreateGameSessionView.post called for user {getattr(request.user, 'id', None)} and opponent {user_id}")
         try:
-            # Vérifie si un utilisateur authentifié est attaché à la requête
+            
             user = request.user
             if not user or not getattr(user, 'is_authenticated', False):
                 logger.error("No authenticated user found on the request")
                 raise AuthenticationFailed("User not authenticated")
 
-            # Récupère les données de l'opposant via le microservice `user_service`
+            
             logger.debug(f"Fetching opponent data for user_id={user_id}")
             opponent_data = get_user(user_id, request.auth)
             if not opponent_data:
@@ -116,12 +116,12 @@ class CreateGameSessionView(APIView):
 
             logger.debug(f"Opponent data retrieved: {opponent_data}")
 
-            # Vérifie si l'utilisateur tente de jouer contre lui-même
+            
             if user.id == user_id:
                 logger.warning("User attempted to create a game against themselves")
                 return Response({'error': 'Vous ne pouvez pas jouer contre vous-même.'}, status=400)
 
-            # Vérifie l'existence d'une session de jeu active entre les deux utilisateurs
+            
             logger.debug(f"Checking for existing active games between user {user.id} and {user_id}")
             existing_game = GameSession.objects.filter(
                 Q(player1_id=user.id, player2_id=user_id) |
@@ -137,7 +137,7 @@ class CreateGameSessionView(APIView):
                     status=400
                 )
             
-            # Crée une nouvelle session de jeu
+            
             logger.debug(f"Creating a new game session between user {user.id} and {user_id}")
             game_session = GameSession.objects.create(player1_id=user.id, player2_id=user_id)
             serializer = GameSerializer(game_session)
@@ -160,12 +160,12 @@ class UpdateGameScoreView(APIView):
 
     def post(self, request, game_id):
         try:
-            # Assurez-vous que l'utilisateur est authentifié via JWT
+            
             user = request.user
             if not user:
                 raise AuthenticationFailed("User authentication failed")
 
-            # Récupérer la session de jeu
+            
             game = GameSession.objects.get(pk=game_id)
 
             if not game.is_active:
@@ -174,14 +174,14 @@ class UpdateGameScoreView(APIView):
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
-            # Vérifier si l'utilisateur participe à ce match
+            
             if user.id not in [game.player1_id, game.player2_id]:
                 return Response(
                     {'error': 'Vous ne participez pas à ce match.'},
                     status=status.HTTP_403_FORBIDDEN
                 )
 
-            # Mise à jour du score
+            
             player_score = request.data.get('score')
             if player_score is None:
                 return Response({'error': 'Score non fourni.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -191,7 +191,7 @@ class UpdateGameScoreView(APIView):
             else:
                 game.score_player2 = player_score
 
-            # Vérifier le temps écoulé
+            
             if (now() - game.start_time).total_seconds() >= 60:
                 game.is_active = False
                 game.ended_at = now()
@@ -201,7 +201,7 @@ class UpdateGameScoreView(APIView):
                 elif game.score_player2 > game.score_player1:
                     game.winner_id = game.player2_id
                 else:
-                    game.winner_id = None  # Match nul
+                    game.winner_id = None  
 
                 game.save()
 
@@ -226,7 +226,7 @@ class TournamentViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
 
     def perform_create(self, serializer):
-        creator_id = self.request.user.id  # Récupération depuis JWT
+        creator_id = self.request.user.id  
         serializer.save(creator_id=creator_id)
 
 
@@ -242,7 +242,7 @@ class TournamentMatchViewSet(viewsets.ModelViewSet):
         """
         Si nécessaire, ajoutez la logique pour enregistrer l'utilisateur créateur.
         """
-        creator_id = self.request.user.id  # Récupère l'ID depuis le token JWT
+        creator_id = self.request.user.id  
         serializer.save(creator_id=creator_id)
 
 
@@ -253,7 +253,7 @@ class MatchHistoryView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get(self, request):
-        user_id = request.user.id  # Extrait depuis le JWT
+        user_id = request.user.id  
         game_sessions = GameSession.objects.filter(
             Q(player1_id=user_id) | Q(player2_id=user_id),
             is_active=False
@@ -264,7 +264,7 @@ class MatchHistoryView(APIView):
 from django.http import HttpResponse
 
 def test_redis_session(request):
-    # Lire la clé existante ou la définir si elle n'existe pas
+    
     if 'unique_key' not in request.session:
         request.session['unique_key'] = "my-default-unique-key"
 

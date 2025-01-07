@@ -7,28 +7,28 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, ".env"))
-# USER_SERVICE_URL = "http://localhost:8080/api/user"
-# USER_SERVICE_URL = "http://user_service:8000/api/user"
+
+
 USER_SERVICE_URL = os.getenv("USER_SERVICE_URL", "http://localhost:8080/api/user")
 BASE_USER_SERVICE_URL = os.getenv("BASE_USER_SERVICE_URL", "http://localhost:8080")
 SERVICE_USERNAME = os.getenv("SERVICE_USERNAME", "default_user")
 SERVICE_PASSWORD = os.getenv("SERVICE_PASSWORD", "default_password")
 
-# SECRET_KEY = 'django-insecure-4uhyw(pjk&*i^ir70!^@xd!skh9$^#$mm^lt+3kc-07#_bqvn&'
+
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "my-default-unique-key")
 print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
-# DEBUG = True
+
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'matchtracker_service', '172.19.0.4', '172.19.0.3']
-#allow all hosts
-# ALLOWED_HOSTS = ['*']
-# CORS_ALLOW_HEADERS = [
-#     'content-type',
-#     'authorization',
-#     'x-requested-with',
-# ]
+
+
+
+
+
+
+
 
 
 INSTALLED_APPS = [
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    # 'django.middleware.common.CommonMiddleware',
+    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -57,8 +57,8 @@ MIDDLEWARE = [
     'game.middleware.JWTMiddleware',
 ]
 
-# allow all origins
-# CORS_ALLOW_ALL_ORIGINS = True
+
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
@@ -70,12 +70,12 @@ CORS_ALLOWED_ORIGINS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
         'game.authentication.JWTAuthentication',
     ),
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',  # Requiert JWT pour accéder aux endpoints protégés
-    # ],
+    
+    
+    
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -119,16 +119,16 @@ if 'test' in sys.argv:
         }
     }
 else:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'matchtracker_service_db',
-    #         'USER': 'shared_db_user',
-    #         'PASSWORD': 'deplanta1',
-    #         'HOST': 'localhost',
-    #         'PORT': '5432',
-    #     }
-    # }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -139,16 +139,16 @@ else:
             'PORT': os.getenv('POSTGRES_PORT', '5432'),
         }
     }
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'matchtracker_service_db',
-    #         'USER': 'shared_db_user',
-    #         'PASSWORD': 'deplanta1',
-    #         'HOST': 'postgres',  # Remplacez localhost par le nom du service PostgreSQL dans Docker
-    #         'PORT': '5432',
-    #     }
-    # }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -193,53 +193,53 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'DEBUG',  # Niveau minimum des logs
+            'level': 'DEBUG',  
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),  # Chemin du fichier de log
+            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),  
             'formatter': 'verbose',
         },
     },
     'loggers': {
-        # Logger principal pour Django
+        
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Capturer davantage d'informations
+            'level': 'DEBUG',  
             'propagate': True,
         },
-        # Logger pour les erreurs HTTP de Django
+        
         'django.request': {
             'handlers': ['file'],
             'level': 'ERROR',
             'propagate': False,
         },
-        # Logger pour les requêtes à la base de données
+        
         'django.db.backends': {
             'handlers': ['file'],
             'level': 'ERROR',
             'propagate': False,
         },
-        # Logger personnalisé pour `Matchtracker`
+        
         'matchtracker-service': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Capturer tous les détails
+            'level': 'DEBUG',  
             'propagate': True,
         },
-        # Logger pour les bibliothèques réseau (comme `urllib3`)
+        
         'urllib3': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Capturer les interactions réseau
+            'level': 'DEBUG',  
             'propagate': False,
         },
-        # Logger pour la bibliothèque `requests`
+        
         'requests': {
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': False,
         },
-        # Logger pour Django REST Framework
+        
         'rest_framework': {
             'handlers': ['file'],
-            'level': 'DEBUG',  # Capturer les détails REST
+            'level': 'DEBUG',  
             'propagate': True,
         },
     },
@@ -256,25 +256,25 @@ CHANNEL_LAYERS = {
     },
 }
 
-# filepath: /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/matchtracker-service/matchtracker_service/settings.py
-SESSION_ENGINE = "django.contrib.sessions.backends.db"
-# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-# SESSION_CACHE_ALIAS = "default"
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379/1",  # Adresse de votre serveur Redis
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+
+
+
+
+
+
+
+
+
+
+
 
 SESSION_COOKIE_DOMAIN = "localhost"
-SESSION_COOKIE_NAME = "sessionid"  # Nom du cookie de session
-SESSION_COOKIE_SAMESITE = "Lax"  # Permet les sous-domaines
-SESSION_COOKIE_SECURE = False  # Doit être True en production si HTTPS est utilisé
-# SESSION_ENGINE = "django.contrib.sessions.backends.cache"  # Redis pour stocker les sessions
-SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Sessions dans la base de données
-SESSION_CACHE_ALIAS = "default"  # Utilisation de la configuration cache 'default'
+SESSION_COOKIE_NAME = "sessionid"  
+SESSION_COOKIE_SAMESITE = "Lax"  
+SESSION_COOKIE_SECURE = False  
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  
+SESSION_CACHE_ALIAS = "default"  

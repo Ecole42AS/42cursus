@@ -5,35 +5,35 @@ from dotenv import load_dotenv
 from datetime import timedelta
 
 
-# Définir le répertoire de base du service utilisateur
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Charger les variables d'environnement
+
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-# Clé secrète - à sécuriser en production
-# SECRET_KEY = 'django-insecure-^96ocy_do_=)*km4l9-m%n1hk&^b-ous4gxw8%09+f9dos010q'
-# SECRET_KEY = 'akn1%#!+sh*gzpb#ek_30a=3qag!14&%rj1mz%!uaj3*a1-i*n'
+
+
+
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "my-default-unique-key")
 print(f"JWT_SECRET_KEY: {JWT_SECRET_KEY}")
-# print("DJANGO_SECRET_KEY:", os.getenv("DJANGO_SECRET_KEY"))
+
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
-# Mode Debug - Désactiver en production
+
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
-# Hôtes autorisés
+
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'user_service', '172.19.0.4', '172.19.0.3']
-# ALLOWED_HOSTS = ['*']
-# CORS_ALLOW_HEADERS = [
-#     'content-type',
-#     'authorization',
-#     'x-requested-with',
-# ]
 
 
-# CORS_ALLOW_ALL_ORIGINS = True
-# Applications installées
+
+
+
+
+
+
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,50 +45,50 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
-    'user',  # App du service utilisateur
+    'user',  
 ]
 
 
 
-# Middleware
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    # 'django.middleware.common.CommonMiddleware',
+    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'user.middleware.UpdateLastActivityMiddleware',  # Middleware spécifique à l'utilisateur
+    'user.middleware.UpdateLastActivityMiddleware',  
     'user.middleware.JWTValidationMiddleware',
 ]
 MIDDLEWARE.insert(0, 'user.middleware.LogRequestMiddleware')
 
-# Configuration CORS
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://matchtracker-service:8000",  # Autoriser le microservice `matchtracker-service`
-    "http://localhost:8000",  # Autoriser localhost pour les tests
+    "http://matchtracker-service:8000",  
+    "http://localhost:8000",  
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'user.authentication.EnhancedJWTAuthentication',  # Authentification JWT pour l'API
-        'rest_framework.authentication.SessionAuthentication',  # Authentification via sessions (pour l'interface API web)
+        'user.authentication.EnhancedJWTAuthentication',  
+        'rest_framework.authentication.SessionAuthentication',  
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Requiert une authentification pour les endpoints protégés
+        'rest_framework.permissions.IsAuthenticated',  
     ],
     'DEFAULT_PARSER_CLASSES': (
-        'rest_framework.parsers.JSONParser',  # Parser pour JSON (principalement utilisé)
-        'rest_framework.parsers.FormParser',  # Supporte les formulaires
-        'rest_framework.parsers.MultiPartParser',  # Supporte les fichiers
+        'rest_framework.parsers.JSONParser',  
+        'rest_framework.parsers.FormParser',  
+        'rest_framework.parsers.MultiPartParser',  
     ),
     'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',  # Retourne JSON par défaut
-        'rest_framework.renderers.BrowsableAPIRenderer',  # Interface web navigable (utile pour le développement)
+        'rest_framework.renderers.JSONRenderer',  
+        'rest_framework.renderers.BrowsableAPIRenderer',  
     ),
 }
 
@@ -101,14 +101,14 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'SIGNING_KEY': os.getenv("JWT_SECRET_KEY", "a33d83c0f3be73db53d15b0a71c3e12b521b03ca0d300767b79722cd1c11940d"),
     'ALGORITHM': 'HS256',
-    'BLACKLIST_AFTER_ROTATION': True,  # Activer la blacklist
+    'BLACKLIST_AFTER_ROTATION': True,  
 
 }
 
-# Configuration des URL racines
+
 ROOT_URLCONF = 'user_service.urls'
 
-# Configuration des templates
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -125,7 +125,7 @@ TEMPLATES = [
     },
 ]
 
-# Application WSGI
+
 WSGI_APPLICATION = 'user_service.wsgi.application'
 
 if 'test' in sys.argv: 
@@ -136,16 +136,16 @@ if 'test' in sys.argv:
         }
     }
 else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'user_service_db',
-#             'USER': 'shared_db_user',
-#             'PASSWORD': 'deplanta1',
-#             'HOST': 'localhost',
-#             'PORT': '5432',
-#         }
-#    }
+
+
+
+
+
+
+
+
+
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -157,35 +157,35 @@ else:
         }
     }
 
-# filepath:  /home/alex/Ecole42/42cursus/ft_transcendence/ft_transcendence_microservices/user-service/user_service/settings.py
-SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Sessions dans la base de données
-# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-# SESSION_CACHE_ALIAS = "default"
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379/1",  # Adresse de votre serveur Redis
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  
+
+
+
+
+
+
+
+
+
+
+
+
 
 SESSION_COOKIE_DOMAIN = "localhost"
-SESSION_COOKIE_NAME = "sessionid"  # Nom du cookie de session
-SESSION_COOKIE_SAMESITE = "Lax"  # Permet les sous-domaines
-SESSION_COOKIE_SECURE = False  # Doit être True en production si HTTPS est utilisé
-# SESSION_ENGINE = "django.contrib.sessions.backends.cache"  # Redis pour stocker les sessions
-SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Sessions dans la base de données
-SESSION_CACHE_ALIAS = "default"  # Utilisation de la configuration cache 'default'
+SESSION_COOKIE_NAME = "sessionid"  
+SESSION_COOKIE_SAMESITE = "Lax"  
+SESSION_COOKIE_SECURE = False  
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  
+SESSION_CACHE_ALIAS = "default"  
 
 
 
-# Modèle utilisateur personnalisé
+
 AUTH_USER_MODEL = 'user.CustomUser'
 
-# Validation des mots de passe
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -201,16 +201,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Localisation
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Europe/Zurich'
 USE_I18N = True
 USE_TZ = True
 
-# Configuration des fichiers statiques
+
 STATIC_URL = 'static/'
 
-# Configuration des médias
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -228,7 +228,7 @@ if 'test' in sys.argv:
 
     DEFAULT_FILE_STORAGE = 'user_service.settings.TemporaryTestStorage'
 
-# Configuration du logging
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -246,7 +246,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),  # Assurez-vous que le dossier existe
+            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),  
             'formatter': 'verbose',
         },
     },

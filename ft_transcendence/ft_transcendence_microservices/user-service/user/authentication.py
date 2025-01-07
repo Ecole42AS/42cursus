@@ -7,10 +7,10 @@ class EnhancedJWTAuthentication(JWTAuthentication):
         auth_header = request.headers.get('Authorization')
 
         if not auth_header or not auth_header.startswith('Bearer '):
-            return None  # Pas de token, la vue utilisera les permissions pour refuser l'accès
+            return None  
 
         try:
-            # Appel au parent pour valider et décoder le token
+            
             return super().authenticate(request)
         except TokenError as e:
             raise AuthenticationFailed({

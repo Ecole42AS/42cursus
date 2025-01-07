@@ -2,25 +2,25 @@ import logging
 from django.utils import timezone
 from .models import TournamentMatch
 
-# logger = logging.getLogger(__name__)
 
-# def generate_tournament_matches(tournament):
-#     """
-#     Génère les matchs pour un tournoi donné (chaque joueur affronte tous les autres une fois).
-#     """
-#     players = list(tournament.players.all())
-#     matches = []
-#     for i in range(len(players)):
-#         for j in range(i + 1, len(players)):
-#             match = TournamentMatch.objects.create(
-#                 tournament=tournament,
-#                 player1=players[i],
-#                 player2=players[j],
-#                 scheduled_at=timezone.now()
-#             )
-#             matches.append(match)
-#     logger.info(f"Generated {len(matches)} matches for tournament {tournament.name}.")
-#     return matches
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 logger = logging.getLogger(__name__)
 
@@ -49,11 +49,11 @@ def generate_elimination_matches(tournament):
                 round_matches.append(match)
                 matches.append(match)
             else:
-                # Si le nombre de joueurs est impair, le dernier joueur avance automatiquement
+                
                 players[i].advance_to_next_round = True
                 players[i].save()
 
-        # Préparer les joueurs pour le prochain tour
+        
         players = [match.winner for match in round_matches if match.winner]
         round_number += 1
 

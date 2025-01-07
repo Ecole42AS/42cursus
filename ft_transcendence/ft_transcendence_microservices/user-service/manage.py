@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# print("JWT_SECRET_KEY:", os.getenv("JWT_SECRET_KEY"))
+
 
 def main():
     """Run administrative tasks."""

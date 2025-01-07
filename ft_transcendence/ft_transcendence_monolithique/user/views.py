@@ -28,14 +28,14 @@ class UserUpdateView(generics.UpdateAPIView):
         return self.request.user
 
 
-class UserProfileView(generics.RetrieveUpdateAPIView):  # méthode GET et PUT
+class UserProfileView(generics.RetrieveUpdateAPIView):  
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get_object(self):
         try:
-            # Vérifiez si l'utilisateur a un profil associé
+            
             return self.request.user.profile
         except AttributeError:
             raise NotFound("Profile not found for the authenticated user.")
