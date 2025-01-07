@@ -25,16 +25,15 @@ class GameSerializer(serializers.ModelSerializer):
         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
 
     def fetch_user_data(self, user_id, token):
-        """
-        Récupère les informations de l'utilisateur avec gestion des erreurs.
-        """
         try:
             if not token:
                 logger.warning(f"No token provided for fetching user_id {user_id}")
                 return 'Unknown'
 
+            logger.debug(f"Fetching user data for user_id {user_id} with token {token}")
             user_data = get_user_data(user_id, token)
             if user_data:
+                logger.info(f"User data retrieved for user_id {user_id}: {user_data}")
                 return user_data.get('username', 'Unknown')
             logger.warning(f"No data found for user_id {user_id}")
             return 'Unknown'

@@ -11,6 +11,7 @@ from django.utils.timezone import now
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 from django.http import HttpResponse
+from rest_framework.decorators import action
 
 
 import logging
@@ -59,6 +60,19 @@ class GameViewSet(viewsets.ModelViewSet):
     queryset = GameSession.objects.all()
     serializer_class = GameSerializer
     authentication_classes = [JWTAuthentication]
+
+    @action(detail=True, methods=['patch'], url_path='end')
+    def end_game(self, request, pk=None):
+        game = self.get_object()
+
+        if not game.is_active:
+            return Response({'error': 'Le match est déjà terminé.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        game.is_active = False
+        game.ended_at = now()
+        game.save()
+
+        return Response({'message': 'Le match a été terminé avec succès.'})
 
     def get_queryset(self):
         """
@@ -117,8 +131,12 @@ class CreateGameSessionView(APIView):
 
             if existing_game:
                 logger.warning(f"An active game already exists between user {user.id} and {user_id}")
-                return Response({'error': 'Un match est déjà en cours entre ces deux joueurs.'}, status=400)
-
+                serializer = GameSerializer(existing_game, context={'request': request})
+                return Response(
+                    {'error': 'Un match est déjà en cours entre ces deux joueurs.', 'active_game': serializer.data},
+                    status=400
+                )
+            
             # Crée une nouvelle session de jeu
             logger.debug(f"Creating a new game session between user {user.id} and {user_id}")
             game_session = GameSession.objects.create(player1_id=user.id, player2_id=user_id)
