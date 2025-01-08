@@ -12,6 +12,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 from django.http import HttpResponse
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 
 
 import logging
@@ -57,6 +58,7 @@ class GameViewSet(viewsets.ModelViewSet):
     queryset = GameSession.objects.all()
     serializer_class = GameSerializer
     authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def get_queryset(self):
         user = self.request.user
@@ -170,6 +172,7 @@ class UpdateGameScoreView(APIView):
     Vue pour mettre à jour le score d'une session de jeu.
     """
     authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def post(self, request, game_id):
         try:
@@ -237,6 +240,7 @@ class TournamentViewSet(viewsets.ModelViewSet):
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
     authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def perform_create(self, serializer):
         creator_id = self.request.user.id  # Récupération depuis JWT
@@ -250,6 +254,7 @@ class TournamentMatchViewSet(viewsets.ModelViewSet):
     queryset = TournamentMatch.objects.all()
     serializer_class = TournamentMatchSerializer
     authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def perform_create(self, serializer):
         """
@@ -264,6 +269,7 @@ class MatchHistoryView(APIView):
     Vue pour récupérer l'historique des matchs d'un utilisateur.
     """
     authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def get(self, request):
         user_id = request.user.id  # Extrait depuis le JWT

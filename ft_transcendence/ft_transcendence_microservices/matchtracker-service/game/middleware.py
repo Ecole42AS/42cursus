@@ -35,6 +35,36 @@ logger = logging.getLogger("matchtracker-service")
 #         logger.debug(f"JWTMiddleware: Final user on request: {getattr(request, 'user', None)}")
 #         return self.get_response(request)
 
+# class JWTMiddleware:
+#     def __init__(self, get_response):
+#         self.get_response = get_response
+#         self.jwt_auth = JWTAuthentication()
+
+#     def __call__(self, request):
+#         logger.debug(f"JWTMiddleware: Processing request for path {request.path}")
+#         try:
+#             user, token = self.jwt_auth.authenticate(request)
+#             if user:
+#                 request.user = user
+#                 logger.info(f"JWTMiddleware: Authentication successful for user {user}")
+#             else:
+#                 raise AuthenticationFailed("User not authenticated")
+#         except AuthenticationFailed as e:
+#             logger.warning(f"JWTMiddleware: Authentication failed - {str(e)}")
+#             request.user = AnonymousUser()
+#         except Exception as e:
+#             logger.error(f"JWTMiddleware: Unexpected error during authentication - {str(e)}")
+#             request.user = AnonymousUser()
+
+#         return self.get_response(request)
+
+from .authentication import JWTAuthentication
+from rest_framework.exceptions import AuthenticationFailed
+from django.contrib.auth.models import AnonymousUser
+import logging
+
+logger = logging.getLogger("matchtracker-service")
+
 class JWTMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -42,18 +72,29 @@ class JWTMiddleware:
 
     def __call__(self, request):
         logger.debug(f"JWTMiddleware: Processing request for path {request.path}")
+
+        # Vérifiez si un utilisateur est déjà authentifié par un autre middleware
+        if hasattr(request, 'user') and request.user.is_authenticated:
+            logger.debug("JWTMiddleware: User already authenticated by another middleware.")
+            return self.get_response(request)
+
         try:
+            # Authentifiez l'utilisateur avec JWTAuthentication
             user, token = self.jwt_auth.authenticate(request)
             if user:
                 request.user = user
+                request.auth = token  # Stockez le token pour un usage ultérieur
                 logger.info(f"JWTMiddleware: Authentication successful for user {user}")
             else:
-                raise AuthenticationFailed("User not authenticated")
+                logger.warning("JWTMiddleware: No user found in token")
+                request.user = AnonymousUser()
         except AuthenticationFailed as e:
             logger.warning(f"JWTMiddleware: Authentication failed - {str(e)}")
             request.user = AnonymousUser()
+            request.auth = None
         except Exception as e:
             logger.error(f"JWTMiddleware: Unexpected error during authentication - {str(e)}")
             request.user = AnonymousUser()
+            request.auth = None
 
         return self.get_response(request)

@@ -76,7 +76,6 @@ CORS_ALLOWED_ORIGINS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'user.authentication.EnhancedJWTAuthentication',  # Authentification JWT pour l'API
-        'rest_framework.authentication.SessionAuthentication',  # Authentification via sessions (pour l'interface API web)
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # Requiert une authentification pour les endpoints protégés
@@ -92,6 +91,29 @@ REST_FRAMEWORK = {
     ),
 }
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'user.authentication.EnhancedJWTAuthentication',  # Authentification JWT
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',  # Protection par défaut
+#     ],
+#     'DEFAULT_PARSER_CLASSES': (
+#         'rest_framework.parsers.JSONParser',  # Retourne uniquement JSON
+#     ),
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',  # API exclusivement JSON
+#     ),
+#     'DEFAULT_THROTTLE_CLASSES': [
+#         'rest_framework.throttling.UserRateThrottle',
+#         'rest_framework.throttling.AnonRateThrottle',
+#     ],
+#     'DEFAULT_THROTTLE_RATES': {
+#         'user': '1000/day',  # 1000 requêtes pour un utilisateur authentifié
+#         'anon': '100/day',   # 100 requêtes pour un utilisateur anonyme
+#     },
+#     'EXCEPTION_HANDLER': 'rest_framework_simplejwt.exceptions.token_exception_handler',
+# }
 
 
 from datetime import timedelta
@@ -101,7 +123,10 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'SIGNING_KEY': os.getenv("JWT_SECRET_KEY", "a33d83c0f3be73db53d15b0a71c3e12b521b03ca0d300767b79722cd1c11940d"),
     'ALGORITHM': 'HS256',
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'ROTATE_REFRESH_TOKENS': True,  # Générer un nouveau token refresh lors de l'utilisation du refresh actuel
     'BLACKLIST_AFTER_ROTATION': True,  # Activer la blacklist
+    'LEEWAY': 10,  # Délai de tolérance pour l'expiration du token
 
 }
 
