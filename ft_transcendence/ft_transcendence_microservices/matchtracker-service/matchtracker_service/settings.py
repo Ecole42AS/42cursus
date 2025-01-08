@@ -2,6 +2,9 @@ from pathlib import Path
 import os
 import sys
 from dotenv import load_dotenv
+import logging
+
+logger = logging.getLogger("matchtracker-service")
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,9 +88,14 @@ REST_FRAMEWORK = {
 from datetime import timedelta
 
 SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=40),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'SIGNING_KEY': os.getenv("JWT_SECRET_KEY", "a33d83c0f3be73db53d15b0a71c3e12b521b03ca0d300767b79722cd1c11940d"),
     'ALGORITHM': 'HS256',
 }
+
+logger.debug(f"Clé JWT utilisée pour la validation : {SIMPLE_JWT['SIGNING_KEY']}")  # Ajout ici
+
 
 
 ROOT_URLCONF = 'matchtracker_service.urls'

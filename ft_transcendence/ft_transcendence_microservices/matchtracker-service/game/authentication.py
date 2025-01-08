@@ -157,6 +157,7 @@ class JWTAuthentication(BaseAuthentication):
             logger.info(f"User data retrieved successfully for user_id {user_id}: {user_data}")
             User = namedtuple("User", ["id", "username", "is_authenticated"])
             user = User(id=user_data["id"], username=user_data["username"], is_authenticated=True)
+            logger.debug(f"Returning user: {user}, token: {token}")
             return user, token
 
         except Exception as e:

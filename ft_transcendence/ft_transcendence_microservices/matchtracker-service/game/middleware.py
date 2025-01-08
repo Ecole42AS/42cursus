@@ -72,6 +72,7 @@ class JWTMiddleware:
 
     def __call__(self, request):
         logger.debug(f"JWTMiddleware: Processing request for path {request.path}")
+        logger.debug(f"Requête reçue avec en-têtes : {request.headers}")
 
         # Vérifiez si un utilisateur est déjà authentifié par un autre middleware
         if hasattr(request, 'user') and request.user.is_authenticated:
@@ -97,4 +98,8 @@ class JWTMiddleware:
             request.user = AnonymousUser()
             request.auth = None
 
+        if isinstance(request.user, AnonymousUser):
+            raise AuthenticationFailed("Authentication is required")  # Ajout ici
+        
+        logger.debug(f"Final user on request in middleware: {request.user}, is_authenticated: {request.user.is_authenticated}")
         return self.get_response(request)

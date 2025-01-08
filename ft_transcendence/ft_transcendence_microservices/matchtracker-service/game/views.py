@@ -54,19 +54,19 @@ class TestUserView(APIView):
 from rest_framework.exceptions import AuthenticationFailed
 from .utils import validate_user_token
 
-class GameViewSet(viewsets.ModelViewSet):
-    queryset = GameSession.objects.all()
-    serializer_class = GameSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
+# class GameViewSet(viewsets.ModelViewSet):
+#     queryset = GameSession.objects.all()
+#     serializer_class = GameSerializer
+#     authentication_classes = [JWTAuthentication]
+#     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
-    def get_queryset(self):
-        user = self.request.user
-        if not user or not user.is_authenticated:
-            raise AuthenticationFailed("User not authenticated")
-        return GameSession.objects.filter(
-            Q(player1_id=user.id) | Q(player2_id=user.id)
-        )
+#     def get_queryset(self):
+#         user = self.request.user
+#         if not user or not user.is_authenticated:
+#             raise AuthenticationFailed("User not authenticated")
+#         return GameSession.objects.filter(
+#             Q(player1_id=user.id) | Q(player2_id=user.id)
+#         )
 
 # class GameViewSet(viewsets.ModelViewSet):
 #     """
@@ -76,32 +76,94 @@ class GameViewSet(viewsets.ModelViewSet):
 #     serializer_class = GameSerializer
 #     authentication_classes = [JWTAuthentication]
 
-    # @action(detail=True, methods=['patch'], url_path='end')
-    # def end_game(self, request, pk=None):
-    #     game = self.get_object()
+#     @action(detail=True, methods=['patch'], url_path='end')
+#     def end_game(self, request, pk=None):
+#         game = self.get_object()
 
-    #     if not game.is_active:
-    #         return Response({'error': 'Le match est déjà terminé.'}, status=status.HTTP_400_BAD_REQUEST)
+#         if not game.is_active:
+#             return Response({'error': 'Le match est déjà terminé.'}, status=status.HTTP_400_BAD_REQUEST)
 
-    #     game.is_active = False
-    #     game.ended_at = now()
-    #     game.save()
+#         game.is_active = False
+#         game.ended_at = now()
+#         game.save()
 
-    #     return Response({'message': 'Le match a été terminé avec succès.'})
+#         return Response({'message': 'Le match a été terminé avec succès.'})
+
+#     def get_queryset(self):
+#         """
+#         Filtre les parties pour l'utilisateur authentifié.
+#         """
+#         user = self.request.user
+#         if not user or not user.is_authenticated:
+#             raise AuthenticationFailed("User not authenticated")
+
+#         logger.debug(f"Filtering games for user_id: {user.id}")
+
+#         return GameSession.objects.filter(
+#             Q(player1_id=user.id) | Q(player2_id=user.id)
+#         )
+
+class GameViewSet(viewsets.ModelViewSet):
+    queryset = GameSession.objects.all()
+    serializer_class = GameSerializer
+    # authentication_classes = [JWTAuthentication]
+    # Retirez temporairement les permissions
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        """
-        Filtre les parties pour l'utilisateur authentifié.
-        """
         user = self.request.user
+        logger.debug(f"GameViewSet: Requête reçue pour user={user}, is_authenticated={getattr(user, 'is_authenticated', False)}")
+
         if not user or not user.is_authenticated:
+            logger.warning("GameViewSet: Utilisateur non authentifié")
             raise AuthenticationFailed("User not authenticated")
 
-        logger.debug(f"Filtering games for user_id: {user.id}")
-
-        return GameSession.objects.filter(
+        logger.debug(f"GameViewSet: Filtrage des parties pour user_id={user.id}")
+        games = GameSession.objects.filter(
             Q(player1_id=user.id) | Q(player2_id=user.id)
         )
+        logger.debug(f"GameViewSet: {games.count()} parties trouvées pour user_id={user.id}")
+        return games
+
+    
+class TestGamesNoPermissionsView(APIView):
+    def get(self, request):
+        user = request.user
+        logger.debug(f"TestGamesNoPermissionsView: user={user}, is_authenticated={getattr(user, 'is_authenticated', False)}")
+        games = GameSession.objects.filter(
+            Q(player1_id=user.id) | Q(player2_id=user.id)
+        )
+        logger.debug(f"TestGamesNoPermissionsView: {games.count()} parties trouvées pour user_id={user.id}")
+        return Response({"games_count": games.count()})
+
+
+class TestGamesView(APIView):
+    def get(self, request):
+        user = request.user
+        logger.debug(f"TestGamesView: Requête reçue pour user={user}, is_authenticated={getattr(user, 'is_authenticated', False)}")
+        if not user or not user.is_authenticated:
+            return Response({"error": "User not authenticated"}, status=401)
+
+        games = GameSession.objects.filter(
+            Q(player1_id=user.id) | Q(player2_id=user.id)
+        )
+        return Response({"games_count": games.count()})
+    
+class TestGamesQueryView(APIView):
+    def get(self, request):
+        user = request.user
+        logger.debug(f"TestGamesQueryView: Requête reçue pour user={user}, is_authenticated={getattr(user, 'is_authenticated', False)}")
+        if not user or not user.is_authenticated:
+            return Response({"error": "User not authenticated"}, status=401)
+
+        games = GameSession.objects.filter(
+            Q(player1_id=user.id) | Q(player2_id=user.id)
+        )
+        logger.debug(f"TestGamesQueryView: {games.count()} parties trouvées pour user_id={user.id}")
+        return Response({"games_count": games.count()})
+
+
+
 
 class CreateGameSessionView(APIView):
     """
@@ -109,6 +171,7 @@ class CreateGameSessionView(APIView):
     """
 
     # authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def post(self, request, user_id):
         """

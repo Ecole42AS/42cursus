@@ -3,7 +3,7 @@ from .models import GameSession, Tournament, TournamentMatch
 from .utils import get_friendship, get_user_data, get_user_profile
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("matchtracker-service")
 
 class FriendshipSerializer(serializers.Serializer):
     """
@@ -24,33 +24,49 @@ class GameSerializer(serializers.ModelSerializer):
         model = GameSession
         fields = ['id', 'player1', 'player2', 'score_player1', 'score_player2', 'winner', 'is_active', 'created_at', 'ended_at']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._user_cache = {}
+
     def fetch_user_data(self, user_id, token):
+        if user_id in self._user_cache:
+            return self._user_cache[user_id]
+
         try:
             if not token:
                 logger.warning(f"No token provided for fetching user_id {user_id}")
+                self._user_cache[user_id] = 'Unknown'
                 return 'Unknown'
 
-            logger.debug(f"Fetching user data for user_id {user_id} with token {token}")
+            logger.debug(f"Fetching user data for user_id {user_id} with token {token}, endpoint={self.context.get('request').path}")
             user_data = get_user_data(user_id, token)
             if user_data:
-                logger.info(f"User data retrieved for user_id {user_id}: {user_data}")
-                return user_data.get('username', 'Unknown')
+                username = user_data.get('username', 'Unknown')
+                self._user_cache[user_id] = username
+                return username
             logger.warning(f"No data found for user_id {user_id}")
+            self._user_cache[user_id] = 'Unknown'
             return 'Unknown'
         except Exception as e:
             logger.error(f"Error fetching user data for user_id {user_id}: {e}")
+            self._user_cache[user_id] = 'Unknown'
             return 'Unknown'
 
-
     def get_player1(self, obj):
+        if not obj.player1_id:
+            return None
         token = self.context['request'].auth if self.context.get('request') else None
         return self.fetch_user_data(obj.player1_id, token)
 
     def get_player2(self, obj):
+        if not obj.player2_id:
+            return None
         token = self.context['request'].auth if self.context.get('request') else None
         return self.fetch_user_data(obj.player2_id, token)
 
     def get_winner(self, obj):
+        if not obj.winner_id:
+            return None
         token = self.context['request'].auth if self.context.get('request') else None
         return self.fetch_user_data(obj.winner_id, token) if obj.winner_id else None
 
