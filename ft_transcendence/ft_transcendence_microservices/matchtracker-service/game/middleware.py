@@ -58,12 +58,54 @@ logger = logging.getLogger("matchtracker-service")
 
 #         return self.get_response(request)
 
-from .authentication import JWTAuthentication
-from rest_framework.exceptions import AuthenticationFailed
-from django.contrib.auth.models import AnonymousUser
-import logging
+# from .authentication import JWTAuthentication
+# from rest_framework.exceptions import AuthenticationFailed
+# from django.contrib.auth.models import AnonymousUser
+# import logging
 
-logger = logging.getLogger("matchtracker-service")
+# logger = logging.getLogger("matchtracker-service")
+
+# class JWTMiddleware:
+#     def __init__(self, get_response):
+#         self.get_response = get_response
+#         self.jwt_auth = JWTAuthentication()
+
+#     def __call__(self, request):
+#         logger.debug(f"JWTMiddleware: Processing request for path {request.path}")
+#         logger.debug(f"Requête reçue avec en-têtes : {request.headers}")
+
+#         # Vérifiez si un utilisateur est déjà authentifié par un autre middleware
+#         if hasattr(request, 'user') and request.user.is_authenticated:
+#             logger.debug("JWTMiddleware: User already authenticated by another middleware.")
+#             return self.get_response(request)
+
+#         try:
+#             # Authentifiez l'utilisateur avec JWTAuthentication
+#             user, token = self.jwt_auth.authenticate(request)
+#             if user:
+#                 request.user = user
+#                 request.auth = token  # Stockez le token pour un usage ultérieur
+#                 logger.info(f"JWTMiddleware: Authentication successful for user {user}")
+#             else:
+#                 logger.warning("JWTMiddleware: No user found in token")
+#                 request.user = AnonymousUser()
+#         except AuthenticationFailed as e:
+#             logger.warning(f"JWTMiddleware: Authentication failed - {str(e)}")
+#             request.user = AnonymousUser()
+#             request.auth = None
+#         except Exception as e:
+#             logger.error(f"JWTMiddleware: Unexpected error during authentication - {str(e)}")
+#             request.user = AnonymousUser()
+#             request.auth = None
+
+#         if isinstance(request.user, AnonymousUser):
+#             raise AuthenticationFailed("Authentication is required")  # Ajout ici
+        
+#         logger.debug(f"Final user on request in middleware: {request.user}, is_authenticated: {request.user.is_authenticated}")
+#         return self.get_response(request)
+
+from rest_framework.exceptions import AuthenticationFailed
+from django.http import JsonResponse
 
 class JWTMiddleware:
     def __init__(self, get_response):
@@ -72,12 +114,6 @@ class JWTMiddleware:
 
     def __call__(self, request):
         logger.debug(f"JWTMiddleware: Processing request for path {request.path}")
-        logger.debug(f"Requête reçue avec en-têtes : {request.headers}")
-
-        # Vérifiez si un utilisateur est déjà authentifié par un autre middleware
-        if hasattr(request, 'user') and request.user.is_authenticated:
-            logger.debug("JWTMiddleware: User already authenticated by another middleware.")
-            return self.get_response(request)
 
         try:
             # Authentifiez l'utilisateur avec JWTAuthentication
@@ -89,17 +125,14 @@ class JWTMiddleware:
             else:
                 logger.warning("JWTMiddleware: No user found in token")
                 request.user = AnonymousUser()
+
         except AuthenticationFailed as e:
             logger.warning(f"JWTMiddleware: Authentication failed - {str(e)}")
-            request.user = AnonymousUser()
-            request.auth = None
+            return JsonResponse({"detail": str(e)}, status=401)  # Retourne une réponse 401 Unauthorized
+
         except Exception as e:
             logger.error(f"JWTMiddleware: Unexpected error during authentication - {str(e)}")
-            request.user = AnonymousUser()
-            request.auth = None
+            return JsonResponse({"detail": "An unexpected error occurred."}, status=500)  # Gestion des erreurs inattendues
 
-        if isinstance(request.user, AnonymousUser):
-            raise AuthenticationFailed("Authentication is required")  # Ajout ici
-        
-        logger.debug(f"Final user on request in middleware: {request.user}, is_authenticated: {request.user.is_authenticated}")
+        # Passe la requête au middleware ou à la vue suivante
         return self.get_response(request)

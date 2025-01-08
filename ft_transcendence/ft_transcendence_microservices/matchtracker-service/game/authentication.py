@@ -127,39 +127,75 @@ logger = logging.getLogger("matchtracker-service")
 #             logger.error(f"Authentication failed: {e}")
 #             raise AuthenticationFailed(f"Invalid or expired token: {e}")
 
+# class JWTAuthentication(BaseAuthentication):
+#     def authenticate(self, request):
+#         logger.info("Authenticating request...")
+#         auth_header = request.headers.get("Authorization")
+#         logger.debug(f"Authorization header: {auth_header}")
+
+#         if not auth_header or not auth_header.startswith("Bearer "):
+#             logger.warning("No token provided or invalid format")
+#             raise AuthenticationFailed("No token provided or invalid format")
+
+#         token = auth_header.split(" ")[1]
+#         logger.debug(f"Token received: {token}")
+
+#         try:
+#             # Décodage et validation du token
+#             decoded_token = AccessToken(token)
+#             logger.debug(f"Decoded token: {decoded_token}")
+#             user_id = decoded_token.get("user_id")
+#             if not user_id:
+#                 raise AuthenticationFailed("Invalid token structure: missing 'user_id'")
+
+#             # Récupération des données utilisateur depuis le service
+#             user_data = get_user_data(user_id, token)
+#             if not user_data:
+#                 logger.warning(f"User not found for user_id {user_id}")
+#                 raise AuthenticationFailed("User not found in User Service")
+
+#             logger.info(f"User data retrieved successfully for user_id {user_id}: {user_data}")
+#             User = namedtuple("User", ["id", "username", "is_authenticated"])
+#             user = User(id=user_data["id"], username=user_data["username"], is_authenticated=True)
+#             logger.debug(f"Returning user: {user}, token: {token}")
+#             return user, token
+
+#         except Exception as e:
+#             logger.error(f"Authentication failed: {e}")
+#             raise AuthenticationFailed(f"Invalid or expired token: {e}")
+from rest_framework.exceptions import AuthenticationFailed
+
 class JWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
-        logger.info("Authenticating request...")
-        auth_header = request.headers.get("Authorization")
-        logger.debug(f"Authorization header: {auth_header}")
-
-        if not auth_header or not auth_header.startswith("Bearer "):
-            logger.warning("No token provided or invalid format")
-            raise AuthenticationFailed("No token provided or invalid format")
-
-        token = auth_header.split(" ")[1]
-        logger.debug(f"Token received: {token}")
-
         try:
-            # Décodage et validation du token
+            auth_header = request.headers.get("Authorization")
+            if not auth_header or not auth_header.startswith("Bearer "):
+                raise AuthenticationFailed("No token provided or invalid format")
+
+            token = auth_header.split(" ")[1]
+            logger.debug(f"Token received: {token}")
+
+            # Décoder et valider le token
             decoded_token = AccessToken(token)
             logger.debug(f"Decoded token: {decoded_token}")
+
             user_id = decoded_token.get("user_id")
             if not user_id:
-                raise AuthenticationFailed("Invalid token structure: missing 'user_id'")
+                raise AuthenticationFailed("Invalid token structure")
 
-            # Récupération des données utilisateur depuis le service
+            # Récupérer l'utilisateur
             user_data = get_user_data(user_id, token)
             if not user_data:
-                logger.warning(f"User not found for user_id {user_id}")
-                raise AuthenticationFailed("User not found in User Service")
+                raise AuthenticationFailed("User not found")
 
-            logger.info(f"User data retrieved successfully for user_id {user_id}: {user_data}")
-            User = namedtuple("User", ["id", "username", "is_authenticated"])
-            user = User(id=user_data["id"], username=user_data["username"], is_authenticated=True)
-            logger.debug(f"Returning user: {user}, token: {token}")
-            return user, token
+            user = namedtuple("User", ["id", "username", "is_authenticated"])(
+                id=user_data["id"], username=user_data["username"], is_authenticated=True
+            )
+            return (user, token)
 
+        except AuthenticationFailed as e:
+            logger.warning(f"Authentication failed: {e}")
+            raise
         except Exception as e:
-            logger.error(f"Authentication failed: {e}")
-            raise AuthenticationFailed(f"Invalid or expired token: {e}")
+            logger.error(f"Unexpected error during authentication: {e}")
+            raise AuthenticationFailed("Invalid or expired token")

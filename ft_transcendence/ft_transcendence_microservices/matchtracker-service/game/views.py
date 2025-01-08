@@ -57,7 +57,7 @@ from .utils import validate_user_token
 # class GameViewSet(viewsets.ModelViewSet):
 #     queryset = GameSession.objects.all()
 #     serializer_class = GameSerializer
-#     authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
 #     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
 #     def get_queryset(self):
@@ -74,7 +74,7 @@ from .utils import validate_user_token
 #     """
 #     queryset = GameSession.objects.all()
 #     serializer_class = GameSerializer
-#     authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
 
 #     @action(detail=True, methods=['patch'], url_path='end')
 #     def end_game(self, request, pk=None):
@@ -234,7 +234,7 @@ class UpdateGameScoreView(APIView):
     """
     Vue pour mettre à jour le score d'une session de jeu.
     """
-    authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def post(self, request, game_id):
@@ -302,7 +302,7 @@ class TournamentViewSet(viewsets.ModelViewSet):
     """
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
-    authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def perform_create(self, serializer):
@@ -316,7 +316,7 @@ class TournamentMatchViewSet(viewsets.ModelViewSet):
     """
     queryset = TournamentMatch.objects.all()
     serializer_class = TournamentMatchSerializer
-    authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def perform_create(self, serializer):
@@ -331,7 +331,7 @@ class MatchHistoryView(APIView):
     """
     Vue pour récupérer l'historique des matchs d'un utilisateur.
     """
-    authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def get(self, request):
