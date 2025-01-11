@@ -212,7 +212,7 @@ class TournamentSerializer(serializers.ModelSerializer):
 
     def validate_all_players(self, players):
         """
-        Valide que les joueurs sont tous des amis valides et qu'ils incluent l'utilisateur connecté.
+        Valide que les joueurs sont tous des amis valides et inclut l'utilisateur connecté automatiquement.
         """
         user = self.context['request'].user
         token = self.context['request'].auth
@@ -232,7 +232,7 @@ class TournamentSerializer(serializers.ModelSerializer):
             friends_ids = {friend['id'] for friend in friends_data}
             logger.debug(f"IDs des amis valides : {friends_ids}")
 
-            invalid_players = [player for player in players if player != user.id and player not in friends_ids]
+            invalid_players = [player for player in players if player not in friends_ids]
             logger.debug(f"Joueurs invalides détectés : {invalid_players}")
 
             if invalid_players:
@@ -240,8 +240,9 @@ class TournamentSerializer(serializers.ModelSerializer):
                     f"Les utilisateurs suivants ne sont pas vos amis : {', '.join(map(str, invalid_players))}."
                 )
 
+            # Ajouter automatiquement l'utilisateur connecté s'il n'est pas déjà dans la liste
             if user.id not in players:
-                raise serializers.ValidationError("Vous devez inclure vous-même comme participant au tournoi.")
+                players.append(user.id)
 
             return players
 
@@ -264,6 +265,10 @@ class TournamentSerializer(serializers.ModelSerializer):
         """
         players = validated_data.pop('all_players', [])
         user = self.context['request'].user
+
+        # Ajouter l'utilisateur connecté à la liste des joueurs s'il n'est pas déjà inclus
+        if user.id not in players:
+            players.append(user.id)
 
         tournament = Tournament.objects.create(
             creator_id=user.id,
