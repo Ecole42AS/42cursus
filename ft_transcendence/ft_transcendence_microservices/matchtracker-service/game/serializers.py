@@ -210,6 +210,35 @@ class TournamentSerializer(serializers.ModelSerializer):
                 display_names.append('Unknown')
         return display_names
 
+class TournamentSerializer(serializers.ModelSerializer):
+    players_display_names = serializers.SerializerMethodField()
+    all_players = serializers.ListField(
+        child=serializers.IntegerField(), write_only=True
+    )
+
+    class Meta:
+        model = Tournament
+        fields = [
+            'id', 'name', 'creator_id', 'players', 'all_players',
+            'players_display_names', 'created_at'
+        ]
+        read_only_fields = ['id', 'created_at', 'players_display_names', 'creator_id']
+
+    def get_players_display_names(self, obj):
+        """
+        Récupère les noms des joueurs via le microservice utilisateur.
+        """
+        token = self.context['request'].auth
+        display_names = []
+        for player_id in obj.players:
+            try:
+                user_profile = get_user_profile(player_id, token)
+                display_names.append(user_profile.get('display_name', 'Unknown'))
+            except Exception as e:
+                logger.warning(f"Erreur lors de la récupération du profil utilisateur pour ID {player_id}: {e}")
+                display_names.append('Unknown')
+        return display_names
+
     def validate_all_players(self, players):
         """
         Valide que les joueurs sont tous des amis valides et inclut l'utilisateur connecté automatiquement.
@@ -232,7 +261,7 @@ class TournamentSerializer(serializers.ModelSerializer):
             friends_ids = {friend['id'] for friend in friends_data}
             logger.debug(f"IDs des amis valides : {friends_ids}")
 
-            invalid_players = [player for player in players if player not in friends_ids]
+            invalid_players = [player for player in players if player != user.id and player not in friends_ids]
             logger.debug(f"Joueurs invalides détectés : {invalid_players}")
 
             if invalid_players:
@@ -255,7 +284,7 @@ class TournamentSerializer(serializers.ModelSerializer):
         Validation globale des données.
         """
         players = data.get('all_players', [])
-        if len(players) < 2:
+        if len(players) <= 2:
             raise serializers.ValidationError("Vous devez sélectionner au moins deux joueurs pour créer un tournoi.")
         return data
 
@@ -270,12 +299,13 @@ class TournamentSerializer(serializers.ModelSerializer):
         if user.id not in players:
             players.append(user.id)
 
+        # Créez le tournoi
         tournament = Tournament.objects.create(
             creator_id=user.id,
-            name=validated_data['name']
+            name=validated_data['name'],
+            players=players
         )
-        tournament.players = players
-        tournament.save()
+
         return tournament
 
     def update(self, instance, validated_data):
@@ -286,6 +316,7 @@ class TournamentSerializer(serializers.ModelSerializer):
         if players is not None:
             instance.players = players
         return super().update(instance, validated_data)
+
 
 # class TournamentSerializer(serializers.ModelSerializer):
 #     players_display_names = serializers.SerializerMethodField()

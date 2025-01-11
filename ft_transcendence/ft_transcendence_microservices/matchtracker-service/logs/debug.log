@@ -71,3 +71,152 @@ DEBUG 2025-01-11 17:52:52,701 serializers IDs des amis valides : {2, 3}
 DEBUG 2025-01-11 17:52:52,701 serializers Joueurs invalides détectés : []
 ERROR 2025-01-11 17:52:52,701 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Vous devez inclure vous-même comme participant au tournoi.', code='invalid')]
 WARNING 2025-01-11 17:52:52,701 basehttp "POST /tournaments/ HTTP/1.1" 400 212
+DEBUG 2025-01-11 20:46:08,711 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 20:46:08,711 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 20:46:08,721 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 20:46:08,729 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 20:46:08,730 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 20:46:08,730 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 20:46:08,741 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 20:46:08,749 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 20:46:08,749 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 20:46:08,749 serializers Joueurs invalides détectés : [1, 4]
+ERROR 2025-01-11 20:46:08,749 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 1, 4.', code='invalid')]
+WARNING 2025-01-11 20:46:08,750 basehttp "POST /tournaments/ HTTP/1.1" 400 154
+DEBUG 2025-01-11 20:46:42,705 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 20:46:42,706 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 20:46:42,706 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 20:46:42,721 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 20:46:42,721 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 20:46:42,721 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 20:46:42,765 basehttp "GET /tournaments/ HTTP/1.1" 200 398
+DEBUG 2025-01-11 21:16:23,447 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:16:23,447 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:16:23,457 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:16:23,469 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:16:23,469 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:16:23,470 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:16:23,481 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:16:23,489 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:16:23,489 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:16:23,489 serializers Joueurs invalides détectés : [1, 4]
+ERROR 2025-01-11 21:16:23,489 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 1, 4.', code='invalid')]
+WARNING 2025-01-11 21:16:23,489 basehttp "POST /tournaments/ HTTP/1.1" 400 154
+DEBUG 2025-01-11 21:16:59,310 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:16:59,310 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:16:59,322 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:16:59,335 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:16:59,335 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:16:59,336 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:16:59,348 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:16:59,357 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:16:59,357 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:16:59,357 serializers Joueurs invalides détectés : [4]
+ERROR 2025-01-11 21:16:59,357 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 4.', code='invalid')]
+WARNING 2025-01-11 21:16:59,357 basehttp "POST /tournaments/ HTTP/1.1" 400 151
+DEBUG 2025-01-11 21:21:09,385 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:21:09,385 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:21:09,395 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:21:09,409 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:21:09,409 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:21:09,409 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:21:09,420 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:21:09,428 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:21:09,428 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:21:09,428 serializers Joueurs invalides détectés : [4]
+ERROR 2025-01-11 21:21:09,428 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 4.', code='invalid')]
+WARNING 2025-01-11 21:21:09,429 basehttp "POST /tournaments/ HTTP/1.1" 400 151
+DEBUG 2025-01-11 21:21:15,366 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:21:15,366 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:21:15,367 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:21:15,374 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:21:15,374 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:21:15,374 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:21:15,385 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:21:15,393 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:21:15,393 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:21:15,393 serializers Joueurs invalides détectés : [4]
+ERROR 2025-01-11 21:21:15,393 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 4.', code='invalid')]
+WARNING 2025-01-11 21:21:15,393 basehttp "POST /tournaments/ HTTP/1.1" 400 151
+DEBUG 2025-01-11 21:22:43,724 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:22:43,724 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:22:43,725 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:22:43,733 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:22:43,733 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:22:43,734 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:22:43,745 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:22:43,753 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:22:43,753 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:22:43,753 serializers Joueurs invalides détectés : []
+INFO 2025-01-11 21:22:43,778 basehttp "POST /tournaments/ HTTP/1.1" 201 216
+DEBUG 2025-01-11 21:23:00,850 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:23:00,850 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:00,851 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:23:00,864 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:23:00,864 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:00,865 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:00,878 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:00,886 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:23:00,886 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:23:00,886 serializers Joueurs invalides détectés : []
+INFO 2025-01-11 21:23:00,910 basehttp "POST /tournaments/ HTTP/1.1" 201 215
+DEBUG 2025-01-11 21:23:12,667 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:23:12,667 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:12,667 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:23:12,675 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:23:12,676 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:12,676 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:12,687 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:12,694 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:23:12,694 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:23:12,694 serializers Joueurs invalides détectés : []
+INFO 2025-01-11 21:23:12,709 basehttp "POST /tournaments/ HTTP/1.1" 201 189
+DEBUG 2025-01-11 21:23:54,971 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:23:54,971 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:54,982 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:23:54,995 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:23:54,996 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:54,996 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:55,011 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:55,018 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:23:55,019 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:23:55,019 serializers Joueurs invalides détectés : []
+WARNING 2025-01-11 21:23:55,019 basehttp "POST /tournaments/ HTTP/1.1" 400 54
+DEBUG 2025-01-11 21:23:58,174 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:23:58,174 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:58,175 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:23:58,183 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:23:58,183 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:58,183 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:58,195 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:23:58,203 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:23:58,203 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:23:58,203 serializers Joueurs invalides détectés : []
+WARNING 2025-01-11 21:23:58,203 basehttp "POST /tournaments/ HTTP/1.1" 400 54
+DEBUG 2025-01-11 21:24:04,186 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:24:04,186 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:24:04,186 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+INFO 2025-01-11 21:24:04,194 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:24:04,194 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:24:04,194 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:24:04,205 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+DEBUG 2025-01-11 21:24:04,212 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:24:04,212 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:24:04,212 serializers Joueurs invalides détectés : []
+INFO 2025-01-11 21:24:04,227 basehttp "POST /tournaments/ HTTP/1.1" 201 189
+DEBUG 2025-01-11 21:27:27,915 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:27:27,915 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI3MTE4LCJpYXQiOjE3MzY2MjQ3MTgsImp0aSI6ImE3YWQzNTY1NzIwYjRhNzc5MWQ0OWFjY2FjY2IwODk5IiwidXNlcl9pZCI6MX0.fxV02YNAzQzuC97kYmtnYXZEvxLOMMo9R2t32kiqEqI
+ERROR 2025-01-11 21:27:27,927 authentication Unexpected error during authentication: Token is invalid or expired
+WARNING 2025-01-11 21:27:27,927 middleware JWTMiddleware: Authentication failed - Invalid or expired token
+WARNING 2025-01-11 21:27:27,927 basehttp "POST /tournaments/ HTTP/1.1" 401 38
+DEBUG 2025-01-11 21:27:43,728 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-11 21:27:43,728 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI5NjU0LCJpYXQiOjE3MzY2MjcyNTQsImp0aSI6ImIxN2VkN2FkNWM5NTQ5NjZiNTkwNzE0OWM4NzE1N2Y1IiwidXNlcl9pZCI6MX0.S-KHMmPDhGFQtGGeal0pnTteH2e82isiVHgm3RkfeGo
+DEBUG 2025-01-11 21:27:43,728 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI5NjU0LCJpYXQiOjE3MzY2MjcyNTQsImp0aSI6ImIxN2VkN2FkNWM5NTQ5NjZiNTkwNzE0OWM4NzE1N2Y1IiwidXNlcl9pZCI6MX0.S-KHMmPDhGFQtGGeal0pnTteH2e82isiVHgm3RkfeGo
+INFO 2025-01-11 21:27:43,738 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-11 21:27:43,738 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI5NjU0LCJpYXQiOjE3MzY2MjcyNTQsImp0aSI6ImIxN2VkN2FkNWM5NTQ5NjZiNTkwNzE0OWM4NzE1N2Y1IiwidXNlcl9pZCI6MX0.S-KHMmPDhGFQtGGeal0pnTteH2e82isiVHgm3RkfeGo
+DEBUG 2025-01-11 21:27:43,739 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI5NjU0LCJpYXQiOjE3MzY2MjcyNTQsImp0aSI6ImIxN2VkN2FkNWM5NTQ5NjZiNTkwNzE0OWM4NzE1N2Y1IiwidXNlcl9pZCI6MX0.S-KHMmPDhGFQtGGeal0pnTteH2e82isiVHgm3RkfeGo
+DEBUG 2025-01-11 21:27:43,749 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjI5NjU0LCJpYXQiOjE3MzY2MjcyNTQsImp0aSI6ImIxN2VkN2FkNWM5NTQ5NjZiNTkwNzE0OWM4NzE1N2Y1IiwidXNlcl9pZCI6MX0.S-KHMmPDhGFQtGGeal0pnTteH2e82isiVHgm3RkfeGo
+DEBUG 2025-01-11 21:27:43,757 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}]
+DEBUG 2025-01-11 21:27:43,757 serializers IDs des amis valides : {2, 3}
+DEBUG 2025-01-11 21:27:43,757 serializers Joueurs invalides détectés : []
+WARNING 2025-01-11 21:27:43,757 basehttp "POST /tournaments/ HTTP/1.1" 400 95
