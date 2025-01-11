@@ -156,6 +156,13 @@ def get_user_profile(user_id, token):
 
 
 
+import logging
+import requests
+from django.conf import settings
+from rest_framework.exceptions import ValidationError
+
+logger = logging.getLogger(__name__)
+
 def get_friendship(user_id, token):
     """
     Récupère les amitiés pour un utilisateur donné depuis le microservice `user`.
@@ -163,15 +170,31 @@ def get_friendship(user_id, token):
     try:
         headers = {"Authorization": f"Bearer {token}"}
         url = f"{settings.USER_SERVICE_URL}/friendships/{user_id}/"
-        response = requests.get(url, headers=headers, timeout=5)
-        response.raise_for_status()
-        return response.json() 
+        timeout = getattr(settings, "USER_SERVICE_TIMEOUT", 5)  # Timeout configurable
+
+        logger.debug(f"Appel à {url} pour récupérer les amitiés avec user_id={user_id}")
+        response = requests.get(url, headers=headers, timeout=timeout)
+
+        response.raise_for_status()  # Génère une exception pour les codes HTTP 4xx/5xx
+
+        try:
+            return response.json()  # Renvoie les amitiés au format JSON
+        except ValueError:
+            logger.error(f"Réponse non JSON reçue du service utilisateur : {response.text}")
+            raise ValidationError("Le service des amis a renvoyé une réponse invalide.")
+    
+    except requests.exceptions.Timeout:
+        logger.error(f"Timeout lors de la récupération des amitiés pour user_id {user_id}.")
+        raise ValidationError("Le service des amis ne répond pas dans les délais.")
+    
     except requests.exceptions.HTTPError as http_err:
-        logger.error(f"HTTP error while fetching friendships for user_id {user_id}: {http_err}")
-        return None
+        logger.error(f"Erreur HTTP {response.status_code} lors de la récupération des amitiés : {http_err}")
+        raise ValidationError(f"Erreur HTTP lors de l'appel au service des amis : {response.status_code}")
+    
     except requests.RequestException as e:
-        logger.error(f"Erreur lors de la communication avec user-service : {e}")
-        return None
+        logger.error(f"Erreur lors de la communication avec le service utilisateur : {e}")
+        raise ValidationError("Une erreur est survenue lors de la communication avec le service utilisateur.")
+
 
 class TokenManager:
     _cached_token = None

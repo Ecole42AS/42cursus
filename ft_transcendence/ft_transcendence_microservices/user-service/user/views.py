@@ -12,8 +12,6 @@ from .models import Profile
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
 import logging
-from django.core.exceptions import ValidationError
-
 
 
 CustomUser = get_user_model()
@@ -101,11 +99,29 @@ class FriendsListView(APIView):
         serializer = UserSerializer([f.to_user for f in friendships], many=True)
         return Response(serializer.data)
     
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status, permissions
-from user.models import CustomUser
-from user.serializers import UserSerializer
+class FriendshipsView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, user_id):
+        """
+        Retourne la liste des amis pour un utilisateur donné.
+        """
+        try:
+            # Récupérer l'utilisateur cible
+            user = CustomUser.objects.get(pk=user_id)
+            
+            # Récupérer ses amis
+            friendships = Friendship.objects.filter(from_user=user)
+            friends = [friendship.to_user for friendship in friendships]
+
+            # Sérialiser les données des amis
+            serializer = UserSerializer(friends, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'Utilisateur non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': f"Erreur interne : {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
 
 class UserDetailView(APIView):
     permission_classes = [permissions.AllowAny]
