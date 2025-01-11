@@ -45,6 +45,8 @@ class TournamentMatch(models.Model):
     winner_id = models.IntegerField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
     scheduled_at = models.DateTimeField()
+    round_number = models.IntegerField(default=1)
+    advance_to_next_round = models.BooleanField(default=False)
 
 
     def __str__(self):

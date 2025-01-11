@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import GameSession, Tournament, TournamentMatch
-from .utils import get_friendship, get_user_data, get_user_profile
+from .utils import get_friendship, get_user_data, get_user_profile, generate_elimination_matches
 import logging
 
 logger = logging.getLogger("matchtracker-service")
@@ -220,7 +220,7 @@ class TournamentSerializer(serializers.ModelSerializer):
         model = Tournament
         fields = [
             'id', 'name', 'creator_id', 'players', 'all_players',
-            'players_display_names', 'created_at'
+            'players_display_names',  'created_at'
         ]
         read_only_fields = ['id', 'created_at', 'players_display_names', 'creator_id']
 
@@ -284,8 +284,16 @@ class TournamentSerializer(serializers.ModelSerializer):
         Validation globale des données.
         """
         players = data.get('all_players', [])
-        if len(players) <= 2:
-            raise serializers.ValidationError("Vous devez sélectionner au moins deux joueurs pour créer un tournoi.")
+        user = self.context['request'].user
+
+        if user.id not in players:
+            players.append(user.id)
+
+        if len(players) % 2 != 0:
+            raise serializers.ValidationError("Le nombre de joueurs doit être pair pour créer un tournoi, sachant que vous êtes inclus.")
+
+        if len(players) < 4:
+            raise serializers.ValidationError("Un tournoi nécessite au moins 4 joueurs, vous inclus.")
         return data
 
     def create(self, validated_data):
@@ -299,14 +307,33 @@ class TournamentSerializer(serializers.ModelSerializer):
         if user.id not in players:
             players.append(user.id)
 
-        # Créez le tournoi
-        tournament = Tournament.objects.create(
-            creator_id=user.id,
-            name=validated_data['name'],
-            players=players
-        )
+        players = list(set(players))
 
-        return tournament
+
+        # Créez le tournoi
+        try:
+        # Créez le tournoi
+            tournament = Tournament.objects.create(
+                creator_id=user.id,
+                name=validated_data['name'],
+                players=players
+            )
+            logger.info(f"Tournoi '{tournament.name}' créé avec succès par l'utilisateur ID {user.id}")
+
+            # Générer les matchs pour le tournoi
+            try:
+                generate_elimination_matches(tournament)
+                logger.info(f"Les matchs pour le tournoi '{tournament.name}' ont été générés avec succès.")
+            except ValueError as e:
+                logger.error(f"Erreur lors de la génération des matchs : {e}")
+                raise serializers.ValidationError(f"Erreur lors de la génération des matchs : {e}")
+
+            return tournament
+
+        except Exception as e:
+            logger.error(f"Erreur lors de la création du tournoi : {e}")
+            raise serializers.ValidationError(f"Erreur inattendue lors de la création du tournoi : {e}")
+
 
     def update(self, instance, validated_data):
         """
@@ -314,7 +341,7 @@ class TournamentSerializer(serializers.ModelSerializer):
         """
         players = validated_data.pop('all_players', None)
         if players is not None:
-            instance.players = players
+            instance.players = list(set(players))
         return super().update(instance, validated_data)
 
 
