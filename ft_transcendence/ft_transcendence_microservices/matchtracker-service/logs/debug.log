@@ -1,123 +1,32 @@
-DEBUG 2025-01-11 23:01:47,560 middleware JWTMiddleware: Processing request for path /tournaments/
-DEBUG 2025-01-11 23:01:47,560 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:01:47,560 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-INFO 2025-01-11 23:01:47,568 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
-DEBUG 2025-01-11 23:01:47,568 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:01:47,568 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-ERROR 2025-01-11 23:01:47,576 log Internal Server Error: /tournaments/
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-    response = get_response(request)
-  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
-    return view_func(request, *args, **kwargs)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/viewsets.py", line 124, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/mixins.py", line 18, in create
-    serializer.is_valid(raise_exception=True)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 223, in is_valid
-    self._validated_data = self.run_validation(self.initial_data)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 442, in run_validation
-    value = self.to_internal_value(data)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
-    for field in fields:
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
-    for field in self.fields.values():
-  File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 372, in fields
-    for key, value in self.get_fields().items():
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 1103, in get_fields
-    field_class, field_kwargs = self.build_field(
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 1249, in build_field
-    return self.build_unknown_field(field_name, model_class)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 1367, in build_unknown_field
-    raise ImproperlyConfigured(
-django.core.exceptions.ImproperlyConfigured: Field name `round_number` is not valid for model `Tournament` in `game.serializers.TournamentSerializer`.
-ERROR 2025-01-11 23:01:47,576 basehttp "POST /tournaments/ HTTP/1.1" 500 145
-DEBUG 2025-01-11 23:04:29,147 middleware JWTMiddleware: Processing request for path /tournaments/
-DEBUG 2025-01-11 23:04:29,147 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:04:29,148 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-INFO 2025-01-11 23:04:29,158 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
-DEBUG 2025-01-11 23:04:29,158 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:04:29,158 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-ERROR 2025-01-11 23:04:29,166 log Internal Server Error: /tournaments/
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-    response = get_response(request)
-  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
-    return view_func(request, *args, **kwargs)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/viewsets.py", line 124, in view
-    return self.dispatch(request, *args, **kwargs)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
-    response = self.handle_exception(exc)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
-    self.raise_uncaught_exception(exc)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
-    raise exc
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
-    response = handler(request, *args, **kwargs)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/mixins.py", line 18, in create
-    serializer.is_valid(raise_exception=True)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 223, in is_valid
-    self._validated_data = self.run_validation(self.initial_data)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 442, in run_validation
-    value = self.to_internal_value(data)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 495, in to_internal_value
-    for field in fields:
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 378, in _writable_fields
-    for field in self.fields.values():
-  File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
-    res = instance.__dict__[self.name] = self.func(instance)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 372, in fields
-    for key, value in self.get_fields().items():
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 1103, in get_fields
-    field_class, field_kwargs = self.build_field(
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 1249, in build_field
-    return self.build_unknown_field(field_name, model_class)
-  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 1367, in build_unknown_field
-    raise ImproperlyConfigured(
-django.core.exceptions.ImproperlyConfigured: Field name `round_number` is not valid for model `Tournament` in `game.serializers.TournamentSerializer`.
-ERROR 2025-01-11 23:04:29,166 basehttp "POST /tournaments/ HTTP/1.1" 500 145
-DEBUG 2025-01-11 23:07:21,223 middleware JWTMiddleware: Processing request for path /tournaments/
-DEBUG 2025-01-11 23:07:21,223 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:21,235 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-INFO 2025-01-11 23:07:21,255 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
-DEBUG 2025-01-11 23:07:21,256 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:21,256 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:21,272 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:21,282 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 5, 'username': 'test_user22', 'email': 'test_user22@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}]
-DEBUG 2025-01-11 23:07:21,282 serializers IDs des amis valides : {2, 3, 4, 5}
-DEBUG 2025-01-11 23:07:21,282 serializers Joueurs invalides détectés : []
-WARNING 2025-01-11 23:07:21,283 basehttp "POST /tournaments/ HTTP/1.1" 400 54
-DEBUG 2025-01-11 23:07:28,385 middleware JWTMiddleware: Processing request for path /tournaments/
-DEBUG 2025-01-11 23:07:28,386 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:28,386 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-INFO 2025-01-11 23:07:28,393 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
-DEBUG 2025-01-11 23:07:28,394 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:28,394 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:28,404 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:28,411 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 5, 'username': 'test_user22', 'email': 'test_user22@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}]
-DEBUG 2025-01-11 23:07:28,411 serializers IDs des amis valides : {2, 3, 4, 5}
-DEBUG 2025-01-11 23:07:28,411 serializers Joueurs invalides détectés : []
-INFO 2025-01-11 23:07:28,413 serializers Tournoi 'My FINAL122 Tournament' créé avec succès par l'utilisateur ID 1
-INFO 2025-01-11 23:07:28,417 serializers Les matchs pour le tournoi 'My FINAL122 Tournament' ont été générés avec succès.
-INFO 2025-01-11 23:07:28,441 basehttp "POST /tournaments/ HTTP/1.1" 201 248
-DEBUG 2025-01-11 23:07:36,793 middleware JWTMiddleware: Processing request for path /tournament-matches/
-DEBUG 2025-01-11 23:07:36,793 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:36,793 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-INFO 2025-01-11 23:07:36,801 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
-DEBUG 2025-01-11 23:07:36,801 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-DEBUG 2025-01-11 23:07:36,801 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjM0NTQ1LCJpYXQiOjE3MzY2MzIxNDUsImp0aSI6IjQxZDlmNjVmZmM4YzQ0MjhhOTA5NjE0ZTZiZjlmNWUzIiwidXNlcl9pZCI6MX0.3xhq_b4MohYoxjlLzRZQOdJGMQg-x9CWEpTrvLowTZY
-INFO 2025-01-11 23:07:36,812 basehttp "GET /tournament-matches/ HTTP/1.1" 200 1690
+DEBUG 2025-01-12 22:01:03,638 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-12 22:01:03,638 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:03,648 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+INFO 2025-01-12 22:01:03,660 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-12 22:01:03,660 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:03,660 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:03,672 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:03,681 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 5, 'username': 'test_user22', 'email': 'test_user22@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}]
+DEBUG 2025-01-12 22:01:03,681 serializers IDs des amis valides : {2, 3, 4, 5}
+DEBUG 2025-01-12 22:01:03,681 serializers Joueurs invalides détectés : []
+INFO 2025-01-12 22:01:03,683 serializers Tournoi 'My first game session creation 3452222 Tournament' créé avec succès par l'utilisateur ID 1
+INFO 2025-01-12 22:01:03,686 serializers Les matchs pour le tournoi 'My first game session creation 3452222 Tournament' ont été générés avec succès.
+INFO 2025-01-12 22:01:03,711 basehttp "POST /tournaments/ HTTP/1.1" 201 273
+DEBUG 2025-01-12 22:01:08,129 middleware JWTMiddleware: Processing request for path /tournament-matches/
+DEBUG 2025-01-12 22:01:08,129 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:08,129 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+INFO 2025-01-12 22:01:08,137 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-12 22:01:08,138 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:08,138 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+INFO 2025-01-12 22:01:08,150 basehttp "GET /tournament-matches/ HTTP/1.1" 200 3352
+DEBUG 2025-01-12 22:01:12,976 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-01-12 22:01:12,976 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:12,976 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+INFO 2025-01-12 22:01:12,984 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-12 22:01:12,984 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:12,984 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
+DEBUG 2025-01-12 22:01:12,991 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-01-12 22:01:12,991 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-01-12 22:01:12,995 views GameViewSet: 1 parties trouvées pour user_id=1
+DEBUG 2025-01-12 22:01:12,996 serializers Fetching user data for user_id 1 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y, endpoint=/games/
+DEBUG 2025-01-12 22:01:13,002 serializers Fetching user data for user_id 2 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y, endpoint=/games/
+INFO 2025-01-12 22:01:13,009 basehttp "GET /games/ HTTP/1.1" 200 180
