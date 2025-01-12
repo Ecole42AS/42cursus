@@ -324,38 +324,30 @@ def generate_elimination_matches(tournament):
 
     from .models import TournamentMatch
 
-    # Assurez-vous que `tournament.players` est une liste d'IDs de joueurs
+    # Récupérer les joueurs à partir du tournoi
     players = list(tournament.players)  # Si c'est un champ JSONField
-    if len(players) < 3:
-        raise ValueError("Le tournoi doit avoir au moins trois joueurs.")
 
     matches = []
     round_number = 1
 
+    # Génération des matchs par rounds
     while len(players) > 1:
         round_matches = []
         for i in range(0, len(players), 2):
-            if i + 1 < len(players):
-                # Créer un match entre deux joueurs
-                match = TournamentMatch.objects.create(
-                    tournament=tournament,
-                    player1_id=players[i],
-                    player2_id=players[i + 1],
-                    scheduled_at=timezone.now(),
-                    round_number=round_number
-                )
-                round_matches.append(match)
-                matches.append(match)
-            else:
-                # Si un joueur n'a pas d'adversaire, il avance automatiquement
-                logger.info(f"Player {players[i]} advances automatically to the next round.")
-                round_matches.append({"winner_id": players[i]})  # Marquer comme gagnant temporaire
+            # Créer un match entre deux joueurs
+            match = TournamentMatch.objects.create(
+                tournament=tournament,
+                player1_id=players[i],
+                player2_id=players[i + 1],
+                scheduled_at=timezone.now(),
+                round_number=round_number
+            )
+            round_matches.append(match)
+            matches.append(match)
 
-        # Préparer les joueurs pour le prochain tour
+        # Préparer les joueurs pour le prochain tour en fonction des gagnants
         players = [
-            match.winner_id for match in round_matches if isinstance(match, TournamentMatch) and match.winner_id
-        ] + [
-            match["winner_id"] for match in round_matches if isinstance(match, dict)
+            match.winner_id for match in round_matches if match.winner_id
         ]
 
         round_number += 1

@@ -13,20 +13,21 @@ class GameSession(models.Model):
     start_time = models.DateTimeField(null=True, blank=True)
     duration = models.IntegerField(default=60)
     ended_at = models.DateTimeField(null=True, blank=True)
-
+    
     def __str__(self):
-        token = TokenManager.get_jwt_token()  # Utilisez la méthode utilitaire
-        player1 = get_user(self.player1_id, token)
-        player2 = get_user(self.player2_id, token)
+        try:
+            token = TokenManager.get_jwt_token()
+            player1 = get_user(self.player1_id, token)
+            player2 = get_user(self.player2_id, token)
 
-        if player1 and player2:
-            return f"GameSession {self.id} between {player1['username']} and {player2['username']}"
-        elif player1:
-            return f"GameSession {self.id} with {player1['username']} (player2 unknown)"
-        elif player2:
-            return f"GameSession {self.id} with {player2['username']} (player1 unknown)"
-        else:
-            return f"GameSession {self.id} with unknown players"
+            if player1 and player2:
+                return f"GameSession {self.id} between {player1['username']} and {player2['username']}"
+            elif player1:
+                return f"GameSession {self.id} with {player1['username']} (player2 unknown)"
+            elif player2:
+                return f"GameSession {self.id} with {player2['username']} (player1 unknown)"
+        except Exception as e:
+            return f"GameSession {self.id} with unknown players (error: {e})"
         
 class Tournament(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -40,6 +41,7 @@ class Tournament(models.Model):
 
 class TournamentMatch(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    game_session = models.ForeignKey(GameSession, null=True, blank=True, on_delete=models.SET_NULL)
     player1_id = models.IntegerField(null=True, blank=True)
     player2_id = models.IntegerField(null=True, blank=True)
     winner_id = models.IntegerField(null=True, blank=True)
@@ -56,15 +58,16 @@ class TournamentMatch(models.Model):
         """
         Génère une chaîne de caractères pour représenter un match de tournoi.
         """
-        token = TokenManager.get_jwt_token()  # Utilise la méthode statique du modèle GameSession
-        player1 = get_user(self.player1_id, token)
-        player2 = get_user(self.player2_id, token)
+        try:
+            token = TokenManager.get_jwt_token()
+            player1 = get_user(self.player1_id, token)
+            player2 = get_user(self.player2_id, token)
 
-        if player1 and player2:
-            return f"Match in {self.tournament.name} between {player1['username']} and {player2['username']}"
-        elif player1:
-            return f"Match in {self.tournament.name} with {player1['username']} (player2 unknown)"
-        elif player2:
-            return f"Match in {self.tournament.name} with {player2['username']} (player1 unknown)"
-        else:
-            return f"Match in {self.tournament.name} with unknown players"
+            if player1 and player2:
+                return f"Match in {self.tournament.name} between {player1['username']} and {player2['username']}"
+            elif player1:
+                return f"Match in {self.tournament.name} with {player1['username']} (player2 unknown)"
+            elif player2:
+                return f"Match in {self.tournament.name} with {player2['username']} (player1 unknown)"
+        except Exception as e:
+            return f"Match in {self.tournament.name} with unknown players (error: {e})"
