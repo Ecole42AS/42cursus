@@ -322,9 +322,9 @@ class TournamentViewSet(viewsets.ModelViewSet):
     # authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
-    def perform_create(self, serializer):
-        creator_id = self.request.user.id  # Récupération depuis JWT
-        serializer.save(creator_id=creator_id)
+    # def perform_create(self, serializer):
+    #     logger.debug(f"Création d'un tournoi par l'utilisateur {self.request.user.id}")
+    #     serializer.save()
 
 
 class TournamentMatchViewSet(viewsets.ModelViewSet):

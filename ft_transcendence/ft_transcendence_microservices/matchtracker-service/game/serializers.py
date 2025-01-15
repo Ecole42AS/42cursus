@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import GameSession, Tournament, TournamentMatch
-from .utils import get_friendship, get_user_data, get_user_profile, generate_elimination_matches
+from .utils import generate_elimination_matches
+from .utils import get_friendship, get_user_data, get_user_profile
 import logging
 
 logger = logging.getLogger("matchtracker-service")
@@ -296,43 +297,136 @@ class TournamentSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Un tournoi nécessite au moins 4 joueurs, vous inclus.")
         return data
 
+# def create(self, validated_data):
+#     """
+#     Crée un tournoi avec les données validées.
+#     """
+#     logger.debug(f"Création d'un tournoi avec les données suivantes : {validated_data}")
+#     # Supprimer `all_players` car il n'est pas un champ du modèle Tournament
+#     players = validated_data.pop('all_players', [])
+#     user = self.context['request'].user
+
+#     # Ajouter l'utilisateur connecté à la liste des joueurs s'il n'est pas déjà inclus
+#     if user.id not in players:
+#         players.append(user.id)
+
+#     # Assurer l'unicité des joueurs
+#     players = list(set(players))
+
+#     logger.debug(f"Création du tournoi avec les joueurs suivants : {players}")
+
+#     # Valider les contraintes de nombre de joueurs
+#     if len(players) < 4:
+#         raise serializers.ValidationError("Le tournoi doit avoir au moins quatre joueurs.")
+#     if len(players) % 2 != 0:
+#         raise serializers.ValidationError("Le nombre de joueurs doit être pair.")
+
+#     try:
+#         # Créer le tournoi
+#         tournament = Tournament.objects.create(
+#             creator_id=user.id,
+#             name=validated_data['name'],
+#             players=players  # JSONField dans le modèle
+#         )
+#         logger.info(f"Tournoi '{tournament.name}' créé avec succès par l'utilisateur ID {user.id}")
+
+#         # Générer les matchs pour le tournoi
+#         try:
+#             generate_elimination_matches(tournament)
+#             logger.info(f"Les matchs pour le tournoi '{tournament.name}' ont été générés avec succès.")
+#         except ValueError as e:
+#             logger.error(f"Erreur lors de la génération des matchs : {e}")
+#             raise serializers.ValidationError(f"Erreur lors de la génération des matchs : {e}")
+
+#         return tournament
+
+#     except Exception as e:
+#         logger.error(f"Erreur lors de la création du tournoi : {e}")
+#         raise serializers.ValidationError(f"Erreur inattendue lors de la création du tournoi : {e}")
+
     def create(self, validated_data):
-        """
-        Crée un tournoi avec les données validées.
-        """
-        players = validated_data.pop('all_players', [])
-        user = self.context['request'].user
+            """
+            Crée un tournoi avec les données validées.
+            """
+            logger.debug(f"Création d'un tournoi avec les données suivantes : {validated_data}")
 
-        # Ajouter l'utilisateur connecté à la liste des joueurs s'il n'est pas déjà inclus
-        if user.id not in players:
-            players.append(user.id)
+            # Ajouter creator_id depuis le contexte de la requête
+            user = self.context['request'].user
+            validated_data['creator_id'] = user.id
 
-        players = list(set(players))
+            # Supprimer `all_players` et gérer les joueurs
+            players = validated_data.pop('all_players', [])
+            if user.id not in players:
+                players.append(user.id)
 
+            # Assurer l'unicité des joueurs
+            players = list(set(players))
 
-        # Créez le tournoi
-        try:
-        # Créez le tournoi
+            logger.debug(f"Création du tournoi avec les joueurs suivants : {players}")
+
+            # Valider les contraintes de nombre de joueurs
+            if len(players) < 4:
+                raise serializers.ValidationError("Le tournoi doit avoir au moins quatre joueurs.")
+            if len(players) % 2 != 0:
+                raise serializers.ValidationError("Le nombre de joueurs doit être pair.")
+
+            # Créer le tournoi
             tournament = Tournament.objects.create(
-                creator_id=user.id,
                 name=validated_data['name'],
+                creator_id=validated_data['creator_id'],
                 players=players
             )
-            logger.info(f"Tournoi '{tournament.name}' créé avec succès par l'utilisateur ID {user.id}")
+            logger.info(f"Tournoi '{tournament.name}' créé avec succès.")
 
             # Générer les matchs pour le tournoi
             try:
+                logger.debug(f"About to generate elimination matches for tournament {tournament.name}.")
                 generate_elimination_matches(tournament)
-                logger.info(f"Les matchs pour le tournoi '{tournament.name}' ont été générés avec succès.")
+                logger.debug(f"Finished generating elimination matches for tournament {tournament.name}.")
             except ValueError as e:
                 logger.error(f"Erreur lors de la génération des matchs : {e}")
                 raise serializers.ValidationError(f"Erreur lors de la génération des matchs : {e}")
 
             return tournament
 
-        except Exception as e:
-            logger.error(f"Erreur lors de la création du tournoi : {e}")
-            raise serializers.ValidationError(f"Erreur inattendue lors de la création du tournoi : {e}")
+
+    # def create(self, validated_data):
+    #     """
+    #     Crée un tournoi avec les données validées.
+    #     """
+    #     players = validated_data.pop('all_players', [])
+    #     user = self.context['request'].user
+
+    #     # Ajouter l'utilisateur connecté à la liste des joueurs s'il n'est pas déjà inclus
+    #     if user.id not in players:
+    #         players.append(user.id)
+
+    #     players = list(set(players))
+
+
+    #     # Créez le tournoi
+    #     try:
+    #     # Créez le tournoi
+    #         tournament = Tournament.objects.create(
+    #             creator_id=user.id,
+    #             name=validated_data['name'],
+    #             players=players
+    #         )
+    #         logger.info(f"Tournoi '{tournament.name}' créé avec succès par l'utilisateur ID {user.id}")
+
+    #         # Générer les matchs pour le tournoi
+    #         try:
+    #             generate_elimination_matches(tournament)
+    #             logger.info(f"Les matchs pour le tournoi '{tournament.name}' ont été générés avec succès.")
+    #         except ValueError as e:
+    #             logger.error(f"Erreur lors de la génération des matchs : {e}")
+    #             raise serializers.ValidationError(f"Erreur lors de la génération des matchs : {e}")
+
+    #         return tournament
+
+    #     except Exception as e:
+    #         logger.error(f"Erreur lors de la création du tournoi : {e}")
+    #         raise serializers.ValidationError(f"Erreur inattendue lors de la création du tournoi : {e}")
 
 
     def update(self, instance, validated_data):

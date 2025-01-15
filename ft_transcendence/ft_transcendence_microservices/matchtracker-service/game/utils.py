@@ -322,11 +322,10 @@ def generate_elimination_matches(tournament):
     Génère les matchs pour un tournoi à élimination directe.
     """
 
-    from .models import TournamentMatch
+    from .models import TournamentMatch, GameSession
 
-    # Récupérer les joueurs à partir du tournoi
     players = list(tournament.players)  # Si c'est un champ JSONField
-
+    logger.debug(f"Generating elimination matches for tournament {tournament.name} with {len(players)} players.")
     matches = []
     round_number = 1
 
@@ -334,13 +333,25 @@ def generate_elimination_matches(tournament):
     while len(players) > 1:
         round_matches = []
         for i in range(0, len(players), 2):
-            # Créer un match entre deux joueurs
+            # Créez une GameSession pour chaque match
+            game_session = GameSession.objects.create(
+                player1_id=players[i],
+                player2_id=players[i + 1],
+                is_active=True,
+                created_at=timezone.now(),
+                start_time=timezone.now(),
+                duration=60,  # Durée par défaut de la session
+            )
+            logger.debug(f"Created GameSession for match {game_session.id}")
+
+            # Créez un TournamentMatch et associez-le à la GameSession
             match = TournamentMatch.objects.create(
                 tournament=tournament,
                 player1_id=players[i],
                 player2_id=players[i + 1],
                 scheduled_at=timezone.now(),
-                round_number=round_number
+                round_number=round_number,
+                game_session=game_session,  # Associez la GameSession au match
             )
             round_matches.append(match)
             matches.append(match)

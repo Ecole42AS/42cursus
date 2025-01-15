@@ -1,32 +1,104 @@
-DEBUG 2025-01-12 22:01:03,638 middleware JWTMiddleware: Processing request for path /tournaments/
-DEBUG 2025-01-12 22:01:03,638 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:03,648 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-INFO 2025-01-12 22:01:03,660 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
-DEBUG 2025-01-12 22:01:03,660 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:03,660 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:03,672 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:03,681 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 5, 'username': 'test_user22', 'email': 'test_user22@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}]
-DEBUG 2025-01-12 22:01:03,681 serializers IDs des amis valides : {2, 3, 4, 5}
-DEBUG 2025-01-12 22:01:03,681 serializers Joueurs invalides détectés : []
-INFO 2025-01-12 22:01:03,683 serializers Tournoi 'My first game session creation 3452222 Tournament' créé avec succès par l'utilisateur ID 1
-INFO 2025-01-12 22:01:03,686 serializers Les matchs pour le tournoi 'My first game session creation 3452222 Tournament' ont été générés avec succès.
-INFO 2025-01-12 22:01:03,711 basehttp "POST /tournaments/ HTTP/1.1" 201 273
-DEBUG 2025-01-12 22:01:08,129 middleware JWTMiddleware: Processing request for path /tournament-matches/
-DEBUG 2025-01-12 22:01:08,129 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:08,129 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-INFO 2025-01-12 22:01:08,137 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
-DEBUG 2025-01-12 22:01:08,138 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:08,138 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-INFO 2025-01-12 22:01:08,150 basehttp "GET /tournament-matches/ HTTP/1.1" 200 3352
-DEBUG 2025-01-12 22:01:12,976 middleware JWTMiddleware: Processing request for path /games/
-DEBUG 2025-01-12 22:01:12,976 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:12,976 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-INFO 2025-01-12 22:01:12,984 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
-DEBUG 2025-01-12 22:01:12,984 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:12,984 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y
-DEBUG 2025-01-12 22:01:12,991 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
-DEBUG 2025-01-12 22:01:12,991 views GameViewSet: Filtrage des parties pour user_id=1
-DEBUG 2025-01-12 22:01:12,995 views GameViewSet: 1 parties trouvées pour user_id=1
-DEBUG 2025-01-12 22:01:12,996 serializers Fetching user data for user_id 1 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y, endpoint=/games/
-DEBUG 2025-01-12 22:01:13,002 serializers Fetching user data for user_id 2 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NzE3Mzk1LCJpYXQiOjE3MzY3MTQ5OTUsImp0aSI6ImNmZmU0YWFlNzNjNTRiZDg4OGY1YzI3MDA5YTE0NTljIiwidXNlcl9pZCI6MX0.SUIlKDhvhBhrWlXeQaIGtobMIh89GlXKYh4jeISK8-Y, endpoint=/games/
-INFO 2025-01-12 22:01:13,009 basehttp "GET /games/ HTTP/1.1" 200 180
+DEBUG 2025-01-15 09:32:35,991 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-15 09:32:35,991 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:32:36,001 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+INFO 2025-01-15 09:32:36,013 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:32:36,014 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:32:36,014 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:32:36,025 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:32:36,034 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 5, 'username': 'test_user22', 'email': 'test_user22@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}]
+DEBUG 2025-01-15 09:32:36,034 serializers IDs des amis valides : {2, 3, 4, 5}
+DEBUG 2025-01-15 09:32:36,034 serializers Joueurs invalides détectés : []
+DEBUG 2025-01-15 09:32:36,034 serializers Création d'un tournoi avec les données suivantes : {'name': 'My testing final Tournament', 'all_players': [3, 2, 4, 1]}
+DEBUG 2025-01-15 09:32:36,034 serializers Création du tournoi avec les joueurs suivants : [1, 2, 3, 4]
+INFO 2025-01-15 09:32:36,036 serializers Tournoi 'My testing final Tournament' créé avec succès.
+INFO 2025-01-15 09:32:36,066 basehttp "POST /tournaments/ HTTP/1.1" 201 252
+DEBUG 2025-01-15 09:34:17,958 middleware JWTMiddleware: Processing request for path /tournament-matches/
+DEBUG 2025-01-15 09:34:17,958 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:34:17,959 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+INFO 2025-01-15 09:34:17,967 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:34:17,968 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:34:17,968 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+INFO 2025-01-15 09:34:17,980 basehttp "GET /tournament-matches/ HTTP/1.1" 200 3774
+DEBUG 2025-01-15 09:34:30,139 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-01-15 09:34:30,139 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:34:30,139 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+INFO 2025-01-15 09:34:30,147 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:34:30,147 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:34:30,148 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:34:30,155 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-01-15 09:34:30,155 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-01-15 09:34:30,159 views GameViewSet: 1 parties trouvées pour user_id=1
+DEBUG 2025-01-15 09:34:30,160 serializers Fetching user data for user_id 1 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4, endpoint=/games/
+DEBUG 2025-01-15 09:34:30,167 serializers Fetching user data for user_id 2 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4, endpoint=/games/
+INFO 2025-01-15 09:34:30,174 basehttp "GET /games/ HTTP/1.1" 200 180
+DEBUG 2025-01-15 09:38:40,930 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-15 09:38:40,930 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:38:40,940 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+INFO 2025-01-15 09:38:40,951 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:38:40,952 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:38:40,952 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:38:40,964 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:38:40,974 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 5, 'username': 'test_user22', 'email': 'test_user22@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}]
+DEBUG 2025-01-15 09:38:40,974 serializers IDs des amis valides : {2, 3, 4, 5}
+DEBUG 2025-01-15 09:38:40,974 serializers Joueurs invalides détectés : []
+DEBUG 2025-01-15 09:38:40,974 serializers Création d'un tournoi avec les données suivantes : {'name': 'My testing final gamesession Tournament', 'all_players': [3, 2, 4, 1]}
+DEBUG 2025-01-15 09:38:40,974 serializers Création du tournoi avec les joueurs suivants : [1, 2, 3, 4]
+INFO 2025-01-15 09:38:40,976 serializers Tournoi 'My testing final gamesession Tournament' créé avec succès.
+INFO 2025-01-15 09:38:41,009 basehttp "POST /tournaments/ HTTP/1.1" 201 264
+DEBUG 2025-01-15 09:38:46,180 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-01-15 09:38:46,180 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:38:46,180 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+INFO 2025-01-15 09:38:46,189 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:38:46,189 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:38:46,189 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:38:46,197 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-01-15 09:38:46,197 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-01-15 09:38:46,201 views GameViewSet: 2 parties trouvées pour user_id=1
+DEBUG 2025-01-15 09:38:46,201 serializers Fetching user data for user_id 1 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4, endpoint=/games/
+DEBUG 2025-01-15 09:38:46,208 serializers Fetching user data for user_id 2 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4, endpoint=/games/
+INFO 2025-01-15 09:38:46,215 basehttp "GET /games/ HTTP/1.1" 200 359
+DEBUG 2025-01-15 09:41:14,006 middleware JWTMiddleware: Processing request for path /tournament-matches/
+DEBUG 2025-01-15 09:41:14,006 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:41:14,006 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+INFO 2025-01-15 09:41:14,015 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:41:14,015 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+DEBUG 2025-01-15 09:41:14,015 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+INFO 2025-01-15 09:41:14,029 basehttp "GET /tournament-matches/ HTTP/1.1" 200 4190
+DEBUG 2025-01-15 09:50:32,471 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-15 09:50:32,471 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMwODgyLCJpYXQiOjE3MzY5Mjg0ODIsImp0aSI6ImNhZDQ4NWViMjMyNzQ0ODhhNTBmOWJlZmY1NTJlOGNjIiwidXNlcl9pZCI6MX0.78_v20JF4Gt3dCzfRghyZj4ks2NXF5fmXjuaygJkb-4
+ERROR 2025-01-15 09:50:32,480 authentication Unexpected error during authentication: Token is invalid or expired
+WARNING 2025-01-15 09:50:32,480 middleware JWTMiddleware: Authentication failed - Invalid or expired token
+WARNING 2025-01-15 09:50:32,480 basehttp "POST /tournaments/ HTTP/1.1" 401 38
+DEBUG 2025-01-15 09:50:57,057 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-01-15 09:50:57,057 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:50:57,057 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+INFO 2025-01-15 09:50:57,066 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:50:57,067 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:50:57,067 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:50:57,078 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:50:57,088 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 5, 'username': 'test_user22', 'email': 'test_user22@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}]
+DEBUG 2025-01-15 09:50:57,088 serializers IDs des amis valides : {2, 3, 4, 5}
+DEBUG 2025-01-15 09:50:57,088 serializers Joueurs invalides détectés : []
+DEBUG 2025-01-15 09:50:57,088 serializers Création d'un tournoi avec les données suivantes : {'name': 'My testing final gamesession2 Tournament', 'all_players': [3, 2, 4, 1]}
+DEBUG 2025-01-15 09:50:57,088 serializers Création du tournoi avec les joueurs suivants : [1, 2, 3, 4]
+INFO 2025-01-15 09:50:57,091 serializers Tournoi 'My testing final gamesession2 Tournament' créé avec succès.
+INFO 2025-01-15 09:50:57,122 basehttp "POST /tournaments/ HTTP/1.1" 201 265
+DEBUG 2025-01-15 09:51:06,768 middleware JWTMiddleware: Processing request for path /tournament-matches/
+DEBUG 2025-01-15 09:51:06,768 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:51:06,768 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+INFO 2025-01-15 09:51:06,776 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:51:06,777 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:51:06,777 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+INFO 2025-01-15 09:51:06,789 basehttp "GET /tournament-matches/ HTTP/1.1" 200 4606
+DEBUG 2025-01-15 09:51:21,147 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-01-15 09:51:21,147 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:51:21,147 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+INFO 2025-01-15 09:51:21,156 middleware JWTMiddleware: Authentication successful for user User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-01-15 09:51:21,156 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:51:21,156 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ
+DEBUG 2025-01-15 09:51:21,163 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-01-15 09:51:21,163 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-01-15 09:51:21,167 views GameViewSet: 3 parties trouvées pour user_id=1
+DEBUG 2025-01-15 09:51:21,168 serializers Fetching user data for user_id 1 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ, endpoint=/games/
+DEBUG 2025-01-15 09:51:21,174 serializers Fetching user data for user_id 2 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2OTMzNDM2LCJpYXQiOjE3MzY5MzEwMzYsImp0aSI6IjllNDg5MTM2ZTU3NjRjYzU5Y2JlMGI3NjA3NjBmOGFmIiwidXNlcl9pZCI6MX0.6TFA_kE5FV75YebzCvKqF_kSe2WEjyi32Tx0-2AVTFQ, endpoint=/games/
+INFO 2025-01-15 09:51:21,181 basehttp "GET /games/ HTTP/1.1" 200 538
