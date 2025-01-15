@@ -230,88 +230,157 @@ class CreateGameSessionView(APIView):
             logger.error(f"Unexpected error during game creation: {e}")
             return Response({'error': 'Une erreur est survenue.'}, status=500)
 
+# class UpdateGameScoreView(APIView):
+#     """
+#     Vue pour mettre à jour le score d'une session de jeu.
+#     """
+#     permission_classes = [IsAuthenticated]  # Vérification d'authentification
+
+#     def post(self, request, game_id):
+#         logger.debug(f"Requête reçue pour mettre à jour le score du jeu {game_id} par l'utilisateur {request.user.id}")
+
+#         try:
+#             # Assurez-vous que l'utilisateur est authentifié
+#             user = request.user
+#             if not user or not user.is_authenticated:
+#                 logger.error("Utilisateur non authentifié.")
+#                 raise AuthenticationFailed("User authentication failed")
+
+#             # Récupérer la session de jeu
+#             try:
+#                 game = GameSession.objects.get(pk=game_id)
+#                 logger.debug(f"GameSession récupérée : {game}")
+#             except GameSession.DoesNotExist:
+#                 logger.warning(f"GameSession {game_id} non trouvée.")
+#                 return Response({'error': 'Match non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
+
+#             # Vérifiez que le champ start_time est défini
+#             if not game.start_time:
+#                 logger.error("L'heure de début du match n'est pas définie.")
+#                 return Response(
+#                     {'error': "L'heure de début du match (start_time) n'est pas définie."},
+#                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
+#                 )
+
+#             # Vérifier que le match est actif
+#             if not game.is_active:
+#                 logger.warning(f"Match {game_id} déjà terminé.")
+#                 return Response(
+#                     {'error': 'Ce match est terminé. Les scores ne peuvent pas être modifiés.'},
+#                     status=status.HTTP_400_BAD_REQUEST
+#                 )
+
+#             # Vérifier si l'utilisateur participe au match
+#             if user.id not in [game.player1_id, game.player2_id]:
+#                 logger.warning(f"L'utilisateur {user.id} ne participe pas au match {game_id}.")
+#                 return Response(
+#                     {'error': 'Vous ne participez pas à ce match.'},
+#                     status=status.HTTP_403_FORBIDDEN
+#                 )
+
+#             # Extraire et valider le score depuis la requête
+#             player_score = request.data.get('score')
+#             if player_score is None:
+#                 logger.warning("Score non fourni dans la requête.")
+#                 return Response({'error': 'Score non fourni.'}, status=status.HTTP_400_BAD_REQUEST)
+
+#             try:
+#                 player_score = int(player_score)
+#                 logger.debug(f"Score reçu : {player_score}")
+#             except ValueError:
+#                 logger.warning(f"Score invalide fourni : {player_score}")
+#                 return Response({'error': 'Score invalide. Il doit être un entier.'}, status=status.HTTP_400_BAD_REQUEST)
+
+#             # Mettre à jour le score du joueur correspondant
+#             if user.id == game.player1_id:
+#                 logger.debug(f"Score de player1 mis à jour par {user.id}")
+#                 game.score_player1 = player_score
+#             else:
+#                 logger.debug(f"Score de player2 mis à jour par {user.id}")
+#                 game.score_player2 = player_score
+
+#             # Vérifiez si le match a dépassé la limite de temps
+#             if (now() - game.start_time).total_seconds() >= 60:
+#                 logger.info(f"Le match {game_id} dépasse la limite de temps. Il sera terminé.")
+#                 game.is_active = False
+#                 game.ended_at = now()
+
+#                 # Déterminer le gagnant
+#                 if game.score_player1 > game.score_player2:
+#                     game.winner_id = game.player1_id
+#                 elif game.score_player2 > game.score_player1:
+#                     game.winner_id = game.player2_id
+#                 else:
+#                     game.winner_id = None  # Match nul
+
+#                 logger.info(f"Match {game_id} terminé. Vainqueur : {game.winner_id if game.winner_id else 'Match nul'}.")
+
+#                 # Mettre à jour les statistiques des joueurs
+#                 if game.winner_id:
+#                     logger.debug(f"Mise à jour des statistiques pour le vainqueur {game.winner_id}.")
+#                     update_player_stats(
+#                         winner_id=game.winner_id,
+#                         loser_id=game.player1_id if game.winner_id == game.player2_id else game.player2_id
+#                     )
+
+
+#             # Enregistrer les modifications
+#             game.save()
+#             logger.info(f"Match {game_id} mis à jour avec succès.")
+#             return Response({'detail': 'Score mis à jour.'}, status=status.HTTP_200_OK)
+
+#         except AuthenticationFailed as auth_error:
+#             logger.error(f"Authentification échouée : {auth_error}")
+#             return Response({'error': 'Authentification échouée.'}, status=status.HTTP_401_UNAUTHORIZED)
+#         except Exception as e:
+#             logger.error(f"Erreur inattendue : {e}")
+#             return Response({'error': 'Erreur interne du serveur.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+from .utils import validate_service_jwt, update_scores_and_stats
+
 class UpdateGameScoreView(APIView):
     """
     Vue pour mettre à jour le score d'une session de jeu.
     """
-    permission_classes = [IsAuthenticated]  # Vérification d'authentification
+    permission_classes = [permissions.AllowAny]  # Permettre l'accès pour les services authentifiés via JWT
 
     def post(self, request, game_id):
+        logger.debug(f"Requête reçue pour mettre à jour le score du jeu {game_id}.")
+
         try:
-            # Assurez-vous que l'utilisateur est authentifié via JWT
-            user = request.user
-            if not user:
-                raise AuthenticationFailed("User authentication failed")
+            # Vérifier le JWT de service
+            auth_header = request.headers.get('Authorization')
+            if not auth_header or not auth_header.startswith('Bearer '):
+                logger.error("JWT manquant ou invalide dans l'en-tête Authorization.")
+                return Response({'error': 'Accès non autorisé.'}, status=status.HTTP_403_FORBIDDEN)
 
-            # Récupérer la session de jeu
-            try:
-                game = GameSession.objects.get(pk=game_id)
-            except GameSession.DoesNotExist:
-                return Response({'error': 'Match non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
+            jwt_token = auth_header.split(' ')[1]
+            if not validate_service_jwt(jwt_token):
+                logger.error("JWT de service invalide.")
+                return Response({'error': 'Accès non autorisé.'}, status=status.HTTP_403_FORBIDDEN)
 
-            # Vérifiez que le champ start_time est défini
-            if not game.start_time:
-                return Response(
-                    {'error': "L'heure de début du match (start_time) n'est pas définie."},
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                )
-
-            # Vérifier que le match est actif
-            if not game.is_active:
-                return Response(
-                    {'error': 'Ce match est terminé. Les scores ne peuvent pas être modifiés.'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-
-            # Vérifier si l'utilisateur participe
-            if user.id not in [game.player1_id, game.player2_id]:
-                return Response(
-                    {'error': 'Vous ne participez pas à ce match.'},
-                    status=status.HTTP_403_FORBIDDEN
-                )
-
-            # Mise à jour du score
-            player_score = request.data.get('score')
-            if player_score is None:
-                return Response({'error': 'Score non fourni.'}, status=status.HTTP_400_BAD_REQUEST)
+            # Extraire les scores depuis la requête
+            score_player1 = request.data.get('score_player1')
+            score_player2 = request.data.get('score_player2')
+            if score_player1 is None or score_player2 is None:
+                logger.warning("Scores non fournis dans la requête.")
+                return Response({'error': 'Les scores doivent être fournis.'}, status=status.HTTP_400_BAD_REQUEST)
 
             try:
-                player_score = int(player_score)
+                score_player1 = int(score_player1)
+                score_player2 = int(score_player2)
+                logger.debug(f"Scores reçus : Player1={score_player1}, Player2={score_player2}")
             except ValueError:
-                return Response({'error': 'Score invalide. Il doit être un entier.'}, status=status.HTTP_400_BAD_REQUEST)
+                logger.warning(f"Scores invalides fournis : {score_player1}, {score_player2}")
+                return Response({'error': 'Scores invalides. Ils doivent être des entiers.'}, status=status.HTTP_400_BAD_REQUEST)
 
-            if user.id == game.player1_id:
-                game.score_player1 = player_score
-            else:
-                game.score_player2 = player_score
-
-            # Vérifier si le temps est écoulé
-            from django.utils.timezone import now
-            if (now() - game.start_time).total_seconds() >= 60:
-                game.is_active = False
-                game.ended_at = now()
-
-                if game.score_player1 > game.score_player2:
-                    game.winner_id = game.player1_id
-                elif game.score_player2 > game.score_player1:
-                    game.winner_id = game.player2_id
-                else:
-                    game.winner_id = None  # Match nul
-
-                # Mettre à jour les statistiques des joueurs
-                if game.winner_id:
-                    update_player_stats(
-                        game.winner_id,
-                        game.player1_id if game.winner_id == game.player2_id else game.player2_id
-                    )
-
-            game.save()
-            return Response({'detail': 'Score mis à jour.'}, status=status.HTTP_200_OK)
+            # Mettre à jour le match et les scores
+            result = update_scores_and_stats(game_id, score_player1, score_player2)
+            return Response(result, status=status.HTTP_200_OK)
 
         except Exception as e:
             logger.error(f"Erreur inattendue : {e}")
             return Response({'error': 'Erreur interne du serveur.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 
 class TournamentViewSet(viewsets.ModelViewSet):
     """

@@ -256,27 +256,66 @@ def is_token_revoked(token):
     revoked_tokens = ["list", "of", "revoked", "tokens"]  # Exemple simple
     return token in revoked_tokens
 
-
-def update_player_stats(winner, loser):
+def update_player_stats(winner_id, loser_id, score_winner=None, score_loser=None, jwt_token=None):
     """
     Notifie le User Service pour mettre à jour les statistiques des joueurs.
     """
-    user_service_url = settings.USER_SERVICE_URL + "/internal/update-stats/"
-
+    user_service_url = f"{settings.USER_SERVICE_URL}/internal/update-stats/"
+    
+    # Construire le payload pour la mise à jour
     payload = {
-        "winner_id": winner.id,
-        "loser_id": loser.id
+        "winner_id": winner_id,
+        "loser_id": loser_id,
+        "score_winner": score_winner,
+        "score_loser": score_loser,
     }
-    headers = {"Authorization": f"Bearer {settings.INTERNAL_API_KEY}"}
+    
+    # Utiliser le JWT transmis par le moteur de jeu
+    headers = {"Authorization": f"Bearer {jwt_token or settings.INTERNAL_API_KEY}"}
+    logger.debug(f"Authorization header used: {headers}")
+    logger.debug(f"Payload sent to User Service: {payload}")
 
     try:
+        # Envoyer la requête POST au User Service
         response = requests.post(user_service_url, json=payload, headers=headers)
+        
         if response.status_code == 200:
-            print("Statistiques mises à jour avec succès dans le User Service.")
+            logger.info("Statistiques mises à jour avec succès dans le User Service.")
         else:
-            print(f"Erreur lors de la mise à jour des stats : {response.status_code}, {response.json()}")
-    except Exception as e:
-        print(f"Échec de la communication avec le User Service : {e}")
+            logger.error(
+                f"Erreur lors de la mise à jour des stats : {response.status_code}, {response.json()}"
+            )
+            raise Exception(f"User Service error: {response.status_code}, {response.json()}")
+
+    except requests.RequestException as e:
+        logger.error(f"Échec de la communication avec le User Service : {e}")
+        raise Exception(f"Failed to communicate with User Service: {e}")
+
+
+# def update_player_stats(winner_id, loser_id):
+#     """
+#     Notifie le User Service pour mettre à jour les statistiques des joueurs.
+#     """
+#     user_service_url = f"{settings.USER_SERVICE_URL}/internal/update-stats/"
+
+#     payload = {
+#         "winner_id": winner_id,
+#         "loser_id": loser_id
+#     }
+#     headers = {"Authorization": f"Bearer {settings.INTERNAL_API_KEY}"}
+#     logger.debug(f"Authorization header used: {headers}")
+
+
+#     try:
+#         response = requests.post(user_service_url, json=payload, headers=headers)
+#         if response.status_code == 200:
+#             logger.info("Statistiques mises à jour avec succès dans le User Service.")
+#         else:
+#             logger.error(f"Erreur lors de la mise à jour des stats : {response.status_code}, {response.json()}")
+#             raise Exception(f"User Service error: {response.status_code}, {response.json()}")
+#     except requests.RequestException as e:
+#         logger.error(f"Échec de la communication avec le User Service : {e}")
+#         raise
 
 # def generate_elimination_matches(tournament):
 #     """
@@ -317,12 +356,129 @@ def update_player_stats(winner, loser):
 #     logger.info(f"Generated {len(matches)} elimination matches for tournament {tournament.name}.")
 #     return matches
 
-def generate_elimination_matches(tournament):
-    """
-    Génère les matchs pour un tournoi à élimination directe.
-    """
 
+from rest_framework.exceptions import AuthenticationFailed
+import jwt
+
+def validate_service_jwt(token):
+    """
+    Valide le JWT utilisé pour l'authentification des services internes.
+    """
+    try:
+        decoded_token = jwt.decode(
+            token,
+            settings.SERVICE_JWT_SECRET,  # Clé secrète partagée pour les services
+            algorithms=["HS256"]
+        )
+        # Vérifiez les revendications spécifiques, si nécessaire
+        if "service" not in decoded_token or decoded_token["service"] != "game_engine":
+            logger.error(f"JWT invalide : {decoded_token}")
+            raise AuthenticationFailed("JWT non valide.")
+        return True
+    except jwt.ExpiredSignatureError:
+        logger.error("JWT expiré.")
+        raise AuthenticationFailed("JWT expiré.")
+    except jwt.InvalidTokenError as e:
+        logger.error(f"JWT invalide : {e}")
+        raise AuthenticationFailed("JWT invalide.")
+    
+from django.utils.timezone import now
+from .models import GameSession
+from .utils import update_player_stats
+
+def update_scores_and_stats(game_id, score_player1, score_player2):
+    """
+    Met à jour les scores, termine le match si nécessaire, et met à jour les statistiques.
+    """
+    try:
+        game = GameSession.objects.get(pk=game_id)
+        logger.debug(f"GameSession récupérée : {game}")
+
+        if not game.start_time:
+            logger.error("L'heure de début du match n'est pas définie.")
+            raise ValueError("L'heure de début du match (start_time) n'est pas définie.")
+
+        if not game.is_active:
+            logger.warning(f"Match {game_id} déjà terminé.")
+            raise ValueError("Ce match est terminé. Les scores ne peuvent pas être modifiés.")
+
+        # Mettre à jour les scores
+        game.score_player1 = score_player1
+        game.score_player2 = score_player2
+
+        # Vérifiez si le match a dépassé la limite de temps
+        if (now() - game.start_time).total_seconds() >= 60:
+            logger.info(f"Le match {game_id} dépasse la limite de temps. Il sera terminé.")
+            game.is_active = False
+            game.ended_at = now()
+
+            # Déterminer le gagnant
+            if game.score_player1 > game.score_player2:
+                game.winner_id = game.player1_id
+            elif game.score_player2 > game.score_player1:
+                game.winner_id = game.player2_id
+            else:
+                game.winner_id = None  # Match nul
+
+            logger.info(f"Match {game_id} terminé. Vainqueur : {game.winner_id if game.winner_id else 'Match nul'}.")
+
+            # Mettre à jour les statistiques des joueurs
+            if game.winner_id:
+                update_player_stats(
+                    winner_id=game.winner_id,
+                    loser_id=game.player1_id if game.winner_id == game.player2_id else game.player2_id
+                )
+
+        # Sauvegarder les changements
+        game.save()
+        return {'detail': f"Match {game_id} mis à jour avec succès."}
+
+    except GameSession.DoesNotExist:
+        logger.warning(f"GameSession {game_id} non trouvée.")
+        raise ValueError("Match non trouvé.")
+    except Exception as e:
+        logger.error(f"Erreur lors de la mise à jour des scores : {e}")
+        raise
+
+
+
+def notify_game_engine(game_session, token):
+    """
+    Notifie le moteur de jeu qu'une GameSession a été créée.
+    """
+    from rest_framework import serializers
+
+    try:
+        headers = {"Authorization": f"Bearer {token}"}
+        url = f"{settings.GAME_ENGINE_URL}/start-game/"
+        payload = {
+            "game_session_id": game_session.id,
+            "player1_id": game_session.player1_id,
+            "player2_id": game_session.player2_id,
+            "duration": game_session.duration,
+            "start_time": game_session.start_time.isoformat(),
+        }
+
+        logger.debug(f"Appel à {url} pour notifier le moteur de jeu avec la GameSession {game_session.id}")
+        response = requests.post(url, json=payload, headers=headers, timeout=settings.GAME_ENGINE_TIMEOUT)
+
+        response.raise_for_status()  # Exception si code HTTP 4xx/5xx
+
+        try:
+            return response.json()  # Retourne la réponse JSON du moteur de jeu
+        except ValueError:
+            logger.error(f"Réponse non JSON reçue du moteur de jeu : {response.text}")
+            raise serializers.ValidationError("Réponse invalide du moteur de jeu.")
+    except requests.RequestException as e:
+        logger.error(f"Erreur lors de la communication avec le moteur de jeu : {e}")
+        raise serializers.ValidationError("Erreur lors de la communication avec le moteur de jeu.")
+
+def generate_elimination_matches(tournament, token):
+    """
+    Génère les matchs pour un tournoi à élimination directe et notifie le moteur de jeu.
+    """
     from .models import TournamentMatch, GameSession
+    from rest_framework import serializers
 
     players = list(tournament.players)  # Si c'est un champ JSONField
     logger.debug(f"Generating elimination matches for tournament {tournament.name} with {len(players)} players.")
@@ -356,11 +512,18 @@ def generate_elimination_matches(tournament):
             round_matches.append(match)
             matches.append(match)
 
+            # Notifiez le moteur de jeu pour la GameSession
+            try:
+                notify_game_engine(game_session, token)
+                logger.debug(f"Notified Game Engine for GameSession {game_session.id}")
+            except Exception as e:
+                logger.error(f"Failed to notify Game Engine for GameSession {game_session.id}: {e}")
+                raise serializers.ValidationError(f"Erreur lors de la notification du moteur de jeu pour la session {game_session.id}.")
+
         # Préparer les joueurs pour le prochain tour en fonction des gagnants
         players = [
             match.winner_id for match in round_matches if match.winner_id
         ]
-
         round_number += 1
 
     logger.info(f"Generated {len(matches)} elimination matches for tournament {tournament.name}.")
