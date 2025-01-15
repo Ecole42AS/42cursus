@@ -256,6 +256,16 @@ LOGGING = {
             'level': 'WARNING',  # Ignorer les logs DEBUG
             'propagate': False,
         },
+        'utils': {
+            'handlers': ['file'],
+            'level': 'DEBUG',  # Capturer tous les détails
+            'propagate': False,  # Éviter de transmettre les logs aux loggers parents
+        },
+        '': {  # Logger racine
+            'handlers': ['file'],
+            'level': 'DEBUG',  # Capturer tous les logs par défaut
+            'propagate': True,
+        },
     },
 }
 
