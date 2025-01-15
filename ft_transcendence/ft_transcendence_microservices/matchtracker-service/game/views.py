@@ -348,17 +348,24 @@ class MatchHistoryView(APIView):
     """
     Vue pour récupérer l'historique des matchs d'un utilisateur.
     """
-    # authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
     def get(self, request):
-        user_id = request.user.id  # Extrait depuis le JWT
+        user_id = request.user.id  # Récupérer l'ID de l'utilisateur depuis le token JWT
+        logger.debug(f"Fetching match history for user_id={user_id}")
+        
+        # Filtrer les parties terminées de l'utilisateur
         game_sessions = GameSession.objects.filter(
             Q(player1_id=user_id) | Q(player2_id=user_id),
             is_active=False
         ).order_by('-ended_at')
-        serializer = GameSerializer(game_sessions, many=True)
+        logger.debug(f"Found {game_sessions.count()} matches for user_id={user_id}")
+
+        # Ajouter la requête dans le contexte du sérialiseur pour transmettre le token JWT
+        serializer = GameSerializer(game_sessions, many=True, context={'request': request})
+        
         return Response(serializer.data)
+
 
 from django.http import HttpResponse
 

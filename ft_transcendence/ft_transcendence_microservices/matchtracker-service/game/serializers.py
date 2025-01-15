@@ -35,23 +35,23 @@ class GameSerializer(serializers.ModelSerializer):
 
         try:
             if not token:
-                logger.warning(f"No token provided for fetching user_id {user_id}")
+                logger.warning(f"No token provided for user_id={user_id}")
                 self._user_cache[user_id] = 'Unknown'
                 return 'Unknown'
 
-            logger.debug(f"Fetching user data for user_id {user_id} with token {token}, endpoint={self.context.get('request').path}")
+            logger.debug(f"Fetching user data for user_id={user_id} with token={token}")
             user_data = get_user_data(user_id, token)
-            if user_data:
-                username = user_data.get('username', 'Unknown')
+            if user_data and 'username' in user_data:
+                username = user_data['username']
                 self._user_cache[user_id] = username
                 return username
-            logger.warning(f"No data found for user_id {user_id}")
-            self._user_cache[user_id] = 'Unknown'
-            return 'Unknown'
+
+            logger.warning(f"User data not found for user_id={user_id}")
         except Exception as e:
-            logger.error(f"Error fetching user data for user_id {user_id}: {e}")
-            self._user_cache[user_id] = 'Unknown'
-            return 'Unknown'
+            logger.error(f"Error fetching user data for user_id={user_id}: {e}")
+        
+        self._user_cache[user_id] = 'Unknown'
+        return 'Unknown'
 
     def get_player1(self, obj):
         if not obj.player1_id:
