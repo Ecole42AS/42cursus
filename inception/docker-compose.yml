@@ -52,15 +52,15 @@ services:
     environment:
       WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
       WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
-      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
       WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
     secrets:
       - db_password
-    env_file:
-      - .env
     volumes:
       - wordpress_data:/var/www/html
-      - ./srcs/requirements/wordpress/conf/wp-config.php:/var/www/html/wp-config.php
+      - /tmp/wp-config.php:/var/www/html/wp-config.php
+    security_opt:
+      - seccomp:unconfined
     depends_on:
       mariadb:
         condition: service_healthy
@@ -82,10 +82,12 @@ secrets:
 
 volumes:
   mariadb_data:
+    driver: local
     driver_opts:
       type: none
       o: bind
       device: /home/${HOST_USER}/data/db_data
+
   wordpress_data:
     driver: local
     driver_opts:
