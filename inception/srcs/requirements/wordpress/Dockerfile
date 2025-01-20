@@ -1,19 +1,32 @@
-FROM wordpress:5.8-php8.1-fpm
+FROM alpine:3.17
 
-# Installer les extensions PHP nécessaires
-RUN docker-php-ext-install mysqli
-
-# Mettre à jour le système et installer les paquets nécessaires en une seule commande
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    default-mysql-client \
-    vim \
+# Installer PHP, extensions et autres dépendances nécessaires
+RUN apk update && apk add --no-cache \
+    php81 \
+    php81-fpm \
+    php81-mysqli \
+    php81-curl \
+    php81-opcache \
+    php81-gd \
+    php81-mbstring \
+    php81-xml \
+    php81-zip \
     curl \
-    procps \
-    iproute2 \
-    && rm -rf /var/lib/apt/lists/*
+    wget \
+    unzip \
+    && rm -rf /var/cache/apk/*
 
-# Exposer le port 9000 pour PHP-FPM
+# Télécharger et installer WordPress
+WORKDIR /var/www/html
+RUN curl -o wordpress.tar.gz https://wordpress.org/latest.tar.gz \
+    && tar -xzf wordpress.tar.gz --strip-components=1 \
+    && rm wordpress.tar.gz
+
+# Copier le fichier de configuration personnalisé si nécessaire
+COPY conf/wp-config.php /var/www/html/wp-config.php
+
+# Exposer le port pour PHP-FPM
 EXPOSE 9000
 
-# Lancer PHP-FPM en tant que processus principal
-CMD ["php-fpm"]
+# Démarrer PHP-FPM
+CMD ["php-fpm81", "-F"]

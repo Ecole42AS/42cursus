@@ -39,6 +39,7 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception_network
+    user: mysql
     # restart: unless-stopped
     restart: "no"
     #healthcheck:
@@ -56,11 +57,31 @@ services:
     #   interval: 30s
     #   retries: 10
     #   timeout: 5s
+    # healthcheck:
+    #   test: ["CMD", "mysqladmin", "ping", "-uroot", "-p$(cat /run/secrets/db_root_password)", "--socket=/var/run/mysqld/mysqld.sock"]
+    #   interval: 30s
+    #   retries: 10
+    #   timeout: 5s
+
+    # healthcheck:
+    #   test: ["CMD", "mysqladmin", "ping", "-uroot", "-p$(< /run/secrets/db_root_password)", "--socket=/var/run/mysqld/mysqld.sock"]
+    #   interval: 30s
+    #   retries: 10
+    #   timeout: 5s
+
+    # healthcheck:
+    #   test: ["CMD-SHELL", "mysqladmin ping -uroot -p\"$(cat /run/secrets/db_root_password)\" --silent || exit 1"]
+    #   interval: 30s
+    #   retries: 10
+    #   timeout: 5s
+
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-uroot", "-p$(cat /run/secrets/db_root_password)", "--socket=/var/run/mysqld/mysqld.sock"]
+      test: ["CMD-SHELL", "mysqladmin ping -uroot -p$(cat /run/secrets/db_root_password) --silent || exit 1"]
       interval: 30s
       retries: 10
       timeout: 5s
+
+
 
 
   wordpress:

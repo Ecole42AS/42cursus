@@ -1,18 +1,23 @@
-FROM mariadb:10.6
+# Utiliser Alpine comme image de base
+FROM alpine:3.17
 
-# Définition des variables d'environnement pour MariaDB
-ENV MYSQL_DATABASE=wordpress
-ENV MYSQL_USER=wordpress_user
+# Ajouter l'utilisateur MySQL
+RUN addgroup -S mysql && adduser -S mysql -G mysql
 
-# Utilisation des fichiers secrets pour les mots de passe
-ENV MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_root_password
-ENV MYSQL_PASSWORD_FILE=/run/secrets/db_password
+# Installation de MariaDB et outils nécessaires
+RUN apk update && apk add --no-cache mariadb mariadb-client mariadb-server-utils bash && \
+    mkdir -p /var/lib/mysql /docker-entrypoint-initdb.d && \
+    chown -R mysql:mysql /var/lib/mysql /docker-entrypoint-initdb.d && \
+    chmod 777 /var/lib/mysql /docker-entrypoint-initdb.d
 
-# Copier le script SQL d'initialisation si besoin
+# Copier le script SQL d'initialisation
 COPY init.sql /docker-entrypoint-initdb.d/
 
 # Exposer le port MySQL
 EXPOSE 3306
 
-# Lancer le serveur MariaDB
-CMD ["docker-entrypoint.sh", "mysqld"]
+# Passer en tant qu'utilisateur MySQL
+USER mysql
+
+# Commande de démarrage de MariaDB
+CMD ["mysqld", "--datadir=/var/lib/mysql", "--console"]

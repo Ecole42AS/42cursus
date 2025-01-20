@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS wordpress;
 
 -- Création de l'utilisateur WordPress s'il n'existe pas
-CREATE USER IF NOT EXISTS 'wordpress_user'@'%' IDENTIFIED BY 'wordpress_password';
+CREATE USER IF NOT EXISTS 'wordpress_user'@'%' IDENTIFIED BY '${MARIADB_PASSWORD}';
 
 -- Accorder tous les privilèges à l'utilisateur WordPress sur la base de données
 GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress_user'@'%';
