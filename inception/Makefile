@@ -10,7 +10,7 @@ MARIADB_CONTAINER=mariadb_container
 
 all:
 	@echo "$(GREEN)Starting all containers...$(NC)"
-	docker-compose up --build -d
+	docker-compose up --build
 
 check-containers:
 	@echo "$(GREEN)Checking running containers:$(NC)"

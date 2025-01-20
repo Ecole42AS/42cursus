@@ -18,7 +18,8 @@ services:
         condition: service_healthy
     networks:
       - inception_network
-    restart: on-failure
+    # restart: on-failure
+    restart: "no"
 
   mariadb:
     container_name: mariadb_container
@@ -38,12 +39,29 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception_network
-    restart: unless-stopped
+    # restart: unless-stopped
+    restart: "no"
+    #healthcheck:
+    #  test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+    #  interval: 20s
+    #  retries: 10
+    #  timeout: 5s
+    # healthcheck:
+    #   test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$(cat /run/secrets/db_root_password)"]
+    #   interval: 30s
+    #   retries: 10
+    #   timeout: 5s
+    # healthcheck:
+    #   test: ["CMD", "mysqladmin", "ping", "-uroot", "--socket=/var/run/mysqld/mysqld.sock"]
+    #   interval: 30s
+    #   retries: 10
+    #   timeout: 5s
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 20s
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-p$(cat /run/secrets/db_root_password)", "--socket=/var/run/mysqld/mysqld.sock"]
+      interval: 30s
       retries: 10
       timeout: 5s
+
 
   wordpress:
     container_name: wordpress_container
@@ -58,7 +76,7 @@ services:
       - db_password
     volumes:
       - wordpress_data:/var/www/html
-      - /tmp/wp-config.php:/var/www/html/wp-config.php
+      - ./srcs/requirements/wordpress/conf/wp-config.php:/var/www/html/wp-config.php
     security_opt:
       - seccomp:unconfined
     depends_on:
@@ -66,18 +84,37 @@ services:
         condition: service_healthy
     networks:
       - inception_network
-    restart: unless-stopped
+    #restart: unless-stopped # a remettre
+    restart: "no"
+    #healthcheck:
+    #  test: ["CMD", "curl", "-f", "http://localhost"]
+    #  interval: 30s
+    #  retries: 5
+    #  timeout: 10s
+    #healthcheck:
+    #  test: ["CMD", "curl", "-f", "http://nginx_container"]
+    #  interval: 30s
+    #  retries: 5
+    #  timeout: 10s
+    #healthcheck:
+    #  test: ["CMD-SHELL", "curl -f http://localhost/wp-login.php || exit 1"]
+    #  interval: 30s
+    #  retries: 5
+    #  timeout: 10s
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ["CMD-SHELL", "curl -fsS http://localhost/wp-login.php || exit 1"]
       interval: 30s
       retries: 5
       timeout: 10s
 
+
+
+
 secrets:
   db_password:
-    file: ./secrets/db_password.txt
+    file: ./srcs/requirements/mariadb/secrets/db_password.txt
   db_root_password:
-    file: ./secrets/db_root_password.txt
+    file: ./srcs/requirements/mariadb/secrets/db_root_password.txt
 
 
 volumes:
@@ -86,14 +123,15 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/${HOST_USER}/data/db_data
+      device: /home/${HOST_USER}/42cursus/inception/data/db_data
+
 
   wordpress_data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/${HOST_USER}/data/wp_data
+      device: /home/${HOST_USER}/42cursus/inception/data/wp_data
 
 networks:
   inception_network:

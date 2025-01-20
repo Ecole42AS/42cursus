@@ -1,3 +1,4 @@
-secrets/
 .env
 srcs/volumes/
+srcs/requirements/mariadb/secrets
+data
