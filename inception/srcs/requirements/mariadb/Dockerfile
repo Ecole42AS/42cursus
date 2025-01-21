@@ -6,6 +6,7 @@ RUN addgroup -S mysql && adduser -S mysql -G mysql
 
 # Installation de MariaDB et outils nécessaires
 RUN apk update && apk add --no-cache mariadb mariadb-client mariadb-server-utils bash && \
+    mkdir -p /run/mysqld && chown -R mysql:mysql /run/mysqld &&\
     mkdir -p /var/lib/mysql /docker-entrypoint-initdb.d && \
     chown -R mysql:mysql /var/lib/mysql /docker-entrypoint-initdb.d && \
     chmod 777 /var/lib/mysql /docker-entrypoint-initdb.d
@@ -20,4 +21,5 @@ EXPOSE 3306
 USER mysql
 
 # Commande de démarrage de MariaDB
-CMD ["mysqld", "--datadir=/var/lib/mysql", "--console"]
+# CMD ["mysqld", "--datadir=/var/lib/mysql", "--user=mysql", "--console"]
+CMD ["sh", "-c", "ls -ld /var/lib/mysql && mysqld --datadir=/var/lib/mysql --console"]

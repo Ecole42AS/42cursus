@@ -144,7 +144,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/${HOST_USER}/42cursus/inception/data/db_data
+      device: /home/alex/42cursus/inception/data/db_data
 
 
   wordpress_data:
@@ -152,7 +152,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/${HOST_USER}/42cursus/inception/data/wp_data
+      device: /home/alex/42cursus/inception/data/wp_data
 
 networks:
   inception_network:

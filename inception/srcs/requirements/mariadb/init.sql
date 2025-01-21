@@ -1,11 +1,17 @@
--- Création de la base de données WordPress si elle n'existe pas
-CREATE DATABASE IF NOT EXISTS wordpress;
+-- Supprimer la base si elle existe pour redémarrer proprement
+DROP DATABASE IF EXISTS wordpress;
 
--- Création de l'utilisateur WordPress s'il n'existe pas
-CREATE USER IF NOT EXISTS 'wordpress_user'@'%' IDENTIFIED BY '${MARIADB_PASSWORD}';
+-- Recréer la base de données WordPress avec les bons paramètres
+CREATE DATABASE wordpress CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Accorder tous les privilèges à l'utilisateur WordPress sur la base de données
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress_user'@'%';
+-- Supprimer l'utilisateur WordPress pour éviter les conflits
+DROP USER IF EXISTS 'wordpress_user'@'%';
+
+-- Créer l'utilisateur avec un mot de passe sécurisé
+CREATE USER 'wordpress_user'@'%' IDENTIFIED BY 'secure_wp_password';
+
+-- Accorder tous les privilèges nécessaires à WordPress
+GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress_user'@'%' WITH GRANT OPTION;
 
 -- Appliquer les changements
 FLUSH PRIVILEGES;
