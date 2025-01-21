@@ -1,0 +1,111 @@
+////installer git sur VM////
+sudo apt update
+sudo apt install git
+git --version
+
+////installer docker sur VM////
+sudo apt update
+sudo apt upgrade
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce
+sudo docker --version
+sudo usermod -aG docker $USER
+
+////installer ssh sur VM////
+$ sudo apt update
+$ sudo apt upgrade
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ sudo nano /etc/ssh/sshd_config
+Find this line:
+#Port 22
+And uncomment (delete #) and change it to 4242:
+Port 4242
+Restart SSH service
+$ sudo systemctl restart ssh
+Don't forget to add a UFW rule to allow port 4242!
+Forward the host port 4242 to the guest port 4242: in VirtualBox,
+    go to VM >> Settings >> Network >> Adapter 1 >> Advanced >> Port Forwarding.
+    add a rule: Host port 4242 and guest port 4242.
+Restart SSH service after this change.
+In the host terminal, connect like this:
+$ ssh <username>@localhost -p 4242
+Or like this:
+$ ssh <username>@127.0.0.1 -p 4242
+To quit the ssh connection, just exit.
+
+////copier-coller cle ssh sur VM////
+Whether you use macOS or Linux, open your Terminal application.
+Run cd ~/. ssh/ in your Terminal.
+If the folder exists, run ls and check if a pair of key exists : id_ed25519 and id_ed25519. pub.
+Using id_rsa and id_rsa. pub is fine too. We are just advocating the use of ed25519.
+scp -P 4242 /Users/cmansey/.ssh/id_rsa cmansey@127.0.0.1:/home/cmansey/.ssh
+scp -P 4242 /Users/cmansey/.ssh/id_rsa.pub cmansey@127.0.0.1:/home/cmansey/.ssh
+scp -P 4242 /Users/cmansey/.ssh/known_hosts cmansey@127.0.0.1:/home/cmansey/.ssh
+
+////Normalement pas besoin sur la VM le makefile devrait s'en charger mais verifier////
+mkdir -p /home/cmy/data/mariadb
+mkdir -p /home/cmy/data/wordpress
+sudo chown -R $USER:$USER /home/cmy/data/mariadb/
+sudo chown -R $USER:$USER /home/cmy/data/wordpress
+
+////Modif pour le https://login.42.fr////
+How to change your localhost by cmansey.42.fr
+    Go to the file /etc/hosts
+    Add the following line : "127.0.0.1 cmansey.42.fr"
+
+////Useful things to know about inception dockers and containers////
+On the mac, Apache service is installed by default. I deleted Apache from my computer to avoid any problem with nginx
+If you are at 42 on their computer you should stop these services which are running by default.
+
+sudo service nginx stop
+sudo service mariadb stop
+sudo service apache2 stop
+sudo service mysql stop
+
+DOCKER
+General docker commands
+- docker ps or docker ps -a //show the names of all the containers you have + the id you need and the port associated.
+- docker pull "NameOfTheImage" // pull an image from dockerhub
+- docker "Three first letter of your docker" // show the logs of your last run of dockers
+- docker rm $(docker ps -a -q) //allow to delete all the opened images
+- docker exec -it "Three first letter of your docker" sh // to execute the program with the shell
+
+Docker run
+- docker run "name of the docker image" //to run the docker image
+- docker run -d, // run container in background
+- docker run -p,// publish a container's port to the host
+- docker run -P, // publish all exposed port to random ports
+- docker run -it "imageName", //le programme continuera de fonctionner et on pourra interagir avec le container
+- docker run -name sl mysql, //give a name for the container instead an ID
+- docker run -d -p 7000:80 test:latest
+Docker image
+- docker image rm -f "image name/id", //delete the image, if the image is running you need to kill it first.
+- docker image kill "name", //stop a running image,
+-docker inspect “name”
+-docker network ls (voir les differents reseaux)
+-docker logs srcs-wordpress-1 (voir les logs des containers)
+	ensuite # mysql -u root -p pour acceder a línterpreteur de commande
+sudo lsof -i :443 pour voir le pid du process qui uttilise le port 443
+
+
+Identifier le processus utilisant le port 80
+Utilisez la commande suivante pour obtenir des détails sur le processus qui utilise le port 80 :
+sudo lsof -i :80
+
+
+mkdir -p /home/login/data/wordpress
+chmod -R 777 /home/login/data/wordpress
+mkdir -p /home/login/data/mysql
+chmod -R 777 /home/login/data/mysql
+sudo mkdir -p /var/lib/mysql
+sudo chown -R $USER:docker /var/lib/mysql
+
+
+Vous pouvez accéder au shell interactif du conteneur pour vérifier la présence de ce chemin et des permissions associées en utilisant la commande suivante :
+sudo docker exec -it srcs-wordpress-1 /bin/sh
+
+À l'intérieur du conteneur, vérifiez si le répertoire /run/php/ existe et si les permissions sont correctes.
