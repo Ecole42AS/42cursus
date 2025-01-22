@@ -42,20 +42,20 @@ Whether you use macOS or Linux, open your Terminal application.
 Run cd ~/. ssh/ in your Terminal.
 If the folder exists, run ls and check if a pair of key exists : id_ed25519 and id_ed25519. pub.
 Using id_rsa and id_rsa. pub is fine too. We are just advocating the use of ed25519.
-scp -P 4242 /Users/cmansey/.ssh/id_rsa cmansey@127.0.0.1:/home/cmansey/.ssh
-scp -P 4242 /Users/cmansey/.ssh/id_rsa.pub cmansey@127.0.0.1:/home/cmansey/.ssh
-scp -P 4242 /Users/cmansey/.ssh/known_hosts cmansey@127.0.0.1:/home/cmansey/.ssh
+scp -P 4242 /Users/astutz/.ssh/id_rsa astutz@127.0.0.1:/home/astutz/.ssh
+scp -P 4242 /Users/astutz/.ssh/id_rsa.pub astutz@127.0.0.1:/home/astutz/.ssh
+scp -P 4242 /Users/astutz/.ssh/known_hosts astutz@127.0.0.1:/home/astutz/.ssh
 
 ////Normalement pas besoin sur la VM le makefile devrait s'en charger mais verifier////
-mkdir -p /home/cmy/data/mariadb
-mkdir -p /home/cmy/data/wordpress
-sudo chown -R $USER:$USER /home/cmy/data/mariadb/
-sudo chown -R $USER:$USER /home/cmy/data/wordpress
+mkdir -p /home/alex/data/mariadb
+mkdir -p /home/alex/data/wordpress
+sudo chown -R $USER:$USER /home/alex/data/mariadb/
+sudo chown -R $USER:$USER /home/alex/data/wordpress
 
 ////Modif pour le https://login.42.fr////
-How to change your localhost by cmansey.42.fr
+How to change your localhost by astutz.42.fr
     Go to the file /etc/hosts
-    Add the following line : "127.0.0.1 cmansey.42.fr"
+    Add the following line : "127.0.0.1 astutz.42.fr"
 
 ////Useful things to know about inception dockers and containers////
 On the mac, Apache service is installed by default. I deleted Apache from my computer to avoid any problem with nginx

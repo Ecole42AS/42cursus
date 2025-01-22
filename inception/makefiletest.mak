@@ -8,8 +8,8 @@ ifeq ($(UNAME_S),Linux)
     DEFAULT_PATH_V_WORDPRESS = ~/data/wordpress
     DEFAULT_PATH_V_MARIADB = ~/data/mariadb
 else ifeq ($(UNAME_S),Darwin)  # macOS
-    DEFAULT_PATH_V_WORDPRESS = /Users/cmansey/data/wordpress
-    DEFAULT_PATH_V_MARIADB = /Users/cmansey/data/mariadb
+    DEFAULT_PATH_V_WORDPRESS = /Users/astutz/data/wordpress
+    DEFAULT_PATH_V_MARIADB = /Users/astutz/data/mariadb
 endif
 
 PATH_V_WORDPRESS ?= $(DEFAULT_PATH_V_WORDPRESS)

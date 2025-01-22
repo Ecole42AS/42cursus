@@ -10,7 +10,7 @@ RUN mkdir -p /etc/nginx/ssl && \
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout /etc/nginx/ssl/inception.key \
     -out /etc/nginx/ssl/inception.crt \
-    -subj "/C=SW/ST=VS/L=Lausanne/O=42/OU=42/CN=cmansey.42.ch/emailAddress=cmansey@student.42lausanne.ch"
+    -subj "/C=SW/ST=VD/L=Lausanne/O=42/OU=42/CN=astutz.42.fr/emailAddress=astutz@student.42.fr"
 
 # Création des répertoires nécessaires et configuration des droits
 RUN mkdir -p /var/run/nginx /var/www/wordpress && \
