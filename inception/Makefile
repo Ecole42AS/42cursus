@@ -19,7 +19,7 @@ PATH_TO_ENV_FILE ?= srcs/.env
 all : prepare down build run
 
 run:
-	docker-compose -f ${PATH_DOCKER_COMPOSE} -p ${NAME} up
+	docker-compose -f ${PATH_DOCKER_COMPOSE} -p ${NAME} up -d
 
 run-daemon:
 	docker-compose -f ${PATH_DOCKER_COMPOSE} -p ${NAME} up -d
