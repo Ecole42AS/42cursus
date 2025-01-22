@@ -1,3 +1,8 @@
+# Définition des couleurs
+GREEN = \033[1;92m
+RED = \033[1;91m
+NC = \033[0m # Réinitialisation des couleurs
+
 # Variables
 PATH_DOCKER_COMPOSE = srcs/docker-compose.yml
 NAME = inception
@@ -62,7 +67,7 @@ clean: down
 fclean: down
 	@docker system prune -a --volumes --force
 	@docker volume rm $$(docker volume ls -q) || true
-	@rm -rf $(PATH_V_WORDPRESS) $(PATH_V_MARIADB)
+	@sudo rm -rf $(PATH_V_WORDPRESS) $(PATH_V_MARIADB)
 	@echo "Full cleanup done."
 
 re: fclean all
@@ -77,21 +82,122 @@ reload:
 	@echo "Configuration reloaded."
 
 # Tests pour vérifier la conformité du projet
+# test:
+# 	@echo "Running project tests..."
+# 	# Vérification des conteneurs en cours d'exécution
+# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep nginx && echo "NGINX is running" || (echo "NGINX is not running!" && exit 1)
+# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep mariadb && echo "MariaDB is running" || (echo "MariaDB is not running!" && exit 1)
+# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep wordpress && echo "WordPress is running" || (echo "WordPress is not running!" && exit 1)
+
+# 	# Test de connexion MariaDB
+# 	@# @docker exec mariadb mysqladmin --host=localhost --user=root --password=$(MARIADB_ROOT_PASSWORD) ping && echo "MariaDB connection successful" || (echo "MariaDB connection failed" && exit 1)
+# 	@docker exec mariadb sh -c 'mysqladmin ping -h127.0.0.1 -uroot -p"$$MARIADB_ROOT_PASSWORD"' && echo "MariaDB connection successful" || (echo "MariaDB connection failed" && exit 1)
+
+# 	# Vérification de l'installation de WordPress
+# 	@docker exec wordpress wp core is-installed --allow-root --path=/var/www/wordpress && echo "WordPress is correctly installed" || (echo "WordPress installation failed" && exit 1)
+
+# 	# Test de configuration NGINX
+# 	@docker exec nginx nginx -t && echo "NGINX configuration is valid" || (echo "NGINX configuration error" && exit 1)
+
+# 	# Vérification du certificat TLS
+# 	@curl --insecure -s -o /dev/null -w "%{http_code}" https://$(DOMAIN_NAME) | grep "200" && echo "TLS configuration is correct" || (echo "TLS configuration failed" && exit 1)
+
+# 	@echo "All tests passed successfully."
+# test:
+# 	@echo "Running project tests..."
+	
+# 	# Vérification des conteneurs en cours d'exécution
+# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep nginx && echo "NGINX is running" || (echo "NGINX is not running!" && exit 1)
+# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep mariadb && echo "MariaDB is running" || (echo "MariaDB is not running!" && exit 1)
+# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep wordpress && echo "WordPress is running" || (echo "WordPress is not running!" && exit 1)
+
+# 	# Test de connexion MariaDB
+# 	@docker exec mariadb sh -c 'mysqladmin ping -h127.0.0.1 -uroot -p"$$MARIADB_ROOT_PASSWORD"' && echo "MariaDB connection successful" || (echo "MariaDB connection failed" && exit 1)
+
+# 	# Vérification de l'installation de WordPress
+# 	@docker exec wordpress sh -c "wp core is-installed --allow-root --path=/var/www/wordpress" && echo "WordPress is correctly installed" || (echo "WordPress installation failed" && exit 1)
+
+# 	# Vérification de la présence du fichier de configuration de WordPress
+# 	@docker exec wordpress sh -c "[ -f /var/www/wordpress/wp-config.php ]" && echo "WordPress configuration file exists" || (echo "WordPress config file missing" && exit 1)
+
+# 	# Test de configuration NGINX
+# 	@docker exec nginx nginx -t && echo "NGINX configuration is valid" || (echo "NGINX configuration error" && exit 1)
+
+# 	# Vérification du certificat TLS
+# 	@DOMAIN_NAME=astutz.42.fr; curl -k -L -o /dev/null -s -w "%{http_code}" https://$$DOMAIN_NAME | grep "200" && echo "TLS configuration is correct" || (echo "TLS configuration failed" && exit 1)
+
+# 	@echo "All tests passed successfully."
+
 test:
 	@echo "Running project tests..."
+
 	# Vérification des conteneurs en cours d'exécution
-	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep $(NAME)_nginx && echo "NGINX is running" || (echo "NGINX is not running!" && exit 1)
-	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep $(NAME)_mariadb && echo "MariaDB is running" || (echo "MariaDB is not running!" && exit 1)
-	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep $(NAME)_wordpress && echo "WordPress is running" || (echo "WordPress is not running!" && exit 1)
+	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep nginx && echo "$(GREEN)NGINX is running$(NC)" || (echo "$(RED)NGINX is not running!$(NC)" && exit 1)
+	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep mariadb && echo "$(GREEN)MariaDB is running$(NC)" || (echo "$(RED)MariaDB is not running!$(NC)" && exit 1)
+	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep wordpress && echo "$(GREEN)WordPress is running$(NC)" || (echo "$(RED)WordPress is not running!$(NC)" && exit 1)
+
+
+	# Vérification du redémarrage automatique des conteneurs
+	@docker inspect --format '{{.HostConfig.RestartPolicy.Name}}' nginx | grep "on-failure" && echo "$(GREEN)NGINX restart policy is correct$(NC)" || (echo "$(RED)NGINX restart policy is incorrect$(NC)" && exit 1)
+	@docker inspect --format '{{.HostConfig.RestartPolicy.Name}}' mariadb | grep "unless-stopped" && echo "$(GREEN)MariaDB restart policy is correct$(NC)" || (echo "$(RED)MariaDB restart policy is incorrect$(NC)" && exit 1)
+	@docker inspect --format '{{.HostConfig.RestartPolicy.Name}}' wordpress | grep "on-failure" && echo "$(GREEN)WordPress restart policy is correct$(NC)" || (echo "$(RED)WordPress restart policy is incorrect$(NC)" && exit 1)
+
+
+	# Vérification des permissions des fichiers sensibles
+	@docker exec wordpress sh -c '[ "$$(stat -c %a /var/www/wordpress/wp-config.php)" = "600" ] && echo "$(GREEN)wp-config.php is secured$(NC)" || (echo "$(RED)wp-config.php is accessible$(NC)" && exit 1)'
+
+
+
 	# Test de connexion MariaDB
-	@docker exec $(NAME)_mariadb mysqladmin --host=localhost --user=root --password=$$(cat srcs/secrets/db_root_password.txt) ping && echo "MariaDB connection successful" || (echo "MariaDB connection failed" && exit 1)
+	@docker exec mariadb sh -c 'mysqladmin ping -h127.0.0.1 -uroot -p"$$MARIADB_ROOT_PASSWORD"' && echo "$(GREEN)MariaDB connection successful$(NC)" || (echo "$(RED)MariaDB connection failed$(NC)" && exit 1)
+
 	# Vérification de l'installation de WordPress
-	@docker exec $(NAME)_wordpress wp core is-installed --allow-root && echo "WordPress is correctly installed" || (echo "WordPress installation failed" && exit 1)
+	@docker exec wordpress sh -c "wp core is-installed --allow-root --path=/var/www/wordpress" && echo "$(GREEN)WordPress is correctly installed$(NC)" || (echo "$(RED)WordPress installation failed$(NC)" && exit 1)
+
+	# Vérification de la présence du fichier de configuration de WordPress
+	@docker exec wordpress sh -c "[ -f /var/www/wordpress/wp-config.php ]" && echo "$(GREEN)WordPress configuration file exists$(NC)" || (echo "$(RED)WordPress config file missing$(NC)" && exit 1)
+
+	# Vérification des volumes persistants
+	@docker volume ls | grep "wordpress" && echo "$(GREEN)WordPress volume exists$(NC)" || (echo "$(RED)WordPress volume is missing$(NC)" && exit 1)
+	@docker volume ls | grep "mariadb" && echo "$(GREEN)MariaDB volume exists$(NC)" || (echo "$(RED)MariaDB volume is missing$(NC)" && exit 1)
+
+	# Vérification de la taille des volumes
+	@docker exec wordpress sh -c "du -sh /var/www/wordpress/wp-content | awk '\$$1 != \"0\" {print \"$(GREEN)WordPress content exists$(NC)\"} END {if (\$$1 == \"0\") print \"$(RED)WordPress content is empty$(NC)\"; exit (\$$1 == \"0\")} '"
+
+
+	# Vérification des tables WordPress dans MariaDB
+	@docker exec mariadb sh -c 'mysql -u root -p"$$MARIADB_ROOT_PASSWORD" -e "USE db_wordpress; SHOW TABLES;"' | grep "wp_posts" && echo "$(GREEN)WordPress database configured correctly$(NC)" || (echo "$(RED)WordPress database configuration error$(NC)" && exit 1)
+
+	# Vérification de l'existence de l'utilisateur WordPress
+	@docker exec wordpress sh -c "wp user list --allow-root --path=/var/www/wordpress" | grep "$(WP_ADMIN_USER)" && echo "$(GREEN)WordPress admin user exists$(NC)" || (echo "$(RED)WordPress admin user is missing$(NC)" && exit 1)
+
+	# Vérification du réseau Docker
+	@docker network inspect inception_inception | grep "nginx" && echo "$(GREEN)NGINX is connected to the network$(NC)" || (echo "$(RED)NGINX is not connected to the network$(NC)" && exit 1)
+	@docker network inspect inception_inception | grep "mariadb" && echo "$(GREEN)MariaDB is connected to the network$(NC)" || (echo "$(RED)MariaDB is not connected to the network$(NC)" && exit 1)
+	@docker network inspect inception_inception | grep "wordpress" && echo "$(GREEN)WordPress is connected to the network$(NC)" || (echo "$(RED)WordPress is not connected to the network$(NC)" && exit 1)
+
+	# Vérification des permissions des fichiers WordPress
+	@docker exec wordpress sh -c "ls -ld /var/www/wordpress/wp-content" | grep "drwxr-xr-x" && echo "$(GREEN)WordPress file permissions are correct$(NC)" || (echo "$(RED)WordPress file permissions are incorrect$(NC)" && exit 1)
+
+	# Vérification des logs NGINX
+	@docker logs nginx 2>&1 | grep "error" && (echo "$(RED)NGINX errors detected$(NC)" && exit 1) || echo "$(GREEN)No critical NGINX errors$(NC)"
+
+	# Vérification des variables d'environnement dans WordPress
+	@docker exec wordpress printenv | grep "WP_ADMIN_USER" && echo "$(GREEN)Environment variables are correctly loaded$(NC)" || (echo "$(RED)Environment variables are not loaded$(NC)" && exit 1)
+
 	# Test de configuration NGINX
-	@docker exec $(NAME)_nginx nginx -t && echo "NGINX configuration is valid" || (echo "NGINX configuration error" && exit 1)
-	# Vérification du certificat TLS
-	@curl -v --insecure https://login.42.fr 2>&1 | grep "TLS" && echo "TLS configuration is correct" || (echo "TLS configuration failed" && exit 1)
-	@echo "All tests passed successfully."
+	@docker exec nginx nginx -t && echo "$(GREEN)NGINX configuration is valid$(NC)" || (echo "$(RED)NGINX configuration error$(NC)" && exit 1)
+
+	# Vérification du certificat TLS et de l'accès au site
+	@DOMAIN_NAME=astutz.42.fr; curl -k -L -o /dev/null -s -w "%{http_code}" https://$$DOMAIN_NAME | grep "200" && echo "$(GREEN)TLS configuration is correct$(NC)" || (echo "$(RED)TLS configuration failed$(NC)" && exit 1)
+
+	# Vérification de l'accès à une page spécifique de WordPress (ex: Hello World post)
+	@DOMAIN_NAME=astutz.42.fr; curl -k -L -o /dev/null -s -w "%{http_code}" "https://$$DOMAIN_NAME/?p=1" | grep "200" && echo "$(GREEN)WordPress page is accessible$(NC)" || (echo "$(RED)WordPress page access failed$(NC)" && exit 1)
+
+	# Vérification de la création d'un post via WP-CLI
+	@docker exec wordpress wp post create --post_title='Test Post' --post_content='This is a test.' --post_status=publish --allow-root --path=/var/www/wordpress && echo "$(GREEN)WordPress post creation successful$(NC)" || (echo "$(RED)WordPress post creation failed$(NC)" && exit 1)
+
+	@echo "$(GREEN)All tests passed successfully.$(NC)"
 
 # Arrêt des services locaux pour éviter des conflits avec Docker
 stop-services:
