@@ -81,53 +81,6 @@ reload:
 	@$(DOCKER_COMPOSE_CMD) down && $(DOCKER_COMPOSE_CMD) up -d
 	@echo "Configuration reloaded."
 
-# Tests pour vérifier la conformité du projet
-# test:
-# 	@echo "Running project tests..."
-# 	# Vérification des conteneurs en cours d'exécution
-# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep nginx && echo "NGINX is running" || (echo "NGINX is not running!" && exit 1)
-# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep mariadb && echo "MariaDB is running" || (echo "MariaDB is not running!" && exit 1)
-# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep wordpress && echo "WordPress is running" || (echo "WordPress is not running!" && exit 1)
-
-# 	# Test de connexion MariaDB
-# 	@# @docker exec mariadb mysqladmin --host=localhost --user=root --password=$(MARIADB_ROOT_PASSWORD) ping && echo "MariaDB connection successful" || (echo "MariaDB connection failed" && exit 1)
-# 	@docker exec mariadb sh -c 'mysqladmin ping -h127.0.0.1 -uroot -p"$$MARIADB_ROOT_PASSWORD"' && echo "MariaDB connection successful" || (echo "MariaDB connection failed" && exit 1)
-
-# 	# Vérification de l'installation de WordPress
-# 	@docker exec wordpress wp core is-installed --allow-root --path=/var/www/wordpress && echo "WordPress is correctly installed" || (echo "WordPress installation failed" && exit 1)
-
-# 	# Test de configuration NGINX
-# 	@docker exec nginx nginx -t && echo "NGINX configuration is valid" || (echo "NGINX configuration error" && exit 1)
-
-# 	# Vérification du certificat TLS
-# 	@curl --insecure -s -o /dev/null -w "%{http_code}" https://$(DOMAIN_NAME) | grep "200" && echo "TLS configuration is correct" || (echo "TLS configuration failed" && exit 1)
-
-# 	@echo "All tests passed successfully."
-# test:
-# 	@echo "Running project tests..."
-	
-# 	# Vérification des conteneurs en cours d'exécution
-# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep nginx && echo "NGINX is running" || (echo "NGINX is not running!" && exit 1)
-# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep mariadb && echo "MariaDB is running" || (echo "MariaDB is not running!" && exit 1)
-# 	@docker ps --format "table {{.Names}}\t{{.Status}}" | grep wordpress && echo "WordPress is running" || (echo "WordPress is not running!" && exit 1)
-
-# 	# Test de connexion MariaDB
-# 	@docker exec mariadb sh -c 'mysqladmin ping -h127.0.0.1 -uroot -p"$$MARIADB_ROOT_PASSWORD"' && echo "MariaDB connection successful" || (echo "MariaDB connection failed" && exit 1)
-
-# 	# Vérification de l'installation de WordPress
-# 	@docker exec wordpress sh -c "wp core is-installed --allow-root --path=/var/www/wordpress" && echo "WordPress is correctly installed" || (echo "WordPress installation failed" && exit 1)
-
-# 	# Vérification de la présence du fichier de configuration de WordPress
-# 	@docker exec wordpress sh -c "[ -f /var/www/wordpress/wp-config.php ]" && echo "WordPress configuration file exists" || (echo "WordPress config file missing" && exit 1)
-
-# 	# Test de configuration NGINX
-# 	@docker exec nginx nginx -t && echo "NGINX configuration is valid" || (echo "NGINX configuration error" && exit 1)
-
-# 	# Vérification du certificat TLS
-# 	@DOMAIN_NAME=astutz.42.fr; curl -k -L -o /dev/null -s -w "%{http_code}" https://$$DOMAIN_NAME | grep "200" && echo "TLS configuration is correct" || (echo "TLS configuration failed" && exit 1)
-
-# 	@echo "All tests passed successfully."
-
 test:
 	@echo "Running project tests..."
 
