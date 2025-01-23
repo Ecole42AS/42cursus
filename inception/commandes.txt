@@ -42,15 +42,15 @@ Whether you use macOS or Linux, open your Terminal application.
 Run cd ~/. ssh/ in your Terminal.
 If the folder exists, run ls and check if a pair of key exists : id_ed25519 and id_ed25519. pub.
 Using id_rsa and id_rsa. pub is fine too. We are just advocating the use of ed25519.
-scp -P 4242 /Users/astutz/.ssh/id_rsa astutz@127.0.0.1:/home/astutz/.ssh
-scp -P 4242 /Users/astutz/.ssh/id_rsa.pub astutz@127.0.0.1:/home/astutz/.ssh
-scp -P 4242 /Users/astutz/.ssh/known_hosts astutz@127.0.0.1:/home/astutz/.ssh
+scp -P 4242 /Users/astutz/.ssh/id_rsa astutz@127.0.0.1:/home/alex/.ssh
+scp -P 4242 /Users/astutz/.ssh/id_rsa.pub astutz@127.0.0.1:/home/alex/.ssh
+scp -P 4242 /Users/astutz/.ssh/known_hosts astutz@127.0.0.1:/home/alex/.ssh
 
 ////Normalement pas besoin sur la VM le makefile devrait s'en charger mais verifier////
-mkdir -p /home/astutz/data/mariadb
-mkdir -p /home/astutz/data/wordpress
-sudo chown -R $USER:$USER /home/astutz/data/mariadb/
-sudo chown -R $USER:$USER /home/astutz/data/wordpress
+mkdir -p /home/alex/data/mariadb
+mkdir -p /home/alex/data/wordpress
+sudo chown -R $USER:$USER /home/alex/data/mariadb/
+sudo chown -R $USER:$USER /home/alex/data/wordpress
 
 ////Modif pour le https://login.42.fr////
 How to change your localhost by astutz.42.fr

@@ -7,15 +7,8 @@ NC = \033[0m # Réinitialisation des couleurs
 PATH_DOCKER_COMPOSE = srcs/docker-compose.yml
 NAME = inception
 
-# Détection de l'OS et définition des chemins pour les volumes
-OS := $(shell uname -s | tr '[:upper:]' '[:lower:]')
-ifeq ($(OS),linux)
     DEFAULT_PATH_V_WORDPRESS = ~/data/wordpress
     DEFAULT_PATH_V_MARIADB = ~/data/mariadb
-else ifeq ($(OS),darwin)
-    DEFAULT_PATH_V_WORDPRESS = /Users/$(USER)/data/wordpress
-    DEFAULT_PATH_V_MARIADB = /Users/$(USER)/data/mariadb
-endif
 
 # Variables utilisateur (modifiables via la ligne de commande)
 PATH_V_WORDPRESS ?= $(DEFAULT_PATH_V_WORDPRESS)
@@ -67,7 +60,7 @@ clean: down
 fclean: down
 	@docker system prune -a --volumes --force
 	@docker volume rm $$(docker volume ls -q) || true
-	@rm -rf $(PATH_V_WORDPRESS) $(PATH_V_MARIADB)
+	@sudo rm -rf $(PATH_V_WORDPRESS) $(PATH_V_MARIADB)
 	@echo "Full cleanup done."
 
 re: fclean all
@@ -154,17 +147,10 @@ test:
 
 # Arrêt des services locaux pour éviter des conflits avec Docker
 stop-services:
-ifeq ($(OS),linux)
 	@sudo systemctl stop apache2 || true
 	@sudo systemctl stop nginx || true
 	@sudo systemctl stop mariadb || true
 	@sudo systemctl stop mysql || true
-else
-	@sudo service apache2 stop || true
-	@sudo service nginx stop || true
-	@sudo service mariadb stop || true
-	@sudo service mysql stop || true
-endif
 	@echo "Local services stopped."
 
 # Déclaration des cibles non liées à des fichiers
