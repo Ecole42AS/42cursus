@@ -47,10 +47,10 @@ scp -P 4242 /Users/astutz/.ssh/id_rsa.pub astutz@127.0.0.1:/home/astutz/.ssh
 scp -P 4242 /Users/astutz/.ssh/known_hosts astutz@127.0.0.1:/home/astutz/.ssh
 
 ////Normalement pas besoin sur la VM le makefile devrait s'en charger mais verifier////
-mkdir -p /home/alex/data/mariadb
-mkdir -p /home/alex/data/wordpress
-sudo chown -R $USER:$USER /home/alex/data/mariadb/
-sudo chown -R $USER:$USER /home/alex/data/wordpress
+mkdir -p /home/astutz/data/mariadb
+mkdir -p /home/astutz/data/wordpress
+sudo chown -R $USER:$USER /home/astutz/data/mariadb/
+sudo chown -R $USER:$USER /home/astutz/data/wordpress
 
 ////Modif pour le https://login.42.fr////
 How to change your localhost by astutz.42.fr

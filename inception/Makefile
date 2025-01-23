@@ -67,7 +67,7 @@ clean: down
 fclean: down
 	@docker system prune -a --volumes --force
 	@docker volume rm $$(docker volume ls -q) || true
-	@sudo rm -rf $(PATH_V_WORDPRESS) $(PATH_V_MARIADB)
+	@rm -rf $(PATH_V_WORDPRESS) $(PATH_V_MARIADB)
 	@echo "Full cleanup done."
 
 re: fclean all

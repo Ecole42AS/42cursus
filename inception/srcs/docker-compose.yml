@@ -5,14 +5,14 @@ volumes:
     driver: local
     name: mariadb_v
     driver_opts:
-      device: /home/alex/data/mariadb
+      device: /home/astutz/data/mariadb
       type: none
       o: bind
   wordpress_v:
     driver: local
     name: wordpress_v
     driver_opts:
-      device: /home/alex/data/wordpress
+      device: /home/astutz/data/wordpress
       type: none
       o: bind
 
