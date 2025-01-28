@@ -14,7 +14,7 @@ NAME = inception
 PATH_V_WORDPRESS ?= $(DEFAULT_PATH_V_WORDPRESS)
 PATH_V_MARIADB ?= $(DEFAULT_PATH_V_MARIADB)
 PATH_TO_ENV_FILE ?= srcs/.env
-DOCKER_COMPOSE_CMD = docker-compose -f ${PATH_DOCKER_COMPOSE} -p ${NAME}
+DOCKER_COMPOSE_CMD = docker compose -f ${PATH_DOCKER_COMPOSE} -p ${NAME}
 
 # Cibles principales
 all: prepare down build run

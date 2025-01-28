@@ -1,31 +1,30 @@
 FROM debian:buster
 
-# Installation et mise à jour des paquets
-RUN apt update -y && apt upgrade -y
+# Update and install necessary packages
+RUN apt update -y && apt upgrade -y \
+    && apt-get install -y wget curl php7.3 php-fpm php-mysql mariadb-client ca-certificates --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Installation de wget programme permettant le téléchargement de fichiers depuis le Web
-RUN apt-get install -y wget
+# Install WP-CLI
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
 
-# Installation de php7.3 et de php-fpm pour gérer les requête ".php"
-# Installation de mysql et de mariadb-client pour gérer les requête ".sql"
-RUN apt-get -y install php7.3 php-fpm php-mysql mariadb-client
+# Create required directories
+RUN mkdir -p /var/www/wordpress /run/php
 
-# Création du dossier de worpress et du dossier de travail php
-RUN	mkdir -p /var/www/wordpress
-RUN mkdir -p /run/php
+# Set permissions for the WordPress directory
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 755 /var/www
 
-# Assignation des droits a l'utilisateur www-data
-RUN chown -R www-data:www-data /var/www
-
-# Changement de permission sur les dossiers et fichiers
-RUN chmod -R 755 /var/www
-
-# Copie de la configuration de php-fpm et du script de démarrage
+# Copy PHP configuration and the entrypoint script
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
-COPY tools/docker-entrypoint.sh /usr/local/docker-entrypoint.sh
-RUN chmod +x /usr/local/docker-entrypoint.sh
+COPY tools/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# Exposition du port 9000
+# Expose port 9000 for PHP-FPM
 EXPOSE 9000
 
-ENTRYPOINT ["sh", "/usr/local/docker-entrypoint.sh"]
+# Set the entrypoint
+ENTRYPOINT ["sh", "/usr/local/bin/docker-entrypoint.sh"]
