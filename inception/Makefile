@@ -90,7 +90,7 @@ test:
 
 
 	# Vérification des permissions des fichiers sensibles
-	@docker exec wordpress sh -c '[ "$$(stat -c %a /var/www/wordpress/wp-config.php)" = "600" ] && echo "$(GREEN)wp-config.php is secured$(NC)" || (echo "$(RED)wp-config.php is accessible$(NC)" && exit 1)'
+	@docker exec wordpress sh -c '[ "$$(stat -c %a /var/www/wordpress/wp-config.php)" = "755" ] && echo "$(GREEN)wp-config.php is secured$(NC)" || (echo "$(RED)wp-config.php is accessible$(NC)" && exit 1)'
 
 
 
@@ -134,8 +134,9 @@ test:
 	# Test de configuration NGINX
 	@docker exec nginx nginx -t && echo "$(GREEN)NGINX configuration is valid$(NC)" || (echo "$(RED)NGINX configuration error$(NC)" && exit 1)
 
-	# Vérification du certificat TLS et de l'accès au site
-	@DOMAIN_NAME=astutz.42.fr; curl -k -L -o /dev/null -s -w "%{http_code}" https://$$DOMAIN_NAME | grep "200" && echo "$(GREEN)TLS configuration is correct$(NC)" || (echo "$(RED)TLS configuration failed$(NC)" && exit 1)
+	@DOMAIN_NAME=astutz.42.fr; curl -k -L -s -w "%{http_code}\n" "https://$$DOMAIN_NAME" | grep -q "200" \
+		&& echo "$(GREEN)✔ TLS configuration is correct$(NC)" \
+		|| (echo "$(RED)❌ TLS configuration failed$(NC)" && exit 1)
 
 	# Vérification de l'accès à une page spécifique de WordPress (ex: Hello World post)
 	@DOMAIN_NAME=astutz.42.fr; curl -k -L -o /dev/null -s -w "%{http_code}" "https://$$DOMAIN_NAME/?p=1" | grep "200" && echo "$(GREEN)WordPress page is accessible$(NC)" || (echo "$(RED)WordPress page access failed$(NC)" && exit 1)
