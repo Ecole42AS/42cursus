@@ -383,8 +383,8 @@ def validate_service_jwt(token):
         raise AuthenticationFailed("JWT invalide.")
     
 from django.utils.timezone import now
-from .models import GameSession
 from .utils import update_player_stats
+from .models import GameSession
 
 def update_scores_and_stats(game_id, score_player1, score_player2):
     """
