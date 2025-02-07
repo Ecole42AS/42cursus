@@ -14,6 +14,8 @@ from django.http import HttpResponse
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from .utils import  update_scores_and_stats
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 
 
@@ -221,6 +223,23 @@ class CreateGameSessionView(APIView):
             logger.debug(f"Creating a new game session between user {user.id} and {user_id}")
             game_session = GameSession.objects.create(player1_id=user.id, player2_id=user_id)
             serializer = GameSerializer(game_session)
+
+            # Envoi de la notification via le channel layer
+            notification_data = {
+                "game_session_id": game_session.id,
+                "player1": game_session.player1_id,
+                "player2": game_session.player2_id,
+                "start_time": game_session.start_time.isoformat() if game_session.start_time else None,
+                "duration": game_session.duration,
+            }
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                "game_sessions",  # Ce groupe doit être celui que vos WebSocket consumers écoutent
+                {
+                    "type": "game_session.start",
+                    "data": notification_data,
+                }
+            )
 
             logger.info(f"Game session created successfully: {serializer.data}")
             return Response(serializer.data, status=201)
