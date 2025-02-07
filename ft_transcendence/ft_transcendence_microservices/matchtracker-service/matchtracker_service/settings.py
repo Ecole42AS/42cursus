@@ -232,6 +232,12 @@ LOGGING = {
             'level': 'DEBUG',  # Capturer tous les détails
             'propagate': True,
         },
+        # Ajoutez une entrée spécifique pour vos logs websocket, si vous souhaitez les isoler
+        'matchtracker-service.websocket': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': False,  # Vous pouvez le mettre à True si vous voulez que ces logs remontent au logger racine
+        },
         # Logger pour les bibliothèques réseau (comme `urllib3`)
         'urllib3': {
             'handlers': ['file'],

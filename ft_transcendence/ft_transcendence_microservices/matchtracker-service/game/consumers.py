@@ -6,6 +6,7 @@ logger = logging.getLogger("matchtracker-service.websocket")
 
 class MatchtrackerConsumer(AsyncWebsocketConsumer):
     async def connect(self):
+        logger.info(f"Connexion WebSocket reçue : {self.channel_name}")
         # Récupérer le "room_name" à partir de l'URL
         self.room_name = self.scope["url_route"]["kwargs"].get("room_name")
         if not self.room_name:

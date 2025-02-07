@@ -13,6 +13,8 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.http import HttpResponse
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from .utils import  update_scores_and_stats
+
 
 
 import logging
@@ -336,29 +338,17 @@ class CreateGameSessionView(APIView):
 #             logger.error(f"Erreur inattendue : {e}")
 #             return Response({'error': 'Erreur interne du serveur.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-from .utils import validate_service_jwt, update_scores_and_stats
 
 class UpdateGameScoreView(APIView):
     """
     Vue pour mettre à jour le score d'une session de jeu.
     """
-    permission_classes = [permissions.AllowAny]  # Permettre l'accès pour les services authentifiés via JWT
+    # Par exemple, on peut exiger simplement que l'utilisateur soit authentifié via un autre mécanisme
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, game_id):
         logger.debug(f"Requête reçue pour mettre à jour le score du jeu {game_id}.")
-
         try:
-            # Vérifier le JWT de service
-            auth_header = request.headers.get('Authorization')
-            if not auth_header or not auth_header.startswith('Bearer '):
-                logger.error("JWT manquant ou invalide dans l'en-tête Authorization.")
-                return Response({'error': 'Accès non autorisé.'}, status=status.HTTP_403_FORBIDDEN)
-
-            jwt_token = auth_header.split(' ')[1]
-            if not validate_service_jwt(jwt_token):
-                logger.error("JWT de service invalide.")
-                return Response({'error': 'Accès non autorisé.'}, status=status.HTTP_403_FORBIDDEN)
-
             # Extraire les scores depuis la requête
             score_player1 = request.data.get('score_player1')
             score_player2 = request.data.get('score_player2')
@@ -381,7 +371,7 @@ class UpdateGameScoreView(APIView):
         except Exception as e:
             logger.error(f"Erreur inattendue : {e}")
             return Response({'error': 'Erreur interne du serveur.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
+            
 class TournamentViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour gérer les actions CRUD des tournois.

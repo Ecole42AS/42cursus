@@ -1,11 +1,12 @@
-.PHONY: all build up down restart logs ps clean migrate createsuperuser
+.PHONY: all build up down restart logs ps clean migrate createsuperuser re
 
 all: build up
+
+re: clean all
 
 build:
 	docker compose build
 
-# Exécute les migrations avant de démarrer les services
 up: migrate
 	docker compose up -d
 
