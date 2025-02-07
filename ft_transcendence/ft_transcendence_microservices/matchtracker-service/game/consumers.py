@@ -76,22 +76,29 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 
 logger = logging.getLogger("matchtracker-service.websocket")
 
+# class GameSessionConsumer(AsyncWebsocketConsumer):
+#     async def connect(self):
+#         # Ici, on utilise un groupe global pour toutes les notifications de game session.
+#         self.group_name = "game_sessions"
+#         logger.info(f"Connexion WebSocket : ajout au groupe {self.group_name}")
+#         await self.channel_layer.group_add(self.group_name, self.channel_name)
+#         await self.accept()
+
+#     async def disconnect(self, close_code):
+#         logger.info(f"Déconnexion WebSocket : retrait du groupe {self.group_name} (code: {close_code})")
+#         await self.channel_layer.group_discard(self.group_name, self.channel_name)
+
+#     # Méthode qui sera appelée lorsqu'un message de type "game_session.start" sera envoyé
+#     async def game_session_start(self, event):
+#         logger.info(f"Notification de démarrage de game session reçue: {event}")
+#         await self.send(text_data=json.dumps({
+#             "type": "game_session_start",
+#             "data": event.get("data", {})
+#         }))
 class GameSessionConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        # Ici, on utilise un groupe global pour toutes les notifications de game session.
+        # Pour les tests, autorisez la connexion même si l'utilisateur est anonyme
         self.group_name = "game_sessions"
-        logger.info(f"Connexion WebSocket : ajout au groupe {self.group_name}")
         await self.channel_layer.group_add(self.group_name, self.channel_name)
         await self.accept()
-
-    async def disconnect(self, close_code):
-        logger.info(f"Déconnexion WebSocket : retrait du groupe {self.group_name} (code: {close_code})")
-        await self.channel_layer.group_discard(self.group_name, self.channel_name)
-
-    # Méthode qui sera appelée lorsqu'un message de type "game_session.start" sera envoyé
-    async def game_session_start(self, event):
-        logger.info(f"Notification de démarrage de game session reçue: {event}")
-        await self.send(text_data=json.dumps({
-            "type": "game_session_start",
-            "data": event.get("data", {})
-        }))
+        logger.info("Connexion WebSocket acceptée (test mode)")

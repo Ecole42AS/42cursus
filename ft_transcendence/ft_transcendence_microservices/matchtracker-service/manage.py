@@ -6,9 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-print("JWT_SECRET_KEY:", os.getenv("JWT_SECRET_KEY"))
-
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'matchtracker_service.settings')

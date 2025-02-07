@@ -22,3 +22,43 @@ WARNING 2025-02-07 17:44:15,805 middleware JWTMiddleware: Authentication failed 
 WARNING 2025-02-07 17:44:15,805 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
 WARNING 2025-02-07 17:44:15,806 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
 WARNING 2025-02-07 17:44:15,806 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+DEBUG 2025-02-07 18:31:03,929 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+DEBUG 2025-02-07 18:31:03,929 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+WARNING 2025-02-07 18:31:03,930 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:31:03,930 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:31:03,930 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:31:03,930 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:31:03,931 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+WARNING 2025-02-07 18:31:03,931 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+DEBUG 2025-02-07 18:31:54,040 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+DEBUG 2025-02-07 18:31:54,040 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+WARNING 2025-02-07 18:31:54,040 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:31:54,040 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:31:54,040 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:31:54,040 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:31:54,041 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+WARNING 2025-02-07 18:31:54,041 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+DEBUG 2025-02-07 18:32:16,106 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+DEBUG 2025-02-07 18:32:16,106 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+WARNING 2025-02-07 18:32:16,106 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:32:16,106 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:32:16,106 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:32:16,106 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:32:16,106 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+WARNING 2025-02-07 18:32:16,106 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+DEBUG 2025-02-07 18:32:47,369 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+DEBUG 2025-02-07 18:32:47,369 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+WARNING 2025-02-07 18:32:47,369 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:32:47,369 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:32:47,369 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:32:47,369 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:32:47,369 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+WARNING 2025-02-07 18:32:47,369 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+DEBUG 2025-02-07 18:40:24,416 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+DEBUG 2025-02-07 18:40:24,416 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+WARNING 2025-02-07 18:40:24,416 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:40:24,416 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 18:40:24,416 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:40:24,416 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 18:40:24,417 basehttp "GET /ws/game_sessions/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4OTUyMzQ2LCJpYXQiOjE3Mzg5NDk5NDYsImp0aSI6ImE4MTE5OGEyOGYzOTQ0NjhhZTRhNmVmOTdjZmM5ZDEzIiwidXNlcl9pZCI6MX0.r9_D92fzfCwF_pnm3auD6LiiCfU5l0PH29g95mOxWME HTTP/1.1" 401 49
+WARNING 2025-02-07 18:40:24,417 basehttp "GET /ws/game_sessions/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4OTUyMzQ2LCJpYXQiOjE3Mzg5NDk5NDYsImp0aSI6ImE4MTE5OGEyOGYzOTQ0NjhhZTRhNmVmOTdjZmM5ZDEzIiwidXNlcl9pZCI6MX0.r9_D92fzfCwF_pnm3auD6LiiCfU5l0PH29g95mOxWME HTTP/1.1" 401 49

@@ -1,5 +1,3 @@
-.PHONY: all build up down restart logs logs_all_since logs_all_from_now ps clean fclean re migrate createsuperuser_user createsuperuser_matchtracker createsuperuser_all
-
 all: build up
 
 build:
@@ -62,4 +60,14 @@ createsuperuser_user:
 createsuperuser_matchtracker:
 	docker compose run --rm matchtracker_service python manage.py createsuperuser
 
+createsuperuser_user_with_credentials:
+	docker compose run --rm user_service python manage.py shell -c "exec('''from django.contrib.auth import get_user_model\nUser = get_user_model()\nif not User.objects.filter(username=\"alex\").exists():\n    User.objects.create_superuser(\"alex\", \"alexandre.stutz@hotmail.com\", \"deplanta1\")\n''')"
+
+createsuperuser_matchtracker_with_credentials:
+	docker compose run --rm matchtracker_service python manage.py shell -c "exec('''from django.contrib.auth import get_user_model\nUser = get_user_model()\nif not User.objects.filter(username=\"alex\").exists():\n    User.objects.create_superuser(\"alex\", \"alexandre.stutz@hotmail.com\", \"deplanta1\")\n''')"
+
 createsuperuser_all: createsuperuser_user createsuperuser_matchtracker
+
+create_superuser_all_with_credentials: createsuperuser_user_with_credentials createsuperuser_matchtracker_with_credentials
+
+.PHONY: all build up down restart logs logs_all_since logs_all_from_now ps clean fclean re migrate createsuperuser_user createsuperuser_matchtracker createsuperuser_all
