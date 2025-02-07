@@ -1,7 +1,9 @@
 services:
-  postgres:
+  postgres_user:
     image: postgres:14
-    container_name: postgres_db
+    container_name: postgres_user_db
+    env_file:
+      - ./user-service/.env  # Utilise le fichier .env du service utilisateur (vous pouvez aussi créer un .env spécifique pour PostgreSQL)
     environment:
       POSTGRES_DB: user_service_db
       POSTGRES_USER: shared_db_user
@@ -9,9 +11,29 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_user_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U shared_db_user -d user_service_db"]
+      interval: 5s
+      retries: 5
+    networks:
+      - app_network
+
+  postgres_matchtracker:
+    image: postgres:14
+    container_name: postgres_matchtracker_db
+    env_file:
+      - ./matchtracker-service/.env  # Utilise le fichier .env du service matchtracker (vous pouvez aussi créer un .env spécifique pour PostgreSQL)
+    environment:
+      POSTGRES_DB: matchtracker_service_db
+      POSTGRES_USER: shared_db_user
+      POSTGRES_PASSWORD: deplanta1
+    ports:
+      - "5433:5432"   # Sur l'hôte, le port 5433 sera mappé sur le port 5432 du conteneur
+    volumes:
+      - postgres_matchtracker_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shared_db_user -d matchtracker_service_db"]
       interval: 5s
       retries: 5
     networks:
@@ -20,15 +42,17 @@ services:
   user_service:
     build:
       context: ./user-service
+    env_file:
+      - ./user-service/.env
     ports:
-      - "8080:8080" # Mappage du port local 8081 vers le port 8000 du conteneur
+      - "8080:8080"
     environment:
-      POSTGRES_HOST: postgres
+      POSTGRES_HOST: postgres_user
       POSTGRES_DB: user_service_db
       POSTGRES_USER: shared_db_user
       POSTGRES_PASSWORD: deplanta1
     depends_on:
-      postgres:
+      postgres_user:
         condition: service_healthy
     networks:
       - app_network
@@ -39,16 +63,18 @@ services:
   matchtracker_service:
     build:
       context: ./matchtracker-service
+    env_file:
+      - ./matchtracker-service/.env
     ports:
-      - "8000:8000"  # Mappage du port local 8082 vers le port 8000 du conteneur
+      - "8000:8000"
     environment:
-      POSTGRES_HOST: postgres
+      POSTGRES_HOST: postgres_matchtracker
       POSTGRES_DB: matchtracker_service_db
       POSTGRES_USER: shared_db_user
       POSTGRES_PASSWORD: deplanta1
       USER_SERVICE_URL: http://user_service:8080/api/user
     depends_on:
-      postgres:
+      postgres_matchtracker:
         condition: service_healthy
       user_service:
         condition: service_started
@@ -59,7 +85,8 @@ services:
       - ./matchtracker-service/logs:/usr/src/app/logs
 
 volumes:
-  postgres_data:
+  postgres_user_data:
+  postgres_matchtracker_data:
 
 networks:
   app_network:
