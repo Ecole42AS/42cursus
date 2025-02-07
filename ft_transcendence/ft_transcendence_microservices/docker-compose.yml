@@ -3,17 +3,19 @@ services:
     image: postgres:14
     container_name: postgres_user_db
     env_file:
-      - ./user-service/.env  # Utilise le fichier .env du service utilisateur (vous pouvez aussi créer un .env spécifique pour PostgreSQL)
+      - .env  # Vous pouvez conserver ce point si vous souhaitez injecter des variables supplémentaires propres à user-service
     environment:
-      POSTGRES_DB: user_service_db
-      POSTGRES_USER: shared_db_user
-      POSTGRES_PASSWORD: deplanta1
+      # Ces variables sont résolues depuis le fichier .env global
+      POSTGRES_DB: ${POSTGRES_DB_USER_SERVICE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
       - postgres_user_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U shared_db_user -d user_service_db"]
+      # Utilisation de $$ pour différer la substitution à l'exécution dans le conteneur
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       retries: 5
     networks:
@@ -23,17 +25,17 @@ services:
     image: postgres:14
     container_name: postgres_matchtracker_db
     env_file:
-      - ./matchtracker-service/.env  # Utilise le fichier .env du service matchtracker (vous pouvez aussi créer un .env spécifique pour PostgreSQL)
+      - .env  # Vous pouvez conserver ce point si vous souhaitez injecter des variables supplémentaires propres à matchtracker-service
     environment:
-      POSTGRES_DB: matchtracker_service_db
-      POSTGRES_USER: shared_db_user
-      POSTGRES_PASSWORD: deplanta1
+      POSTGRES_DB: ${POSTGRES_DB_MATCHTRACKER}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5433:5432"   # Sur l'hôte, le port 5433 sera mappé sur le port 5432 du conteneur
+      - "5433:5432"   # Le port 5433 sur l'hôte sera mappé sur le port 5432 dans le conteneur
     volumes:
       - postgres_matchtracker_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U shared_db_user -d matchtracker_service_db"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       retries: 5
     networks:
@@ -43,14 +45,15 @@ services:
     build:
       context: ./user-service
     env_file:
-      - ./user-service/.env
+      - .env
     ports:
       - "8080:8080"
     environment:
-      POSTGRES_HOST: postgres_user
-      POSTGRES_DB: user_service_db
-      POSTGRES_USER: shared_db_user
-      POSTGRES_PASSWORD: deplanta1
+      # Ici, seules les variables qui ne sont pas déjà injectées via le .env de ce service
+      POSTGRES_HOST: ${POSTGRES_HOST_USER}
+      POSTGRES_DB: ${POSTGRES_DB_USER_SERVICE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     depends_on:
       postgres_user:
         condition: service_healthy
@@ -64,15 +67,15 @@ services:
     build:
       context: ./matchtracker-service
     env_file:
-      - ./matchtracker-service/.env
+      - .env
     ports:
       - "8000:8000"
     environment:
-      POSTGRES_HOST: postgres_matchtracker
-      POSTGRES_DB: matchtracker_service_db
-      POSTGRES_USER: shared_db_user
-      POSTGRES_PASSWORD: deplanta1
-      USER_SERVICE_URL: http://user_service:8080/api/user
+      POSTGRES_HOST: ${POSTGRES_HOST_MATCHTRACKER}
+      POSTGRES_DB: ${POSTGRES_DB_MATCHTRACKER}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      USER_SERVICE_URL: ${USER_SERVICE_URL}
     depends_on:
       postgres_matchtracker:
         condition: service_healthy
