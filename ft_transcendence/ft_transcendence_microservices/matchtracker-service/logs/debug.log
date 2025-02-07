@@ -1,0 +1,16 @@
+DEBUG 2025-02-07 16:41:33,668 middleware JWTMiddleware: Processing request for path /ws/matchtracker/global/
+DEBUG 2025-02-07 16:41:33,668 middleware JWTMiddleware: Processing request for path /ws/matchtracker/global/
+WARNING 2025-02-07 16:41:33,669 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 16:41:33,669 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 16:41:33,669 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 16:41:33,669 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 16:41:33,669 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
+WARNING 2025-02-07 16:41:33,669 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
+DEBUG 2025-02-07 16:41:37,119 middleware JWTMiddleware: Processing request for path /ws/matchtracker/global/
+DEBUG 2025-02-07 16:41:37,119 middleware JWTMiddleware: Processing request for path /ws/matchtracker/global/
+WARNING 2025-02-07 16:41:37,120 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 16:41:37,120 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 16:41:37,120 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 16:41:37,120 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 16:41:37,120 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
+WARNING 2025-02-07 16:41:37,120 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
