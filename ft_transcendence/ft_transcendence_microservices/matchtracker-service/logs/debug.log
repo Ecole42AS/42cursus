@@ -14,3 +14,11 @@ WARNING 2025-02-07 16:41:37,120 middleware JWTMiddleware: Authentication failed 
 WARNING 2025-02-07 16:41:37,120 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
 WARNING 2025-02-07 16:41:37,120 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
 WARNING 2025-02-07 16:41:37,120 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
+DEBUG 2025-02-07 17:44:15,805 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+DEBUG 2025-02-07 17:44:15,805 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
+WARNING 2025-02-07 17:44:15,805 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 17:44:15,805 authentication Authentication failed: No token provided or invalid format
+WARNING 2025-02-07 17:44:15,805 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 17:44:15,805 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
+WARNING 2025-02-07 17:44:15,806 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
+WARNING 2025-02-07 17:44:15,806 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
