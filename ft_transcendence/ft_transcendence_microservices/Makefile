@@ -36,8 +36,10 @@ ps:
 
 # Clean: arrête et supprime les conteneurs et les volumes associés au projet.
 clean:
-	docker compose down -v --remove-orphans
+	docker compose down --remove-orphans
 
+clean_with_volumes_and_images:
+	docker compose down -v --remove-orphans
 # fclean: effectue un clean complet et supprime également les images du projet.
 fclean: clean
 	# Supprimez les conteneurs arrêtés (si nécessaire)

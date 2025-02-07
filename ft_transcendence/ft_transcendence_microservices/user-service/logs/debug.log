@@ -12364,3 +12364,8 @@ DEBUG 2025-02-07 18:53:35,126 autoreload File /usr/local/lib/python3.10/site-pac
 DEBUG 2025-02-07 18:53:35,127 autoreload File /usr/local/lib/python3.10/site-packages/jwt/warnings.py first seen with mtime 1738841861.4821346
 DEBUG 2025-02-07 18:53:35,127 autoreload File /usr/local/lib/python3.10/site-packages/rest_framework_simplejwt/state.py first seen with mtime 1738841863.5729673
 DEBUG 2025-02-07 18:53:35,128 autoreload File /usr/local/lib/python3.10/site-packages/jwt/utils.py first seen with mtime 1738841861.4821346
+INFO 2025-02-07 18:58:07,358 basehttp "GET /api/user/profile/ HTTP/1.1" 200 101
+WARNING 2025-02-07 18:58:20,533 basehttp "GET /api/user/friends/ HTTP/1.1" 401 459
+WARNING 2025-02-07 18:58:52,405 basehttp "GET /api/user/friends/ HTTP/1.1" 401 459
+INFO 2025-02-07 18:59:08,256 basehttp "GET /api/user/friends/ HTTP/1.1" 200 2
+INFO 2025-02-07 19:02:28,444 basehttp "GET /api/user/profile/ HTTP/1.1" 200 101
