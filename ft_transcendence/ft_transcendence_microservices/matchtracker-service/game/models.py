@@ -15,7 +15,7 @@ class GameSession(models.Model):
 
     def __str__(self):
         try:
-			from .utils import get_user, TokenManager
+            from .utils import get_user, TokenManager
             token = TokenManager.get_jwt_token()
             player1 = get_user(self.player1_id, token)
             player2 = get_user(self.player2_id, token)

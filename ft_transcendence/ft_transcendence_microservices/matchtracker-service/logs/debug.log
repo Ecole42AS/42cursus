@@ -108,3 +108,305 @@ DEBUG 2025-02-08 12:14:02,580 middleware JWTMiddleware: Public endpoint, skippin
 DEBUG 2025-02-08 12:14:02,580 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
 WARNING 2025-02-08 12:14:02,582 basehttp "GET /ws/game_sessions/ HTTP/1.1" 404 179
 WARNING 2025-02-08 12:14:02,582 basehttp "GET /ws/game_sessions/ HTTP/1.1" 404 179
+DEBUG 2025-02-08 17:06:33,117 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 17:06:33,117 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 17:06:33,118 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:06:33,118 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:06:33,119 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:06:33,119 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:06:33,122 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:06:33,122 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:06:33,122 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:06:33,122 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:06:33,136 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 17:06:33,136 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 17:06:33,137 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:06:33,137 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:06:33,137 views CreateGameSessionView.post called for user 1 and opponent 2
+INFO 2025-02-08 17:06:33,137 views CreateGameSessionView.post called for user 1 and opponent 2
+DEBUG 2025-02-08 17:06:33,137 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 17:06:33,137 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 17:06:33,137 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:06:33,137 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:06:33,137 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:06:33,137 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:06:33,148 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 17:06:33,148 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 17:06:33,148 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 17:06:33,148 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 17:06:33,148 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 17:06:33,148 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 17:06:33,148 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 17:06:33,148 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 17:06:33,148 views Checking for existing active games between user 1 and 2
+DEBUG 2025-02-08 17:06:33,148 views Checking for existing active games between user 1 and 2
+ERROR 2025-02-08 17:06:33,233 views Unexpected error during game creation: relation "game_gamesession" does not exist
+LINE 1: ...n"."duration", "game_gamesession"."ended_at" FROM "game_game...
+                                                             ^
+
+ERROR 2025-02-08 17:06:33,233 views Unexpected error during game creation: relation "game_gamesession" does not exist
+LINE 1: ...n"."duration", "game_gamesession"."ended_at" FROM "game_game...
+                                                             ^
+
+ERROR 2025-02-08 17:06:33,235 log Internal Server Error: /create-game/2/
+ERROR 2025-02-08 17:06:33,236 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
+ERROR 2025-02-08 17:06:33,236 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
+DEBUG 2025-02-08 17:07:16,557 middleware JWTMiddleware: Processing request for path /create-game/1/
+DEBUG 2025-02-08 17:07:16,557 middleware JWTMiddleware: Processing request for path /create-game/1/
+DEBUG 2025-02-08 17:07:16,557 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:07:16,557 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:07:16,558 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:16,558 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:16,558 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:16,558 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:16,558 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:16,558 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:16,568 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 17:07:16,568 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 17:07:16,568 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:07:16,568 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:07:16,568 views CreateGameSessionView.post called for user 1 and opponent 1
+INFO 2025-02-08 17:07:16,568 views CreateGameSessionView.post called for user 1 and opponent 1
+DEBUG 2025-02-08 17:07:16,568 views Fetching opponent data for user_id=1
+DEBUG 2025-02-08 17:07:16,568 views Fetching opponent data for user_id=1
+DEBUG 2025-02-08 17:07:16,568 utils get_user called with user_id: 1 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:16,568 utils get_user called with user_id: 1 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:16,569 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:16,569 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:16,579 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 17:07:16,579 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 17:07:16,579 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:07:16,579 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:07:16,579 utils User data retrieved: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:07:16,579 utils User data retrieved: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 17:07:16,579 views Opponent data retrieved: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 17:07:16,579 views Opponent data retrieved: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+WARNING 2025-02-08 17:07:16,579 views User attempted to create a game against themselves
+WARNING 2025-02-08 17:07:16,579 views User attempted to create a game against themselves
+WARNING 2025-02-08 17:07:16,580 basehttp "POST /create-game/1/ HTTP/1.1" 400 55
+WARNING 2025-02-08 17:07:16,580 basehttp "POST /create-game/1/ HTTP/1.1" 400 55
+DEBUG 2025-02-08 17:07:22,119 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 17:07:22,119 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 17:07:22,119 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:07:22,119 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:07:22,119 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:22,119 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:22,119 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:22,119 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:22,120 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:22,120 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:22,131 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 17:07:22,131 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 17:07:22,131 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:07:22,131 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:07:22,131 views CreateGameSessionView.post called for user 1 and opponent 2
+INFO 2025-02-08 17:07:22,131 views CreateGameSessionView.post called for user 1 and opponent 2
+DEBUG 2025-02-08 17:07:22,131 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 17:07:22,131 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 17:07:22,131 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:22,131 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:22,131 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:22,131 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:22,142 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 17:07:22,142 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 17:07:22,142 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 17:07:22,142 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 17:07:22,143 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 17:07:22,143 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 17:07:22,143 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 17:07:22,143 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 17:07:22,143 views Checking for existing active games between user 1 and 2
+DEBUG 2025-02-08 17:07:22,143 views Checking for existing active games between user 1 and 2
+ERROR 2025-02-08 17:07:22,149 views Unexpected error during game creation: relation "game_gamesession" does not exist
+LINE 1: ...n"."duration", "game_gamesession"."ended_at" FROM "game_game...
+                                                             ^
+
+ERROR 2025-02-08 17:07:22,149 views Unexpected error during game creation: relation "game_gamesession" does not exist
+LINE 1: ...n"."duration", "game_gamesession"."ended_at" FROM "game_game...
+                                                             ^
+
+ERROR 2025-02-08 17:07:22,149 log Internal Server Error: /create-game/2/
+ERROR 2025-02-08 17:07:22,150 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
+ERROR 2025-02-08 17:07:22,150 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
+DEBUG 2025-02-08 17:07:40,413 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 17:07:40,413 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 17:07:40,413 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:07:40,413 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:07:40,413 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:40,413 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:40,413 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:40,413 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:07:40,413 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:40,413 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:07:40,425 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 17:07:40,425 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 17:07:40,425 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:07:40,425 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 17:07:40,425 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 17:07:40,425 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 17:07:40,425 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 17:07:40,425 views GameViewSet: Filtrage des parties pour user_id=1
+ERROR 2025-02-08 17:07:40,432 log Internal Server Error: /games/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "game_gamesession" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "game_gamesession" WHERE (...
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/usr/src/app/game/views.py", line 61, in get_queryset
+    logger.debug(f"GameViewSet: {games.count()} parties trouvées pour user_id={user.id}")
+  File "/usr/local/lib/python3.10/site-packages/django/db/models/query.py", line 620, in count
+    return self.query.get_count(using=self.db)
+  File "/usr/local/lib/python3.10/site-packages/django/db/models/sql/query.py", line 630, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/usr/local/lib/python3.10/site-packages/django/db/models/sql/query.py", line 616, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/usr/local/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/usr/local/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "game_gamesession" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "game_gamesession" WHERE (...
+                                          ^
+
+ERROR 2025-02-08 17:07:40,449 basehttp "GET /games/ HTTP/1.1" 500 145
+ERROR 2025-02-08 17:07:40,449 basehttp "GET /games/ HTTP/1.1" 500 145
+DEBUG 2025-02-08 17:09:15,659 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 17:09:15,659 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 17:09:15,659 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:09:15,659 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:09:15,659 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:09:15,659 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:09:15,659 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:09:15,659 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:09:15,659 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:09:15,659 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:09:15,670 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 17:09:15,670 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 17:09:15,670 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:09:15,670 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+ERROR 2025-02-08 17:09:15,677 log Internal Server Error: /tournaments/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedTable: relation "game_tournament" does not exist
+LINE 1: SELECT 1 AS "a" FROM "game_tournament" WHERE "game_tournamen...
+                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 223, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 442, in run_validation
+    value = self.to_internal_value(data)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/serializers.py", line 499, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/fields.py", line 757, in run_validation
+    return super().run_validation(data)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/fields.py", line 539, in run_validation
+    self.run_validators(value)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/fields.py", line 551, in run_validators
+    validator(value, self)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/validators.py", line 73, in __call__
+    if qs_exists(queryset):
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/validators.py", line 21, in qs_exists
+    return queryset.exists()
+  File "/usr/local/lib/python3.10/site-packages/django/db/models/query.py", line 1288, in exists
+    return self.query.has_results(using=self.db)
+  File "/usr/local/lib/python3.10/site-packages/django/db/models/sql/query.py", line 660, in has_results
+    return compiler.has_results()
+  File "/usr/local/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1542, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "/usr/local/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/usr/local/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: relation "game_tournament" does not exist
+LINE 1: SELECT 1 AS "a" FROM "game_tournament" WHERE "game_tournamen...
+                             ^
+
+ERROR 2025-02-08 17:09:15,684 basehttp "POST /tournaments/ HTTP/1.1" 500 145
+ERROR 2025-02-08 17:09:15,684 basehttp "POST /tournaments/ HTTP/1.1" 500 145
+DEBUG 2025-02-08 17:09:36,794 middleware JWTMiddleware: Processing request for path /test-user/
+DEBUG 2025-02-08 17:09:36,794 middleware JWTMiddleware: Processing request for path /test-user/
+DEBUG 2025-02-08 17:09:36,794 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:09:36,794 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:09:36,794 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:09:36,794 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:09:36,795 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:09:36,795 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0
+DEBUG 2025-02-08 17:09:36,795 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:09:36,795 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDMyODA5LCJpYXQiOjE3MzkwMzA0MDksImp0aSI6IjI5Y2JmNDgxYTQ1YzRlOTJiOTQxMmRiOGJjMDNkMjlhIiwidXNlcl9pZCI6MX0.RYKwZtuW7bDPsIqsJeru_HDTQ3axYCiIor74TdZmZe0'}
+DEBUG 2025-02-08 17:09:36,806 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 17:09:36,806 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 17:09:36,807 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 17:09:36,807 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 17:09:36,807 views User in TestUserView: User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-02-08 17:09:36,807 views User in TestUserView: User(id=1, username='alex', is_authenticated=True)
+INFO 2025-02-08 17:09:36,807 basehttp "GET /test-user/ HTTP/1.1" 200 37
+INFO 2025-02-08 17:09:36,807 basehttp "GET /test-user/ HTTP/1.1" 200 37
+DEBUG 2025-02-08 17:09:41,295 middleware JWTMiddleware: Processing request for path /test-game/
+DEBUG 2025-02-08 17:09:41,295 middleware JWTMiddleware: Processing request for path /test-game/
+DEBUG 2025-02-08 17:09:41,295 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 17:09:41,295 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+WARNING 2025-02-08 17:09:41,296 basehttp "GET /test-game/ HTTP/1.1" 404 179
+WARNING 2025-02-08 17:09:41,296 basehttp "GET /test-game/ HTTP/1.1" 404 179

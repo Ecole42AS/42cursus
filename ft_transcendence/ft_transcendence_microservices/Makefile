@@ -38,9 +38,6 @@ ps:
 clean:
 	docker compose down -v --remove-orphans
 
-
-
-
 fclean: clean
 
 	docker compose rm -f
