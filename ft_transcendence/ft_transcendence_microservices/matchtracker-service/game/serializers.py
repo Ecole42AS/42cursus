@@ -342,7 +342,6 @@ class TournamentSerializer(serializers.ModelSerializer):
 
     #         return tournament
 
-    from .utils import notify_game_engine
 
     def create(self, validated_data):
         """

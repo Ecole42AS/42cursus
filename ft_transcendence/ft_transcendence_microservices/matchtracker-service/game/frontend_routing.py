@@ -11,11 +11,11 @@
 #         ])
 #     ),
 # })
+# matchtracker-service/game/frontend_routing.py
 from django.urls import re_path
-from game.consumers import GameSessionConsumer
+from .consumers import FrontendGameConsumer  # Ce consumer est dédié aux connexions du frontend
 
 websocket_urlpatterns = [
-    # Ici, on écoute une URL globale pour les notifications de game sessions.
-    re_path(r'^ws/game_sessions/$', GameSessionConsumer.as_asgi()),
+    # Route pour le frontend, qui sera protégée par un middleware JWT
+    re_path(r'^ws/frontend/game/$', FrontendGameConsumer.as_asgi()),
 ]
-
