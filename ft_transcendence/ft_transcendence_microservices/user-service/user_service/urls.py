@@ -10,14 +10,13 @@ from rest_framework_simplejwt.views import (
 from user.views import ValidateTokenView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # Interface d'administration
-    path('api/user/', include('user.urls')),  # Routes spécifiques à l'app 'user'
+    path('admin/', admin.site.urls),
+    path('api/user/', include('user.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/logout/', TokenBlacklistView.as_view(), name='token_blacklist'),
     path('validate/', ValidateTokenView.as_view(), name='validate_user'),
 ]
 
-# Servir les fichiers médias en mode DEBUG
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

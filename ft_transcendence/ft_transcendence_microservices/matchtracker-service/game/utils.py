@@ -19,13 +19,7 @@ from django.utils import timezone
 from django.utils.timezone import now
 from rest_framework.exceptions import AuthenticationFailed, ValidationError
 
-
 logger = logging.getLogger("matchtracker-service")
-
-
-# ---------------------------------------------------------------------------
-# Fonctions de test et de logging
-# ---------------------------------------------------------------------------
 
 def test_logs(request):
     """
@@ -37,11 +31,6 @@ def test_logs(request):
     logger.error("Test ERROR log")
     return HttpResponse("Logs testés, vérifiez le fichier de log.")
 
-
-# ---------------------------------------------------------------------------
-# Fonctions de récupération des données utilisateur
-# ---------------------------------------------------------------------------
-
 def get_user_data(user_id, token):
     """
     Récupère les informations de l'utilisateur à partir du microservice 'user-service'.
@@ -50,13 +39,13 @@ def get_user_data(user_id, token):
         headers = {"Authorization": f"Bearer {token}"}
         url = f"{settings.USER_SERVICE_URL}/{user_id}/"
         logger.debug(f"Fetching user data from {url} with headers {headers}")
-        
+
         response = requests.get(url, headers=headers, timeout=5)
         logger.debug(f"Response received: {response.status_code} - {response.text}")
-        
+
         response.raise_for_status()
         data = response.json()
-        
+
         if not data or 'username' not in data:
             logger.error(f"Invalid data received for user_id {user_id}: {data}")
             return None
@@ -67,17 +56,16 @@ def get_user_data(user_id, token):
         logger.error(f"Error fetching user data for user_id {user_id} from {url}: {e}")
         return None
 
-
 def get_user(user_id, token=None):
     """
     Récupère les données utilisateur. Retourne None si l'utilisateur est introuvable ou en cas d'erreur.
     """
     logger.debug(f"get_user called with user_id: {user_id} and token: {token}")
-    
+
     if not user_id:
         logger.warning("get_user called with an invalid user_id: None")
         return None
-    
+
     try:
         user_data = get_user_data(user_id, token)
         if user_data:
@@ -91,7 +79,6 @@ def get_user(user_id, token=None):
     except requests.RequestException as e:
         logger.error(f"RequestException while fetching user data for user_id {user_id}: {e}")
         return {"username": "Unknown"}
-
 
 def get_user_profile(user_id, token):
     """
@@ -114,11 +101,6 @@ def get_user_profile(user_id, token):
         logger.error(f"Request exception while fetching profile for user_id={user_id}: {e}")
         return None
 
-
-# ---------------------------------------------------------------------------
-# Fonctions de gestion des amitiés
-# ---------------------------------------------------------------------------
-
 def get_friendship(user_id, token):
     """
     Récupère les amitiés pour un utilisateur donné depuis le microservice 'user'.
@@ -126,35 +108,30 @@ def get_friendship(user_id, token):
     try:
         headers = {"Authorization": f"Bearer {token}"}
         url = f"{settings.USER_SERVICE_URL}/friendships/{user_id}/"
-        timeout = getattr(settings, "USER_SERVICE_TIMEOUT", 5)  # Timeout configurable
+        timeout = getattr(settings, "USER_SERVICE_TIMEOUT", 5)
 
         logger.debug(f"Appel à {url} pour récupérer les amitiés avec user_id={user_id}")
         response = requests.get(url, headers=headers, timeout=timeout)
 
-        response.raise_for_status()  # Génère une exception pour les codes HTTP 4xx/5xx
+        response.raise_for_status()
 
         try:
-            return response.json()  # Renvoie les amitiés au format JSON
+            return response.json()
         except ValueError:
             logger.error(f"Réponse non JSON reçue du service utilisateur : {response.text}")
             raise ValidationError("Le service des amis a renvoyé une réponse invalide.")
-    
+
     except requests.exceptions.Timeout:
         logger.error(f"Timeout lors de la récupération des amitiés pour user_id {user_id}.")
         raise ValidationError("Le service des amis ne répond pas dans les délais.")
-    
+
     except requests.exceptions.HTTPError as http_err:
         logger.error(f"Erreur HTTP {response.status_code} lors de la récupération des amitiés : {http_err}")
         raise ValidationError(f"Erreur HTTP lors de l'appel au service des amis : {response.status_code}")
-    
+
     except requests.RequestException as e:
         logger.error(f"Erreur lors de la communication avec le service utilisateur : {e}")
         raise ValidationError("Une erreur est survenue lors de la communication avec le service utilisateur.")
-
-
-# ---------------------------------------------------------------------------
-# Gestion et validation des tokens pour les services internes
-# ---------------------------------------------------------------------------
 
 class TokenManager:
     _cached_token = None
@@ -167,7 +144,6 @@ class TokenManager:
         if TokenManager._cached_token:
             return TokenManager._cached_token
 
-        # Endpoint pour obtenir un nouveau token
         url = f"{settings.BASE_USER_SERVICE_URL}/api/token/"
         payload = {
             "username": settings.SERVICE_USERNAME,
@@ -179,13 +155,11 @@ class TokenManager:
             response.raise_for_status()
             data = response.json()
 
-            # Cachez le token
             TokenManager._cached_token = data['access']
             return TokenManager._cached_token
         except requests.RequestException as e:
             logger.error(f"Failed to fetch JWT token: {e}")
             return None
-
 
 def validate_user_token(token):
     """
@@ -209,33 +183,27 @@ def validate_user_token(token):
         logger.error(f"Error while validating token: {e}")
         return None
 
-
 def is_token_revoked(token):
     """
     Vérifie si un token est révoqué.
     """
-    # Implémentez ici votre logique pour vérifier dans une base de données ou un cache
-    revoked_tokens = ["list", "of", "revoked", "tokens"]  # Exemple simple
+
+    revoked_tokens = ["list", "of", "revoked", "tokens"]
     return token in revoked_tokens
-
-
-# ---------------------------------------------------------------------------
-# Fonctions de mise à jour des scores et statistiques
-# ---------------------------------------------------------------------------
 
 def update_player_stats(winner_id, loser_id, score_winner=None, score_loser=None, jwt_token=None):
     """
     Notifie le User Service pour mettre à jour les statistiques des joueurs.
     """
     user_service_url = f"{settings.USER_SERVICE_URL}/internal/update-stats/"
-    
+
     payload = {
         "winner_id": winner_id,
         "loser_id": loser_id,
         "score_winner": score_winner,
         "score_loser": score_loser,
     }
-    
+
     headers = {"Authorization": f"Bearer {jwt_token or settings.INTERNAL_API_KEY}"}
     logger.debug(f"Authorization header used: {headers}")
     logger.debug(f"Payload sent to User Service: {payload}")
@@ -251,14 +219,13 @@ def update_player_stats(winner_id, loser_id, score_winner=None, score_loser=None
             raise Exception(f"User Service error: {response.status_code}, {response.json()}")
     except requests.RequestException as e:
         logger.error(f"Échec de la communication avec le User Service : {e}")
-        raise Exception(f"Failed to communicate with User Service: {e}")
-
+        raise Exception(f"Failed to comm	unicate with User Service: {e}")
 
 def update_scores_and_stats(game_id, score_player1, score_player2):
     """
     Met à jour les scores, termine le match si nécessaire, et met à jour les statistiques.
     """
-    # Import local pour éviter la circularité
+
     from .models import GameSession
 
     try:
@@ -273,27 +240,23 @@ def update_scores_and_stats(game_id, score_player1, score_player2):
             logger.warning(f"Match {game_id} déjà terminé.")
             raise ValueError("Ce match est terminé. Les scores ne peuvent pas être modifiés.")
 
-        # Mettre à jour les scores
         game.score_player1 = score_player1
         game.score_player2 = score_player2
 
-        # Vérifier si le match a dépassé la limite de temps (ici, 60 secondes)
         if (now() - game.start_time).total_seconds() >= 60:
             logger.info(f"Le match {game_id} dépasse la limite de temps. Il sera terminé.")
             game.is_active = False
             game.ended_at = now()
 
-            # Déterminer le gagnant
             if game.score_player1 > game.score_player2:
                 game.winner_id = game.player1_id
             elif game.score_player2 > game.score_player1:
                 game.winner_id = game.player2_id
             else:
-                game.winner_id = None  # Match nul
+                game.winner_id = None
 
             logger.info(f"Match {game_id} terminé. Vainqueur : {game.winner_id if game.winner_id else 'Match nul'}.")
 
-            # Mettre à jour les statistiques des joueurs si un gagnant est déterminé
             if game.winner_id:
                 update_player_stats(
                     winner_id=game.winner_id,
@@ -310,15 +273,13 @@ def update_scores_and_stats(game_id, score_player1, score_player2):
         logger.error(f"Erreur lors de la mise à jour des scores : {e}")
         raise
 
-
-
 def generate_elimination_matches(tournament, token):
     """
     Génère les matchs pour un tournoi à élimination directe et notifie le moteur de jeu.
     """
     from .models import TournamentMatch, GameSession
 
-    players = list(tournament.players)  # Si c'est un champ JSONField
+    players = list(tournament.players)
     logger.debug(f"Generating elimination matches for tournament {tournament.name} with {len(players)} players.")
     matches = []
     round_number = 1
@@ -326,18 +287,17 @@ def generate_elimination_matches(tournament, token):
     while len(players) > 1:
         round_matches = []
         for i in range(0, len(players), 2):
-            # Créez une GameSession pour chaque match
+
             game_session = GameSession.objects.create(
                 player1_id=players[i],
                 player2_id=players[i + 1],
                 is_active=True,
                 created_at=timezone.now(),
                 start_time=timezone.now(),
-                duration=60,  # Durée par défaut
+                duration=60,
             )
             logger.debug(f"Created GameSession for match {game_session.id}")
 
-            # Créez un TournamentMatch et associez-le à la GameSession
             match = TournamentMatch.objects.create(
                 tournament=tournament,
                 player1_id=players[i],
@@ -349,32 +309,9 @@ def generate_elimination_matches(tournament, token):
             round_matches.append(match)
             matches.append(match)
 
-        # Préparez les joueurs pour le prochain tour en récupérant les gagnants
         players = [match.winner_id for match in round_matches if match.winner_id]
         round_number += 1
 
     logger.info(f"Generated {len(matches)} elimination matches for tournament {tournament.name}.")
     return matches
 
-
-# def validate_service_jwt(token):
-#     """
-#     Valide le JWT utilisé pour l'authentification des services internes.
-#     """
-#     try:
-#         decoded_token = jwt.decode(
-#             token,
-#             settings.SERVICE_JWT_SECRET,  # Clé secrète partagée pour les services
-#             algorithms=["HS256"]
-#         )
-#         # Vérifiez les revendications spécifiques, si nécessaire
-#         if "service" not in decoded_token or decoded_token["service"] != "game_engine":
-#             logger.error(f"JWT invalide : {decoded_token}")
-#             raise AuthenticationFailed("JWT non valide.")
-#         return True
-#     except jwt.ExpiredSignatureError:
-#         logger.error("JWT expiré.")
-#         raise AuthenticationFailed("JWT expiré.")
-#     except jwt.InvalidTokenError as e:
-#         logger.error(f"JWT invalide : {e}")
-#         raise AuthenticationFailed("JWT invalide.")

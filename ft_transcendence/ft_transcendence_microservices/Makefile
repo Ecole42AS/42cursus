@@ -34,20 +34,20 @@ logs_all_from_now:
 ps:
 	docker compose ps
 
-# Clean: arrête et supprime les conteneurs et les volumes associés au projet.
+
 clean:
 	docker compose down -v --remove-orphans
 
-# clean_with_volumes_and_images:
-# 	docker compose down -v --remove-orphans
-# fclean: effectue un clean complet et supprime également les images du projet.
+
+
+
 fclean: clean
-	# Supprimez les conteneurs arrêtés (si nécessaire)
+
 	docker compose rm -f
-	# Supprimez les images du projet (adapté à vos images)
+
 	docker rmi ft_transcendence_microservices-user_service ft_transcendence_microservices-matchtracker_service
 
-# Re: Clean complet suivi de build et up.
+
 re: fclean all
 
 migrate:

@@ -3,9 +3,9 @@ services:
     image: postgres:14
     container_name: postgres_user_db
     env_file:
-      - .env  # Vous pouvez conserver ce point si vous souhaitez injecter des variables supplémentaires propres à user-service
+      - .env
     environment:
-      # Ces variables sont résolues depuis le fichier .env global
+
       POSTGRES_DB: ${POSTGRES_DB_USER_SERVICE}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -14,7 +14,7 @@ services:
     volumes:
       - postgres_user_data:/var/lib/postgresql/data
     healthcheck:
-      # Utilisation de $$ pour différer la substitution à l'exécution dans le conteneur
+
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       retries: 5
@@ -25,13 +25,13 @@ services:
     image: postgres:14
     container_name: postgres_matchtracker_db
     env_file:
-      - .env  # Vous pouvez conserver ce point si vous souhaitez injecter des variables supplémentaires propres à matchtracker-service
+      - .env
     environment:
       POSTGRES_DB: ${POSTGRES_DB_MATCHTRACKER}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5433:5432"   # Le port 5433 sur l'hôte sera mappé sur le port 5432 dans le conteneur
+      - "5433:5432"
     volumes:
       - postgres_matchtracker_data:/var/lib/postgresql/data
     healthcheck:
@@ -49,7 +49,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      # Ici, seules les variables qui ne sont pas déjà injectées via le .env de ce service
+
       POSTGRES_HOST: ${POSTGRES_HOST_USER}
       POSTGRES_DB: ${POSTGRES_DB_USER_SERVICE}
       POSTGRES_USER: ${POSTGRES_USER}

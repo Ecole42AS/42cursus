@@ -1,5 +1,4 @@
 from django.db import models
-from .utils import get_user, TokenManager
 
 class GameSession(models.Model):
     player1_id = models.IntegerField(null=True, blank=True)
@@ -13,9 +12,10 @@ class GameSession(models.Model):
     start_time = models.DateTimeField(null=True, blank=True)
     duration = models.IntegerField(default=60)
     ended_at = models.DateTimeField(null=True, blank=True)
-    
+
     def __str__(self):
         try:
+			from .utils import get_user, TokenManager
             token = TokenManager.get_jwt_token()
             player1 = get_user(self.player1_id, token)
             player2 = get_user(self.player2_id, token)
@@ -28,7 +28,7 @@ class GameSession(models.Model):
                 return f"GameSession {self.id} with {player2['username']} (player1 unknown)"
         except Exception as e:
             return f"GameSession {self.id} with unknown players (error: {e})"
-        
+
 class Tournament(models.Model):
     name = models.CharField(max_length=255, unique=True)
     creator_id = models.IntegerField(null=True, blank=True)
@@ -49,7 +49,6 @@ class TournamentMatch(models.Model):
     scheduled_at = models.DateTimeField()
     round_number = models.IntegerField(default=1)
     advance_to_next_round = models.BooleanField(default=False)
-
 
     def __str__(self):
         return self.format_match_str()
