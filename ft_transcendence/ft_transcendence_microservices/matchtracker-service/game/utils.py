@@ -311,40 +311,6 @@ def update_scores_and_stats(game_id, score_player1, score_player2):
         raise
 
 
-# ---------------------------------------------------------------------------
-# Fonctions de notification et génération de matchs pour le moteur de jeu
-# ---------------------------------------------------------------------------
-
-def notify_game_engine(game_session, token):
-    """
-    Notifie le moteur de jeu qu'une GameSession a été créée.
-    """
-    from rest_framework import serializers
-
-    try:
-        headers = {"Authorization": f"Bearer {token}"}
-        url = f"{settings.GAME_ENGINE_URL}/start-game/"
-        payload = {
-            "game_session_id": game_session.id,
-            "player1_id": game_session.player1_id,
-            "player2_id": game_session.player2_id,
-            "duration": game_session.duration,
-            "start_time": game_session.start_time.isoformat(),
-        }
-
-        logger.debug(f"Appel à {url} pour notifier le moteur de jeu avec la GameSession {game_session.id}")
-        response = requests.post(url, json=payload, headers=headers, timeout=settings.GAME_ENGINE_TIMEOUT)
-        response.raise_for_status()
-
-        try:
-            return response.json()
-        except ValueError:
-            logger.error(f"Réponse non JSON reçue du moteur de jeu : {response.text}")
-            raise serializers.ValidationError("Réponse invalide du moteur de jeu.")
-    except requests.RequestException as e:
-        logger.error(f"Erreur lors de la communication avec le moteur de jeu : {e}")
-        raise serializers.ValidationError("Erreur lors de la communication avec le moteur de jeu.")
-
 
 def generate_elimination_matches(tournament, token):
     """
@@ -383,14 +349,6 @@ def generate_elimination_matches(tournament, token):
             )
             round_matches.append(match)
             matches.append(match)
-
-            # Notifiez le moteur de jeu pour cette GameSession
-            try:
-                notify_game_engine(game_session, token)
-                logger.debug(f"Notified Game Engine for GameSession {game_session.id}")
-            except Exception as e:
-                logger.error(f"Failed to notify Game Engine for GameSession {game_session.id}: {e}")
-                raise serializers.ValidationError(f"Erreur lors de la notification du moteur de jeu pour la session {game_session.id}.")
 
         # Préparez les joueurs pour le prochain tour en récupérant les gagnants
         players = [match.winner_id for match in round_matches if match.winner_id]
