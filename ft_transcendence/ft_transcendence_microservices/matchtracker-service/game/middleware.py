@@ -104,8 +104,13 @@ logger = logging.getLogger("matchtracker-service")
 #         logger.debug(f"Final user on request in middleware: {request.user}, is_authenticated: {request.user.is_authenticated}")
 #         return self.get_response(request)
 
+from django.contrib.auth.models import AnonymousUser
 from rest_framework.exceptions import AuthenticationFailed
 from django.http import JsonResponse
+from .authentication import JWTAuthentication
+import logging
+
+logger = logging.getLogger("matchtracker-service")
 
 class JWTMiddleware:
     def __init__(self, get_response):
@@ -114,7 +119,13 @@ class JWTMiddleware:
 
     def __call__(self, request):
         logger.debug(f"JWTMiddleware: Processing request for path {request.path}")
-
+        
+        # Définissez ici la liste des routes publiques pour lesquelles vous souhaitez ignorer le JWT.
+        public_paths = ["/", "/static/", "/favicon.ico"]
+        if any(request.path.startswith(path) for path in public_paths):
+            logger.debug("JWTMiddleware: Public endpoint, skipping JWT authentication")
+            return self.get_response(request)
+        
         try:
             # Authentifiez l'utilisateur avec JWTAuthentication
             user, token = self.jwt_auth.authenticate(request)
@@ -128,11 +139,10 @@ class JWTMiddleware:
 
         except AuthenticationFailed as e:
             logger.warning(f"JWTMiddleware: Authentication failed - {str(e)}")
-            return JsonResponse({"detail": str(e)}, status=401)  # Retourne une réponse 401 Unauthorized
+            return JsonResponse({"detail": str(e)}, status=401)
 
         except Exception as e:
             logger.error(f"JWTMiddleware: Unexpected error during authentication - {str(e)}")
-            return JsonResponse({"detail": "An unexpected error occurred."}, status=500)  # Gestion des erreurs inattendues
+            return JsonResponse({"detail": "An unexpected error occurred."}, status=500)
 
-        # Passe la requête au middleware ou à la vue suivante
         return self.get_response(request)

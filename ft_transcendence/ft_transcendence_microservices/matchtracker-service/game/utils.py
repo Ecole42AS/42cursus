@@ -317,7 +317,6 @@ def generate_elimination_matches(tournament, token):
     Génère les matchs pour un tournoi à élimination directe et notifie le moteur de jeu.
     """
     from .models import TournamentMatch, GameSession
-    from rest_framework import serializers
 
     players = list(tournament.players)  # Si c'est un champ JSONField
     logger.debug(f"Generating elimination matches for tournament {tournament.name} with {len(players)} players.")

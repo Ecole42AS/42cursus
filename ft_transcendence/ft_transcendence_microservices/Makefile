@@ -36,10 +36,10 @@ ps:
 
 # Clean: arrête et supprime les conteneurs et les volumes associés au projet.
 clean:
-	docker compose down
-
-clean_with_volumes_and_images:
 	docker compose down -v --remove-orphans
+
+# clean_with_volumes_and_images:
+# 	docker compose down -v --remove-orphans
 # fclean: effectue un clean complet et supprime également les images du projet.
 fclean: clean
 	# Supprimez les conteneurs arrêtés (si nécessaire)
@@ -53,7 +53,7 @@ re: fclean all
 migrate:
 	docker compose run --rm user_service python manage.py makemigrations
 	docker compose run --rm user_service python manage.py migrate
-	docker compose run --rm matchtracker_service python manage.py makemigrations
+	docker compose run --rm matchtracker_service python manage.py makemigrations 
 	docker compose run --rm matchtracker_service python manage.py migrate
 
 createsuperuser_user:
