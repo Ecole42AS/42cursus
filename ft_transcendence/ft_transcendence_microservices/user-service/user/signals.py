@@ -10,7 +10,7 @@ from django.db.models.signals import pre_save
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.get_or_create(user=instance, defaults={'display_name': instance.username})
-        
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def save_user_profile(sender, instance, **kwargs):
     if hasattr(instance, 'profile'):

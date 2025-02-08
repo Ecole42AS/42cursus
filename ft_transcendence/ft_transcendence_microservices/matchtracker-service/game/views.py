@@ -18,10 +18,7 @@ from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 from django.conf import settings
 
-
-
 import logging
-
 
 logger = logging.getLogger('matchtracker-service')
 
@@ -41,78 +38,13 @@ class TestUserView(APIView):
             return Response({"message": f"User {user.username} authenticated"})
         return Response({"error": "User not authenticated"}, status=401)
 
-
-# logger = logging.getLogger(__name__)
-
-# def update_player_stats(winner, loser):
-#     """
-#     Met à jour les statistiques des joueurs après chaque partie.
-#     """
-#     winner_profile = Profile.objects.get(user=winner)
-#     loser_profile = Profile.objects.get(user=loser)
-#     winner_profile.wins += 1
-#     loser_profile.losses += 1
-#     winner_profile.save()
-#     loser_profile.save()
-
-
 from rest_framework.exceptions import AuthenticationFailed
 from .utils import validate_user_token
-
-# class GameViewSet(viewsets.ModelViewSet):
-#     queryset = GameSession.objects.all()
-#     serializer_class = GameSerializer
-    # authentication_classes = [JWTAuthentication]
-#     permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
-
-#     def get_queryset(self):
-#         user = self.request.user
-#         if not user or not user.is_authenticated:
-#             raise AuthenticationFailed("User not authenticated")
-#         return GameSession.objects.filter(
-#             Q(player1_id=user.id) | Q(player2_id=user.id)
-#         )
-
-# class GameViewSet(viewsets.ModelViewSet):
-#     """
-#     ViewSet pour gérer les sessions de jeu.
-#     """
-#     queryset = GameSession.objects.all()
-#     serializer_class = GameSerializer
-    # authentication_classes = [JWTAuthentication]
-
-#     @action(detail=True, methods=['patch'], url_path='end')
-#     def end_game(self, request, pk=None):
-#         game = self.get_object()
-
-#         if not game.is_active:
-#             return Response({'error': 'Le match est déjà terminé.'}, status=status.HTTP_400_BAD_REQUEST)
-
-#         game.is_active = False
-#         game.ended_at = now()
-#         game.save()
-
-#         return Response({'message': 'Le match a été terminé avec succès.'})
-
-#     def get_queryset(self):
-#         """
-#         Filtre les parties pour l'utilisateur authentifié.
-#         """
-#         user = self.request.user
-#         if not user or not user.is_authenticated:
-#             raise AuthenticationFailed("User not authenticated")
-
-#         logger.debug(f"Filtering games for user_id: {user.id}")
-
-#         return GameSession.objects.filter(
-#             Q(player1_id=user.id) | Q(player2_id=user.id)
-#         )
 
 class GameViewSet(viewsets.ModelViewSet):
     queryset = GameSession.objects.all()
     serializer_class = GameSerializer
-    # authentication_classes = [JWTAuthentication]
-    # Retirez temporairement les permissions
+
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -130,7 +62,6 @@ class GameViewSet(viewsets.ModelViewSet):
         logger.debug(f"GameViewSet: {games.count()} parties trouvées pour user_id={user.id}")
         return games
 
-    
 class TestGamesNoPermissionsView(APIView):
     def get(self, request):
         user = request.user
@@ -140,7 +71,6 @@ class TestGamesNoPermissionsView(APIView):
         )
         logger.debug(f"TestGamesNoPermissionsView: {games.count()} parties trouvées pour user_id={user.id}")
         return Response({"games_count": games.count()})
-
 
 class TestGamesView(APIView):
     def get(self, request):
@@ -153,7 +83,7 @@ class TestGamesView(APIView):
             Q(player1_id=user.id) | Q(player2_id=user.id)
         )
         return Response({"games_count": games.count()})
-    
+
 class TestGamesQueryView(APIView):
     def get(self, request):
         user = request.user
@@ -166,9 +96,6 @@ class TestGamesQueryView(APIView):
         )
         logger.debug(f"TestGamesQueryView: {games.count()} parties trouvées pour user_id={user.id}")
         return Response({"games_count": games.count()})
-
-
-
 
 class CreateGameSessionView(APIView):
     """
@@ -209,10 +136,10 @@ class CreateGameSessionView(APIView):
                     {'error': 'Un match est déjà en cours entre ces deux joueurs.', 'active_game': serializer.data},
                     status=400
                 )
-            
+
             logger.debug(f"Creating a new game session between user {user.id} and {user_id}")
             game_session = GameSession.objects.create(player1_id=user.id, player2_id=user_id)
-            # Récupération du token à utiliser pour interroger le service utilisateur
+
             token = request.auth or TokenManager.get_jwt_token()
             serializer = GameSerializer(game_session, context={'request': request, 'token': token})
 
@@ -241,125 +168,17 @@ class CreateGameSessionView(APIView):
             logger.error(f"Unexpected error during game creation: {e}")
             return Response({'error': 'Une erreur est survenue.'}, status=500)
 
-
-# class UpdateGameScoreView(APIView):
-#     """
-#     Vue pour mettre à jour le score d'une session de jeu.
-#     """
-#     permission_classes = [IsAuthenticated]  # Vérification d'authentification
-
-#     def post(self, request, game_id):
-#         logger.debug(f"Requête reçue pour mettre à jour le score du jeu {game_id} par l'utilisateur {request.user.id}")
-
-#         try:
-#             # Assurez-vous que l'utilisateur est authentifié
-#             user = request.user
-#             if not user or not user.is_authenticated:
-#                 logger.error("Utilisateur non authentifié.")
-#                 raise AuthenticationFailed("User authentication failed")
-
-#             # Récupérer la session de jeu
-#             try:
-#                 game = GameSession.objects.get(pk=game_id)
-#                 logger.debug(f"GameSession récupérée : {game}")
-#             except GameSession.DoesNotExist:
-#                 logger.warning(f"GameSession {game_id} non trouvée.")
-#                 return Response({'error': 'Match non trouvé.'}, status=status.HTTP_404_NOT_FOUND)
-
-#             # Vérifiez que le champ start_time est défini
-#             if not game.start_time:
-#                 logger.error("L'heure de début du match n'est pas définie.")
-#                 return Response(
-#                     {'error': "L'heure de début du match (start_time) n'est pas définie."},
-#                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
-#                 )
-
-#             # Vérifier que le match est actif
-#             if not game.is_active:
-#                 logger.warning(f"Match {game_id} déjà terminé.")
-#                 return Response(
-#                     {'error': 'Ce match est terminé. Les scores ne peuvent pas être modifiés.'},
-#                     status=status.HTTP_400_BAD_REQUEST
-#                 )
-
-#             # Vérifier si l'utilisateur participe au match
-#             if user.id not in [game.player1_id, game.player2_id]:
-#                 logger.warning(f"L'utilisateur {user.id} ne participe pas au match {game_id}.")
-#                 return Response(
-#                     {'error': 'Vous ne participez pas à ce match.'},
-#                     status=status.HTTP_403_FORBIDDEN
-#                 )
-
-#             # Extraire et valider le score depuis la requête
-#             player_score = request.data.get('score')
-#             if player_score is None:
-#                 logger.warning("Score non fourni dans la requête.")
-#                 return Response({'error': 'Score non fourni.'}, status=status.HTTP_400_BAD_REQUEST)
-
-#             try:
-#                 player_score = int(player_score)
-#                 logger.debug(f"Score reçu : {player_score}")
-#             except ValueError:
-#                 logger.warning(f"Score invalide fourni : {player_score}")
-#                 return Response({'error': 'Score invalide. Il doit être un entier.'}, status=status.HTTP_400_BAD_REQUEST)
-
-#             # Mettre à jour le score du joueur correspondant
-#             if user.id == game.player1_id:
-#                 logger.debug(f"Score de player1 mis à jour par {user.id}")
-#                 game.score_player1 = player_score
-#             else:
-#                 logger.debug(f"Score de player2 mis à jour par {user.id}")
-#                 game.score_player2 = player_score
-
-#             # Vérifiez si le match a dépassé la limite de temps
-#             if (now() - game.start_time).total_seconds() >= 60:
-#                 logger.info(f"Le match {game_id} dépasse la limite de temps. Il sera terminé.")
-#                 game.is_active = False
-#                 game.ended_at = now()
-
-#                 # Déterminer le gagnant
-#                 if game.score_player1 > game.score_player2:
-#                     game.winner_id = game.player1_id
-#                 elif game.score_player2 > game.score_player1:
-#                     game.winner_id = game.player2_id
-#                 else:
-#                     game.winner_id = None  # Match nul
-
-#                 logger.info(f"Match {game_id} terminé. Vainqueur : {game.winner_id if game.winner_id else 'Match nul'}.")
-
-#                 # Mettre à jour les statistiques des joueurs
-#                 if game.winner_id:
-#                     logger.debug(f"Mise à jour des statistiques pour le vainqueur {game.winner_id}.")
-#                     update_player_stats(
-#                         winner_id=game.winner_id,
-#                         loser_id=game.player1_id if game.winner_id == game.player2_id else game.player2_id
-#                     )
-
-
-#             # Enregistrer les modifications
-#             game.save()
-#             logger.info(f"Match {game_id} mis à jour avec succès.")
-#             return Response({'detail': 'Score mis à jour.'}, status=status.HTTP_200_OK)
-
-#         except AuthenticationFailed as auth_error:
-#             logger.error(f"Authentification échouée : {auth_error}")
-#             return Response({'error': 'Authentification échouée.'}, status=status.HTTP_401_UNAUTHORIZED)
-#         except Exception as e:
-#             logger.error(f"Erreur inattendue : {e}")
-#             return Response({'error': 'Erreur interne du serveur.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
 class UpdateGameScoreView(APIView):
     """
     Vue pour mettre à jour le score d'une session de jeu.
     """
-    # Par exemple, on peut exiger simplement que l'utilisateur soit authentifié via un autre mécanisme
+
     permission_classes = [IsAuthenticated]
 
     def post(self, request, game_id):
         logger.debug(f"Requête reçue pour mettre à jour le score du jeu {game_id}.")
         try:
-            # Extraire les scores depuis la requête
+
             score_player1 = request.data.get('score_player1')
             score_player2 = request.data.get('score_player2')
             if score_player1 is None or score_player2 is None:
@@ -374,27 +193,21 @@ class UpdateGameScoreView(APIView):
                 logger.warning(f"Scores invalides fournis : {score_player1}, {score_player2}")
                 return Response({'error': 'Scores invalides. Ils doivent être des entiers.'}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Mettre à jour le match et les scores
             result = update_scores_and_stats(game_id, score_player1, score_player2)
             return Response(result, status=status.HTTP_200_OK)
 
         except Exception as e:
             logger.error(f"Erreur inattendue : {e}")
             return Response({'error': 'Erreur interne du serveur.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-            
+
 class TournamentViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour gérer les actions CRUD des tournois.
     """
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
-    # authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
 
-    # def perform_create(self, serializer):
-    #     logger.debug(f"Création d'un tournoi par l'utilisateur {self.request.user.id}")
-    #     serializer.save()
-
+    permission_classes = [IsAuthenticated]
 
 class TournamentMatchViewSet(viewsets.ModelViewSet):
     """
@@ -402,44 +215,40 @@ class TournamentMatchViewSet(viewsets.ModelViewSet):
     """
     queryset = TournamentMatch.objects.all()
     serializer_class = TournamentMatchSerializer
-    # authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
+
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         """
         Si nécessaire, ajoutez la logique pour enregistrer l'utilisateur créateur.
         """
-        creator_id = self.request.user.id  # Récupère l'ID depuis le token JWT
+        creator_id = self.request.user.id
         serializer.save(creator_id=creator_id)
-
 
 class MatchHistoryView(APIView):
     """
     Vue pour récupérer l'historique des matchs d'un utilisateur.
     """
-    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        user_id = request.user.id  # Récupérer l'ID de l'utilisateur depuis le token JWT
+        user_id = request.user.id
         logger.debug(f"Fetching match history for user_id={user_id}")
-        
-        # Filtrer les parties terminées de l'utilisateur
+
         game_sessions = GameSession.objects.filter(
             Q(player1_id=user_id) | Q(player2_id=user_id),
             is_active=False
         ).order_by('-ended_at')
         logger.debug(f"Found {game_sessions.count()} matches for user_id={user_id}")
 
-        # Ajouter la requête dans le contexte du sérialiseur pour transmettre le token JWT
         serializer = GameSerializer(game_sessions, many=True, context={'request': request})
-        
-        return Response(serializer.data)
 
+        return Response(serializer.data)
 
 from django.http import HttpResponse
 
 def test_redis_session(request):
-    # Lire la clé existante ou la définir si elle n'existe pas
+
     if 'unique_key' not in request.session:
         request.session['unique_key'] = "my-default-unique-key"
 

@@ -3,7 +3,6 @@ from .views import RegisterView, UserProfileView, AddFriendView, FriendsListView
 UserDetailView, FriendshipStatusView, SearchUserView, UserProfileDetailView,\
 InternalUpdateStatsView, ValidateTokenView, FriendshipsView
 
-
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/', UserProfileView.as_view(), name='profile'),
