@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import GameSession, Tournament, TournamentMatch
 from .utils import generate_elimination_matches
 from .utils import get_friendship, get_user_data, get_user_profile
+from .utils import TokenManager
 import logging
 
 logger = logging.getLogger("matchtracker-service")
@@ -32,45 +33,47 @@ class GameSerializer(serializers.ModelSerializer):
     def fetch_user_data(self, user_id, token):
         if user_id in self._user_cache:
             return self._user_cache[user_id]
-
         try:
             if not token:
                 logger.warning(f"No token provided for user_id={user_id}")
                 self._user_cache[user_id] = 'Unknown'
                 return 'Unknown'
-
             logger.debug(f"Fetching user data for user_id={user_id} with token={token}")
             user_data = get_user_data(user_id, token)
             if user_data and 'username' in user_data:
                 username = user_data['username']
                 self._user_cache[user_id] = username
                 return username
-
             logger.warning(f"User data not found for user_id={user_id}")
         except Exception as e:
             logger.error(f"Error fetching user data for user_id={user_id}: {e}")
-        
         self._user_cache[user_id] = 'Unknown'
         return 'Unknown'
 
     def get_player1(self, obj):
         if not obj.player1_id:
             return None
-        token = self.context['request'].auth if self.context.get('request') else None
+        # Récupère le token depuis le contexte, sinon depuis la requête, sinon en génère un par défaut
+        token = self.context.get('token') or \
+                (self.context.get('request').auth if self.context.get('request') else None) or \
+                TokenManager.get_jwt_token()
         return self.fetch_user_data(obj.player1_id, token)
 
     def get_player2(self, obj):
         if not obj.player2_id:
             return None
-        token = self.context['request'].auth if self.context.get('request') else None
+        token = self.context.get('token') or \
+                (self.context.get('request').auth if self.context.get('request') else None) or \
+                TokenManager.get_jwt_token()
         return self.fetch_user_data(obj.player2_id, token)
 
     def get_winner(self, obj):
         if not obj.winner_id:
             return None
-        token = self.context['request'].auth if self.context.get('request') else None
-        return self.fetch_user_data(obj.winner_id, token) if obj.winner_id else None
-
+        token = self.context.get('token') or \
+                (self.context.get('request').auth if self.context.get('request') else None) or \
+                TokenManager.get_jwt_token()
+        return self.fetch_user_data(obj.winner_id, token)
 
 # class TournamentSerializer(serializers.ModelSerializer):
 #     players_display_names = serializers.SerializerMethodField()

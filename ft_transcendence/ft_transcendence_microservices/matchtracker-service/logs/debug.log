@@ -1,183 +1,764 @@
-DEBUG 2025-02-08 18:23:19,435 middleware JWTMiddleware: Processing request for path /create-game/2/
-DEBUG 2025-02-08 18:23:19,435 middleware JWTMiddleware: Processing request for path /create-game/2/
-DEBUG 2025-02-08 18:23:19,435 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 18:23:19,435 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 18:23:19,435 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
-DEBUG 2025-02-08 18:23:19,435 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
-DEBUG 2025-02-08 18:23:19,436 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
-DEBUG 2025-02-08 18:23:19,436 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
-DEBUG 2025-02-08 18:23:19,436 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A'}
-DEBUG 2025-02-08 18:23:19,436 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A'}
-DEBUG 2025-02-08 18:23:19,447 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-DEBUG 2025-02-08 18:23:19,447 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-INFO 2025-02-08 18:23:19,447 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 18:23:19,447 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 18:23:19,447 views CreateGameSessionView.post called for user 1 and opponent 2
-INFO 2025-02-08 18:23:19,447 views CreateGameSessionView.post called for user 1 and opponent 2
-DEBUG 2025-02-08 18:23:19,447 views Fetching opponent data for user_id=2
-DEBUG 2025-02-08 18:23:19,447 views Fetching opponent data for user_id=2
-DEBUG 2025-02-08 18:23:19,447 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
-DEBUG 2025-02-08 18:23:19,447 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
-DEBUG 2025-02-08 18:23:19,448 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A'}
-DEBUG 2025-02-08 18:23:19,448 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A'}
-DEBUG 2025-02-08 18:23:19,455 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
-DEBUG 2025-02-08 18:23:19,455 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
-INFO 2025-02-08 18:23:19,455 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 18:23:19,455 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 18:23:19,455 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 18:23:19,455 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 18:23:19,455 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 18:23:19,455 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 18:23:19,455 views Checking for existing active games between user 1 and 2
-DEBUG 2025-02-08 18:23:19,455 views Checking for existing active games between user 1 and 2
-ERROR 2025-02-08 18:23:19,459 views Unexpected error during game creation: relation "game_gamesession" does not exist
-LINE 1: ...n"."duration", "game_gamesession"."ended_at" FROM "game_game...
-                                                             ^
-
-ERROR 2025-02-08 18:23:19,459 views Unexpected error during game creation: relation "game_gamesession" does not exist
-LINE 1: ...n"."duration", "game_gamesession"."ended_at" FROM "game_game...
-                                                             ^
-
-ERROR 2025-02-08 18:23:19,460 log Internal Server Error: /create-game/2/
-ERROR 2025-02-08 18:23:19,460 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
-ERROR 2025-02-08 18:23:19,460 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
-DEBUG 2025-02-08 19:40:07,188 middleware JWTMiddleware: Processing request for path /create-game/2/
-DEBUG 2025-02-08 19:40:07,188 middleware JWTMiddleware: Processing request for path /create-game/2/
-DEBUG 2025-02-08 19:40:07,189 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 19:40:07,189 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 19:40:07,190 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:07,190 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:07,191 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:07,191 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:07,191 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:07,191 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:07,201 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-DEBUG 2025-02-08 19:40:07,201 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-INFO 2025-02-08 19:40:07,201 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 19:40:07,201 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 19:40:07,201 views CreateGameSessionView.post called for user 1 and opponent 2
-INFO 2025-02-08 19:40:07,201 views CreateGameSessionView.post called for user 1 and opponent 2
-DEBUG 2025-02-08 19:40:07,201 views Fetching opponent data for user_id=2
-DEBUG 2025-02-08 19:40:07,201 views Fetching opponent data for user_id=2
-DEBUG 2025-02-08 19:40:07,201 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:07,201 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:07,201 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:07,201 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:07,208 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
-DEBUG 2025-02-08 19:40:07,208 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
-INFO 2025-02-08 19:40:07,208 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 19:40:07,208 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 19:40:07,208 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 19:40:07,208 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 19:40:07,208 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 19:40:07,208 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 19:40:07,208 views Checking for existing active games between user 1 and 2
-DEBUG 2025-02-08 19:40:07,208 views Checking for existing active games between user 1 and 2
-DEBUG 2025-02-08 19:40:07,213 views Creating a new game session between user 1 and 2
-DEBUG 2025-02-08 19:40:07,213 views Creating a new game session between user 1 and 2
-DEBUG 2025-02-08 19:40:07,248 selector_events Using selector: EpollSelector
-ERROR 2025-02-08 19:40:07,249 views Unexpected error during game creation: Error 111 connecting to 127.0.0.1:6379. Connect call failed ('127.0.0.1', 6379).
-ERROR 2025-02-08 19:40:07,249 views Unexpected error during game creation: Error 111 connecting to 127.0.0.1:6379. Connect call failed ('127.0.0.1', 6379).
-ERROR 2025-02-08 19:40:07,249 log Internal Server Error: /create-game/2/
-ERROR 2025-02-08 19:40:07,249 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
-ERROR 2025-02-08 19:40:07,249 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
-DEBUG 2025-02-08 19:40:15,021 middleware JWTMiddleware: Processing request for path /tournaments/
-DEBUG 2025-02-08 19:40:15,021 middleware JWTMiddleware: Processing request for path /tournaments/
-DEBUG 2025-02-08 19:40:15,021 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 19:40:15,021 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 19:40:15,022 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:15,022 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:15,022 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:15,022 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:15,022 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:15,022 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:15,031 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-DEBUG 2025-02-08 19:40:15,031 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-INFO 2025-02-08 19:40:15,031 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 19:40:15,031 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-DEBUG 2025-02-08 19:40:15,036 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:15,036 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:15,037 utils Appel à http://user_service:8080/api/user/friendships/1/ pour récupérer les amitiés avec user_id=1
-DEBUG 2025-02-08 19:40:15,037 utils Appel à http://user_service:8080/api/user/friendships/1/ pour récupérer les amitiés avec user_id=1
-DEBUG 2025-02-08 19:40:15,045 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}]
-DEBUG 2025-02-08 19:40:15,045 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}]
-DEBUG 2025-02-08 19:40:15,045 serializers IDs des amis valides : {2}
-DEBUG 2025-02-08 19:40:15,045 serializers IDs des amis valides : {2}
-DEBUG 2025-02-08 19:40:15,045 serializers Joueurs invalides détectés : [3, 4]
-DEBUG 2025-02-08 19:40:15,045 serializers Joueurs invalides détectés : [3, 4]
-ERROR 2025-02-08 19:40:15,045 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 3, 4.', code='invalid')]
-ERROR 2025-02-08 19:40:15,045 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 3, 4.', code='invalid')]
-WARNING 2025-02-08 19:40:15,046 basehttp "POST /tournaments/ HTTP/1.1" 400 154
-WARNING 2025-02-08 19:40:15,046 basehttp "POST /tournaments/ HTTP/1.1" 400 154
-DEBUG 2025-02-08 19:40:22,045 middleware JWTMiddleware: Processing request for path /update-game-score/14/
-DEBUG 2025-02-08 19:40:22,045 middleware JWTMiddleware: Processing request for path /update-game-score/14/
-DEBUG 2025-02-08 19:40:22,045 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 19:40:22,045 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 19:40:22,046 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:22,046 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:22,046 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:22,046 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:22,046 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:22,046 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:22,056 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-DEBUG 2025-02-08 19:40:22,056 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-INFO 2025-02-08 19:40:22,056 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 19:40:22,056 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-DEBUG 2025-02-08 19:40:22,056 views Requête reçue pour mettre à jour le score du jeu 14.
-DEBUG 2025-02-08 19:40:22,056 views Requête reçue pour mettre à jour le score du jeu 14.
-WARNING 2025-02-08 19:40:22,056 views Scores non fournis dans la requête.
-WARNING 2025-02-08 19:40:22,056 views Scores non fournis dans la requête.
-WARNING 2025-02-08 19:40:22,056 basehttp "POST /update-game-score/14/ HTTP/1.1" 400 45
-WARNING 2025-02-08 19:40:22,056 basehttp "POST /update-game-score/14/ HTTP/1.1" 400 45
-DEBUG 2025-02-08 19:40:33,132 middleware JWTMiddleware: Processing request for path /create-game/2/
-DEBUG 2025-02-08 19:40:33,132 middleware JWTMiddleware: Processing request for path /create-game/2/
-DEBUG 2025-02-08 19:40:33,132 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 19:40:33,132 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 19:40:33,132 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,132 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,133 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,133 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,133 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:33,133 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:33,141 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-DEBUG 2025-02-08 19:40:33,141 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-INFO 2025-02-08 19:40:33,141 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 19:40:33,141 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 19:40:33,142 views CreateGameSessionView.post called for user 1 and opponent 2
-INFO 2025-02-08 19:40:33,142 views CreateGameSessionView.post called for user 1 and opponent 2
-DEBUG 2025-02-08 19:40:33,142 views Fetching opponent data for user_id=2
-DEBUG 2025-02-08 19:40:33,142 views Fetching opponent data for user_id=2
-DEBUG 2025-02-08 19:40:33,142 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,142 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,142 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:33,142 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:33,149 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
-DEBUG 2025-02-08 19:40:33,149 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
-INFO 2025-02-08 19:40:33,149 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 19:40:33,149 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 19:40:33,149 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 19:40:33,149 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 19:40:33,149 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 19:40:33,149 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-DEBUG 2025-02-08 19:40:33,149 views Checking for existing active games between user 1 and 2
-DEBUG 2025-02-08 19:40:33,149 views Checking for existing active games between user 1 and 2
-WARNING 2025-02-08 19:40:33,154 views An active game already exists between user 1 and 2
-WARNING 2025-02-08 19:40:33,154 views An active game already exists between user 1 and 2
-DEBUG 2025-02-08 19:40:33,154 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,154 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,154 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:33,154 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:33,161 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-DEBUG 2025-02-08 19:40:33,161 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
-INFO 2025-02-08 19:40:33,161 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-INFO 2025-02-08 19:40:33,161 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
-DEBUG 2025-02-08 19:40:33,161 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,161 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
-DEBUG 2025-02-08 19:40:33,161 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:33,161 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
-DEBUG 2025-02-08 19:40:33,168 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
-DEBUG 2025-02-08 19:40:33,168 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
-INFO 2025-02-08 19:40:33,168 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-INFO 2025-02-08 19:40:33,168 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
-WARNING 2025-02-08 19:40:33,169 basehttp "POST /create-game/2/ HTTP/1.1" 400 275
-WARNING 2025-02-08 19:40:33,169 basehttp "POST /create-game/2/ HTTP/1.1" 400 275
+DEBUG 2025-02-08 21:22:03,159 middleware JWTMiddleware: Processing request for path /create-game/4/
+DEBUG 2025-02-08 21:22:03,159 middleware JWTMiddleware: Processing request for path /create-game/4/
+DEBUG 2025-02-08 21:22:03,159 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:22:03,159 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:22:03,160 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:22:03,160 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:22:03,160 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:22:03,160 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:22:03,160 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:22:03,160 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:22:03,170 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:22:03,170 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:22:03,170 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:22:03,170 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:22:03,170 views CreateGameSessionView.post called for user 1 and opponent 4
+INFO 2025-02-08 21:22:03,170 views CreateGameSessionView.post called for user 1 and opponent 4
+DEBUG 2025-02-08 21:22:03,170 views Fetching opponent data for user_id=4
+DEBUG 2025-02-08 21:22:03,170 views Fetching opponent data for user_id=4
+DEBUG 2025-02-08 21:22:03,170 utils get_user called with user_id: 4 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:22:03,170 utils get_user called with user_id: 4 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:22:03,170 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:22:03,170 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:22:03,179 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+DEBUG 2025-02-08 21:22:03,179 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+INFO 2025-02-08 21:22:03,179 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:22:03,179 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:22:03,179 utils User data retrieved: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:22:03,179 utils User data retrieved: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:22:03,179 views Opponent data retrieved: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:22:03,179 views Opponent data retrieved: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:22:03,179 views Checking for existing active games between user 1 and 4
+DEBUG 2025-02-08 21:22:03,179 views Checking for existing active games between user 1 and 4
+DEBUG 2025-02-08 21:22:03,184 views Creating a new game session between user 1 and 4
+DEBUG 2025-02-08 21:22:03,184 views Creating a new game session between user 1 and 4
+WARNING 2025-02-08 21:22:03,190 serializers No token provided for user_id=1
+WARNING 2025-02-08 21:22:03,190 serializers No token provided for user_id=1
+WARNING 2025-02-08 21:22:03,190 serializers No token provided for user_id=4
+WARNING 2025-02-08 21:22:03,190 serializers No token provided for user_id=4
+INFO 2025-02-08 21:22:03,190 views Game session created successfully: {'id': 3, 'player1': 'Unknown', 'player2': 'Unknown', 'score_player1': 0, 'score_player2': 0, 'winner': None, 'is_active': True, 'created_at': '2025-02-08T21:22:03.184950+01:00', 'start_time': None, 'ended_at': None}
+INFO 2025-02-08 21:22:03,190 views Game session created successfully: {'id': 3, 'player1': 'Unknown', 'player2': 'Unknown', 'score_player1': 0, 'score_player2': 0, 'winner': None, 'is_active': True, 'created_at': '2025-02-08T21:22:03.184950+01:00', 'start_time': None, 'ended_at': None}
+INFO 2025-02-08 21:22:03,190 basehttp "POST /create-game/4/ HTTP/1.1" 201 197
+INFO 2025-02-08 21:22:03,190 basehttp "POST /create-game/4/ HTTP/1.1" 201 197
+DEBUG 2025-02-08 21:33:08,916 middleware JWTMiddleware: Processing request for path /create-game/4/
+DEBUG 2025-02-08 21:33:08,916 middleware JWTMiddleware: Processing request for path /create-game/4/
+DEBUG 2025-02-08 21:33:08,917 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:33:08,917 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:33:08,917 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:33:08,917 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:33:08,918 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:33:08,918 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:33:08,918 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:33:08,918 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:33:08,935 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:33:08,935 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:33:08,935 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:33:08,935 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:33:08,936 views CreateGameSessionView.post called for user 1 and opponent 4
+INFO 2025-02-08 21:33:08,936 views CreateGameSessionView.post called for user 1 and opponent 4
+DEBUG 2025-02-08 21:33:08,936 views Fetching opponent data for user_id=4
+DEBUG 2025-02-08 21:33:08,936 views Fetching opponent data for user_id=4
+DEBUG 2025-02-08 21:33:08,936 utils get_user called with user_id: 4 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:33:08,936 utils get_user called with user_id: 4 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:33:08,936 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:33:08,936 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:33:08,943 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+DEBUG 2025-02-08 21:33:08,943 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+INFO 2025-02-08 21:33:08,943 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:33:08,943 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:33:08,943 utils User data retrieved: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:33:08,943 utils User data retrieved: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:33:08,943 views Opponent data retrieved: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:33:08,943 views Opponent data retrieved: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:33:08,943 views Checking for existing active games between user 1 and 4
+DEBUG 2025-02-08 21:33:08,943 views Checking for existing active games between user 1 and 4
+WARNING 2025-02-08 21:33:08,948 views An active game already exists between user 1 and 4
+WARNING 2025-02-08 21:33:08,948 views An active game already exists between user 1 and 4
+WARNING 2025-02-08 21:33:08,948 serializers No token provided for user_id=1
+WARNING 2025-02-08 21:33:08,948 serializers No token provided for user_id=1
+WARNING 2025-02-08 21:33:08,949 serializers No token provided for user_id=4
+WARNING 2025-02-08 21:33:08,949 serializers No token provided for user_id=4
+WARNING 2025-02-08 21:33:08,949 basehttp "POST /create-game/4/ HTTP/1.1" 400 276
+WARNING 2025-02-08 21:33:08,949 basehttp "POST /create-game/4/ HTTP/1.1" 400 276
+DEBUG 2025-02-08 21:34:04,297 middleware JWTMiddleware: Processing request for path /create-game/5/
+DEBUG 2025-02-08 21:34:04,297 middleware JWTMiddleware: Processing request for path /create-game/5/
+DEBUG 2025-02-08 21:34:04,300 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:34:04,300 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:34:04,301 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,301 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,301 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,301 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,301 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:04,301 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:04,310 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:34:04,310 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:34:04,310 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:34:04,310 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:34:04,310 views CreateGameSessionView.post called for user 1 and opponent 5
+INFO 2025-02-08 21:34:04,310 views CreateGameSessionView.post called for user 1 and opponent 5
+DEBUG 2025-02-08 21:34:04,310 views Fetching opponent data for user_id=5
+DEBUG 2025-02-08 21:34:04,310 views Fetching opponent data for user_id=5
+DEBUG 2025-02-08 21:34:04,310 utils get_user called with user_id: 5 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,310 utils get_user called with user_id: 5 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,310 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:04,310 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:04,318 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+DEBUG 2025-02-08 21:34:04,318 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+INFO 2025-02-08 21:34:04,318 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+INFO 2025-02-08 21:34:04,318 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+INFO 2025-02-08 21:34:04,318 utils User data retrieved: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+INFO 2025-02-08 21:34:04,318 utils User data retrieved: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+DEBUG 2025-02-08 21:34:04,318 views Opponent data retrieved: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+DEBUG 2025-02-08 21:34:04,318 views Opponent data retrieved: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+DEBUG 2025-02-08 21:34:04,318 views Checking for existing active games between user 1 and 5
+DEBUG 2025-02-08 21:34:04,318 views Checking for existing active games between user 1 and 5
+DEBUG 2025-02-08 21:34:04,322 views Creating a new game session between user 1 and 5
+DEBUG 2025-02-08 21:34:04,322 views Creating a new game session between user 1 and 5
+DEBUG 2025-02-08 21:34:04,324 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,324 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,325 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:04,325 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:04,332 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:34:04,332 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:34:04,332 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:34:04,332 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:34:04,332 serializers Fetching user data for user_id=5 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,332 serializers Fetching user data for user_id=5 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:04,332 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:04,332 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:04,339 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+DEBUG 2025-02-08 21:34:04,339 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+INFO 2025-02-08 21:34:04,339 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+INFO 2025-02-08 21:34:04,339 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+INFO 2025-02-08 21:34:04,340 views Game session created successfully: {'id': 4, 'player1': 'alex', 'player2': 'test_user4', 'score_player1': 0, 'score_player2': 0, 'winner': None, 'is_active': True, 'created_at': '2025-02-08T21:34:04.323195+01:00', 'start_time': None, 'ended_at': None}
+INFO 2025-02-08 21:34:04,340 views Game session created successfully: {'id': 4, 'player1': 'alex', 'player2': 'test_user4', 'score_player1': 0, 'score_player2': 0, 'winner': None, 'is_active': True, 'created_at': '2025-02-08T21:34:04.323195+01:00', 'start_time': None, 'ended_at': None}
+INFO 2025-02-08 21:34:04,340 basehttp "POST /create-game/5/ HTTP/1.1" 201 197
+INFO 2025-02-08 21:34:04,340 basehttp "POST /create-game/5/ HTTP/1.1" 201 197
+DEBUG 2025-02-08 21:34:37,110 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 21:34:37,110 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 21:34:37,110 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:34:37,110 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:34:37,111 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,111 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,111 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,111 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,111 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,111 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,120 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:34:37,120 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:34:37,120 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:34:37,120 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:34:37,125 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,125 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,125 utils Appel à http://user_service:8080/api/user/friendships/1/ pour récupérer les amitiés avec user_id=1
+DEBUG 2025-02-08 21:34:37,125 utils Appel à http://user_service:8080/api/user/friendships/1/ pour récupérer les amitiés avec user_id=1
+DEBUG 2025-02-08 21:34:37,134 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}, {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}]
+DEBUG 2025-02-08 21:34:37,134 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}, {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}]
+DEBUG 2025-02-08 21:34:37,134 serializers IDs des amis valides : {2, 3, 4, 5}
+DEBUG 2025-02-08 21:34:37,134 serializers IDs des amis valides : {2, 3, 4, 5}
+DEBUG 2025-02-08 21:34:37,134 serializers Joueurs invalides détectés : []
+DEBUG 2025-02-08 21:34:37,134 serializers Joueurs invalides détectés : []
+DEBUG 2025-02-08 21:34:37,135 serializers Création d'un tournoi avec les données suivantes : {'name': 'My testing final1 gamesession6 Tournament', 'all_players': [3, 2, 4, 1]}
+DEBUG 2025-02-08 21:34:37,135 serializers Création d'un tournoi avec les données suivantes : {'name': 'My testing final1 gamesession6 Tournament', 'all_players': [3, 2, 4, 1]}
+DEBUG 2025-02-08 21:34:37,135 serializers Création du tournoi avec les joueurs suivants : [1, 2, 3, 4]
+DEBUG 2025-02-08 21:34:37,135 serializers Création du tournoi avec les joueurs suivants : [1, 2, 3, 4]
+INFO 2025-02-08 21:34:37,147 serializers Tournoi 'My testing final1 gamesession6 Tournament' créé avec succès.
+INFO 2025-02-08 21:34:37,147 serializers Tournoi 'My testing final1 gamesession6 Tournament' créé avec succès.
+DEBUG 2025-02-08 21:34:37,147 serializers About to generate elimination matches for tournament My testing final1 gamesession6 Tournament.
+DEBUG 2025-02-08 21:34:37,147 serializers About to generate elimination matches for tournament My testing final1 gamesession6 Tournament.
+DEBUG 2025-02-08 21:34:37,147 utils Generating elimination matches for tournament My testing final1 gamesession6 Tournament with 4 players.
+DEBUG 2025-02-08 21:34:37,147 utils Generating elimination matches for tournament My testing final1 gamesession6 Tournament with 4 players.
+DEBUG 2025-02-08 21:34:37,149 utils Created GameSession for match 5
+DEBUG 2025-02-08 21:34:37,149 utils Created GameSession for match 5
+DEBUG 2025-02-08 21:34:37,152 utils Created GameSession for match 6
+DEBUG 2025-02-08 21:34:37,152 utils Created GameSession for match 6
+INFO 2025-02-08 21:34:37,154 utils Generated 2 elimination matches for tournament My testing final1 gamesession6 Tournament.
+INFO 2025-02-08 21:34:37,154 utils Generated 2 elimination matches for tournament My testing final1 gamesession6 Tournament.
+DEBUG 2025-02-08 21:34:37,154 serializers Finished generating elimination matches for tournament My testing final1 gamesession6 Tournament.
+DEBUG 2025-02-08 21:34:37,154 serializers Finished generating elimination matches for tournament My testing final1 gamesession6 Tournament.
+DEBUG 2025-02-08 21:34:37,154 utils Fetching profile for user_id=1 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,154 utils Fetching profile for user_id=1 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,154 utils Making GET request to http://user_service:8080/api/user/profile/1/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,154 utils Making GET request to http://user_service:8080/api/user/profile/1/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,161 utils Profile fetched successfully for user_id=1: {'display_name': 'alex', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:34:37,161 utils Profile fetched successfully for user_id=1: {'display_name': 'alex', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:34:37,161 utils Fetching profile for user_id=2 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,161 utils Fetching profile for user_id=2 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,161 utils Making GET request to http://user_service:8080/api/user/profile/2/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,161 utils Making GET request to http://user_service:8080/api/user/profile/2/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,168 utils Profile fetched successfully for user_id=2: {'display_name': 'test_user_display_name', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:34:37,168 utils Profile fetched successfully for user_id=2: {'display_name': 'test_user_display_name', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:34:37,168 utils Fetching profile for user_id=3 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,168 utils Fetching profile for user_id=3 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,168 utils Making GET request to http://user_service:8080/api/user/profile/3/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,168 utils Making GET request to http://user_service:8080/api/user/profile/3/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,175 utils Profile fetched successfully for user_id=3: {'display_name': 'test_user_display_name2', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:34:37,175 utils Profile fetched successfully for user_id=3: {'display_name': 'test_user_display_name2', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:34:37,175 utils Fetching profile for user_id=4 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,175 utils Fetching profile for user_id=4 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:34:37,175 utils Making GET request to http://user_service:8080/api/user/profile/4/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,175 utils Making GET request to http://user_service:8080/api/user/profile/4/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:34:37,182 utils Profile fetched successfully for user_id=4: {'display_name': 'test_user_display_name3', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:34:37,182 utils Profile fetched successfully for user_id=4: {'display_name': 'test_user_display_name3', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+INFO 2025-02-08 21:34:37,183 basehttp "POST /tournaments/ HTTP/1.1" 201 252
+INFO 2025-02-08 21:34:37,183 basehttp "POST /tournaments/ HTTP/1.1" 201 252
+DEBUG 2025-02-08 21:35:01,438 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:35:01,438 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:35:01,438 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:35:01,438 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:35:01,438 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:35:01,438 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:35:01,438 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:35:01,438 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:35:01,438 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:35:01,438 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:35:01,447 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:35:01,447 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:35:01,447 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:35:01,447 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:35:01,447 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:35:01,447 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:35:01,447 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:35:01,447 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:35:01,454 views GameViewSet: 5 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:35:01,454 views GameViewSet: 5 parties trouvées pour user_id=1
+WARNING 2025-02-08 21:35:01,454 serializers No token provided for user_id=1
+WARNING 2025-02-08 21:35:01,454 serializers No token provided for user_id=1
+WARNING 2025-02-08 21:35:01,455 serializers No token provided for user_id=2
+WARNING 2025-02-08 21:35:01,455 serializers No token provided for user_id=2
+WARNING 2025-02-08 21:35:01,455 serializers No token provided for user_id=3
+WARNING 2025-02-08 21:35:01,455 serializers No token provided for user_id=3
+WARNING 2025-02-08 21:35:01,455 serializers No token provided for user_id=4
+WARNING 2025-02-08 21:35:01,455 serializers No token provided for user_id=4
+WARNING 2025-02-08 21:35:01,455 serializers No token provided for user_id=5
+WARNING 2025-02-08 21:35:01,455 serializers No token provided for user_id=5
+INFO 2025-02-08 21:35:01,455 basehttp "GET /games/ HTTP/1.1" 200 1021
+INFO 2025-02-08 21:35:01,455 basehttp "GET /games/ HTTP/1.1" 200 1021
+DEBUG 2025-02-08 21:35:18,877 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:35:18,877 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:35:18,877 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:35:18,877 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:35:18,877 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:35:18,877 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:35:18,877 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:35:18,877 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:35:18,877 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:35:18,877 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:35:18,886 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:35:18,886 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:35:18,886 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:35:18,886 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:35:18,886 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:35:18,886 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:35:18,886 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:35:18,886 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:35:18,891 views GameViewSet: 5 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:35:18,891 views GameViewSet: 5 parties trouvées pour user_id=1
+WARNING 2025-02-08 21:35:18,891 serializers No token provided for user_id=1
+WARNING 2025-02-08 21:35:18,891 serializers No token provided for user_id=1
+WARNING 2025-02-08 21:35:18,891 serializers No token provided for user_id=2
+WARNING 2025-02-08 21:35:18,891 serializers No token provided for user_id=2
+WARNING 2025-02-08 21:35:18,891 serializers No token provided for user_id=3
+WARNING 2025-02-08 21:35:18,891 serializers No token provided for user_id=3
+WARNING 2025-02-08 21:35:18,892 serializers No token provided for user_id=4
+WARNING 2025-02-08 21:35:18,892 serializers No token provided for user_id=4
+WARNING 2025-02-08 21:35:18,892 serializers No token provided for user_id=5
+WARNING 2025-02-08 21:35:18,892 serializers No token provided for user_id=5
+INFO 2025-02-08 21:35:18,892 basehttp "GET /games/ HTTP/1.1" 200 1021
+INFO 2025-02-08 21:35:18,892 basehttp "GET /games/ HTTP/1.1" 200 1021
+DEBUG 2025-02-08 21:41:38,189 middleware JWTMiddleware: Processing request for path /create-game/6/
+DEBUG 2025-02-08 21:41:38,189 middleware JWTMiddleware: Processing request for path /create-game/6/
+DEBUG 2025-02-08 21:41:38,190 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:41:38,190 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:41:38,191 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,191 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,192 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,192 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,192 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:38,192 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:38,209 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:41:38,209 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:41:38,209 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:41:38,209 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:41:38,209 views CreateGameSessionView.post called for user 1 and opponent 6
+INFO 2025-02-08 21:41:38,209 views CreateGameSessionView.post called for user 1 and opponent 6
+DEBUG 2025-02-08 21:41:38,209 views Fetching opponent data for user_id=6
+DEBUG 2025-02-08 21:41:38,209 views Fetching opponent data for user_id=6
+DEBUG 2025-02-08 21:41:38,209 utils get_user called with user_id: 6 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,209 utils get_user called with user_id: 6 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,209 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:38,209 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:38,217 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+DEBUG 2025-02-08 21:41:38,217 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+INFO 2025-02-08 21:41:38,217 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:41:38,217 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:41:38,217 utils User data retrieved: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:41:38,217 utils User data retrieved: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+DEBUG 2025-02-08 21:41:38,217 views Opponent data retrieved: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+DEBUG 2025-02-08 21:41:38,217 views Opponent data retrieved: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+DEBUG 2025-02-08 21:41:38,217 views Checking for existing active games between user 1 and 6
+DEBUG 2025-02-08 21:41:38,217 views Checking for existing active games between user 1 and 6
+DEBUG 2025-02-08 21:41:38,222 views Creating a new game session between user 1 and 6
+DEBUG 2025-02-08 21:41:38,222 views Creating a new game session between user 1 and 6
+DEBUG 2025-02-08 21:41:38,226 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,226 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,226 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:38,226 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:38,233 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:41:38,233 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:41:38,233 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:41:38,233 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:41:38,233 serializers Fetching user data for user_id=6 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,233 serializers Fetching user data for user_id=6 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:38,234 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:38,234 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:38,241 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+DEBUG 2025-02-08 21:41:38,241 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+INFO 2025-02-08 21:41:38,241 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:41:38,241 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:41:38,241 views Game session created successfully: {'id': 7, 'player1': 'alex', 'player2': 'test_user5', 'score_player1': 0, 'score_player2': 0, 'winner': None, 'is_active': True, 'created_at': '2025-02-08T21:41:38.223193+01:00', 'start_time': None, 'ended_at': None}
+INFO 2025-02-08 21:41:38,241 views Game session created successfully: {'id': 7, 'player1': 'alex', 'player2': 'test_user5', 'score_player1': 0, 'score_player2': 0, 'winner': None, 'is_active': True, 'created_at': '2025-02-08T21:41:38.223193+01:00', 'start_time': None, 'ended_at': None}
+INFO 2025-02-08 21:41:38,242 basehttp "POST /create-game/6/ HTTP/1.1" 201 197
+INFO 2025-02-08 21:41:38,242 basehttp "POST /create-game/6/ HTTP/1.1" 201 197
+DEBUG 2025-02-08 21:41:46,138 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:41:46,138 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:41:46,138 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:41:46,138 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:41:46,138 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,138 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,138 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,138 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,138 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,138 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,147 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:41:46,147 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:41:46,147 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:41:46,147 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:41:46,147 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:41:46,147 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:41:46,147 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:41:46,147 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:41:46,152 views GameViewSet: 6 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:41:46,152 views GameViewSet: 6 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:41:46,153 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,153 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,153 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,153 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,160 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:41:46,160 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:41:46,160 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:41:46,160 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:41:46,160 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,160 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,160 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,160 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,168 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 21:41:46,168 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 21:41:46,168 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 21:41:46,168 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 21:41:46,168 serializers Fetching user data for user_id=3 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,168 serializers Fetching user data for user_id=3 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,168 utils Fetching user data from http://user_service:8080/api/user/3/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,168 utils Fetching user data from http://user_service:8080/api/user/3/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,175 utils Response received: 200 - {"id":3,"username":"test_user2","email":"test_user2@example.com"}
+DEBUG 2025-02-08 21:41:46,175 utils Response received: 200 - {"id":3,"username":"test_user2","email":"test_user2@example.com"}
+INFO 2025-02-08 21:41:46,175 utils Successfully fetched user data for user_id 3: {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}
+INFO 2025-02-08 21:41:46,175 utils Successfully fetched user data for user_id 3: {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}
+DEBUG 2025-02-08 21:41:46,175 serializers Fetching user data for user_id=4 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,175 serializers Fetching user data for user_id=4 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,175 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,175 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,182 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+DEBUG 2025-02-08 21:41:46,182 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+INFO 2025-02-08 21:41:46,182 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:41:46,182 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:41:46,182 serializers Fetching user data for user_id=5 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,182 serializers Fetching user data for user_id=5 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,182 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,182 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,189 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+DEBUG 2025-02-08 21:41:46,189 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+INFO 2025-02-08 21:41:46,189 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+INFO 2025-02-08 21:41:46,189 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+DEBUG 2025-02-08 21:41:46,189 serializers Fetching user data for user_id=6 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,189 serializers Fetching user data for user_id=6 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:41:46,190 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,190 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:41:46,196 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+DEBUG 2025-02-08 21:41:46,196 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+INFO 2025-02-08 21:41:46,196 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:41:46,196 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:41:46,197 basehttp "GET /games/ HTTP/1.1" 200 1217
+INFO 2025-02-08 21:41:46,197 basehttp "GET /games/ HTTP/1.1" 200 1217
+DEBUG 2025-02-08 21:42:26,830 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 21:42:26,830 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 21:42:26,830 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:42:26,830 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:42:26,831 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,831 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,831 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,831 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,831 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,831 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,840 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:42:26,840 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:42:26,840 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:42:26,840 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:42:26,845 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,845 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,845 utils Appel à http://user_service:8080/api/user/friendships/1/ pour récupérer les amitiés avec user_id=1
+DEBUG 2025-02-08 21:42:26,845 utils Appel à http://user_service:8080/api/user/friendships/1/ pour récupérer les amitiés avec user_id=1
+DEBUG 2025-02-08 21:42:26,855 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}, {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}, {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}]
+DEBUG 2025-02-08 21:42:26,855 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}, {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}, {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}, {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}, {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}]
+DEBUG 2025-02-08 21:42:26,855 serializers IDs des amis valides : {2, 3, 4, 5, 6}
+DEBUG 2025-02-08 21:42:26,855 serializers IDs des amis valides : {2, 3, 4, 5, 6}
+DEBUG 2025-02-08 21:42:26,855 serializers Joueurs invalides détectés : []
+DEBUG 2025-02-08 21:42:26,855 serializers Joueurs invalides détectés : []
+DEBUG 2025-02-08 21:42:26,855 serializers Création d'un tournoi avec les données suivantes : {'name': 'My testing final2 gamesession6 Tournament', 'all_players': [3, 2, 5, 1]}
+DEBUG 2025-02-08 21:42:26,855 serializers Création d'un tournoi avec les données suivantes : {'name': 'My testing final2 gamesession6 Tournament', 'all_players': [3, 2, 5, 1]}
+DEBUG 2025-02-08 21:42:26,855 serializers Création du tournoi avec les joueurs suivants : [1, 2, 3, 5]
+DEBUG 2025-02-08 21:42:26,855 serializers Création du tournoi avec les joueurs suivants : [1, 2, 3, 5]
+INFO 2025-02-08 21:42:26,866 serializers Tournoi 'My testing final2 gamesession6 Tournament' créé avec succès.
+INFO 2025-02-08 21:42:26,866 serializers Tournoi 'My testing final2 gamesession6 Tournament' créé avec succès.
+DEBUG 2025-02-08 21:42:26,866 serializers About to generate elimination matches for tournament My testing final2 gamesession6 Tournament.
+DEBUG 2025-02-08 21:42:26,866 serializers About to generate elimination matches for tournament My testing final2 gamesession6 Tournament.
+DEBUG 2025-02-08 21:42:26,866 utils Generating elimination matches for tournament My testing final2 gamesession6 Tournament with 4 players.
+DEBUG 2025-02-08 21:42:26,866 utils Generating elimination matches for tournament My testing final2 gamesession6 Tournament with 4 players.
+DEBUG 2025-02-08 21:42:26,868 utils Created GameSession for match 8
+DEBUG 2025-02-08 21:42:26,868 utils Created GameSession for match 8
+DEBUG 2025-02-08 21:42:26,871 utils Created GameSession for match 9
+DEBUG 2025-02-08 21:42:26,871 utils Created GameSession for match 9
+INFO 2025-02-08 21:42:26,873 utils Generated 2 elimination matches for tournament My testing final2 gamesession6 Tournament.
+INFO 2025-02-08 21:42:26,873 utils Generated 2 elimination matches for tournament My testing final2 gamesession6 Tournament.
+DEBUG 2025-02-08 21:42:26,873 serializers Finished generating elimination matches for tournament My testing final2 gamesession6 Tournament.
+DEBUG 2025-02-08 21:42:26,873 serializers Finished generating elimination matches for tournament My testing final2 gamesession6 Tournament.
+DEBUG 2025-02-08 21:42:26,873 utils Fetching profile for user_id=1 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,873 utils Fetching profile for user_id=1 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,873 utils Making GET request to http://user_service:8080/api/user/profile/1/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,873 utils Making GET request to http://user_service:8080/api/user/profile/1/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,880 utils Profile fetched successfully for user_id=1: {'display_name': 'alex', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:42:26,880 utils Profile fetched successfully for user_id=1: {'display_name': 'alex', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:42:26,880 utils Fetching profile for user_id=2 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,880 utils Fetching profile for user_id=2 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,880 utils Making GET request to http://user_service:8080/api/user/profile/2/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,880 utils Making GET request to http://user_service:8080/api/user/profile/2/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,887 utils Profile fetched successfully for user_id=2: {'display_name': 'test_user_display_name', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:42:26,887 utils Profile fetched successfully for user_id=2: {'display_name': 'test_user_display_name', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:42:26,888 utils Fetching profile for user_id=3 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,888 utils Fetching profile for user_id=3 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,888 utils Making GET request to http://user_service:8080/api/user/profile/3/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,888 utils Making GET request to http://user_service:8080/api/user/profile/3/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,894 utils Profile fetched successfully for user_id=3: {'display_name': 'test_user_display_name2', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:42:26,894 utils Profile fetched successfully for user_id=3: {'display_name': 'test_user_display_name2', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:42:26,894 utils Fetching profile for user_id=5 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,894 utils Fetching profile for user_id=5 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:26,894 utils Making GET request to http://user_service:8080/api/user/profile/5/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,894 utils Making GET request to http://user_service:8080/api/user/profile/5/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:26,901 utils Profile fetched successfully for user_id=5: {'display_name': 'test_user_display_name4', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:42:26,901 utils Profile fetched successfully for user_id=5: {'display_name': 'test_user_display_name4', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+INFO 2025-02-08 21:42:26,902 basehttp "POST /tournaments/ HTTP/1.1" 201 252
+INFO 2025-02-08 21:42:26,902 basehttp "POST /tournaments/ HTTP/1.1" 201 252
+DEBUG 2025-02-08 21:42:47,012 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:42:47,012 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:42:47,012 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:42:47,012 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:42:47,012 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,012 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,012 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,012 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,012 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,012 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,021 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:42:47,021 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:42:47,021 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:42:47,021 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:42:47,021 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:42:47,021 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:42:47,021 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:42:47,021 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:42:47,026 views GameViewSet: 7 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:42:47,026 views GameViewSet: 7 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:42:47,026 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,026 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,026 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,026 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,034 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:42:47,034 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:42:47,034 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:42:47,034 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:42:47,034 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,034 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,034 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,034 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,042 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 21:42:47,042 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 21:42:47,042 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 21:42:47,042 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 21:42:47,042 serializers Fetching user data for user_id=3 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,042 serializers Fetching user data for user_id=3 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,042 utils Fetching user data from http://user_service:8080/api/user/3/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,042 utils Fetching user data from http://user_service:8080/api/user/3/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,050 utils Response received: 200 - {"id":3,"username":"test_user2","email":"test_user2@example.com"}
+DEBUG 2025-02-08 21:42:47,050 utils Response received: 200 - {"id":3,"username":"test_user2","email":"test_user2@example.com"}
+INFO 2025-02-08 21:42:47,050 utils Successfully fetched user data for user_id 3: {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}
+INFO 2025-02-08 21:42:47,050 utils Successfully fetched user data for user_id 3: {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}
+DEBUG 2025-02-08 21:42:47,050 serializers Fetching user data for user_id=4 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,050 serializers Fetching user data for user_id=4 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,050 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,050 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,057 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+DEBUG 2025-02-08 21:42:47,057 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+INFO 2025-02-08 21:42:47,057 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:42:47,057 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:42:47,057 serializers Fetching user data for user_id=5 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,057 serializers Fetching user data for user_id=5 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,057 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,057 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,064 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+DEBUG 2025-02-08 21:42:47,064 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+INFO 2025-02-08 21:42:47,064 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+INFO 2025-02-08 21:42:47,064 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+DEBUG 2025-02-08 21:42:47,064 serializers Fetching user data for user_id=6 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,064 serializers Fetching user data for user_id=6 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:42:47,064 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,064 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:42:47,071 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+DEBUG 2025-02-08 21:42:47,071 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+INFO 2025-02-08 21:42:47,071 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:42:47,071 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:42:47,072 basehttp "GET /games/ HTTP/1.1" 200 1444
+INFO 2025-02-08 21:42:47,072 basehttp "GET /games/ HTTP/1.1" 200 1444
+DEBUG 2025-02-08 21:43:03,804 middleware JWTMiddleware: Processing request for path /tournament-matches/
+DEBUG 2025-02-08 21:43:03,804 middleware JWTMiddleware: Processing request for path /tournament-matches/
+DEBUG 2025-02-08 21:43:03,804 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:03,804 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:03,805 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:03,805 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:03,805 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:03,805 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:03,805 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:03,805 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:03,814 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:43:03,814 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:43:03,814 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:43:03,814 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:43:03,819 basehttp "GET /tournament-matches/ HTTP/1.1" 200 825
+INFO 2025-02-08 21:43:03,819 basehttp "GET /tournament-matches/ HTTP/1.1" 200 825
+DEBUG 2025-02-08 21:43:28,842 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 21:43:28,842 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 21:43:28,842 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:28,842 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:28,842 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,842 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,843 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,843 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,843 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,843 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,854 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:43:28,854 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:43:28,854 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:43:28,854 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:43:28,859 utils Fetching profile for user_id=1 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,859 utils Fetching profile for user_id=1 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,859 utils Making GET request to http://user_service:8080/api/user/profile/1/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,859 utils Making GET request to http://user_service:8080/api/user/profile/1/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,868 utils Profile fetched successfully for user_id=1: {'display_name': 'alex', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,868 utils Profile fetched successfully for user_id=1: {'display_name': 'alex', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,868 utils Fetching profile for user_id=2 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,868 utils Fetching profile for user_id=2 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,868 utils Making GET request to http://user_service:8080/api/user/profile/2/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,868 utils Making GET request to http://user_service:8080/api/user/profile/2/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,876 utils Profile fetched successfully for user_id=2: {'display_name': 'test_user_display_name', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,876 utils Profile fetched successfully for user_id=2: {'display_name': 'test_user_display_name', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,876 utils Fetching profile for user_id=3 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,876 utils Fetching profile for user_id=3 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,876 utils Making GET request to http://user_service:8080/api/user/profile/3/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,876 utils Making GET request to http://user_service:8080/api/user/profile/3/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,884 utils Profile fetched successfully for user_id=3: {'display_name': 'test_user_display_name2', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,884 utils Profile fetched successfully for user_id=3: {'display_name': 'test_user_display_name2', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,884 utils Fetching profile for user_id=4 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,884 utils Fetching profile for user_id=4 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,884 utils Making GET request to http://user_service:8080/api/user/profile/4/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,884 utils Making GET request to http://user_service:8080/api/user/profile/4/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,892 utils Profile fetched successfully for user_id=4: {'display_name': 'test_user_display_name3', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,892 utils Profile fetched successfully for user_id=4: {'display_name': 'test_user_display_name3', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,892 utils Fetching profile for user_id=1 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,892 utils Fetching profile for user_id=1 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,892 utils Making GET request to http://user_service:8080/api/user/profile/1/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,892 utils Making GET request to http://user_service:8080/api/user/profile/1/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,900 utils Profile fetched successfully for user_id=1: {'display_name': 'alex', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,900 utils Profile fetched successfully for user_id=1: {'display_name': 'alex', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,900 utils Fetching profile for user_id=2 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,900 utils Fetching profile for user_id=2 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,900 utils Making GET request to http://user_service:8080/api/user/profile/2/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,900 utils Making GET request to http://user_service:8080/api/user/profile/2/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,907 utils Profile fetched successfully for user_id=2: {'display_name': 'test_user_display_name', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,907 utils Profile fetched successfully for user_id=2: {'display_name': 'test_user_display_name', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,907 utils Fetching profile for user_id=3 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,907 utils Fetching profile for user_id=3 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,907 utils Making GET request to http://user_service:8080/api/user/profile/3/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,907 utils Making GET request to http://user_service:8080/api/user/profile/3/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,914 utils Profile fetched successfully for user_id=3: {'display_name': 'test_user_display_name2', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,914 utils Profile fetched successfully for user_id=3: {'display_name': 'test_user_display_name2', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,914 utils Fetching profile for user_id=5 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,914 utils Fetching profile for user_id=5 using token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:28,914 utils Making GET request to http://user_service:8080/api/user/profile/5/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,914 utils Making GET request to http://user_service:8080/api/user/profile/5/ with headers={'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:28,921 utils Profile fetched successfully for user_id=5: {'display_name': 'test_user_display_name4', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+DEBUG 2025-02-08 21:43:28,921 utils Profile fetched successfully for user_id=5: {'display_name': 'test_user_display_name4', 'avatar': '/media/default_avatar.png', 'wins': 0, 'losses': 0}
+INFO 2025-02-08 21:43:28,922 basehttp "GET /tournaments/ HTTP/1.1" 200 507
+INFO 2025-02-08 21:43:28,922 basehttp "GET /tournaments/ HTTP/1.1" 200 507
+DEBUG 2025-02-08 21:43:45,721 middleware JWTMiddleware: Processing request for path /match-history/
+DEBUG 2025-02-08 21:43:45,721 middleware JWTMiddleware: Processing request for path /match-history/
+DEBUG 2025-02-08 21:43:45,721 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:45,721 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:45,721 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:45,721 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:45,721 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:45,721 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:45,721 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:45,721 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:45,732 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:43:45,732 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:43:45,732 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:43:45,732 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:43:45,732 views Fetching match history for user_id=1
+DEBUG 2025-02-08 21:43:45,732 views Fetching match history for user_id=1
+DEBUG 2025-02-08 21:43:45,737 views Found 0 matches for user_id=1
+DEBUG 2025-02-08 21:43:45,737 views Found 0 matches for user_id=1
+INFO 2025-02-08 21:43:45,749 basehttp "GET //match-history/ HTTP/1.1" 200 2
+INFO 2025-02-08 21:43:45,749 basehttp "GET //match-history/ HTTP/1.1" 200 2
+DEBUG 2025-02-08 21:43:50,173 middleware JWTMiddleware: Processing request for path /test-user/
+DEBUG 2025-02-08 21:43:50,173 middleware JWTMiddleware: Processing request for path /test-user/
+DEBUG 2025-02-08 21:43:50,173 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:50,173 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:50,173 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:50,173 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:50,174 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:50,174 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:43:50,174 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:50,174 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:43:50,182 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:43:50,182 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:43:50,183 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:43:50,183 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:43:50,183 views User in TestUserView: User(id=1, username='alex', is_authenticated=True)
+DEBUG 2025-02-08 21:43:50,183 views User in TestUserView: User(id=1, username='alex', is_authenticated=True)
+INFO 2025-02-08 21:43:50,183 basehttp "GET /test-user/ HTTP/1.1" 200 37
+INFO 2025-02-08 21:43:50,183 basehttp "GET /test-user/ HTTP/1.1" 200 37
+DEBUG 2025-02-08 21:43:54,448 middleware JWTMiddleware: Processing request for path /test-game/
+DEBUG 2025-02-08 21:43:54,448 middleware JWTMiddleware: Processing request for path /test-game/
+DEBUG 2025-02-08 21:43:54,449 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:43:54,449 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+WARNING 2025-02-08 21:43:54,449 basehttp "GET /test-game/ HTTP/1.1" 404 179
+WARNING 2025-02-08 21:43:54,449 basehttp "GET /test-game/ HTTP/1.1" 404 179
+DEBUG 2025-02-08 21:44:03,762 middleware JWTMiddleware: Processing request for path /test-games-query/
+DEBUG 2025-02-08 21:44:03,762 middleware JWTMiddleware: Processing request for path /test-games-query/
+DEBUG 2025-02-08 21:44:03,762 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:44:03,762 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:44:03,763 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:03,763 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:03,763 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:03,763 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:03,763 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:03,763 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:03,772 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:44:03,772 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:44:03,772 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:44:03,772 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:44:03,772 views TestGamesQueryView: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:44:03,772 views TestGamesQueryView: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:44:03,776 views TestGamesQueryView: 7 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:44:03,776 views TestGamesQueryView: 7 parties trouvées pour user_id=1
+INFO 2025-02-08 21:44:03,777 basehttp "GET /test-games-query/ HTTP/1.1" 200 17
+INFO 2025-02-08 21:44:03,777 basehttp "GET /test-games-query/ HTTP/1.1" 200 17
+DEBUG 2025-02-08 21:44:13,942 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:44:13,942 middleware JWTMiddleware: Processing request for path /games/
+DEBUG 2025-02-08 21:44:13,942 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:44:13,942 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:44:13,942 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,942 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,943 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,943 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,943 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,943 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,952 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:44:13,952 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:44:13,952 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:44:13,952 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:44:13,952 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:44:13,952 views GameViewSet: Requête reçue pour user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:44:13,952 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:44:13,952 views GameViewSet: Filtrage des parties pour user_id=1
+DEBUG 2025-02-08 21:44:13,956 views GameViewSet: 7 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:44:13,956 views GameViewSet: 7 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:44:13,957 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,957 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,957 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,957 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,965 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:44:13,965 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:44:13,965 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:44:13,965 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:44:13,965 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,965 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,965 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,965 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,973 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 21:44:13,973 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 21:44:13,973 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 21:44:13,973 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 21:44:13,973 serializers Fetching user data for user_id=3 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,973 serializers Fetching user data for user_id=3 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,973 utils Fetching user data from http://user_service:8080/api/user/3/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,973 utils Fetching user data from http://user_service:8080/api/user/3/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,980 utils Response received: 200 - {"id":3,"username":"test_user2","email":"test_user2@example.com"}
+DEBUG 2025-02-08 21:44:13,980 utils Response received: 200 - {"id":3,"username":"test_user2","email":"test_user2@example.com"}
+INFO 2025-02-08 21:44:13,980 utils Successfully fetched user data for user_id 3: {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}
+INFO 2025-02-08 21:44:13,980 utils Successfully fetched user data for user_id 3: {'id': 3, 'username': 'test_user2', 'email': 'test_user2@example.com'}
+DEBUG 2025-02-08 21:44:13,980 serializers Fetching user data for user_id=4 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,980 serializers Fetching user data for user_id=4 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,980 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,980 utils Fetching user data from http://user_service:8080/api/user/4/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,987 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+DEBUG 2025-02-08 21:44:13,987 utils Response received: 200 - {"id":4,"username":"test_user3","email":"test_user3@example.com"}
+INFO 2025-02-08 21:44:13,987 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+INFO 2025-02-08 21:44:13,987 utils Successfully fetched user data for user_id 4: {'id': 4, 'username': 'test_user3', 'email': 'test_user3@example.com'}
+DEBUG 2025-02-08 21:44:13,987 serializers Fetching user data for user_id=5 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,987 serializers Fetching user data for user_id=5 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,987 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,987 utils Fetching user data from http://user_service:8080/api/user/5/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,994 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+DEBUG 2025-02-08 21:44:13,994 utils Response received: 200 - {"id":5,"username":"test_user4","email":"test_user4@example.com"}
+INFO 2025-02-08 21:44:13,994 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+INFO 2025-02-08 21:44:13,994 utils Successfully fetched user data for user_id 5: {'id': 5, 'username': 'test_user4', 'email': 'test_user4@example.com'}
+DEBUG 2025-02-08 21:44:13,994 serializers Fetching user data for user_id=6 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,994 serializers Fetching user data for user_id=6 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:13,994 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:13,994 utils Fetching user data from http://user_service:8080/api/user/6/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:14,002 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+DEBUG 2025-02-08 21:44:14,002 utils Response received: 200 - {"id":6,"username":"test_user5","email":"test_user5@example.com"}
+INFO 2025-02-08 21:44:14,002 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:44:14,002 utils Successfully fetched user data for user_id 6: {'id': 6, 'username': 'test_user5', 'email': 'test_user5@example.com'}
+INFO 2025-02-08 21:44:14,002 basehttp "GET /games/ HTTP/1.1" 200 1444
+INFO 2025-02-08 21:44:14,002 basehttp "GET /games/ HTTP/1.1" 200 1444
+DEBUG 2025-02-08 21:44:26,165 middleware JWTMiddleware: Processing request for path /test-games-no-permissions/
+DEBUG 2025-02-08 21:44:26,165 middleware JWTMiddleware: Processing request for path /test-games-no-permissions/
+DEBUG 2025-02-08 21:44:26,166 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:44:26,166 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 21:44:26,166 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:26,166 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:26,166 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:26,166 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E
+DEBUG 2025-02-08 21:44:26,166 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:26,166 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQ4MTMyLCJpYXQiOjE3MzkwNDU3MzIsImp0aSI6IjI1M2U2OWJiMjQwNzQ3Yzk4ZmU4NThmYWExNjQ0ZjgyIiwidXNlcl9pZCI6MX0.vXa_UAx7OcjMVR1J6hgYo-1HwAtg5D73FK9kExTdB2E'}
+DEBUG 2025-02-08 21:44:26,175 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 21:44:26,175 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 21:44:26,175 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 21:44:26,175 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 21:44:26,175 views TestGamesNoPermissionsView: user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:44:26,175 views TestGamesNoPermissionsView: user=User(id=1, username='alex', is_authenticated=True), is_authenticated=True
+DEBUG 2025-02-08 21:44:26,180 views TestGamesNoPermissionsView: 7 parties trouvées pour user_id=1
+DEBUG 2025-02-08 21:44:26,180 views TestGamesNoPermissionsView: 7 parties trouvées pour user_id=1
+INFO 2025-02-08 21:44:26,180 basehttp "GET /test-games-no-permissions/ HTTP/1.1" 200 17
+INFO 2025-02-08 21:44:26,180 basehttp "GET /test-games-no-permissions/ HTTP/1.1" 200 17

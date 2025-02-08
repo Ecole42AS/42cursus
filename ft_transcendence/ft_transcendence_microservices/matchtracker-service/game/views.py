@@ -16,6 +16,7 @@ from rest_framework.permissions import IsAuthenticated
 from .utils import  update_scores_and_stats
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
+from django.conf import settings
 
 
 
@@ -173,23 +174,16 @@ class CreateGameSessionView(APIView):
     """
     Vue pour créer une nouvelle session de jeu.
     """
-
-    # authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]  # Ajout de la vérification d'authentification
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, user_id):
-        """
-        Endpoint pour créer une session de jeu entre deux utilisateurs.
-        """
         logger.info(f"CreateGameSessionView.post called for user {getattr(request.user, 'id', None)} and opponent {user_id}")
         try:
-            # Vérifie si un utilisateur authentifié est attaché à la requête
             user = request.user
             if not user or not getattr(user, 'is_authenticated', False):
                 logger.error("No authenticated user found on the request")
                 raise AuthenticationFailed("User not authenticated")
 
-            # Récupère les données de l'opposant via le microservice `user_service`
             logger.debug(f"Fetching opponent data for user_id={user_id}")
             opponent_data = get_user(user_id, request.auth)
             if not opponent_data:
@@ -197,13 +191,10 @@ class CreateGameSessionView(APIView):
                 return Response({'error': 'Utilisateur non trouvé.'}, status=404)
 
             logger.debug(f"Opponent data retrieved: {opponent_data}")
-
-            # Vérifie si l'utilisateur tente de jouer contre lui-même
             if user.id == user_id:
                 logger.warning("User attempted to create a game against themselves")
                 return Response({'error': 'Vous ne pouvez pas jouer contre vous-même.'}, status=400)
 
-            # Vérifie l'existence d'une session de jeu active entre les deux utilisateurs
             logger.debug(f"Checking for existing active games between user {user.id} and {user_id}")
             existing_game = GameSession.objects.filter(
                 Q(player1_id=user.id, player2_id=user_id) |
@@ -219,27 +210,26 @@ class CreateGameSessionView(APIView):
                     status=400
                 )
             
-            # Crée une nouvelle session de jeu
             logger.debug(f"Creating a new game session between user {user.id} and {user_id}")
             game_session = GameSession.objects.create(player1_id=user.id, player2_id=user_id)
-            serializer = GameSerializer(game_session)
+            # Récupération du token à utiliser pour interroger le service utilisateur
+            token = request.auth or TokenManager.get_jwt_token()
+            serializer = GameSerializer(game_session, context={'request': request, 'token': token})
 
-            # Envoi de la notification via le channel layer
             notification_data = {
                 "game_session_id": game_session.id,
                 "player1": game_session.player1_id,
                 "player2": game_session.player2_id,
-                "start_time": game_session.start_time.isoformat() if game_session.start_time else None,
-                "duration": game_session.duration,
             }
-            channel_layer = get_channel_layer()
-            async_to_sync(channel_layer.group_send)(
-                "game_sessions",  # Ce groupe doit être celui que vos WebSocket consumers écoutent
-                {
-                    "type": "game_session.start",
-                    "data": notification_data,
-                }
-            )
+            if getattr(settings, "USE_WEBSOCKETS_FOR_GAME_SESSION", False):
+                channel_layer = get_channel_layer()
+                async_to_sync(channel_layer.group_send)(
+                    "game_sessions",
+                    {
+                        "type": "game_session.start",
+                        "data": notification_data,
+                    }
+                )
 
             logger.info(f"Game session created successfully: {serializer.data}")
             return Response(serializer.data, status=201)
@@ -250,6 +240,7 @@ class CreateGameSessionView(APIView):
         except Exception as e:
             logger.error(f"Unexpected error during game creation: {e}")
             return Response({'error': 'Une erreur est survenue.'}, status=500)
+
 
 # class UpdateGameScoreView(APIView):
 #     """

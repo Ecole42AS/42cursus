@@ -16,6 +16,8 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # SECRET_KEY = 'akn1%#!+sh*gzpb#ek_30a=3qag!14&%rj1mz%!uaj3*a1-i*n'
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret-key")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "my-default-unique-key")
+USE_WEBSOCKETS_FOR_GAME_SESSION = False
+            
 # print("DJANGO_SECRET_KEY:", os.getenv("DJANGO_SECRET_KEY"))
 INTERNAL_API_KEY = '0201d2b222e3d58c5540cb05238d1f85fe964440aa9f0277299ec8011f71d1b4'
 # Mode Debug - Désactiver en production
