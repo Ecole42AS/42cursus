@@ -1,110 +1,183 @@
-DEBUG 2025-02-07 16:41:33,668 middleware JWTMiddleware: Processing request for path /ws/matchtracker/global/
-DEBUG 2025-02-07 16:41:33,668 middleware JWTMiddleware: Processing request for path /ws/matchtracker/global/
-WARNING 2025-02-07 16:41:33,669 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 16:41:33,669 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 16:41:33,669 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 16:41:33,669 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 16:41:33,669 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
-WARNING 2025-02-07 16:41:33,669 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
-DEBUG 2025-02-07 16:41:37,119 middleware JWTMiddleware: Processing request for path /ws/matchtracker/global/
-DEBUG 2025-02-07 16:41:37,119 middleware JWTMiddleware: Processing request for path /ws/matchtracker/global/
-WARNING 2025-02-07 16:41:37,120 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 16:41:37,120 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 16:41:37,120 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 16:41:37,120 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 16:41:37,120 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
-WARNING 2025-02-07 16:41:37,120 basehttp "GET /ws/matchtracker/global/ HTTP/1.1" 401 49
-DEBUG 2025-02-07 17:44:15,805 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-07 17:44:15,805 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-07 17:44:15,805 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 17:44:15,805 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 17:44:15,805 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 17:44:15,805 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 17:44:15,806 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-WARNING 2025-02-07 17:44:15,806 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-DEBUG 2025-02-07 18:31:03,929 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-07 18:31:03,929 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-07 18:31:03,930 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:31:03,930 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:31:03,930 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:31:03,930 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:31:03,931 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-WARNING 2025-02-07 18:31:03,931 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-DEBUG 2025-02-07 18:31:54,040 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-07 18:31:54,040 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-07 18:31:54,040 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:31:54,040 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:31:54,040 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:31:54,040 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:31:54,041 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-WARNING 2025-02-07 18:31:54,041 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-DEBUG 2025-02-07 18:32:16,106 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-07 18:32:16,106 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-07 18:32:16,106 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:32:16,106 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:32:16,106 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:32:16,106 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:32:16,106 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-WARNING 2025-02-07 18:32:16,106 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-DEBUG 2025-02-07 18:32:47,369 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-07 18:32:47,369 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-07 18:32:47,369 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:32:47,369 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:32:47,369 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:32:47,369 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:32:47,369 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-WARNING 2025-02-07 18:32:47,369 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-DEBUG 2025-02-07 18:40:24,416 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-07 18:40:24,416 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-07 18:40:24,416 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:40:24,416 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-07 18:40:24,416 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:40:24,416 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-07 18:40:24,417 basehttp "GET /ws/game_sessions/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4OTUyMzQ2LCJpYXQiOjE3Mzg5NDk5NDYsImp0aSI6ImE4MTE5OGEyOGYzOTQ0NjhhZTRhNmVmOTdjZmM5ZDEzIiwidXNlcl9pZCI6MX0.r9_D92fzfCwF_pnm3auD6LiiCfU5l0PH29g95mOxWME HTTP/1.1" 401 49
-WARNING 2025-02-07 18:40:24,417 basehttp "GET /ws/game_sessions/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4OTUyMzQ2LCJpYXQiOjE3Mzg5NDk5NDYsImp0aSI6ImE4MTE5OGEyOGYzOTQ0NjhhZTRhNmVmOTdjZmM5ZDEzIiwidXNlcl9pZCI6MX0.r9_D92fzfCwF_pnm3auD6LiiCfU5l0PH29g95mOxWME HTTP/1.1" 401 49
-DEBUG 2025-02-08 10:44:24,631 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-08 10:44:24,631 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-08 10:44:24,631 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 10:44:24,631 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 10:44:24,631 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 10:44:24,631 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 10:44:24,632 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-WARNING 2025-02-08 10:44:24,632 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-DEBUG 2025-02-08 11:33:56,899 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-08 11:33:56,899 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-08 11:33:56,900 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 11:33:56,900 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 11:33:56,900 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 11:33:56,900 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 11:33:56,900 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-WARNING 2025-02-08 11:33:56,900 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-DEBUG 2025-02-08 12:09:32,285 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-08 12:09:32,285 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-WARNING 2025-02-08 12:09:32,286 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 12:09:32,286 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 12:09:32,286 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 12:09:32,286 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 12:09:32,286 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-WARNING 2025-02-08 12:09:32,286 basehttp "GET /ws/game_sessions/ HTTP/1.1" 401 49
-DEBUG 2025-02-08 12:10:37,887 middleware JWTMiddleware: Processing request for path /
-DEBUG 2025-02-08 12:10:37,887 middleware JWTMiddleware: Processing request for path /
-WARNING 2025-02-08 12:10:37,888 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 12:10:37,888 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 12:10:37,888 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 12:10:37,888 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 12:10:37,888 basehttp "GET / HTTP/1.1" 401 49
-WARNING 2025-02-08 12:10:37,888 basehttp "GET / HTTP/1.1" 401 49
-DEBUG 2025-02-08 12:10:38,052 middleware JWTMiddleware: Processing request for path /favicon.ico
-DEBUG 2025-02-08 12:10:38,052 middleware JWTMiddleware: Processing request for path /favicon.ico
-WARNING 2025-02-08 12:10:38,052 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 12:10:38,052 authentication Authentication failed: No token provided or invalid format
-WARNING 2025-02-08 12:10:38,053 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 12:10:38,053 middleware JWTMiddleware: Authentication failed - No token provided or invalid format
-WARNING 2025-02-08 12:10:38,053 basehttp "GET /favicon.ico HTTP/1.1" 401 49
-WARNING 2025-02-08 12:10:38,053 basehttp "GET /favicon.ico HTTP/1.1" 401 49
-DEBUG 2025-02-08 12:14:02,580 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-08 12:14:02,580 middleware JWTMiddleware: Processing request for path /ws/game_sessions/
-DEBUG 2025-02-08 12:14:02,580 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-DEBUG 2025-02-08 12:14:02,580 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
-WARNING 2025-02-08 12:14:02,582 basehttp "GET /ws/game_sessions/ HTTP/1.1" 404 179
-WARNING 2025-02-08 12:14:02,582 basehttp "GET /ws/game_sessions/ HTTP/1.1" 404 179
+DEBUG 2025-02-08 18:23:19,435 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 18:23:19,435 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 18:23:19,435 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 18:23:19,435 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 18:23:19,435 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
+DEBUG 2025-02-08 18:23:19,435 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
+DEBUG 2025-02-08 18:23:19,436 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
+DEBUG 2025-02-08 18:23:19,436 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
+DEBUG 2025-02-08 18:23:19,436 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A'}
+DEBUG 2025-02-08 18:23:19,436 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A'}
+DEBUG 2025-02-08 18:23:19,447 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 18:23:19,447 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 18:23:19,447 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 18:23:19,447 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 18:23:19,447 views CreateGameSessionView.post called for user 1 and opponent 2
+INFO 2025-02-08 18:23:19,447 views CreateGameSessionView.post called for user 1 and opponent 2
+DEBUG 2025-02-08 18:23:19,447 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 18:23:19,447 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 18:23:19,447 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
+DEBUG 2025-02-08 18:23:19,447 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A
+DEBUG 2025-02-08 18:23:19,448 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A'}
+DEBUG 2025-02-08 18:23:19,448 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDM3NTI3LCJpYXQiOjE3MzkwMzUxMjcsImp0aSI6IjZjZjRhMjAwN2RiZTQ2MGJhMzExNmY3NDhlYzNlYzY4IiwidXNlcl9pZCI6MX0.NZzNXIeQt1bAnclZR9bpvJga-Tk99bJM1liz1vQB11A'}
+DEBUG 2025-02-08 18:23:19,455 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 18:23:19,455 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 18:23:19,455 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 18:23:19,455 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 18:23:19,455 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 18:23:19,455 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 18:23:19,455 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 18:23:19,455 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 18:23:19,455 views Checking for existing active games between user 1 and 2
+DEBUG 2025-02-08 18:23:19,455 views Checking for existing active games between user 1 and 2
+ERROR 2025-02-08 18:23:19,459 views Unexpected error during game creation: relation "game_gamesession" does not exist
+LINE 1: ...n"."duration", "game_gamesession"."ended_at" FROM "game_game...
+                                                             ^
+
+ERROR 2025-02-08 18:23:19,459 views Unexpected error during game creation: relation "game_gamesession" does not exist
+LINE 1: ...n"."duration", "game_gamesession"."ended_at" FROM "game_game...
+                                                             ^
+
+ERROR 2025-02-08 18:23:19,460 log Internal Server Error: /create-game/2/
+ERROR 2025-02-08 18:23:19,460 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
+ERROR 2025-02-08 18:23:19,460 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
+DEBUG 2025-02-08 19:40:07,188 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 19:40:07,188 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 19:40:07,189 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 19:40:07,189 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 19:40:07,190 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:07,190 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:07,191 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:07,191 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:07,191 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:07,191 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:07,201 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 19:40:07,201 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 19:40:07,201 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 19:40:07,201 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 19:40:07,201 views CreateGameSessionView.post called for user 1 and opponent 2
+INFO 2025-02-08 19:40:07,201 views CreateGameSessionView.post called for user 1 and opponent 2
+DEBUG 2025-02-08 19:40:07,201 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 19:40:07,201 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 19:40:07,201 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:07,201 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:07,201 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:07,201 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:07,208 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 19:40:07,208 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 19:40:07,208 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 19:40:07,208 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 19:40:07,208 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 19:40:07,208 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 19:40:07,208 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 19:40:07,208 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 19:40:07,208 views Checking for existing active games between user 1 and 2
+DEBUG 2025-02-08 19:40:07,208 views Checking for existing active games between user 1 and 2
+DEBUG 2025-02-08 19:40:07,213 views Creating a new game session between user 1 and 2
+DEBUG 2025-02-08 19:40:07,213 views Creating a new game session between user 1 and 2
+DEBUG 2025-02-08 19:40:07,248 selector_events Using selector: EpollSelector
+ERROR 2025-02-08 19:40:07,249 views Unexpected error during game creation: Error 111 connecting to 127.0.0.1:6379. Connect call failed ('127.0.0.1', 6379).
+ERROR 2025-02-08 19:40:07,249 views Unexpected error during game creation: Error 111 connecting to 127.0.0.1:6379. Connect call failed ('127.0.0.1', 6379).
+ERROR 2025-02-08 19:40:07,249 log Internal Server Error: /create-game/2/
+ERROR 2025-02-08 19:40:07,249 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
+ERROR 2025-02-08 19:40:07,249 basehttp "POST /create-game/2/ HTTP/1.1" 500 36
+DEBUG 2025-02-08 19:40:15,021 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 19:40:15,021 middleware JWTMiddleware: Processing request for path /tournaments/
+DEBUG 2025-02-08 19:40:15,021 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 19:40:15,021 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 19:40:15,022 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:15,022 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:15,022 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:15,022 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:15,022 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:15,022 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:15,031 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 19:40:15,031 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 19:40:15,031 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 19:40:15,031 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 19:40:15,036 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:15,036 serializers Validation des joueurs pour user_id=1 avec token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:15,037 utils Appel à http://user_service:8080/api/user/friendships/1/ pour récupérer les amitiés avec user_id=1
+DEBUG 2025-02-08 19:40:15,037 utils Appel à http://user_service:8080/api/user/friendships/1/ pour récupérer les amitiés avec user_id=1
+DEBUG 2025-02-08 19:40:15,045 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}]
+DEBUG 2025-02-08 19:40:15,045 serializers Amis récupérés pour user_id=1 : [{'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}]
+DEBUG 2025-02-08 19:40:15,045 serializers IDs des amis valides : {2}
+DEBUG 2025-02-08 19:40:15,045 serializers IDs des amis valides : {2}
+DEBUG 2025-02-08 19:40:15,045 serializers Joueurs invalides détectés : [3, 4]
+DEBUG 2025-02-08 19:40:15,045 serializers Joueurs invalides détectés : [3, 4]
+ERROR 2025-02-08 19:40:15,045 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 3, 4.', code='invalid')]
+ERROR 2025-02-08 19:40:15,045 serializers Erreur inattendue lors de la validation des amis : [ErrorDetail(string='Les utilisateurs suivants ne sont pas vos amis : 3, 4.', code='invalid')]
+WARNING 2025-02-08 19:40:15,046 basehttp "POST /tournaments/ HTTP/1.1" 400 154
+WARNING 2025-02-08 19:40:15,046 basehttp "POST /tournaments/ HTTP/1.1" 400 154
+DEBUG 2025-02-08 19:40:22,045 middleware JWTMiddleware: Processing request for path /update-game-score/14/
+DEBUG 2025-02-08 19:40:22,045 middleware JWTMiddleware: Processing request for path /update-game-score/14/
+DEBUG 2025-02-08 19:40:22,045 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 19:40:22,045 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 19:40:22,046 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:22,046 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:22,046 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:22,046 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:22,046 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:22,046 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:22,056 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 19:40:22,056 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 19:40:22,056 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 19:40:22,056 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 19:40:22,056 views Requête reçue pour mettre à jour le score du jeu 14.
+DEBUG 2025-02-08 19:40:22,056 views Requête reçue pour mettre à jour le score du jeu 14.
+WARNING 2025-02-08 19:40:22,056 views Scores non fournis dans la requête.
+WARNING 2025-02-08 19:40:22,056 views Scores non fournis dans la requête.
+WARNING 2025-02-08 19:40:22,056 basehttp "POST /update-game-score/14/ HTTP/1.1" 400 45
+WARNING 2025-02-08 19:40:22,056 basehttp "POST /update-game-score/14/ HTTP/1.1" 400 45
+DEBUG 2025-02-08 19:40:33,132 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 19:40:33,132 middleware JWTMiddleware: Processing request for path /create-game/2/
+DEBUG 2025-02-08 19:40:33,132 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 19:40:33,132 middleware JWTMiddleware: Public endpoint, skipping JWT authentication
+DEBUG 2025-02-08 19:40:33,132 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,132 authentication Token received: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,133 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,133 authentication Decoded token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,133 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:33,133 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:33,141 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 19:40:33,141 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 19:40:33,141 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 19:40:33,141 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 19:40:33,142 views CreateGameSessionView.post called for user 1 and opponent 2
+INFO 2025-02-08 19:40:33,142 views CreateGameSessionView.post called for user 1 and opponent 2
+DEBUG 2025-02-08 19:40:33,142 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 19:40:33,142 views Fetching opponent data for user_id=2
+DEBUG 2025-02-08 19:40:33,142 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,142 utils get_user called with user_id: 2 and token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,142 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:33,142 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:33,149 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 19:40:33,149 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 19:40:33,149 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 19:40:33,149 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 19:40:33,149 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 19:40:33,149 utils User data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 19:40:33,149 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 19:40:33,149 views Opponent data retrieved: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+DEBUG 2025-02-08 19:40:33,149 views Checking for existing active games between user 1 and 2
+DEBUG 2025-02-08 19:40:33,149 views Checking for existing active games between user 1 and 2
+WARNING 2025-02-08 19:40:33,154 views An active game already exists between user 1 and 2
+WARNING 2025-02-08 19:40:33,154 views An active game already exists between user 1 and 2
+DEBUG 2025-02-08 19:40:33,154 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,154 serializers Fetching user data for user_id=1 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,154 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:33,154 utils Fetching user data from http://user_service:8080/api/user/1/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:33,161 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+DEBUG 2025-02-08 19:40:33,161 utils Response received: 200 - {"id":1,"username":"alex","email":"alexandre.stutz@hotmail.com"}
+INFO 2025-02-08 19:40:33,161 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+INFO 2025-02-08 19:40:33,161 utils Successfully fetched user data for user_id 1: {'id': 1, 'username': 'alex', 'email': 'alexandre.stutz@hotmail.com'}
+DEBUG 2025-02-08 19:40:33,161 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,161 serializers Fetching user data for user_id=2 with token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY
+DEBUG 2025-02-08 19:40:33,161 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:33,161 utils Fetching user data from http://user_service:8080/api/user/2/ with headers {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDQyMzUyLCJpYXQiOjE3MzkwMzk5NTIsImp0aSI6IjMzM2ViNzM5MWRlYTRjNDE4MTg5ZTYzNTlkODFlNDU2IiwidXNlcl9pZCI6MX0.GV-BtZypboyBjg5MvvdSBff-KMRYvAXkJFU9HYKXwKY'}
+DEBUG 2025-02-08 19:40:33,168 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+DEBUG 2025-02-08 19:40:33,168 utils Response received: 200 - {"id":2,"username":"test_user","email":"test_user@example.com"}
+INFO 2025-02-08 19:40:33,168 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+INFO 2025-02-08 19:40:33,168 utils Successfully fetched user data for user_id 2: {'id': 2, 'username': 'test_user', 'email': 'test_user@example.com'}
+WARNING 2025-02-08 19:40:33,169 basehttp "POST /create-game/2/ HTTP/1.1" 400 275
+WARNING 2025-02-08 19:40:33,169 basehttp "POST /create-game/2/ HTTP/1.1" 400 275

@@ -44,6 +44,7 @@ services:
   user_service:
     build:
       context: ./user-service
+    container_name: user_service
     env_file:
       - .env
     ports:
@@ -66,6 +67,7 @@ services:
   matchtracker_service:
     build:
       context: ./matchtracker-service
+    container_name: matchtracker_service
     env_file:
       - .env
     ports:
