@@ -1,6 +1,6 @@
-#include <stdlib.h>
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
 #include <netinet/ip.h>
 
@@ -12,7 +12,6 @@ char *client_msgs[65536];
 fd_set read_set, write_set, active_set;
 
 char buf_in[1001], buf_out[42];
-
 
 int extract_message(char **buf, char **msg)
 {
@@ -61,19 +60,21 @@ char *str_join(char *buf, char *add)
 	return (newbuf);
 }
 
-
 void fatal_error()
 {
-    write(2, "Fatal error", 11);
+    write(2, "Fatal error\n", 12);
     exit(1);
 }
+
 
 void broadcast(int sender, char *msg)
 {
     for (int fd = 0; fd <= max_fd; fd++)
     {
         if (FD_ISSET(fd, &write_set) && fd != sender)
+        {
             send(fd, msg, strlen(msg), 0);
+        }
     }
 }
 
@@ -88,11 +89,11 @@ void add_client(int fd)
 }
 
 void remove_client(int fd)
-{ 
-    free(client_msgs[fd]);
-    FD_CLR(fd, &active_set);
+{
     sprintf(buf_out, "Server: client %d just left\n", client_ids[fd]);
     broadcast(fd, buf_out);
+    free(client_msgs[fd]);
+    FD_CLR(fd, &active_set);
     close(fd);
 }
 
@@ -102,13 +103,12 @@ void send_msg(int fd)
 
     while (extract_message(&(client_msgs[fd]), &msg))
     {
-        sprintf(buf_out, "client %d: ", client_ids[fd]);
+        sprintf(buf_out, "Client %d: ", client_ids[fd]);
         broadcast(fd, buf_out);
         broadcast(fd, msg);
         free(msg);
     }
 }
-
 
 int create_socket()
 {
@@ -129,7 +129,7 @@ int main(int ac, char **av)
 
     FD_ZERO(&active_set);
     int sock_fd = create_socket();
-
+    
     struct sockaddr_in servaddr;
 	bzero(&servaddr, sizeof(servaddr));
 
@@ -154,7 +154,7 @@ int main(int ac, char **av)
             if (!FD_ISSET(fd, &read_set))
                 continue;
 
-            if (fd == sock_fd)
+            if (sock_fd == fd)
             {
                 socklen_t addr_len = sizeof(servaddr);
                 int client_fd = accept(sock_fd, (struct sockaddr *)&servaddr, &addr_len);
@@ -172,11 +172,11 @@ int main(int ac, char **av)
                     remove_client(fd);
                     break;
                 }
-                buf_in[read_bytes] = '\0';
+                client_msgs[read_bytes] = '\0';
                 client_msgs[fd] = str_join(client_msgs[fd], buf_in);
                 send_msg(fd);
             }
         }
     }
-    return 0;
+    return (0);
 }
