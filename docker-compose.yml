@@ -1,6 +1,9 @@
 services:
   php:
     container_name: librairie-php
+    build:
+      context: /Users/alex/docker-php-sqlsrv
+      dockerfile: Dockerfile
     image: php-sqlsrv:8.3.17
     volumes:
       - ./:/srv/app
@@ -9,16 +12,23 @@ services:
     ports:
       - "8000:8000"
 
+
+
   sqlserver:
     container_name: librairie-sql
     image: mcr.microsoft.com/azure-sql-edge:latest
+    platform: linux/arm64
+    env_file:
+      - .env.dev
     environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "1"
+      MSSQL_SA_PASSWORD: ${MSSQL_PASSWORD}
+      MSSQL_PID: "Developer"
     ports:
       - "1433:1433"
     volumes:
       - mssql_data:/var/opt/mssql
+
 
 volumes:
   mssql_data:
