@@ -43,3 +43,9 @@ logs:
 
 test:
 	$(PHP) php bin/phpunit
+
+# Clean all docker resources (containers, images, volumes)
+clean:
+	docker compose down --volumes --remove-orphans
+	docker system prune -f
+	docker volume prune -f

@@ -11,24 +11,27 @@ services:
     command: php -S 0.0.0.0:8000 -t public
     ports:
       - "8000:8000"
-
-
+    depends_on:
+      - sqlserver
 
   sqlserver:
-    container_name: librairie-sql
+    container_name: sql_edge_container
     image: mcr.microsoft.com/azure-sql-edge:latest
-    platform: linux/arm64
-    env_file:
-      - .env.dev
     environment:
-      ACCEPT_EULA: "1"
+      ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: ${MSSQL_PASSWORD}
-      MSSQL_PID: "Developer"
     ports:
       - "1433:1433"
     volumes:
-      - mssql_data:/var/opt/mssql
-
+      - librairie_mssql_data:/var/opt/mssql
+    restart: always
+    networks:
+      - librairie-network
 
 volumes:
-  mssql_data:
+  librairie_mssql_data:
+    driver: local
+
+networks:
+  librairie-network:
+    driver: bridge
