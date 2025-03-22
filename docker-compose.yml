@@ -1,0 +1,24 @@
+services:
+  php:
+    container_name: librairie-php
+    image: php-sqlsrv:8.3.17
+    volumes:
+      - ./:/srv/app
+    working_dir: /srv/app
+    command: php -S 0.0.0.0:8000 -t public
+    ports:
+      - "8000:8000"
+
+  sqlserver:
+    container_name: librairie-sql
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrong!Passw0rd"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+volumes:
+  mssql_data:
