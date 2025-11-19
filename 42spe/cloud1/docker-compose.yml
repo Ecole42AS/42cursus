@@ -124,7 +124,7 @@ services:
       PMA_HOST: db
       # Port de la base de données
       PMA_PORT: 3306
-      # Configuration pour fonctionner derrière un reverse proxy
+      # Configuration pour fonctionner derrière un reverse proxy (doc phpMyAdmin)
       PMA_ABSOLUTE_URI: https://${WORDPRESS_DOMAIN}/phpmyadmin/
     depends_on:
       - db
