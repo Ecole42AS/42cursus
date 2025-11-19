@@ -112,10 +112,6 @@
   # append: yes = ajoute au groupe sans retirer des autres groupes
   # Permet d'utiliser docker sans sudo
 
-"""
-Suppression des étapes de debug (versions Docker/compose et test hello-world) car elles
-ne sont pas critiques pour le déploiement automatisé.
-"""
 
 # =============================
 # Étape 9 : Création du répertoire de déploiement
