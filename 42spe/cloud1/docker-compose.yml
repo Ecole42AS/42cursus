@@ -95,6 +95,11 @@ services:
       WORDPRESS_DB_USER: ${MYSQL_USER}
       # Mot de passe de cet utilisateur
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      # Force WordPress à utiliser le domaine public en HTTPS (évite les redirections vers un port interne)
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'FORCE_SSL_ADMIN', true );
+        define( 'WP_HOME', 'https://${WORDPRESS_DOMAIN}' );
+        define( 'WP_SITEURL', 'https://${WORDPRESS_DOMAIN}' );
     # Volume pour la persistance des fichiers WordPress
     # Cela inclut : thèmes, plugins, uploads, etc.
     volumes:
@@ -120,7 +125,7 @@ services:
       # Port de la base de données
       PMA_PORT: 3306
       # Configuration pour fonctionner derrière un reverse proxy
-      PMA_ABSOLUTE_URI: https://mywp-cloud1.duckdns.org/phpmyadmin/
+      PMA_ABSOLUTE_URI: https://${WORDPRESS_DOMAIN}/phpmyadmin/
     depends_on:
       - db
     networks:

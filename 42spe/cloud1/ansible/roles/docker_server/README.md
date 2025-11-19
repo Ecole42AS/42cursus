@@ -11,6 +11,8 @@ Ce rôle Ansible installe et configure Docker Engine sur Ubuntu 20.04 de manièr
 - Configuration du service Docker (démarrage automatique)
 - Ajout de l'utilisateur au groupe docker
 - Vérification fonctionnelle de l'installation
+- Déploiement de la stack Docker (`docker-compose.yml`, `.env`, `nginx/`)
+- Initialisation automatique de Let's Encrypt via `scripts/init-letsencrypt.sh`
 
 ## 📋 Prérequis
 
@@ -32,7 +34,18 @@ Ce rôle Ansible installe et configure Docker Engine sur Ubuntu 20.04 de manièr
 
 ### Variables disponibles
 
-Aucune variable n'est requise. Le rôle utilise les valeurs par défaut optimales.
+Ces variables peuvent être définies dans `inventory.ini`, `group_vars` ou lors de l'appel du rôle :
+
+| Variable | Description | Valeur par défaut |
+| --- | --- | --- |
+| `cloud1_project_dir` | Dossier distant où copier la stack Docker | `/opt/cloud1` |
+| `cloud1_domain` | Nom de domaine public pour Nginx / TLS | `mywp-cloud1.duckdns.org` |
+| `cloud1_letsencrypt_email` | Email utilisé par Let's Encrypt | `admin@example.com` |
+| `cloud1_letsencrypt_use_staging` | `true` pour utiliser l'API de staging (évite les quotas) | `true` |
+| `cloud1_letsencrypt_force` | Force le script à recréer les certificats | `false` |
+| `cloud1_wp_table_prefix` | Préfixe des tables WordPress (`wp_` par défaut) | `wp_` |
+
+> ⚠️ Pense à surcharger `cloud1_domain` et `cloud1_letsencrypt_email` avant un vrai déploiement.
 
 ## 📦 Packages installés
 
@@ -83,4 +96,7 @@ docker_server/
 5. Installation de Docker Engine
 6. Démarrage du service Docker
 7. Ajout de l'utilisateur au groupe docker
-8. Vérifications
+8. Déploiement de la stack Docker (copie des fichiers, `docker compose up -d`)
+9. Forçage des URLs WordPress (`home` & `siteurl`) dans MySQL
+10. Initialisation Let's Encrypt (via `scripts/init-letsencrypt.sh`)
+11. Vérifications (conteneurs en ligne)

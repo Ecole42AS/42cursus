@@ -1,55 +1,84 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ===================================
 # Script pour obtenir des certificats Let's Encrypt
-# Usage: ./init-letsencrypt.sh votre-domaine.com votre@email.com
+# Usage: ./init-letsencrypt.sh domaine email [--staging] [--force]
 # ===================================
 
-# Vérifier les arguments
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <domaine> <email>"
-    echo "Exemple: $0 monprojet.duckdns.org admin@example.com"
+set -euo pipefail
+
+usage() {
+    echo "Usage: $0 <domaine> <email> [--staging] [--force]"
     exit 1
+}
+
+if [[ $# -lt 2 ]]; then
+    usage
 fi
 
 DOMAIN=$1
 EMAIL=$2
+shift 2
 
-echo "🔒 Initialisation Let's Encrypt pour $DOMAIN"
+USE_STAGING=false
+FORCE_RENEWAL=false
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --staging)
+            USE_STAGING=true
+            ;;
+        --force)
+            FORCE_RENEWAL=true
+            ;;
+        *)
+            echo "Option inconnue: $1"
+            usage
+            ;;
+    esac
+    shift
+done
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+PROJECT_NAME="$(basename "${PROJECT_DIR}")"
+CERT_ROOT="/var/lib/docker/volumes/${PROJECT_NAME}_certbot_certs/_data"
+CERT_PATH="${CERT_ROOT}/live/${DOMAIN}/fullchain.pem"
+
+cd "${PROJECT_DIR}"
+
+if [[ -f "${CERT_PATH}" && "${FORCE_RENEWAL}" == false ]]; then
+    echo "✅ Certificat déjà présent pour ${DOMAIN}, aucune action nécessaire."
+    exit 0
+fi
+
+echo "🔒 Initialisation Let's Encrypt pour ${DOMAIN}"
 echo "================================================"
-echo ""
 
-# =============================
-# Étape 1 : Mettre à jour nginx.conf avec le vrai domaine
-# =============================
-echo "📝 Étape 1 : Configuration du domaine dans nginx.conf"
+ORIGINAL_CONF="${PROJECT_DIR}/nginx/nginx.conf"
+BACKUP_CONF="${PROJECT_DIR}/nginx/nginx-full.conf"
+TEMP_CONF="${PROJECT_DIR}/nginx/nginx-temp.conf"
+CONFIG_SWITCHED=false
 
-# Remplacer server_name _ par le vrai domaine
-sed -i "s/server_name _;/server_name $DOMAIN;/g" nginx/nginx.conf
+cleanup() {
+    if [[ "${CONFIG_SWITCHED}" == true && -f "${BACKUP_CONF}" ]]; then
+        mv -f "${BACKUP_CONF}" "${ORIGINAL_CONF}"
+        CONFIG_SWITCHED=false
+    fi
+    rm -f "${TEMP_CONF}" 2>/dev/null || true
+}
+trap cleanup EXIT
 
-# Remplacer example.com par le vrai domaine dans les chemins de certificats
-sed -i "s/example.com/$DOMAIN/g" nginx/nginx.conf
-
-echo "✅ nginx.conf mis à jour avec le domaine $DOMAIN"
-echo ""
-
-# =============================
-# Étape 2 : Créer une config Nginx temporaire (sans SSL)
-# =============================
-echo "📝 Étape 2 : Création d'une config temporaire (HTTP uniquement)"
-
-cat > nginx/nginx-temp.conf << EOF
-# Configuration temporaire pour obtenir les certificats
+echo "📝 Étape 1 : Création d'une configuration HTTP temporaire"
+cat > "${TEMP_CONF}" <<EOF
 server {
     listen 80;
-    server_name $DOMAIN;
-    
-    # Challenge ACME pour Let's Encrypt
+    server_name ${DOMAIN};
+
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
     }
-    
-    # Temporairement accessible en HTTP (le temps d'obtenir les certs)
+
     location / {
         proxy_pass http://wordpress:80;
         proxy_set_header Host \$host;
@@ -58,89 +87,60 @@ server {
 }
 EOF
 
-# Remplacer temporairement la config Nginx
-mv nginx/nginx.conf nginx/nginx-full.conf
-mv nginx/nginx-temp.conf nginx/nginx.conf
+mv "${ORIGINAL_CONF}" "${BACKUP_CONF}"
+mv "${TEMP_CONF}" "${ORIGINAL_CONF}"
+CONFIG_SWITCHED=true
 
-echo "✅ Configuration temporaire créée"
-echo ""
-
-# =============================
-# Étape 3 : Démarrer Nginx avec la config temporaire
-# =============================
-echo "🚀 Étape 3 : Démarrage de Nginx (HTTP uniquement)"
-
-docker compose up -d nginx
+echo "🚀 Étape 2 : Démarrage de Nginx (HTTP uniquement)"
+docker compose up -d --no-deps --force-recreate nginx
 sleep 5
 
-echo "✅ Nginx démarré"
-echo ""
+echo "⏳ Vérification que Nginx écoute sur le port 80"
+NGINX_READY=false
+for attempt in {1..15}; do
+    if curl -s http://127.0.0.1/.well-known/acme-challenge/health >/dev/null 2>&1; then
+        NGINX_READY=true
+        break
+    fi
+    sleep 2
+done
 
-# =============================
-# Étape 4 : Obtenir les certificats avec Certbot
-# =============================
-echo "🔐 Étape 4 : Obtention des certificats Let's Encrypt"
-echo "Cela peut prendre quelques secondes..."
-echo ""
-
-docker compose run --rm --entrypoint certbot certbot certonly \
-    --webroot \
-    --webroot-path=/var/www/certbot \
-    --email $EMAIL \
-    --agree-tos \
-    --no-eff-email \
-    --staging \
-    -d $DOMAIN
-
-# Vérifier si la commande a réussi
-if [ $? -eq 0 ]; then
-    echo ""
-    echo "✅ Certificats obtenus avec succès !"
-    echo ""
-    
-    # =============================
-    # Étape 5 : Restaurer la config complète avec HTTPS
-    # =============================
-    echo "📝 Étape 5 : Restauration de la configuration HTTPS"
-    
-    mv nginx/nginx-full.conf nginx/nginx.conf
-    
-    echo "✅ Configuration HTTPS restaurée"
-    echo ""
-    
-    # =============================
-    # Étape 6 : Redémarrer Nginx avec HTTPS
-    # =============================
-    echo "🔄 Étape 6 : Redémarrage de Nginx avec HTTPS"
-    
-    docker compose restart nginx
-    
-    echo ""
-    echo "================================================"
-    echo "✅ HTTPS configuré avec succès !"
-    echo ""
-    echo "📌 Prochaines étapes :"
-    echo "   1. Vérifier : https://$DOMAIN/"
-    echo "   2. Vérifier : https://$DOMAIN/phpmyadmin"
-    echo "   3. Le renouvellement automatique est configuré (tous les 12h)"
-    echo ""
-    echo "🔒 Vos certificats sont dans : /var/lib/docker/volumes/cloud1_certbot_certs"
-    echo ""
-else
-    echo ""
-    echo "❌ Erreur lors de l'obtention des certificats"
-    echo ""
-    echo "🔍 Vérifications :"
-    echo "   1. Votre domaine $DOMAIN pointe-t-il vers cette IP ?"
-    echo "   2. Le port 80 est-il ouvert sur votre pare-feu/Azure NSG ?"
-    echo "   3. Nginx est-il bien accessible : curl http://$DOMAIN/.well-known/acme-challenge/test"
-    echo ""
-    echo "📋 Logs Certbot :"
-    docker compose logs certbot
-    echo ""
-    
-    # Restaurer la config quand même
-    mv nginx/nginx-full.conf nginx/nginx.conf
-    
+if [[ "${NGINX_READY}" == false ]]; then
+    echo "❌ Nginx ne répond pas sur le port 80 après 30s"
+    docker compose logs nginx || true
     exit 1
 fi
+
+echo "🔐 Étape 3 : Obtention des certificats Let's Encrypt"
+CERTBOT_FLAGS=(
+    certonly
+    --webroot
+    --webroot-path=/var/www/certbot
+    --email "${EMAIL}"
+    --agree-tos
+    --no-eff-email
+    -d "${DOMAIN}"
+)
+
+if [[ "${USE_STAGING}" == true ]]; then
+    CERTBOT_FLAGS+=(--staging)
+fi
+
+if [[ "${FORCE_RENEWAL}" == true ]]; then
+    CERTBOT_FLAGS+=(--force-renewal)
+fi
+
+docker compose run --rm --entrypoint certbot certbot "${CERTBOT_FLAGS[@]}"
+
+echo "✅ Certificats obtenus avec succès"
+cleanup
+trap - EXIT
+
+echo "🔄 Étape 4 : Restauration de la configuration HTTPS"
+docker compose restart nginx
+
+echo ""
+echo "================================================"
+echo "📁 Certificats : ${CERT_ROOT}/live/${DOMAIN}/"
+echo "🌐 Vérifie https://${DOMAIN}/ et https://${DOMAIN}/phpmyadmin"
+echo ""

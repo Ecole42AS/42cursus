@@ -156,9 +156,9 @@
 # =============================
 # Étape 12 : Création du répertoire de déploiement
 # =============================
-- name: Créer le répertoire /opt/cloud1
+- name: Créer le répertoire de travail
   ansible.builtin.file:
-    path: /opt/cloud1
+    path: "{{ cloud1_project_dir }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -174,10 +174,11 @@
 - name: Copier docker-compose.yml vers le serveur
   ansible.builtin.copy:
     src: ../../../docker-compose.yml
-    dest: /opt/cloud1/docker-compose.yml
+    dest: "{{ cloud1_project_dir }}/docker-compose.yml"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'
+  become: yes
   # src: chemin relatif depuis le rôle vers la racine du projet
   # dest: destination sur le serveur distant
   # mode 0644: lecture/écriture propriétaire, lecture pour les autres
@@ -188,23 +189,25 @@
 - name: Copier le fichier .env vers le serveur
   ansible.builtin.copy:
     src: ../../../.env
-    dest: /opt/cloud1/.env
+    dest: "{{ cloud1_project_dir }}/.env"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0600'
+  become: yes
   # mode 0600: lecture/écriture UNIQUEMENT pour le propriétaire (sécurité)
   # Fichier sensible contenant les mots de passe
 
 # =============================
 # Étape 15 : Création du répertoire nginx
 # =============================
-- name: Créer le répertoire /opt/cloud1/nginx
+- name: Créer le répertoire nginx
   ansible.builtin.file:
-    path: /opt/cloud1/nginx
+    path: "{{ cloud1_project_dir }}/nginx"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+  become: yes
   # Dossier pour la configuration Nginx
 
 # =============================
@@ -213,19 +216,96 @@
 - name: Copier nginx.conf vers le serveur
   ansible.builtin.copy:
     src: ../../../nginx/nginx.conf
-    dest: /opt/cloud1/nginx/nginx.conf
+    dest: "{{ cloud1_project_dir }}/nginx/nginx.conf"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'
+  become: yes
   # Configuration du reverse proxy Nginx
 
 # =============================
-# Étape 17 : Démarrage de la stack Docker
+# Étape 17 : Mise à jour des fichiers avec le vrai domaine
+# =============================
+- name: Mettre à jour le domaine dans nginx.conf
+  ansible.builtin.replace:
+    path: "{{ cloud1_project_dir }}/nginx/nginx.conf"
+    regexp: 'server_name\s+[^;]+;'
+    replace: "    server_name {{ cloud1_domain }};"
+  become: yes
+
+- name: Mettre à jour le chemin du certificat public
+  ansible.builtin.replace:
+    path: "{{ cloud1_project_dir }}/nginx/nginx.conf"
+    regexp: 'ssl_certificate\s+/etc/letsencrypt/live/.+/fullchain\.pem;'
+    replace: "    ssl_certificate /etc/letsencrypt/live/{{ cloud1_domain }}/fullchain.pem;"
+  become: yes
+
+- name: Mettre à jour la clé privée SSL
+  ansible.builtin.replace:
+    path: "{{ cloud1_project_dir }}/nginx/nginx.conf"
+    regexp: 'ssl_certificate_key\s+/etc/letsencrypt/live/.+/privkey\.pem;'
+    replace: "    ssl_certificate_key /etc/letsencrypt/live/{{ cloud1_domain }}/privkey.pem;"
+  become: yes
+
+- name: Forcer WORDPRESS_DOMAIN dans .env
+  ansible.builtin.lineinfile:
+    path: "{{ cloud1_project_dir }}/.env"
+    regexp: '^WORDPRESS_DOMAIN='
+    line: "WORDPRESS_DOMAIN={{ cloud1_domain }}"
+    create: yes
+    mode: '0600'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  become: yes
+
+# =============================
+# Étape 18 : Copie du script Let's Encrypt
+# =============================
+- name: Créer le dossier scripts distant
+  ansible.builtin.file:
+    path: "{{ cloud1_project_dir }}/scripts"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+  become: yes
+
+- name: Copier le script init-letsencrypt
+  ansible.builtin.copy:
+    src: ../../../scripts/init-letsencrypt.sh
+    dest: "{{ cloud1_project_dir }}/scripts/init-letsencrypt.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+  become: yes
+
+# =============================
+# Étape 19 : Initialisation automatique des certificats
+# =============================
+- name: Vérifier si le certificat existe déjà
+  ansible.builtin.stat:
+    path: "{{ cloud1_letsencrypt_cert_path }}"
+  register: cloud1_cert_status
+  become: yes
+
+- name: Exécuter le script Let's Encrypt si nécessaire
+  ansible.builtin.command: >
+    bash scripts/init-letsencrypt.sh
+    {{ cloud1_domain }} {{ cloud1_letsencrypt_email }}
+    {% if cloud1_letsencrypt_use_staging | bool %} --staging{% endif %}
+    {% if cloud1_letsencrypt_force | bool %} --force{% endif %}
+  args:
+    chdir: "{{ cloud1_project_dir }}"
+  become: yes
+  when: cloud1_letsencrypt_force | bool or not cloud1_cert_status.stat.exists
+
+# =============================
+# Étape 20 : Démarrage de la stack Docker
 # =============================
 - name: Lancer docker compose up -d
   ansible.builtin.shell: docker compose up -d
   args:
-    chdir: /opt/cloud1
+    chdir: "{{ cloud1_project_dir }}"
   become: yes
   register: docker_compose_output
   # args.chdir: se place dans /opt/cloud1 avant d'exécuter la commande
@@ -233,14 +313,49 @@
   # become: yes: nécessaire pour docker (même si utilisateur dans groupe docker)
 
 # =============================
-# Étape 18 : Afficher le résultat du déploiement
+# Étape 21 : Afficher le résultat du déploiement
 # =============================
 - name: Afficher le résultat de docker compose
   ansible.builtin.debug:
     msg: "✅ Stack WordPress déployée avec succès"
 
 # =============================
-# Étape 19 : Vérifier que les conteneurs tournent
+# Étape 22 : Forcer les URLs WordPress (home + siteurl)
+# =============================
+- name: Attendre le démarrage du conteneur MariaDB
+  ansible.builtin.shell: |
+    docker ps -q --filter "name={{ cloud1_mariadb_container_name }}$"
+  register: cloud1_mariadb_ps
+  retries: 10
+  delay: 3
+  until: cloud1_mariadb_ps.stdout | length > 0
+  become: yes
+
+- name: Attendre que MariaDB réponde
+  ansible.builtin.shell: |
+    set -a
+    . {{ cloud1_project_dir }}/.env
+    docker exec -i {{ cloud1_mariadb_container_name }} mysqladmin ping -h 127.0.0.1 -u root -p"${MYSQL_ROOT_PASSWORD}" --silent
+  register: cloud1_mysql_ping
+  retries: 10
+  delay: 3
+  until: cloud1_mysql_ping.rc == 0
+  become: yes
+
+- name: Mettre à jour les URLs WordPress dans la base
+  ansible.builtin.shell: |
+    set -a
+    . {{ cloud1_project_dir }}/.env
+    docker exec -i {{ cloud1_mariadb_container_name }} mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "
+      USE ${MYSQL_DATABASE};
+      UPDATE {{ cloud1_wp_table_prefix }}options
+      SET option_value='https://{{ cloud1_domain }}'
+      WHERE option_name IN ('home','siteurl');
+    "
+  become: yes
+
+# =============================
+# Étape 23 : Vérifier que les conteneurs tournent
 # =============================
 - name: Lister les conteneurs Docker en cours d'exécution
   ansible.builtin.command: docker ps

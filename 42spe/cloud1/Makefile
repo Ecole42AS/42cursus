@@ -83,45 +83,29 @@ init: ## [docker] Initialiser SSL (Nginx + Let's Encrypt) pour $(DOMAIN)
 	@echo "$(GREEN)>>> Initialisation SSL pour $(DOMAIN)$(NC)"
 	@sudo ./scripts/init-letsencrypt.sh $(DOMAIN) $(EMAIL)
 
-.PHONY: up
-up: ## [docker] Démarrer la stack WordPress en mode production
-	@echo "$(GREEN)>>> Démarrage de la stack WordPress$(NC)"
-	@docker compose up -d
-	@echo "$(GREEN)✅ Stack démarrée$(NC)"
-	@echo "   WordPress : https://$(DOMAIN)"
-	@echo "   phpMyAdmin: https://$(DOMAIN)/phpmyadmin"
-
-.PHONY: down
-down: ## [docker] Arrêter la stack WordPress
-	@echo "$(YELLOW)>>> Arrêt de la stack WordPress$(NC)"
-	@docker compose down
-	@echo "$(GREEN)✅ Stack arrêtée$(NC)"
-
-.PHONY: restart
-restart: down up ## [docker] Redémarrer la stack WordPress (down + up)
-
-.PHONY: logs
-logs: ## [docker] Afficher les logs de tous les conteneurs
-	@docker compose logs -f
-
 .PHONY: logs-nginx
-logs-nginx: ## [docker] Afficher les logs Nginx
-	@docker compose logs -f nginx
+logs-nginx: ## [ansible ad-hoc] Logs Nginx sur la VM (tail -50)
+	@cd $(ANSIBLE_DIR) && $(ANSIBLE) -i $(notdir $(INVENTORY)) $(HOST) \
+		-m shell -a "cd /opt/cloud1 && docker compose logs --tail=50 nginx"
 
 .PHONY: logs-wordpress
-logs-wordpress: ## [docker] Afficher les logs WordPress
-	@docker compose logs -f wordpress
+logs-wordpress: ## [ansible ad-hoc] Logs WordPress sur la VM (tail -50)
+	@cd $(ANSIBLE_DIR) && $(ANSIBLE) -i $(notdir $(INVENTORY)) $(HOST) \
+		-m shell -a "cd /opt/cloud1 && docker compose logs --tail=50 wordpress"
 
-.PHONY: ps
-ps: ## [docker] Afficher l'état des conteneurs
-	@docker compose ps
+.PHONY: restart-stack
+restart-stack: ## [ansible ad-hoc] Redémarrer nginx + wordpress sur la VM
+	@cd $(ANSIBLE_DIR) && $(ANSIBLE) -i $(notdir $(INVENTORY)) $(HOST) \
+		-m shell -a "cd /opt/cloud1 && docker compose restart nginx wordpress"
 
-.PHONY: clean
-clean: ## [docker] Arrêter et supprimer les conteneurs + volumes
-	@echo "$(RED)⚠️  Attention : Cette commande va supprimer les volumes (données)$(NC)"
-	@read -p "Êtes-vous sûr ? [y/N] " confirm && [ "$$confirm" = "y" ] || exit 1
-	@docker compose down -v
-	@echo "$(GREEN)✅ Nettoyage terminé$(NC)"
+.PHONY: wp-cli
+wp-cli: ## [ansible ad-hoc] Exécuter WP-CLI sur la VM (CMD=\"plugin list\")
+	@if [ -z "$(CMD)" ]; then \
+		echo "$(RED)Usage : make wp-cli CMD='plugin list'$(NC)"; \
+		exit 1; \
+	fi
+	@cd $(ANSIBLE_DIR) && $(ANSIBLE) -i $(notdir $(INVENTORY)) $(HOST) \
+		-m shell -a "cd /opt/cloud1 && docker compose exec wordpress wp $(CMD)"
 
 # =============================
 # ANSIBLE - Commandes ad-hoc
