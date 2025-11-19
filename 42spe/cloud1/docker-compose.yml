@@ -1,7 +1,7 @@
 # ===================================
 # Stack WordPress avec Reverse Proxy HTTPS
 # Services : Nginx, Certbot, MariaDB, WordPress, phpMyAdmin
-# Phase 4 : HTTPS avec Let's Encrypt
+# HTTPS avec Let's Encrypt
 # ===================================
 
 services:
@@ -46,7 +46,7 @@ services:
     # Certbot ne tourne pas en continu, il s'exécute à la demande
     # On le lance manuellement pour obtenir/renouveler les certificats
     # Commande par défaut : ne rien faire (on override pour obtenir les certs)
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do sleep 12h & wait $${!}; certbot renew; done;'"
+    entrypoint: /bin/sh
     networks:
       - backend
 
@@ -119,9 +119,8 @@ services:
       PMA_HOST: db
       # Port de la base de données
       PMA_PORT: 3306
-      # Autoriser la connexion sans mot de passe (déconseillé en prod)
-      # En phase 4 avec HTTPS, on pourrait restreindre cela
-      PMA_ARBITRARY: 1
+      # Configuration pour fonctionner derrière un reverse proxy
+      PMA_ABSOLUTE_URI: https://mywp-cloud1.duckdns.org/phpmyadmin/
     depends_on:
       - db
     networks:

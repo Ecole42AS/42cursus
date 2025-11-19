@@ -83,12 +83,13 @@ echo "🔐 Étape 4 : Obtention des certificats Let's Encrypt"
 echo "Cela peut prendre quelques secondes..."
 echo ""
 
-docker compose run --rm certbot certonly \
+docker compose run --rm --entrypoint certbot certbot certonly \
     --webroot \
     --webroot-path=/var/www/certbot \
     --email $EMAIL \
     --agree-tos \
     --no-eff-email \
+    --staging \
     -d $DOMAIN
 
 # Vérifier si la commande a réussi

@@ -8,3 +8,6 @@ wp_data/
 .github/instructions
 docs/
 tests/
+
+venv/
+.venv

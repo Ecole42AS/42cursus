@@ -45,9 +45,104 @@ cloud1/
 
 ## 🚀 Démarrage Rapide
 
-### Phase actuelle : Phase 4 (HTTPS avec Let's Encrypt)
+### Phase actuelle : Phase 5 (Ansible + Makefile Professionnel)
 
 #### 1. Cloner le projet
+
+```bash
+git clone <repo-url>
+cd cloud1
+```
+
+#### 2. Utiliser le Makefile
+
+**Voir toutes les commandes disponibles :**
+```bash
+make help
+```
+
+**Démarrage rapide :**
+```bash
+# Vérifier la configuration
+make venv-info
+
+# Tester la connexion au serveur
+make ping
+
+# Démarrer la stack WordPress
+make up
+
+# Vérifier le statut global
+make status
+```
+
+#### 3. Accéder aux services
+
+- **WordPress** : https://mywp-cloud1.duckdns.org
+- **phpMyAdmin** : https://mywp-cloud1.duckdns.org/phpmyadmin
+
+## 📖 Documentation
+
+### Documentation principale
+
+| Document | Description |
+|----------|-------------|
+| [MAKEFILE_GUIDE.md](docs/MAKEFILE_GUIDE.md) | 📘 Guide complet du Makefile (concepts, explications) |
+| [MAKEFILE_SUMMARY.md](docs/MAKEFILE_SUMMARY.md) | 📝 Résumé des améliorations apportées |
+| [MAKEFILE_EXAMPLES.md](docs/MAKEFILE_EXAMPLES.md) | 🎯 Exemples pratiques et cas d'usage |
+
+### Documentation par phase
+
+| Phase | Document | Statut |
+|-------|----------|--------|
+| Phase 2 | [PHASE2_COMPLETE.md](docs/PHASE2_COMPLETE.md) | ✅ Validée |
+| Phase 3 | [PHASE3_COMPLETE.md](docs/PHASE3_COMPLETE.md) | ✅ Validée |
+| Phase 4 | [PHASE4_COMPLETE.md](docs/PHASE4_COMPLETE.md) | ⏸️ Certificats en attente |
+| Phase 5 | [PHASE5_COMPLETE.md](docs/PHASE5_COMPLETE.md) | ✅ Validée |
+
+### Guides techniques
+
+- [ARCHITECTURE.md](docs/ARCHITECTURE.md) - Architecture détaillée du projet
+- [QUICKSTART.md](docs/QUICKSTART.md) - Guide de démarrage rapide
+
+## 🛠️ Commandes Makefile Principales
+
+### 🐳 Docker
+```bash
+make up              # Démarrer la stack
+make down            # Arrêter la stack
+make restart         # Redémarrer
+make logs            # Voir les logs
+make ps              # État des conteneurs
+make status          # Statut global
+```
+
+### 🔧 Ansible (Ad-hoc)
+```bash
+make ping            # Tester connexion
+make uptime          # Uptime des serveurs
+make disk            # Espace disque
+make docker-ps       # Conteneurs distants
+make shell ARGS="ls" # Commande personnalisée
+```
+
+### 📜 Ansible (Playbooks)
+```bash
+make deploy          # Déployer
+make deploy-check    # Dry-run
+make deploy-diff     # Avec diffs
+make syntax          # Vérifier syntaxe
+```
+
+### 🛠️ Utilitaires
+```bash
+make help            # Aide complète
+make venv-info       # Info virtualenv
+make list-hosts      # Lister serveurs
+make check-ssh       # Test SSH
+```
+
+👉 **Voir `make help` pour la liste complète**
 
 ```bash
 git clone <url-du-repo>
