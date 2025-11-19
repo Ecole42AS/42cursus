@@ -280,7 +280,40 @@
   become: yes
 
 # =============================
-# Étape 19 : Initialisation automatique des certificats
+# Étape 19 : Démarrage de la stack Docker
+# =============================
+- name: Lancer docker compose up -d
+  ansible.builtin.shell: docker compose up -d
+  args:
+    chdir: "{{ cloud1_project_dir }}"
+  become: yes
+  register: docker_compose_output
+  # args.chdir: se place dans /opt/cloud1 avant d'exécuter la commande
+  # docker compose up -d: lancer la stack en arrière-plan
+  # become: yes: nécessaire pour docker (même si utilisateur dans groupe docker)
+
+# =============================
+# Étape 20 : Afficher le résultat du déploiement
+# =============================
+- name: Afficher le résultat de docker compose
+  ansible.builtin.debug:
+    msg: "✅ Stack WordPress déployée avec succès"
+
+# =============================
+# Étape 21 : Vérifier que les conteneurs tournent
+# =============================
+- name: Lister les conteneurs Docker en cours d'exécution
+  ansible.builtin.command: docker ps
+  register: docker_ps_output
+  changed_when: false
+  become: yes
+
+- name: Afficher les conteneurs actifs
+  ansible.builtin.debug:
+    msg: "{{ docker_ps_output.stdout_lines }}"
+
+# =============================
+# Étape 22 : Initialisation automatique des certificats
 # =============================
 - name: Vérifier si le certificat existe déjà
   ansible.builtin.stat:
@@ -298,36 +331,3 @@
     chdir: "{{ cloud1_project_dir }}"
   become: yes
   when: cloud1_letsencrypt_force | bool or not cloud1_cert_status.stat.exists
-
-# =============================
-# Étape 20 : Démarrage de la stack Docker
-# =============================
-- name: Lancer docker compose up -d
-  ansible.builtin.shell: docker compose up -d
-  args:
-    chdir: "{{ cloud1_project_dir }}"
-  become: yes
-  register: docker_compose_output
-  # args.chdir: se place dans /opt/cloud1 avant d'exécuter la commande
-  # docker compose up -d: lancer la stack en arrière-plan
-  # become: yes: nécessaire pour docker (même si utilisateur dans groupe docker)
-
-# =============================
-# Étape 21 : Afficher le résultat du déploiement
-# =============================
-- name: Afficher le résultat de docker compose
-  ansible.builtin.debug:
-    msg: "✅ Stack WordPress déployée avec succès"
-
-# =============================
-# Étape 22 : Vérifier que les conteneurs tournent
-# =============================
-- name: Lister les conteneurs Docker en cours d'exécution
-  ansible.builtin.command: docker ps
-  register: docker_ps_output
-  changed_when: false
-  become: yes
-
-- name: Afficher les conteneurs actifs
-  ansible.builtin.debug:
-    msg: "{{ docker_ps_output.stdout_lines }}"

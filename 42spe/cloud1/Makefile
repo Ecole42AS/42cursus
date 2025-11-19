@@ -98,14 +98,6 @@ restart-stack: ## [ansible ad-hoc] Redémarrer nginx + wordpress sur la VM
 	@cd $(ANSIBLE_DIR) && $(ANSIBLE) -i $(notdir $(INVENTORY)) $(HOST) \
 		-m shell -a "cd /opt/cloud1 && docker compose restart nginx wordpress"
 
-.PHONY: wp-cli
-wp-cli: ## [ansible ad-hoc] Exécuter WP-CLI sur la VM (CMD=\"plugin list\")
-	@if [ -z "$(CMD)" ]; then \
-		echo "$(RED)Usage : make wp-cli CMD='plugin list'$(NC)"; \
-		exit 1; \
-	fi
-	@cd $(ANSIBLE_DIR) && $(ANSIBLE) -i $(notdir $(INVENTORY)) $(HOST) \
-		-m shell -a "cd /opt/cloud1 && docker compose exec wordpress wp $(CMD)"
 
 # =============================
 # ANSIBLE - Commandes ad-hoc
