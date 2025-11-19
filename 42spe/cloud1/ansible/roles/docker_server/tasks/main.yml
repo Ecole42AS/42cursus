@@ -320,42 +320,7 @@
     msg: "✅ Stack WordPress déployée avec succès"
 
 # =============================
-# Étape 22 : Forcer les URLs WordPress (home + siteurl)
-# =============================
-- name: Attendre le démarrage du conteneur MariaDB
-  ansible.builtin.shell: |
-    docker ps -q --filter "name={{ cloud1_mariadb_container_name }}$"
-  register: cloud1_mariadb_ps
-  retries: 10
-  delay: 3
-  until: cloud1_mariadb_ps.stdout | length > 0
-  become: yes
-
-- name: Attendre que MariaDB réponde
-  ansible.builtin.shell: |
-    set -a
-    . {{ cloud1_project_dir }}/.env
-    docker exec -i {{ cloud1_mariadb_container_name }} mysqladmin ping -h 127.0.0.1 -u root -p"${MYSQL_ROOT_PASSWORD}" --silent
-  register: cloud1_mysql_ping
-  retries: 10
-  delay: 3
-  until: cloud1_mysql_ping.rc == 0
-  become: yes
-
-- name: Mettre à jour les URLs WordPress dans la base
-  ansible.builtin.shell: |
-    set -a
-    . {{ cloud1_project_dir }}/.env
-    docker exec -i {{ cloud1_mariadb_container_name }} mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "
-      USE ${MYSQL_DATABASE};
-      UPDATE {{ cloud1_wp_table_prefix }}options
-      SET option_value='https://{{ cloud1_domain }}'
-      WHERE option_name IN ('home','siteurl');
-    "
-  become: yes
-
-# =============================
-# Étape 23 : Vérifier que les conteneurs tournent
+# Étape 22 : Vérifier que les conteneurs tournent
 # =============================
 - name: Lister les conteneurs Docker en cours d'exécution
   ansible.builtin.command: docker ps

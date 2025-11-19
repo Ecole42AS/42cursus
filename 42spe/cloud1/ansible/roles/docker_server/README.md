@@ -43,7 +43,6 @@ Ces variables peuvent être définies dans `inventory.ini`, `group_vars` ou lors
 | `cloud1_letsencrypt_email` | Email utilisé par Let's Encrypt | `admin@example.com` |
 | `cloud1_letsencrypt_use_staging` | `true` pour utiliser l'API de staging (évite les quotas) | `true` |
 | `cloud1_letsencrypt_force` | Force le script à recréer les certificats | `false` |
-| `cloud1_wp_table_prefix` | Préfixe des tables WordPress (`wp_` par défaut) | `wp_` |
 
 > ⚠️ Pense à surcharger `cloud1_domain` et `cloud1_letsencrypt_email` avant un vrai déploiement.
 
@@ -97,6 +96,5 @@ docker_server/
 6. Démarrage du service Docker
 7. Ajout de l'utilisateur au groupe docker
 8. Déploiement de la stack Docker (copie des fichiers, `docker compose up -d`)
-9. Forçage des URLs WordPress (`home` & `siteurl`) dans MySQL
-10. Initialisation Let's Encrypt (via `scripts/init-letsencrypt.sh`)
-11. Vérifications (conteneurs en ligne)
+9. Initialisation Let's Encrypt (via `scripts/init-letsencrypt.sh`)
+10. Vérifications (conteneurs en ligne)

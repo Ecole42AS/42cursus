@@ -10,7 +10,7 @@ cloud1_project_dir: /opt/cloud1
 cloud1_domain: mywp-cloud1.duckdns.org
 
 # Adresse email associée au compte Let's Encrypt
-cloud1_letsencrypt_email: admin@example.com
+cloud1_letsencrypt_email: alexandre.stutz@hotmail.com
 
 # Utiliser l'environnement de staging de Let's Encrypt (true pour éviter les quotas)
 cloud1_letsencrypt_use_staging: true
@@ -23,9 +23,3 @@ cloud1_project_name: "{{ cloud1_project_dir | basename }}"
 
 # Chemin attendu du certificat sur l'hôte (volume Docker)
 cloud1_letsencrypt_cert_path: "/var/lib/docker/volumes/{{ cloud1_project_name }}_certbot_certs/_data/live/{{ cloud1_domain }}/fullchain.pem"
-
-# Préfixe des tables WordPress (wp_ par défaut, adapté si changé dans wp-config.php)
-cloud1_wp_table_prefix: wp_
-
-# Nom du conteneur MariaDB défini dans docker-compose (utilisé pour docker exec)
-cloud1_mariadb_container_name: mariadb
