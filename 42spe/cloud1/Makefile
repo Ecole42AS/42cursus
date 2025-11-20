@@ -11,6 +11,9 @@
 DOMAIN := mywp-cloud1.duckdns.org
 EMAIL := alexandre.stutz@hotmail.com
 
+# Options supplémentaires pour certbot (ex: --staging ou --force-renewal)
+CERTBOT_FLAGS ?=
+
 # Configuration Ansible
 ANSIBLE_DIR := ansible
 INVENTORY := $(ANSIBLE_DIR)/inventory.ini
@@ -46,7 +49,7 @@ NC := \033[0m # No Color
 .PHONY: help
 help: ## Affiche cette aide
 	@echo "$(BLUE)╔════════════════════════════════════════════════════════════╗$(NC)"
-	@echo "$(BLUE)║      Makefile - Cloud1 WordPress Project				       ║$(NC)"
+	@echo "$(BLUE)║      Makefile - Cloud1 WordPress Project				   ║$(NC)"
 	@echo "$(BLUE)╚════════════════════════════════════════════════════════════╝$(NC)"
 	@echo ""
 	@echo "$(GREEN)🐳 DOCKER - Gestion de la stack WordPress$(NC)"
@@ -97,6 +100,14 @@ logs-wordpress: ## [ansible ad-hoc] Logs WordPress sur la VM (tail -50)
 restart-stack: ## [ansible ad-hoc] Redémarrer nginx + wordpress sur la VM
 	@cd $(ANSIBLE_DIR) && $(ANSIBLE) -i $(notdir $(INVENTORY)) $(HOST) \
 		-m shell -a "cd /opt/cloud1 && docker compose restart nginx wordpress"
+
+.PHONY: certbot
+certbot: ## [docker] Obtenir/renouveler les certificats Let's Encrypt via certbot
+	@echo "$(GREEN)>>> Exécution de Certbot sur $(HOST)$(NC)"
+	@cd $(ANSIBLE_DIR) && $(ANSIBLE) -i $(notdir $(INVENTORY)) $(HOST) \
+		-m shell -a "cd /opt/cloud1 && docker compose run --rm certbot certonly --webroot -w /var/www/certbot -d $(DOMAIN) --email $(EMAIL) --agree-tos --no-eff-email $(CERTBOT_FLAGS)"
+	@echo "$(GREEN)✅ Certbot terminé$(NC)"
+	@echo "$(YELLOW)Pense à recharger nginx si nécessaire : make restart-stack$(NC)"
 
 
 # =============================

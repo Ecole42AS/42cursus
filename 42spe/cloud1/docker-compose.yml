@@ -1,43 +1,27 @@
-# ===================================
-# Stack WordPress avec Reverse Proxy HTTPS
-# Services : Nginx, Certbot, MariaDB, WordPress, phpMyAdmin
-# HTTPS avec Let's Encrypt
-# ===================================
-
 services:
-  # =============================
-  # Service : Nginx (Reverse Proxy avec HTTPS)
-  # =============================
   nginx:
     image: nginx:alpine
     container_name: nginx
     restart: always
-    # Ports HTTP (80) et HTTPS (443) exposés
     ports:
-      - "80:80"    # HTTP (redirection vers HTTPS)
-      - "443:443"  # HTTPS (TLS/SSL)
-    # Montage de la configuration Nginx + certificats SSL
+      - "80:80"
+      - "443:443"
     volumes:
       # Configuration Nginx personnalisée
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      # Certificats Let's Encrypt (partagés avec certbot)
+      # Certificats Let's Encrypt (partagés avec certbot) 
       - certbot_certs:/etc/letsencrypt:ro
       # Challenge ACME pour validation de domaine
       - certbot_www:/var/www/certbot:ro
-    # Nginx dépend de WordPress et phpMyAdmin
     depends_on:
       - wordpress
       - phpmyadmin
     networks:
       - backend
 
-  # =============================
-  # Service : Certbot (Let's Encrypt)
-  # =============================
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    # Volumes partagés avec Nginx pour les certificats
     volumes:
       # Stockage des certificats SSL
       - certbot_certs:/etc/letsencrypt
@@ -50,9 +34,6 @@ services:
     networks:
       - backend
 
-  # =============================
-  # Service : Base de données MariaDB
-  # =============================
   db:
     image: mariadb:10.11
     container_name: mariadb
