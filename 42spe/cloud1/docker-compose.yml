@@ -39,71 +39,42 @@ services:
     container_name: mariadb
     # Redémarrage automatique en cas de crash ou reboot du serveur
     restart: always
-    # Variables d'environnement pour la configuration de la DB
     environment:
-      # Mot de passe root de MySQL/MariaDB
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      # Nom de la base de données à créer automatiquement
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      # Utilisateur MySQL pour WordPress
       MYSQL_USER: ${MYSQL_USER}
-      # Mot de passe de cet utilisateur
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    # Volume pour la persistance des données
-    # Sans ce volume, toutes les données seraient perdues au redémarrage
     volumes:
       - db_data:/var/lib/mysql
-    # Réseau interne uniquement
-    # PAS de "ports:" pour cette DB → elle n'est pas accessible depuis l'extérieur
     networks:
       - backend
 
-  # =============================
-  # Service : WordPress
-  # =============================
   wordpress:
     image: wordpress:latest
     container_name: wordpress
     restart: always
-    # PLUS de port exposé ! Accessible uniquement via Nginx sur le réseau interne
-    # Variables d'environnement pour connecter WordPress à la DB
     environment:
-      # Hôte de la base de données (nom du service Docker = db)
       WORDPRESS_DB_HOST: db:3306
-      # Nom de la DB (doit correspondre à MYSQL_DATABASE)
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
-      # Utilisateur MySQL pour WordPress
       WORDPRESS_DB_USER: ${MYSQL_USER}
-      # Mot de passe de cet utilisateur
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-      # Force WordPress à utiliser le domaine public en HTTPS (évite les redirections vers un port interne)
       WORDPRESS_CONFIG_EXTRA: |
         define( 'FORCE_SSL_ADMIN', true );
         define( 'WP_HOME', 'https://${WORDPRESS_DOMAIN}' );
         define( 'WP_SITEURL', 'https://${WORDPRESS_DOMAIN}' );
-    # Volume pour la persistance des fichiers WordPress
-    # Cela inclut : thèmes, plugins, uploads, etc.
     volumes:
       - wp_data:/var/www/html
-    # Dépendance : WordPress ne démarre qu'après la DB
     depends_on:
       - db
     networks:
       - backend
 
-  # =============================
-  # Service : phpMyAdmin
-  # =============================
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin
     restart: always
-    # PLUS de port exposé ! Accessible uniquement via Nginx sur le réseau interne
-    # Variables d'environnement pour connecter phpMyAdmin à la DB
     environment:
-      # Hôte de la base de données
       PMA_HOST: db
-      # Port de la base de données
       PMA_PORT: 3306
       # Configuration pour fonctionner derrière un reverse proxy (doc phpMyAdmin)
       PMA_ABSOLUTE_URI: https://${WORDPRESS_DOMAIN}/phpmyadmin/
@@ -112,28 +83,19 @@ services:
     networks:
       - backend
 
-# =============================
-# Réseaux
-# =============================
+
 networks:
-  # Réseau interne "backend" pour que les conteneurs communiquent entre eux
-  # Aucun accès direct depuis l'extérieur (sauf via les ports mappés)
+  # Réseau interne pour que les conteneurs communiquent entre eux
   backend:
     driver: bridge
 
-# =============================
-# Volumes persistants
-# =============================
+
 volumes:
-  # Volume pour les données de la base de données
   db_data:
     driver: local
-  # Volume pour les fichiers WordPress
   wp_data:
     driver: local
-  # Volume pour les certificats Let's Encrypt
   certbot_certs:
     driver: local
-  # Volume pour le challenge ACME (validation de domaine)
   certbot_www:
     driver: local
