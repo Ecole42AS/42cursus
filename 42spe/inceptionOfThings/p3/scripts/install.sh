@@ -9,6 +9,17 @@ else
     echo "K3d is already installed."
 fi
 
+# Check and Install kubectl
+if ! command -v kubectl &> /dev/null
+then
+    echo "kubectl not found. Installing..."
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    chmod +x kubectl
+    sudo mv kubectl /usr/local/bin/
+else
+    echo "kubectl is already installed."
+fi
+
 # Create Cluster
 # Exposing 8888 on host to 80 on loadbalancer (Traefik)
 k3d cluster create p3-cluster --api-port 6443 -p "8888:80@loadbalancer" --agents 1 --wait
