@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/Ecole42AS/42cursus' # CHANGE THIS to your repo URL
     targetRevision: HEAD
-    path: https://github.com/Ecole42AS/42cursus/tree/main/42spe/inceptionOfThings/github_files/app # Assumes 'app' folder is at the root of your repo
+    path: 42spe/inceptionOfThings/github_files/app # Path to the app folder in the repo
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
