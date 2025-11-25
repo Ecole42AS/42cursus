@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Ecole42AS/42cursus' # CHANGE THIS to your repo URL
+    repoURL: 'https://github.com/Ecole42AS/42cursus'
     targetRevision: HEAD
-    path: 42spe/inceptionOfThings/github_files/app # Path to the app folder in the repo
+    path: 42spe/inceptionOfThings/p3/app
   destination:
     server: https://kubernetes.default.svc
     namespace: dev

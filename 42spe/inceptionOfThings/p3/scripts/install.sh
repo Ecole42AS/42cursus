@@ -44,9 +44,8 @@ APP_CONF="$SCRIPT_DIR/../confs/application.yaml"
 if grep -q "YOUR_USERNAME/YOUR_REPO" "$APP_CONF"; then
     echo "------------------------------------------------"
     echo "Configuring Argo CD Application..."
-    read -p "Enter your GitHub Repository URL (e.g., https://github.com/user/repo.git): " REPO_URL
-    read -p "Enter the path to the app in the repo (default: app): " REPO_PATH
-    REPO_PATH=${REPO_PATH:-app}
+    REPO_URL="https://github.com/Ecole42AS/42cursus"
+    REPO_PATH="42spe/inceptionOfThings/p3/app"
 
     if [ -n "$REPO_URL" ]; then
         # Escape slashes for sed
@@ -73,7 +72,7 @@ ARGOPWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="
 echo "$ARGOPWD"
 echo "------------------------------------------------"
 echo "To finish the setup:"
-echo "1. Push the contents of 'github_files' to the root of your repository: $REPO_URL"
+echo "1. Push the contents of 'app' to the root of your repository: $REPO_URL"
 echo "   (Ensure the folder structure is: repo_root/app/deployment.yaml, etc.)"
 echo ""
 echo "Access your App (after sync): http://localhost:8888"
