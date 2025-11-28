@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: playground-app
+  name: iot-bonus
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
+    repoURL: http://gitlab-webservice-default.gitlab.svc.cluster.local:8181/root/iot-bonus.git
     targetRevision: HEAD
-    path: app
+    path: .
   destination:
     server: https://kubernetes.default.svc
     namespace: dev

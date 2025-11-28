@@ -22,11 +22,20 @@ fi
 
 # Create Cluster
 # Exposing 8888 on host to 80 on loadbalancer (Traefik)
-k3d cluster create p3-cluster --api-port 6443 -p "8888:80@loadbalancer" --agents 1 --wait
+if k3d cluster list | grep -q "p3-cluster"; then
+    echo "Cluster 'p3-cluster' already exists."
+else
+    k3d cluster create p3-cluster --api-port 6443 -p "8888:80@loadbalancer" --agents 1 --wait
+fi
 
 # Create Namespaces
-kubectl create namespace argocd
-kubectl create namespace dev
+for ns in argocd dev; do
+    if kubectl get namespace "$ns" > /dev/null 2>&1; then
+        echo "Namespace '$ns' already exists."
+    else
+        kubectl create namespace "$ns"
+    fi
+done
 
 # Install Argo CD
 echo "Installing Argo CD..."
@@ -40,26 +49,28 @@ kubectl wait --for=condition=available deployment/argocd-server -n argocd --time
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 APP_CONF="$SCRIPT_DIR/../confs/application.yaml"
 
-# Check if repo URL is configured
-if grep -q "YOUR_USERNAME/YOUR_REPO" "$APP_CONF"; then
-    echo "------------------------------------------------"
-    echo "Configuring Argo CD Application..."
-    REPO_URL="https://github.com/Ecole42AS/42cursus"
-    REPO_PATH="42spe/inceptionOfThings/p3/app"
+# Configure Argo CD Application
+echo "------------------------------------------------"
+echo "Configuring Argo CD Application..."
 
-    if [ -n "$REPO_URL" ]; then
-        # Escape slashes for sed
-        ESCAPED_REPO_URL=$(echo "$REPO_URL" | sed 's/\//\\\//g')
-        sed -i "s/https:\/\/github.com\/YOUR_USERNAME\/YOUR_REPO.git/$ESCAPED_REPO_URL/g" "$APP_CONF"
-        
-        # Update path using | as delimiter to handle slashes in path
-        sed -i "s|path: app|path: $REPO_PATH|g" "$APP_CONF"
-        
-        echo "Updated application.yaml with URL: $REPO_URL and Path: $REPO_PATH"
-    else
-        echo "No URL provided. Please update p3/confs/application.yaml manually."
-    fi
+# Ask for Repo URL
+read -p "Enter your GitHub Repository URL (e.g., https://github.com/user/repo.git): " REPO_URL
+if [ -z "$REPO_URL" ]; then
+    echo "Error: Repository URL is required."
+    exit 1
 fi
+
+# Set Path to 'p3/app'
+REPO_PATH="p3/app"
+
+# Escape slashes for sed
+ESCAPED_REPO_URL=$(echo "$REPO_URL" | sed 's/\//\\\//g')
+sed -i "s/https:\/\/github.com\/YOUR_USERNAME\/YOUR_REPO.git/$ESCAPED_REPO_URL/g" "$APP_CONF"
+
+# Update path using | as delimiter to handle slashes in path
+sed -i "s|path: app|path: $REPO_PATH|g" "$APP_CONF"
+
+echo "Updated application.yaml with URL: $REPO_URL and Path: $REPO_PATH"
 
 echo "Applying Argo CD Application..."
 kubectl apply -f "$APP_CONF"
