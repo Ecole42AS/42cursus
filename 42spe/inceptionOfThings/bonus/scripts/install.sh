@@ -51,12 +51,31 @@ PASSWORD=$(kubectl get secret gitlab-gitlab-initial-root-password -n gitlab -o j
 
 echo "GitLab Root Password: $PASSWORD"
 
-# Create Project via Rails Console
-echo "Creating 'iot-bonus' project in GitLab..."
-TOOLBOX_POD=$(kubectl get pods -n gitlab -l app=toolbox -o jsonpath="{.items[0].metadata.name}")
-kubectl exec -n gitlab $TOOLBOX_POD -- gitlab-rails runner "Project.create(name: 'iot-bonus', path: 'iot-bonus', namespace: User.first.namespace, visibility_level: Gitlab::VisibilityLevel::PUBLIC)"
+# Create Project via API (More reliable than Rails console for complex tasks)
+echo "Waiting for GitLab Toolbox to be ready..."
+kubectl wait --for=condition=ready pod -l app=toolbox -n gitlab --timeout=300s
 
-echo "Project 'iot-bonus' created."
+echo "Generating Personal Access Token via Rails Console..."
+TOOLBOX_POD=$(kubectl get pods -n gitlab -l app=toolbox -o jsonpath="{.items[0].metadata.name}")
+
+# Create a PAT for root user
+PAT_TOKEN="glpat-iot-bonus-token-123"
+kubectl exec -n gitlab $TOOLBOX_POD -- gitlab-rails runner "token = PersonalAccessToken.new(user: User.first, name: 'iot-bonus-token', scopes: ['api'], expires_at: 365.days.from_now); token.set_token('$PAT_TOKEN'); token.save!" 2>/dev/null
+
+echo "Personal Access Token created."
+
+echo "Creating 'iot-bonus' project via API..."
+# Wait for API to be responsive
+sleep 10
+
+# Create Public Project
+curl --header "PRIVATE-TOKEN: $PAT_TOKEN" \
+     --header "Content-Type: application/json" \
+     --data '{ "name": "iot-bonus", "visibility": "public", "initialize_with_readme": false }' \
+     "http://gitlab.localhost:8888/api/v4/projects"
+
+echo ""
+echo "Project creation request sent."
 
 # Configure ArgoCD Application
 # We need to create the application.yaml pointing to the internal service
@@ -88,3 +107,15 @@ echo "  git add ."
 echo "  git commit -m \"Initial commit\""
 echo "  git push -u origin master"
 echo "------------------------------------------------"
+
+# Get ArgoCD Password
+ARGOPWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+echo "ArgoCD URL: https://localhost:8080"
+echo "ArgoCD User: admin"
+echo "ArgoCD Password: $ARGOPWD"
+echo "------------------------------------------------"
+
+echo ""
+echo "Starting ArgoCD Port Forwarding on port 8080..."
+echo "Press Ctrl+C to stop the tunnel and exit the script."
+kubectl port-forward svc/argocd-server -n argocd 8080:443

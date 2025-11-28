@@ -92,3 +92,7 @@ echo "Access Argo CD UI:"
 echo "1. Run: kubectl port-forward svc/argocd-server -n argocd 8080:443"
 echo "2. Open: https://localhost:8080"
 echo "3. User: admin / Password: $ARGOPWD"
+echo ""
+echo "Starting ArgoCD Port Forwarding on port 8080..."
+echo "Press Ctrl+C to stop the tunnel and exit the script."
+kubectl port-forward svc/argocd-server -n argocd 8080:443
